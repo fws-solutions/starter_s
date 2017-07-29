@@ -1,0 +1,25 @@
+/*--------------------------------------------------------------
+## Main
+--------------------------------------------------------------*/
+.sticky {
+	display: block;
+}
+
+.hentry {
+	margin: 0 0 24px;
+}
+
+.updated:not(.published){
+	display: none;
+}
+
+.page-content,
+.entry-content,
+.entry-summary {
+	margin: 24px 0 0;
+}
+
+.page-links {
+	clear: both;
+	margin: 0 0 24px;
+}

@@ -1,0 +1,82 @@
+/*--------------------------------------------------------------
+## Mixins
+--------------------------------------------------------------*/
+
+// Responsive Breakpoints
+@mixin breakpoint($value) {
+	@if $value == 'phone' {
+		@media only screen and (min-width: 120px) and (max-width: 767px) { @content; }
+	} @else if $value == 'tablet' {
+		@media only screen and (min-width: 768px) and (max-width: 1024px) { @content; }
+	} @else if $value == 'touch' {
+		@media only screen and (min-width: 120px) and (max-width: 1024px) { @content; }
+	} @else if $value == 'desktop' {
+		@media only screen and (min-width: 1025px) { @content; }
+	} @else {
+		@media only screen and (max-width: $value) { @content; }
+	}
+}
+
+// Font Smoothing
+@mixin font-smoothing($val: antialiased) {
+	-webkit-font-smoothing: $val;
+	-moz-font-smoothing: $val;
+	-ms-font-smoothing: $val;
+	-o-font-smoothing: $val;
+}
+
+// Input Placeholder
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&::-ms-input-placeholder {
+		@content;
+	}
+}
+
+// Text Overflow
+@mixin text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// Vertical / Horizontal alignment
+@mixin align($position: relative, $direction: x) {
+	position: $position;
+	@if ($direction == 'y') {
+		top: 50%;
+		transform: translateY(-50%);
+	} @else if ($direction == 'xy') {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	} @else {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+/* example: @include align(absolute, xy); for centering both axis'
+   default @include align(); will be relative on x axis */
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+	clear: both;
+}

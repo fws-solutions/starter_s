@@ -3,7 +3,7 @@ Theme Name: starter_s
 Theme URI: http://underscores.me/
 Author: Underscores.me
 Author URI: http://underscores.me/
-Description: Description
+Description: Custom WP Starter Theme
 Version: 1.0.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
@@ -23,84 +23,46 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
-# Normalize
-# Typography
-# Elements
-# Forms
-# Navigation
-	## Links
-	## Menus
-# Accessibility
-# Alignments
-# Clearings
-# Widgets
-# Content
-	## Posts and pages
-	## Comments
-# Infinite scroll
-# Media
-	## Captions
-	## Galleries
+# Reset and Variables
+# Helpers
+# Base
+# Layout
+# Partials / Templates
 --------------------------------------------------------------*/
-@import "variables-site/variables-site";
-@import "mixins/mixins-master";
+
 
 /*--------------------------------------------------------------
-# Normalize
+# Reset and Variables
 --------------------------------------------------------------*/
-@import "normalize";
+@import 'config/reset';
+@import 'config/variables';
+@import 'base/icon-font';
 
 /*--------------------------------------------------------------
-# Typography
+# Helpers
 --------------------------------------------------------------*/
-@import "typography/typography";
+@import 'helpers/mixins';
+@import 'helpers/helpers';
+@import 'helpers/print';
 
 /*--------------------------------------------------------------
-# Elements
+# Base
 --------------------------------------------------------------*/
-@import "elements/elements";
+@import 'base/typography';
+@import 'base/layout';
 
 /*--------------------------------------------------------------
-# Forms
+# Layout
 --------------------------------------------------------------*/
-@import "forms/forms";
+@import 'layout/buttons';
+@import 'layout/forms';
+@import 'layout/media';
+@import 'layout/lists';
 
 /*--------------------------------------------------------------
-# Navigation
+# Partials / Templates
 --------------------------------------------------------------*/
-@import "navigation/navigation";
-
-/*--------------------------------------------------------------
-# Accessibility
---------------------------------------------------------------*/
-@import "modules/accessibility";
-
-/*--------------------------------------------------------------
-# Alignments
---------------------------------------------------------------*/
-@import "modules/alignments";
-
-/*--------------------------------------------------------------
-# Clearings
---------------------------------------------------------------*/
-@import "modules/clearings";
-
-/*--------------------------------------------------------------
-# Widgets
---------------------------------------------------------------*/
-@import "site/secondary/widgets";
-
-/*--------------------------------------------------------------
-# Content
---------------------------------------------------------------*/
-@import "site/site";
-
-/*--------------------------------------------------------------
-# Infinite scroll
---------------------------------------------------------------*/
-@import "modules/infinite-scroll";
-
-/*--------------------------------------------------------------
-# Media
---------------------------------------------------------------*/
-@import "media/media";
+@import 'partials/header';
+@import 'partials/navigation';
+@import 'partials/footer';
+@import 'partials/main';
