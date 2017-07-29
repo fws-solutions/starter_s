@@ -3,10 +3,10 @@
 --------------------------------------------------------------*/
 @font-face {
 	font-family: "svgicons";
-	src: url('css/icons/svgicons.eot');
-	src: url('css/icons/svgicons.eot?#iefix') format('eot'),
-		url('css/icons/svgicons.woff') format('woff'),
-		url('css/icons/svgicons.ttf') format('truetype');
+	src: url('assets/icons/svgicons.eot');
+	src: url('assets/icons/svgicons.eot?#iefix') format('eot'),
+		url('assets/icons/svgicons.woff') format('woff'),
+		url('assets/icons/svgicons.ttf') format('truetype');
 }
 
 @mixin font-styles {
@@ -65,29 +65,4 @@
 		}
 		content: font-char($filename);
 	}
-}
-
-.font-ico-arrow-down {
-	@include font(ico-arrow-down);
-}
-.font-ico-close {
-	@include font(ico-close);
-}
-.font-ico-correct {
-	@include font(ico-correct);
-}
-.font-ico-favorite-heart {
-	@include font(ico-favorite-heart);
-}
-.font-ico-heart {
-	@include font(ico-heart);
-}
-.font-ico-minus {
-	@include font(ico-minus);
-}
-.font-ico-play {
-	@include font(ico-play);
-}
-.font-ico-plus {
-	@include font(ico-plus);
 }
