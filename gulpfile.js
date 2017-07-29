@@ -21,8 +21,8 @@ gulp.task('iconfont', function() {
 	.pipe(iconfontCss({
 		fontName: 'svgicons',
 		cssClass: 'font',
-		path: 'scss/base/icon-font-config.scss',
-		targetPath: '../../scss/base/_icon-font.scss',
+		path: 'config/icon-font-config.scss',
+		targetPath: '../../sass/base/_icon-font.scss',
 		fontPath: '../icons/'
 	}))
 	.pipe(iconfont({
@@ -43,7 +43,7 @@ gulp.task('iconfont', function() {
 var notifySVGOMG = {
 	title: 'Awesome!',
 	message: 'SVG files are optimized!',
-	icon: path.join(__dirname, 'assets/img/notify.jpg'),
+	icon: path.join(__dirname, 'config/notify-success.png'),
 	time: 1500,
 	sound: true
 };
@@ -51,16 +51,19 @@ var notifySVGOMG = {
 var notifyStyles = {
 	title: 'Good job :)',
 	message: 'Styles are compiled!',
-	icon: path.join(__dirname, 'assets/img/notify.jpg'),
+	icon: path.join(__dirname, 'config/notify-success.png'),
 	time: 1500,
-	sound: true
+	sound: false,
+	onLast: true
 };
 
 //error notification settings for plumber
 var plumberErrorHandler = {
 	errorHandler: notify.onError({
-		title: 'There was some Error, I think...',
-		message: "Error message: <%= error.message %>"
+		title: 'Fix this ERROR, Bitch:',
+		message: "<%= error.message %>",
+		icon: path.join(__dirname, 'config/notify-error.png'),
+		time: 2000,
 	})
 };
 
@@ -75,7 +78,7 @@ gulp.task('svgomg', function () {
 				//{ removeStyleElement: true }
 			]
 		}))
-		.pipe(gulp.dest('assets/svg'));
+		.pipe(gulp.dest('assets/svg'))
 		.pipe(notify(notifySVGOMG));
 });
 
@@ -85,18 +88,18 @@ gulp.task('styles', function() {
 		autoprefixer({ browsers: ['last 3 versions', 'ios >= 6'] }),
 		flexBugsFix
 	];
-	return gulp.src(['scss/**/*.scss'])
+	return gulp.src(['sass/**/*.scss'])
 		.pipe(plumber(plumberErrorHandler))
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: 'compressed'}))
 		.pipe(postcss(processors))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('assets/css'));
-		//.pipe(notify(notifySVG));
+		.pipe(gulp.dest(''))
+		.pipe(notify(notifyStyles));
 });
 
 gulp.task('sasslint', function () {
-  return gulp.src('scss/**/*.scss')
+  return gulp.src('sass/**/*.scss')
     .pipe(sassLint({
       config: '.sass-lint.yml'
     }))
@@ -107,7 +110,7 @@ gulp.task('sasslint', function () {
 //watch
 gulp.task('default', function() {
 	//watch .scss files
-	gulp.watch('scss/**/*.scss', ['styles', 'sasslint']);
+	gulp.watch('sass/**/*.scss', ['styles', 'sasslint']);
 	//watch added or changed svg files to optimize them
 	gulp.watch('assets/svg/*.svg', ['svgomg']);
 });

@@ -3,25 +3,20 @@ options:
 files:
   include: '**/*.s+(a|c)ss'
   ignore:
-    - 'scss/helpers/_print.scss'
-    - 'scss/helpers/_mixins.scss'
-    - 'scss/layout/_sprite.scss'
-    - 'scss/layout/_icon-font.scss'
-    - 'scss/layout/_svg-sprite.scss'
-    - 'scss/config/_reset.scss'
-    - 'scss/base/_grid-layout.scss'
-    - 'scss/base/_grid-framework.scss'
-    - 'scss/base/_fonts.scss'
-    - 'scss/lib/*.scss'
+    - 'sass/helpers/_print.scss'
+    - 'sass/helpers/_mixins.scss'
+    - 'sass/helpers/_helpers.scss'
+    - 'sass/layout/_sprite.scss'
+    - 'sass/base/_icon-font.scss'
+    - 'sass/config/_reset.scss'
 
 rules:
   attribute-quotes: 2
-  bem-depth: 0
   border-zero: 2
   brace-style: 2
   class-name-format:
-    - 2
-    - allow-leading-underscore: false
+    - 0
+    - allow-leading-underscore: 2
   clean-import-paths: 2
   empty-args: 2
   # TODO
@@ -55,13 +50,13 @@ rules:
   no-color-keywords: 2
   no-color-literals: 0
   no-combinators: 0
-  no-css-comments: 2
+  no-css-comments: 0
   no-debug: 2
   no-disallowed-properties: 2
   no-duplicate-properties: 2
-  no-empty-rulesets: 2
+  no-empty-rulesets: 0
   no-extends: 0
-  no-ids: 1
+  no-ids: 0
   no-important: 1
   no-invalid-hex: 2
   no-mergeable-selectors: 2

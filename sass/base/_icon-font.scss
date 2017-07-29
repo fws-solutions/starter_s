@@ -1,12 +1,9 @@
-/*--------------------------------------------------------------
-## Icon Fonts
---------------------------------------------------------------*/
 @font-face {
 	font-family: "svgicons";
-	src: url('assets/icons/svgicons.eot');
-	src: url('assets/icons/svgicons.eot?#iefix') format('eot'),
-		url('assets/icons/svgicons.woff') format('woff'),
-		url('assets/icons/svgicons.ttf') format('truetype');
+	src: url('../icons/svgicons.eot');
+	src: url('../icons/svgicons.eot?#iefix') format('eot'),
+		url('../icons/svgicons.woff') format('woff'),
+		url('../icons/svgicons.ttf') format('truetype');
 }
 
 @mixin font-styles {
@@ -28,29 +25,8 @@
 @function font-char($filename) {
 	$char: "";
 
-	@if $filename == ico-arrow-down {
+	@if $filename == test {
 		$char: "\E001";
-	}
-	@if $filename == ico-close {
-		$char: "\E002";
-	}
-	@if $filename == ico-correct {
-		$char: "\E003";
-	}
-	@if $filename == ico-favorite-heart {
-		$char: "\E004";
-	}
-	@if $filename == ico-heart {
-		$char: "\E005";
-	}
-	@if $filename == ico-minus {
-		$char: "\E006";
-	}
-	@if $filename == ico-play {
-		$char: "\E007";
-	}
-	@if $filename == ico-plus {
-		$char: "\E008";
 	}
 
 	@return $char;

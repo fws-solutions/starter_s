@@ -14,7 +14,7 @@
 		color: #000;
 		text-decoration: underline;
 	}
-	a:not([href="javascript:;"]):after {
+	a:not([href="javascript:;"])::after {
 		content: " [" attr(href) "] ";
 	}
 	h1, h2, h3, h4, h5, h6 {
