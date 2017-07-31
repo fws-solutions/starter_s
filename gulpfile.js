@@ -13,7 +13,16 @@ var gulp             = require('gulp'),
 	svgmin           = require('gulp-svgmin');
 	gutil            = require('gulp-util'),
 	path             = require('path'),
-	flexBugsFix      = require('postcss-flexbugs-fixes');
+	flexBugsFix      = require('postcss-flexbugs-fixes'),
+	filter 			 = require('gulp-filter');
+
+	// gulp.task('loadjs', function() {
+	// 	const jsFilter = filter('**/*.min.js');
+	//
+	// 	return gulp.src('node_modules/slick-carousel/**')
+	// 	.pipe(jsFilter)
+	// 	.pipe(gulp.dest('assets/css/'));
+	// });
 
 //icon fonts
 gulp.task('iconfont', function() {
@@ -60,7 +69,7 @@ var notifyStyles = {
 //error notification settings for plumber
 var plumberErrorHandler = {
 	errorHandler: notify.onError({
-		title: 'Fix this ERROR, Bitch:',
+		title: 'Fix that ERROR, bitch:',
 		message: "<%= error.message %>",
 		icon: path.join(__dirname, 'config/notify-error.png'),
 		time: 2000,
