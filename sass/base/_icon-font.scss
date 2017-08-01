@@ -25,7 +25,7 @@
 @function font-char($filename) {
 	$char: "";
 
-	@if $filename == test {
+	@if $filename == happy {
 		$char: "\E001";
 	}
 
@@ -42,3 +42,8 @@
 		content: font-char($filename);
 	}
 }
+
+.font-happy {
+	@include font(happy);
+}
+

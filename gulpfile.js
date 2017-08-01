@@ -16,13 +16,7 @@ var gulp             = require('gulp'),
 	flexBugsFix      = require('postcss-flexbugs-fixes'),
 	filter 			 = require('gulp-filter');
 
-	// gulp.task('loadjs', function() {
-	// 	const jsFilter = filter('**/*.min.js');
-	//
-	// 	return gulp.src('node_modules/slick-carousel/**')
-	// 	.pipe(jsFilter)
-	// 	.pipe(gulp.dest('assets/css/'));
-	// });
+
 
 //icon fonts
 gulp.task('iconfont', function() {
@@ -116,8 +110,38 @@ gulp.task('sasslint', function () {
     .pipe(sassLint.failOnError())
 });
 
+gulp.task('load-slick-css', function() {
+	return gulp.src('node_modules/slick-carousel/slick/slick.css')
+	.pipe(gulp.dest('assets/css'))
+});
+
+gulp.task('load-slick-js', function() {
+	return gulp.src('node_modules/slick-carousel/slick/slick.min.js')
+	.pipe(gulp.dest('js'))
+});
+
+gulp.task('load-fancybox-css', function() {
+	return gulp.src('node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css')
+	.pipe(gulp.dest('assets/css'))
+});
+
+gulp.task('load-fancybox-js', function() {
+	return gulp.src('node_modules/@fancyapps/fancybox/dist/jquery.fanbox.min.js')
+	.pipe(gulp.dest('js'))
+});
+
+gulp.task('load-timelite-js', function() {
+	return gulp.src('node_modules/gsap/src/minified/TweenLite.min.js')
+	.pipe(gulp.dest('js'))
+});
+
+gulp.task('load-scrollto-js', function() {
+	return gulp.src('node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js')
+	.pipe(gulp.dest('js'))
+});
+
 //watch
-gulp.task('default', function() {
+gulp.task('default', ['load-slick-css', 'load-slick-js', 'load-fancybox-css', 'load-fancybox-js', 'load-timelite-js', 'load-scrollto-js'], function() {
 	//watch .scss files
 	gulp.watch('sass/**/*.scss', ['styles', 'sasslint']);
 	//watch added or changed svg files to optimize them
