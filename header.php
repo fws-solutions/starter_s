@@ -25,9 +25,9 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'starter_s' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<h1 class="site-branding">
-			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-		</h1><!-- .site-branding -->
+		<div class="site-branding">
+			<h1 href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Logo</h1>
+		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
 			<?php
