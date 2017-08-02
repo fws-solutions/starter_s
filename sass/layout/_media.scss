@@ -62,3 +62,9 @@ object {
 .gallery-caption {
 	display: block;
 }
+
+img {
+	max-width: 100%;
+	display: block;
+	height: initial;
+}

@@ -14,7 +14,9 @@
 	</div><!-- #content -->
 
 	<footer id="colophon" class="site-footer">
-
+		<div class="copyright">
+			<p>&copy; 2017 Sarter Theme</p>
+		</div><!-- .copyright -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 

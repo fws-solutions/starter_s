@@ -23,3 +23,118 @@
 	clear: both;
 	margin: 0 0 24px;
 }
+
+/* grid */
+.container {
+	max-width: 1170px;
+	margin: 0 auto;
+	padding: 0 15px;
+}
+
+.row {
+	margin: 0 -15px;
+}
+
+.col-3 .col {
+	max-width: 320px;
+	margin: 0 auto 30px;
+
+	@include breakpoint(desktop){
+		max-width: initial;
+		width: 33%;
+		padding: 0 15px;
+		float: left;
+		margin: 0 auto;
+	}
+}
+
+@include breakpoint(desktop){
+	.col-3 .col {
+		width: 33%;
+		padding: 0 15px;
+		float: left;
+		margin: 0 auto;
+	}
+}
+
+/* parallax banner */
+.banner {
+	height: 100vh;
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: relative;
+	background-position: 50% 0;
+	max-height: 600px;
+
+	@include breakpoint(tablet){
+		max-height: 500px;
+	}
+
+	@include breakpoint(phone){
+		max-height: 400px;
+	}
+}
+
+.banner-caption {
+	@include align(absolute, xy);
+	text-align: center;
+
+	h1,
+	p {
+		color: $white;
+	}
+}
+
+/* page section  */
+.page-section {
+	padding: 70px 0 50px;
+
+	.section-title {
+		margin-bottom: 35px;
+	}
+
+	@include breakpoint('phone') {
+		padding: 50px 0 30px;
+	}
+}
+
+/* Slick Slider  */
+.slick-dots {
+	text-align: center;
+	margin: 20px 0;
+
+	li {
+		display: inline-block;
+		vertical-align: middle;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		padding: 0;
+		margin: 0 4px;
+		background: transparent;
+	}
+
+	button {
+		text-indent: -2000em;
+		width: 12px;
+		height: 12px;
+		border-radius: 50%;
+		padding: 0;
+		background-color: $grey-light;
+		transition: 0.35s ease-out;
+		border: none;
+		min-width: initial;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	li.slick-active button {
+		background-color: $gold;
+	}
+}
+
+.slick-slide:focus {
+	outline: none;
+}

@@ -26,15 +26,18 @@
 
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
-			<h1 href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Logo</h1>
+			<h1 class="site-title">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Logo</a>
+			</h1>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
+			<div class="menu-btn"><span></span></div>	<!-- menu-button -->
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
 					'menu_id'        => 'primary-menu',
-					'menu_class'	 => 'primary-menu',
+					'menu_class'	 => 'primary-menu clear',
 					'container'		 => false
 				) );
 			?>

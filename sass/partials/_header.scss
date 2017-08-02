@@ -2,13 +2,15 @@
 ## Header
 --------------------------------------------------------------*/
 .site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 15px;
-  background-color: $black;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 15px;
+      background-color: $grey-dark;
+      position: relative;
+      min-height: 60px;
 }
 
-.site-branding {
-  color: $white;
+.site-branding a {
+      color: $white;
 }

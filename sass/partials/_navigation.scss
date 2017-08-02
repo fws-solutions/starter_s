@@ -19,12 +19,15 @@ a {
 		padding: 0;
 
 		ul {
-			border: 1px solid $grey;
-			float: left;
 			position: absolute;
+			left: 0;
 			top: 100%;
-			left: -999em;
+			border-top: 3px solid $gold;
 			z-index: 99999;
+			background-color: $grey-dark;
+			transition: 0.3s ease-out;
+			transform: translateY(5px);
+			opacity: 0;
 
 			ul {
 				left: -999em;
@@ -32,6 +35,12 @@ a {
 			}
 
 			li {
+				border-bottom: 1px solid $grey-light;
+
+				&:last-of-type {
+					border-bottom: none;
+				}
+
 				&:hover > ul,
 				&.focus > ul {
 					left: 100%;
@@ -53,14 +62,20 @@ a {
 
 		li:hover > ul,
 		li.focus > ul {
-			left: auto;
+			transform: translateY(0);
+			opacity: 1;
 		}
 	}
 
 	li {
 		position: relative;
-		display: inline-block;
-		margin: 0 10px;
+		float: left;
+		padding: 20px 15px;
+		transition: 0.3s ease-out;
+
+		&:hover {
+			background-color: $gold;
+		}
 
 		&:hover > a,
 		&.focus > a {
@@ -77,6 +92,45 @@ a {
 	.current-menu-item > a,
 	.current_page_ancestor > a,
 	.current-menu-ancestor > a {
+	}
+
+	@include breakpoint('phone') {
+		width: 230px;
+		position: fixed;
+		top: 0;
+		right: 40px;
+		padding-left: 40px;
+		overflow: auto;
+		bottom: 0;
+		height: 100%;
+		z-index: 100;
+		transform: translateX(100%);
+		transition: 0.4s ease;
+
+		&.slide-in-nav {
+			opacity: 1;
+			transform: translateX(40px);
+		}
+
+		ul {
+			background-color: $gold;
+			min-height: 100%;
+			padding: 10px 0;
+
+			ul {
+				position: static;
+				background-color: $gold;
+				transition: initial;
+				transform: translateY(0);
+				opacity: 1;
+				display: none;
+			}
+		}
+
+		li {
+			float: none;
+			padding: 15px;
+		}
 	}
 }
 
@@ -99,4 +153,88 @@ a {
 		text-align: right;
 		width: 50%;
 	}
+}
+
+/*--------------------------------------------------------------
+## Menu Btn
+--------------------------------------------------------------*/
+.menu-btn {
+      display: none;
+	width: 30px;
+	height: 19px;
+	left: 0;
+      top: 21px;
+      position: absolute;
+
+	&::after,
+	&::before,
+	span {
+		width: 100%;
+		height: 3px;
+		position: absolute;
+		display: block;
+		background-color: $gold;
+	}
+
+	&::after,
+	&::before {
+		content: '';
+		transition: 0.3s width 0.4s ease-out;
+	}
+
+	&::after {
+		top: 0;
+		left: 0;
+	}
+
+	&::before {
+		bottom: 0;
+		right: 0;
+	}
+
+	span {
+		top: 50%;
+		margin-top: -1.5px;
+		transition: transform 0.3s ease-out;
+
+		&::before {
+			content: '';
+			background-color: $gold;
+			width: 100%;
+			height: 3px;
+			position: absolute;
+			left: 0;
+			transition: transform 0.3s ease-out;
+		}
+	}
+
+	&.open {
+		&::after,
+            &::before {
+			transition:  0.2s ease-out;
+			width: 0;
+		}
+
+            &::after {
+                  left: 0;
+            }
+
+		&::before {
+			right: 0;
+		}
+
+		span {
+			transform: rotate(45deg);
+			transition: 0.3s transform 0.4s ease-out;
+
+			&::before {
+				transform: rotate(-90deg);
+				transition: 0.3s transform 0.4s ease-out;
+			}
+		}
+	}
+
+      @include breakpoint('phone') {
+            display: block;
+      }
 }
