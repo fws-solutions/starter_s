@@ -9,6 +9,9 @@ files:
     - 'sass/layout/_sprite.scss'
     - 'sass/base/_icon-font.scss'
     - 'sass/config/_reset.scss'
+    - 'sass/bootstrap/_bsconfig.scss'
+    - 'sass/bootstrap/_bsmixins.scss'
+    - 'sass/bootstrap/_bootstrap.scss'
 
 rules:
   attribute-quotes: 2

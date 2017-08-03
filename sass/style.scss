@@ -25,6 +25,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 ----------------------------------------------------------------
 # Reset and Variables
 # Helpers
+# Bootstrap
 # Base
 # Components
 # Partials / Templates
@@ -43,6 +44,13 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 @import 'helpers/mixins';
 @import 'helpers/helpers';
+
+/*--------------------------------------------------------------
+# Bootstrap
+--------------------------------------------------------------*/
+// @import 'bootstrap/bsconfig';
+// @import 'bootstrap/bsmixins';
+// @import 'bootstrap/bootstrap';
 
 /*--------------------------------------------------------------
 # Base
