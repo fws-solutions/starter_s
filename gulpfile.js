@@ -1,20 +1,70 @@
 //load dependecies
 var gulp             = require('gulp'),
 	autoprefixer     = require('autoprefixer'),
-	iconfont         = require('gulp-iconfont'),
-	iconfontCss      = require('gulp-iconfont-css'),
 	notify           = require('gulp-notify'),
 	plumber          = require('gulp-plumber'),
 	postcss          = require('gulp-postcss'),
-	sass             = require('gulp-sass'),
-	sassLint         = require('gulp-sass-lint'),
+	iconfont         = require('gulp-iconfont'),
+	iconfontCss      = require('gulp-iconfont-css'),
 	size             = require('gulp-size'),
 	sourcemaps       = require('gulp-sourcemaps'),
 	svgmin           = require('gulp-svgmin');
 	gutil            = require('gulp-util'),
+	sass             = require('gulp-sass'),
+	sassLint         = require('gulp-sass-lint'),
 	path             = require('path'),
 	flexBugsFix      = require('postcss-flexbugs-fixes'),
-	filter 			 = require('gulp-filter');
+	filter 			 = require('gulp-filter'),
+	concat			 = require('gulp-concat'),
+	concatCss		 = require('gulp-concat-css'),
+	cleanCss		 = require('gulp-clean-css'),
+	uglify			 = require('gulp-uglify');
+
+
+// enable plugins
+var slick = true;
+var fancybox = true;
+var smoothscroll = false;
+
+
+// download plugins
+var slickJS = 'node_modules/slick-carousel/slick/slick.min.js';
+var slickCSS = 'node_modules/slick-carousel/slick/slick.css';
+var fancyboxJS = 'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js';
+var fancyboxCSS = 'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
+var tweenliteJS = 'node_modules/gsap/src/minified/TweenLite.min.js';
+var scrolltoJS = 'node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js';
+
+var pluginsJS = [];
+var pluginsCSS = [];
+if (slick) {
+	pluginsJS.push(slickJS);
+	pluginsCSS.push(slickCSS);
+}
+if (fancybox) {
+	pluginsJS.push(fancyboxJS);
+	pluginsCSS.push(fancyboxCSS);
+}
+if (smoothscroll) {
+	pluginsJS.push(tweenliteJS);
+	pluginsJS.push(scrolltoJS);
+}
+
+gulp.task('load-css', function() {
+	return gulp.src(pluginsCSS)
+	.pipe(concatCss("plugins.min.css"))
+	.pipe(cleanCss())
+	.pipe(gulp.dest('assets/css'))
+});
+
+gulp.task('load-js', function() {
+	return gulp.src(pluginsJS)
+	.pipe(concat('plugins.min.js'))
+	.pipe(uglify())
+	.pipe(gulp.dest('js'))
+});
+
+gulp.task('load-plugins', ['load-css', 'load-js']);
 
 
 
@@ -22,14 +72,14 @@ var gulp             = require('gulp'),
 gulp.task('iconfont', function() {
   return gulp.src(['assets/svg/*.svg'])
 	.pipe(iconfontCss({
-		fontName: 'svgicons',
+		fontName: 'fonticons',
 		cssClass: 'font',
 		path: 'config/icon-font-config.scss',
 		targetPath: '../../sass/base/_icon-font.scss',
 		fontPath: '../icons/'
 	}))
 	.pipe(iconfont({
-		fontName: 'svgicons', // required
+		fontName: 'fonticons', // required
 		prependUnicode: false, // recommended option
 		formats: ['ttf', 'woff'], // default, 'woff2' and 'svg' are available
 		normalize: true,
@@ -43,16 +93,16 @@ gulp.task('iconfont', function() {
 });
 
 //the title and icon that will be used for the Gulp notifications
-var notifySVGOMG = {
-	title: 'Awesome!',
-	message: 'SVG files are optimized!',
+var msgSVG = {
+	title: 'Great!',
+	message: 'SVG files optimized!',
 	icon: path.join(__dirname, 'config/notify-success.png'),
 	time: 1500,
 	sound: true
 };
 
-var notifyStyles = {
-	title: 'Good job :)',
+var msgSASS = {
+	title: 'Sweet :)',
 	message: 'Styles are compiled!',
 	icon: path.join(__dirname, 'config/notify-success.png'),
 	time: 1500,
@@ -61,7 +111,7 @@ var notifyStyles = {
 };
 
 //error notification settings for plumber
-var plumberErrorHandler = {
+var msgERROR = {
 	errorHandler: notify.onError({
 		title: 'Fix that ERROR, bitch:',
 		message: "<%= error.message %>",
@@ -82,26 +132,26 @@ gulp.task('svgomg', function () {
 			]
 		}))
 		.pipe(gulp.dest('assets/svg'))
-		.pipe(notify(notifySVGOMG));
+		.pipe(notify(msgSVG));
 });
 
 //styles
 gulp.task('styles', function() {
-	var processors = [
+	var prefix = [
 		autoprefixer({ browsers: ['last 3 versions', 'ios >= 6'] }),
 		flexBugsFix
 	];
 	return gulp.src(['sass/**/*.scss'])
-		.pipe(plumber(plumberErrorHandler))
+		.pipe(plumber(msgERROR))
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: 'compressed'}))
-		.pipe(postcss(processors))
+		.pipe(postcss(prefix))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(''))
-		.pipe(notify(notifyStyles));
+		.pipe(notify(msgSASS));
 });
 
-gulp.task('sasslint', function () {
+gulp.task('sass-lint', function () {
   return gulp.src('sass/**/*.scss')
     .pipe(sassLint({
       config: '.sass-lint.yml'
@@ -110,40 +160,10 @@ gulp.task('sasslint', function () {
     .pipe(sassLint.failOnError())
 });
 
-gulp.task('load-slick-css', function() {
-	return gulp.src('node_modules/slick-carousel/slick/slick.css')
-	.pipe(gulp.dest('assets/css'))
-});
-
-gulp.task('load-slick-js', function() {
-	return gulp.src('node_modules/slick-carousel/slick/slick.min.js')
-	.pipe(gulp.dest('js'))
-});
-
-gulp.task('load-fancybox-css', function() {
-	return gulp.src('node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css')
-	.pipe(gulp.dest('assets/css'))
-});
-
-gulp.task('load-fancybox-js', function() {
-	return gulp.src('node_modules/@fancyapps/fancybox/dist/jquery.fanbox.min.js')
-	.pipe(gulp.dest('js'))
-});
-
-gulp.task('load-timelite-js', function() {
-	return gulp.src('node_modules/gsap/src/minified/TweenLite.min.js')
-	.pipe(gulp.dest('js'))
-});
-
-gulp.task('load-scrollto-js', function() {
-	return gulp.src('node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js')
-	.pipe(gulp.dest('js'))
-});
-
 //watch
-gulp.task('default', ['load-slick-css', 'load-slick-js', 'load-fancybox-css', 'load-fancybox-js', 'load-timelite-js', 'load-scrollto-js'], function() {
+gulp.task('watch', function() {
 	//watch .scss files
-	gulp.watch('sass/**/*.scss', ['styles', 'sasslint']);
+	gulp.watch('sass/**/*.scss', ['styles', 'sass-lint']);
 	//watch added or changed svg files to optimize them
 	gulp.watch('assets/svg/*.svg', ['svgomg']);
 });

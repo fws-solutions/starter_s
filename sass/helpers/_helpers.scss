@@ -23,18 +23,6 @@
 	@include clearfix-after;
 }
 
-.hide {
-	display: none;
-}
-
-.show {
-	display: block;
-}
-
-.no-margin {
-	margin: 0;
-}
-
 .fleft {
 	float: left;
 }
@@ -57,20 +45,6 @@
 
 .centered {
 	text-align: center;
-}
-
-.show-on-mobile {
-	display: none !important;
-	@include breakpoint(phone) {
-		display: block !important;
-	}
-}
-
-.hidden-on-mobile {
-	display: inline-block !important;
-	@include breakpoint(phone) {
-		display: none !important;
-	}
 }
 
 //Text meant only for screen readers.
@@ -113,4 +87,31 @@
 /* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before. */
 .infinity-end.neverending .site-footer {
 	display: block;
+}
+
+// Print
+@media print {
+	body {
+		background: #fff;
+		color: #000;
+		margin: 0;
+		padding: 0;
+		text-align: left;
+	}
+	a:link, a:visited {
+		background: #fff;
+		color: #000;
+		text-decoration: underline;
+	}
+	a:not([href="javascript:;"])::after {
+		content: " [" attr(href) "] ";
+	}
+	h1, h2, h3, h4, h5, h6 {
+		background: none;
+		color: #000;
+	}
+	// add elements that are going to be hidden
+	.temp {
+		display: none;
+	}
 }

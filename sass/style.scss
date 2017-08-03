@@ -26,7 +26,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Reset and Variables
 # Helpers
 # Base
-# Layout
+# Components
 # Partials / Templates
 --------------------------------------------------------------*/
 
@@ -43,7 +43,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 @import 'helpers/mixins';
 @import 'helpers/helpers';
-@import 'helpers/print';
 
 /*--------------------------------------------------------------
 # Base
@@ -52,12 +51,12 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 @import 'base/base';
 
 /*--------------------------------------------------------------
-# Layout
+# Components
 --------------------------------------------------------------*/
-@import 'layout/buttons';
-@import 'layout/forms';
-@import 'layout/media';
-@import 'layout/lists';
+@import 'components/buttons';
+@import 'components/forms';
+@import 'components/media';
+@import 'components/lists';
 
 /*--------------------------------------------------------------
 # Partials / Templates
@@ -66,3 +65,4 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 @import 'partials/navigation';
 @import 'partials/footer';
 @import 'partials/main';
+@import 'partials/banners';

@@ -94,7 +94,7 @@ a {
 	.current-menu-ancestor > a {
 	}
 
-	@include breakpoint('phone') {
+	@include mq('phone') {
 		width: 230px;
 		position: fixed;
 		top: 0;
@@ -234,7 +234,7 @@ a {
 		}
 	}
 
-      @include breakpoint('phone') {
+      @include mq(phone) {
             display: block;
       }
 }

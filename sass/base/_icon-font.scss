@@ -1,13 +1,13 @@
 @font-face {
-	font-family: "svgicons";
-	src: url('../icons/svgicons.eot');
-	src: url('../icons/svgicons.eot?#iefix') format('eot'),
-		url('../icons/svgicons.woff') format('woff'),
-		url('../icons/svgicons.ttf') format('truetype');
+	font-family: "fonticons";
+	src: url('assets/icons/fonticons.eot');
+	src: url('assets/icons/fonticons.eot?#iefix') format('eot'),
+		url('assets/icons/fonticons.woff') format('woff'),
+		url('assets/icons/fonticons.ttf') format('truetype');
 }
 
 @mixin font-styles {
-	font-family: "svgicons";
+	font-family: "fonticons";
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	font-style: normal;
@@ -46,4 +46,3 @@
 .font-happy {
 	@include font(happy);
 }
-

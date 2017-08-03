@@ -27,12 +27,12 @@
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<h1 class="site-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">Logo</a>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
 			</h1>
 		</div><!-- .site-branding -->
 
 		<nav id="site-navigation" class="main-navigation">
-			<div class="menu-btn"><span></span></div>	<!-- menu-button -->
+			<div class="menu-btn" data-menu-btn><span></span></div>	<!-- menu-button -->
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',
@@ -43,5 +43,13 @@
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
+
+	<div class="banner" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/_demo/banner.jpg);">
+		<div class="banner-caption">
+			<span style="color: white;" class="font-happy"></span>
+			<h1><?php bloginfo( 'name' ); ?></h1>
+			<p>Here goes description paragraph</p>
+		</div>
+	</div><!-- .banner -->
 
 	<div id="content" class="site-content">

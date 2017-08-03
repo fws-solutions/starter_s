@@ -2,19 +2,52 @@
 ## Mixins
 --------------------------------------------------------------*/
 
-// Responsive Breakpoints
-@mixin breakpoint($value) {
+// Media Query
+@mixin mq($value) {
 	@if $value == 'phone' {
 		@media only screen and (min-width: 120px) and (max-width: 767px) { @content; }
 	} @else if $value == 'tablet' {
 		@media only screen and (min-width: 768px) and (max-width: 1024px) { @content; }
-	} @else if $value == 'touch' {
-		@media only screen and (min-width: 120px) and (max-width: 1024px) { @content; }
 	} @else if $value == 'desktop' {
 		@media only screen and (min-width: 1025px) { @content; }
 	} @else {
 		@media only screen and (max-width: $value) { @content; }
 	}
+}
+
+// Vertical / Horizontal center
+@mixin center($direction: xy, $position: absolute) {
+	position: $position;
+	@if ($direction == 'y') {
+		top: 50%;
+		transform: translateY(-50%);
+	} @else if ($direction == 'x') {
+		left: 50%;
+		transform: translateX(-50%);
+	} @else {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+// Clearfix
+@mixin clearfix() {
+	content: "";
+	display: table;
+	table-layout: fixed;
+}
+
+// Clear after (not all clearfix need this also)
+@mixin clearfix-after() {
+	clear: both;
+}
+
+// Text Overflow
+@mixin text-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 
 // Font Smoothing
@@ -42,41 +75,4 @@
 	&::-ms-input-placeholder {
 		@content;
 	}
-}
-
-// Text Overflow
-@mixin text-overflow {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-// Vertical / Horizontal alignment
-@mixin align($position: relative, $direction: x) {
-	position: $position;
-	@if ($direction == 'y') {
-		top: 50%;
-		transform: translateY(-50%);
-	} @else if ($direction == 'xy') {
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	} @else {
-		left: 50%;
-		transform: translateX(-50%);
-	}
-}
-/* example: @include align(absolute, xy); for centering both axis'
-   default @include align(); will be relative on x axis */
-
-// Clearfix
-@mixin clearfix() {
-	content: "";
-	display: table;
-	table-layout: fixed;
-}
-
-// Clear after (not all clearfix need this also)
-@mixin clearfix-after() {
-	clear: both;
 }
