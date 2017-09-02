@@ -7,14 +7,15 @@ jQuery(function($) {
 	# Hamburger Menu
 	--------------------------------------------------------------*/
 	var menuBtn = '[data-menu-btn]';
+    var mainNav = '[data-main-nav]';
 
 	$(menuBtn).on('click', function() {
 		$(this).toggleClass('open');
-		$('.main-navigation').toggleClass('slide-in-nav');
+		$(mainNav).toggleClass('slide-in-nav');
         $(body).toggleClass('overlay');
 	});
 
-    var parentLink = $('.main-navigation .menu-item-has-children');
+    var parentLink = $(mainNav).find('.menu-item-has-children');
     parentLink.on('click', function() {
         $(this).find('.sub-menu').slideToggle();
     });

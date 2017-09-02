@@ -32,7 +32,7 @@
 			</h1>
 		</div><!-- .site-branding -->
 
-		<nav id="site-navigation" class="main-navigation">
+		<nav id="site-navigation" class="main-navigation" data-main-nav>
 			<div class="menu-btn" data-menu-btn><span></span></div>	<!-- menu-button -->
 			<?php
 				wp_nav_menu( array(

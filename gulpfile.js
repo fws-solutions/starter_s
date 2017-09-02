@@ -19,6 +19,33 @@ var gulp             = require('gulp'),
 	concatCss		 = require('gulp-concat-css'),
 	cleanCss		 = require('gulp-clean-css'),
 	uglify			 = require('gulp-uglify');
+	ftp 			 = require('vinyl-ftp');
+
+
+// ftp
+gulp.task('deploy', function() {
+    var conn = ftp.create({
+        host:     'webdizajnsrbija.net',
+        user:     'nidzan@webdizajnsrbija.net',
+        password: 'K[UVPDaAbAhF',
+        parallel: 10,
+        log:      gutil.log
+    });
+
+    var globs = [
+		'./**/*',
+		'!node_modules',
+		'!node_modules/**',
+        '!.git/**'
+    ];
+
+    // using base = '.' will transfer everything to /public_html correctly
+    // turn off buffering in gulp.src for best performance
+
+    return gulp.src( globs, { base: '.', buffer: false } )
+        .pipe( conn.newer( '/nikolatopalovic.net/project/wp-content/themes/project-theme' ) ) // only upload newer files
+        .pipe( conn.dest( '/nikolatopalovic.net/project/wp-content/themes/project-theme' ) );
+	} );
 
 
 // enable plugins

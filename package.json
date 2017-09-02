@@ -24,6 +24,7 @@
     "gulp-clean-css": "^3.7.0",
     "postcss-flexbugs-fixes": "^2.0.0",
 	"gulp-sass-lint": "^1.2.0",
+    "vinyl-ftp": "^0.6.0",
     "slick-carousel": "^1.6.0",
     "@fancyapps/fancybox": "^3.1.20",
     "gsap": "^1.20.2"
