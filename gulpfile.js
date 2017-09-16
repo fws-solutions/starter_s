@@ -36,59 +36,31 @@ gulp.task('deploy', function() {
 		'./**/*',
 		'!node_modules',
 		'!node_modules/**',
-        '!.git/**'
+        '!.git/**',
+        '!.idea/**'
     ];
 
     // using base = '.' will transfer everything to /public_html correctly
     // turn off buffering in gulp.src for best performance
 
     return gulp.src( globs, { base: '.', buffer: false } )
-        .pipe( conn.newer( '/nikolatopalovic.net/project/wp-content/themes/project-theme' ) ) // only upload newer files
-        .pipe( conn.dest( '/nikolatopalovic.net/project/wp-content/themes/project-theme' ) );
-	} );
+        .pipe( conn.newer( '/nikolatopalovic.net/wptest/wp-content/themes/starter_s' ) ) // only upload newer files
+        .pipe( conn.dest( '/nikolatopalovic.net/wptest/wp-content/themes/starter_s' ) );
+} );
 
-
-// enable plugins
-var slick = true;
-var fancybox = true;
-var smoothscroll = false;
-
-
-// download plugins
-var slickJS = 'node_modules/slick-carousel/slick/slick.min.js';
-var slickCSS = 'node_modules/slick-carousel/slick/slick.css';
-var fancyboxJS = 'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js';
-var fancyboxCSS = 'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
-var tweenliteJS = 'node_modules/gsap/src/minified/TweenLite.min.js';
-var scrolltoJS = 'node_modules/gsap/src/minified/plugins/ScrollToPlugin.min.js';
-
-var pluginsJS = [];
-var pluginsCSS = [];
-if (slick) {
-	pluginsJS.push(slickJS);
-	pluginsCSS.push(slickCSS);
-}
-if (fancybox) {
-	pluginsJS.push(fancyboxJS);
-	pluginsCSS.push(fancyboxCSS);
-}
-if (smoothscroll) {
-	pluginsJS.push(tweenliteJS);
-	pluginsJS.push(scrolltoJS);
-}
 
 gulp.task('load-css', function() {
-	return gulp.src(pluginsCSS)
+	return gulp.src(['assets/css/*.css'])
 	.pipe(concatCss("plugins.min.css"))
 	.pipe(cleanCss())
-	.pipe(gulp.dest('assets/css'))
+	.pipe(gulp.dest('dist'))
 });
 
 gulp.task('load-js', function() {
-	return gulp.src(pluginsJS)
+	return gulp.src(['assets/js/_plugins/*.js'])
 	.pipe(concat('plugins.min.js'))
 	.pipe(uglify())
-	.pipe(gulp.dest('js'))
+	.pipe(gulp.dest('dist'))
 });
 
 gulp.task('load-plugins', ['load-css', 'load-js']);
@@ -187,10 +159,20 @@ gulp.task('sass-lint', function () {
     .pipe(sassLint.failOnError())
 });
 
+// script
+gulp.task('script', function() {
+    return gulp.src(['assets/js/site.dev.js'])
+        .pipe(concat('site.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('dist'))
+});
+
 //watch
 gulp.task('watch', function() {
 	//watch .scss files
 	gulp.watch('sass/**/*.scss', ['styles', 'sass-lint']);
+	//watch site.dev.js
+    gulp.watch('assets/js/site.dev.js', ['script']);
 	//watch added or changed svg files to optimize them
 	gulp.watch('assets/svg/*.svg', ['svgomg']);
 });
