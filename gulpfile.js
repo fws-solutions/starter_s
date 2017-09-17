@@ -109,6 +109,15 @@ var msgSASS = {
 	onLast: true
 };
 
+var msgJS = {
+    title: 'Awesome :)',
+    message: 'Script is compiled!',
+    icon: path.join(__dirname, 'config/notify-success.png'),
+    time: 1500,
+    sound: false,
+    onLast: true
+};
+
 //error notification settings for plumber
 var msgERROR = {
 	errorHandler: notify.onError({
@@ -162,9 +171,13 @@ gulp.task('sass-lint', function () {
 // script
 gulp.task('script', function() {
     return gulp.src(['assets/js/site.dev.js'])
+        .pipe(plumber(msgERROR))
+        .pipe(sourcemaps.init())
         .pipe(concat('site.min.js'))
         .pipe(uglify())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'))
+        .pipe(notify(msgJS));
 });
 
 //watch
