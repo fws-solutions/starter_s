@@ -23,7 +23,7 @@
     "gulp-clean-css": "^3.7.0",
     "postcss-flexbugs-fixes": "^2.0.0",
 	"gulp-sass-lint": "^1.2.0",
-    "vinyl-ftp": "^0.6.0",
-},
-"sasslintConfig": "sass-lint.yml"
+    "vinyl-ftp": "^0.6.0"
+  },
+  "sasslintConfig": "sass-lint.yml"
 }

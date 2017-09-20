@@ -1,5 +1,5 @@
 /*!
-Theme Name: starter_s
+Theme Name: Underscores Starter Theme
 Theme URI: http://underscores.me/
 Author: Underscores.me
 Author URI: http://underscores.me/
@@ -69,8 +69,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Partials / Templates
 --------------------------------------------------------------*/
-@import 'partials/header';
-@import 'partials/navigation';
-@import 'partials/footer';
-@import 'partials/main';
-@import 'partials/banners';
+@import 'partials/site-header';
+@import 'partials/site-navigation';
+@import 'partials/site-footer';
+@import 'partials/site-main';
+@import 'partials/module-banners';
