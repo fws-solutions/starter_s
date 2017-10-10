@@ -1,0 +1,16 @@
+// wrapper and ratios
+.media-wrap {
+	position: relative;
+	overflow: hidden;
+}
+
+.media-wrap-square {
+	padding-top: 100%;
+}
+
+// item
+.media-item {
+	display: block;
+	width: 100%;
+	@include center;
+}

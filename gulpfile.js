@@ -49,21 +49,21 @@ gulp.task('deploy', function() {
 } );
 
 
-gulp.task('load-css', function() {
+gulp.task('plugins-css', function() {
 	return gulp.src(['assets/css/*.css'])
 	.pipe(concatCss("plugins.min.css"))
 	.pipe(cleanCss())
 	.pipe(gulp.dest('dist'))
 });
 
-gulp.task('load-js', function() {
+gulp.task('plugins-js', function() {
 	return gulp.src(['assets/js/_plugins/*.js'])
 	.pipe(concat('plugins.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('dist'))
 });
 
-gulp.task('load-plugins', ['load-css', 'load-js']);
+gulp.task('load-plugins', ['plugins-css', 'plugins-js']);
 
 
 
@@ -140,11 +140,10 @@ gulp.task('svgomg', function () {
 			]
 		}))
 		.pipe(gulp.dest('assets/svg'))
-		.pipe(notify(msgSVG));
 });
 
 //styles
-gulp.task('styles', function() {
+gulp.task('css', function() {
 	var prefix = [
 		autoprefixer({ browsers: ['last 3 versions', 'ios >= 6'] }),
 		flexBugsFix
@@ -169,7 +168,7 @@ gulp.task('sass-lint', function () {
 });
 
 // script
-gulp.task('script', function() {
+gulp.task('js', function() {
     return gulp.src(['assets/js/site.dev.js'])
         .pipe(plumber(msgERROR))
         .pipe(sourcemaps.init())
@@ -183,9 +182,9 @@ gulp.task('script', function() {
 //watch
 gulp.task('watch', function() {
 	//watch .scss files
-	gulp.watch('sass/**/*.scss', ['styles', 'sass-lint']);
+	gulp.watch('sass/**/*.scss', ['css', 'sass-lint']);
 	//watch site.dev.js
-    gulp.watch('assets/js/site.dev.js', ['script']);
+    gulp.watch('assets/js/site.dev.js', ['js']);
 	//watch added or changed svg files to optimize them
 	gulp.watch('assets/svg/*.svg', ['svgomg']);
 });

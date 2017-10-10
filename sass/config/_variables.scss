@@ -2,7 +2,10 @@
 ## Variables
 --------------------------------------------------------------*/
 // Fonts
-$font-main: Arial, sans-serif;
+$font-default-serif: Georgia, serif;
+$font-default-sans-serif: Arial, Helvetica, sans-serif;
+
+$font-main: $font-default-sans-serif;
 
 // Colors
 $color-main: #404040;
