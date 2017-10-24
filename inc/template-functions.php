@@ -80,3 +80,16 @@ function starter_s_paging_nav() {
 		<?php
 	endif;
 }
+
+/**
+ * Modify WP Login
+ */
+function starter_s_error_message() {
+	return 'Wrong username or password.';
+}
+add_filter('login_errors', 'starter_s_error_message');
+
+function starter_s_remove_login_shake() {
+	remove_action( 'login_head', 'wp_shake_js', 12 );
+}
+add_action( 'login_head', 'starter_s_remove_login_shake' );
