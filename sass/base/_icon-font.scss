@@ -1,9 +1,6 @@
 @font-face {
 	font-family: "fonticons";
-	src: url('assets/icons/fonticons.eot');
-	src: url('assets/icons/fonticons.eot?#iefix') format('eot'),
-		url('assets/icons/fonticons.woff') format('woff'),
-		url('assets/icons/fonticons.ttf') format('truetype');
+	src: url('assets/icons/fonticons.woff2') format('woff2'), url('assets/icons/fonticons.woff') format('woff'), url('assets/icons/fonticons.ttf') format('truetype');;
 }
 
 @mixin font-styles {
@@ -46,3 +43,4 @@
 .font-happy {
 	@include font(happy);
 }
+

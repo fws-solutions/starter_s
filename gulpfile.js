@@ -61,6 +61,7 @@ gulp.task('plugins-js', function() {
 	.pipe(concat('plugins.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('dist'))
+	.pipe(notify(msgPlugins))
 });
 
 gulp.task('load-plugins', ['plugins-css', 'plugins-js']);
@@ -69,34 +70,34 @@ gulp.task('load-plugins', ['plugins-css', 'plugins-js']);
 
 //icon fonts
 gulp.task('iconfont', function() {
-  return gulp.src(['assets/svg/*.svg'])
-	.pipe(iconfontCss({
-		fontName: 'fonticons',
-		cssClass: 'font',
-		path: 'config/icon-font-config.scss',
-		targetPath: '../../sass/base/_icon-font.scss',
-		fontPath: '../icons/'
-	}))
-	.pipe(iconfont({
-		fontName: 'fonticons', // required
-		prependUnicode: false, // recommended option
-		formats: ['ttf', 'woff'], // default, 'woff2' and 'svg' are available
-		normalize: true,
-		centerHorizontally: true
-	}))
-	.on('glyphs', function(glyphs, options) {
-		// CSS templating, e.g.
-		console.log(glyphs, options);
-	})
-	.pipe(gulp.dest('assets/icons/'));
+	return gulp.src(['assets/svg/*.svg'])
+		.pipe(iconfontCss({
+			fontName: 'fonticons',
+			cssClass: 'font',
+			path: 'config/icon-font-config.scss',
+			targetPath: '../../sass/base/_icon-font.scss',
+			fontPath: 'assets/icons/'
+		}))
+		.pipe(iconfont({
+			fontName: 'fonticons', // required
+			prependUnicode: true, // recommended option
+			formats: ['woff2', 'woff', 'ttf'], // default, 'woff2' and 'svg' are available
+			normalize: true,
+			centerHorizontally: true
+		}))
+		.on('glyphs', function(glyphs, options) {
+			// CSS templating, e.g.
+			console.log(glyphs, options);
+		})
+		.pipe(gulp.dest('assets/icons/'))
 });
 
 //the title and icon that will be used for the Gulp notifications
-var msgSVG = {
-	title: 'Great!',
-	message: 'SVG files optimized!',
-	icon: path.join(__dirname, 'config/notify-success.png'),
-	time: 1500,
+var msgPlugins = {
+	title: 'Oh Yeah!',
+	message: 'Plugin files are compiled!',
+	icon: path.join(__dirname, 'config/notify-check.png'),
+	time: 1200,
 	sound: true
 };
 
@@ -104,7 +105,7 @@ var msgSASS = {
 	title: 'Sweet :)',
 	message: 'Styles are compiled!',
 	icon: path.join(__dirname, 'config/notify-success.png'),
-	time: 1500,
+	time: 1200,
 	sound: false,
 	onLast: true
 };
@@ -112,8 +113,8 @@ var msgSASS = {
 var msgJS = {
     title: 'Awesome :)',
     message: 'Script is compiled!',
-    icon: path.join(__dirname, 'config/notify-success.png'),
-    time: 1500,
+    icon: path.join(__dirname, 'config/notify-success-alt.png'),
+    time: 1200,
     sound: false,
     onLast: true
 };

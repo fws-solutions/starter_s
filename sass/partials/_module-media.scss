@@ -2,9 +2,15 @@
 .media-wrap {
 	position: relative;
 	overflow: hidden;
+
+	&::before {
+		content: '';
+		display: block;
+		width: 100%;
+	}
 }
 
-.media-wrap-square {
+.media-wrap-square::before {
 	padding-top: 100%;
 }
 
