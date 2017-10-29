@@ -59,3 +59,10 @@ function starter_s_add_login_title() {
 	echo '<span class="login-title">starter_s login</span>';
 }
 add_action( 'login_form', 'starter_s_add_login_title' );
+
+// change logo url
+function community_solutions_loginlogo_url($url) {
+	$url = esc_url( home_url( '/' ) );
+	return $url;
+}
+add_filter( 'login_headerurl', 'community_solutions_loginlogo_url' );
