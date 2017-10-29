@@ -1,0 +1,115 @@
+body {
+	background-color: #f0f0f0;
+}
+
+#login {
+	position: relative;
+}
+
+.login h1 a {
+	background-image: url('logo.png');
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+	width: 70%;
+	transition: 250ms ease;
+}
+
+.login h1 a:hover,
+.login h1 a:focus,
+.login h1 a:active {
+	opacity: .8;
+	outline: 0;
+	box-shadow: none;
+}
+
+.login form {
+	border-radius: 10px;
+	position: relative;
+	padding-top: 88px;
+}
+
+.login-title {
+	position: absolute;
+	top: 34px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 20px;
+	letter-spacing: -1px;
+}
+
+.login form .input,
+.login input[type=text] {
+	margin: 8px 0 20px;
+	outline: 0;
+	border-radius: 5px;
+}
+
+.login form .forgetmenot,
+.login .button-primary {
+	float: none;
+}
+
+#login form p.submit {
+	margin: 33px 0 0;
+}
+
+#wp-submit,
+#wp-submit:focus,
+#wp-submit:active {
+	text-shadow: none;
+	box-shadow: none;
+	border: none;
+	background-color: #cfb283;
+	transition: 250ms ease;
+}
+
+#wp-submit:focus,
+#wp-submit:active,
+#wp-submit:hover {
+	opacity: .8;
+}
+
+.login form .forgetmenot {
+	margin-top: 3px;
+}
+
+.login #nav {
+	margin: 0;
+	position: absolute;
+	bottom: 55px;
+	right: 0;
+}
+
+.login #nav a {
+	color: #cfb283;
+}
+
+#backtoblog {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	#login {
+		position: relative;
+		width: 384px;
+	}
+
+	.login form .forgetmenot label {
+		font-size: 14px;
+	}
+
+	#wp-submit,
+	#wp-submit:focus,
+	#wp-submit:active {
+		text-transform: uppercase;
+		font-weight: bold;
+		font-size: 14px;
+		min-width: 100px;
+		width: auto;
+		padding: 6px;
+		height: auto;
+	}
+}

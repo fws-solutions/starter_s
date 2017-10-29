@@ -35,7 +35,7 @@ get_header(); ?>
 
 			endwhile;
 
-			the_posts_navigation();
+			starter_s_paging_nav();
 
 		else :
 
