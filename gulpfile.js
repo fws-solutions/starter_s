@@ -22,6 +22,10 @@ var gulp             = require('gulp'),
 	ftp 			 = require('vinyl-ftp');
 
 
+
+// build
+gulp.task('build', ['plugins-css', 'plugins-js', 'css', 'js']);
+
 // ftp
 gulp.task('deploy', function() {
     var conn = ftp.create({
@@ -63,9 +67,6 @@ gulp.task('plugins-js', function() {
 	.pipe(gulp.dest('dist'))
 	.pipe(notify(msgPlugins))
 });
-
-gulp.task('load-plugins', ['plugins-css', 'plugins-js']);
-
 
 
 //icon fonts

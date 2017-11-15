@@ -1,0 +1,79 @@
+/*--------------------------------------------------------------
+## Entry Content
+--------------------------------------------------------------*/
+.entry-content {
+	font-size: 16px;
+	margin: 5px 0 0;
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		line-height: 1.35;
+		margin-bottom: 15px;
+		color: $grey-dark;
+	}
+
+	h2 {
+		font-size: 24px;
+		font-weight: 700;
+	}
+
+	h3 {
+		font-size: 18px;
+	}
+
+	h4 {
+		font-size: 14px;
+	}
+
+	h5 {
+		font-size: 12px;
+	}
+
+	h6 {
+		font-size: 10px;
+	}
+
+	p {
+		line-height: 1.45;
+		margin-bottom: 27px;
+
+		strong {
+			font-weight: 400;
+			color: $grey-dark;
+		}
+	}
+
+	ul li {
+		&::before {
+			content: '-';
+			display: inline-block;
+			margin-right: 4px;
+		}
+	}
+
+	a {
+		display: inline-block;
+		position: relative;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			height: 1px;
+			width: 0;
+			background: $grey-dark;
+			transition: 0.3s ease-out;
+		}
+
+		&:hover {
+			&::before {
+				width: 100%;
+			}
+		}
+	}
+}

@@ -7,7 +7,7 @@ Set your machine (only once):
 Set your project:
 1. Run command prompt withing your project (theme) folder
 2. Install node_modules - "npm install"
-3. Load plugins - "gulp load-plugins"
+3. Build files - "gulp build"
 4. Generate fonticons - "gulp iconfont"
 5. Start gulp watch - "gulp watch"
 * you cannot run another task while in watch mode
