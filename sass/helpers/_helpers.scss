@@ -1,26 +1,12 @@
 /*--------------------------------------------------------------
 ## Helpers
 --------------------------------------------------------------*/
-.clear::before,
-.clear::after,
-.entry-content::before,
-.entry-content::after,
-.comment-content::before,
-.comment-content::after,
-.site-content::before,
-.site-content::after,
-.site-footer::before,
-.site-footer::after {
+.clear,
+.entry-content,
+.comment-content,
+.site-content,
+.site-footer {
 	@include clearfix;
-}
-
-.clear::after,
-.entry-content::after,
-.comment-content::after,
-.site-header::after,
-.site-content::after,
-.site-footer::after {
-	@include clearfix-after;
 }
 
 .fleft {
