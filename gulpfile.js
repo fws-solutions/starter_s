@@ -6,7 +6,6 @@ var gulp             = require('gulp'),
 	postcss          = require('gulp-postcss'),
 	iconfont         = require('gulp-iconfont'),
 	iconfontCss      = require('gulp-iconfont-css'),
-	size             = require('gulp-size'),
 	sourcemaps       = require('gulp-sourcemaps'),
 	svgmin           = require('gulp-svgmin');
 	gutil            = require('gulp-util'),
