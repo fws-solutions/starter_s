@@ -1,30 +1,53 @@
 jQuery(function($) {
     var windowWidth = window.innerWidth;
-    var body = 'body';
+    var $body = $('body');
     var $window = $(window);
+    var $document = $(document);
 
-    /*--------------------------------------------------------------
+	/*--------------------------------------------------------------
 	# Hamburger Menu
 	--------------------------------------------------------------*/
-	var menuBtn = '[data-menu-btn]';
-    var mainNav = '[data-main-nav]';
+	function closeNav() {
+		$menuBtn.removeClass('open');
+		$mainNav.removeClass('open');
+		$body.removeClass('menu-open');
+	}
 
-	$(menuBtn).on('click', function() {
-		$(this).toggleClass('open');
-		$(mainNav).toggleClass('slide-in-nav');
-        $(body).toggleClass('overlay');
+	var $menuBtn = $('[data-menu-btn]');
+	var $mainNav = $('[data-main-nav]');
+	var $parentLink = $mainNav.find('.menu-item-has-children');
+
+	$menuBtn.on('click', function(e) {
+	    e.preventDefault();
+		$menuBtn.toggleClass('open');
+		$mainNav.toggleClass('open');
+        $body.toggleClass('menu-open');
 	});
 
-    var parentLink = $(mainNav).find('.menu-item-has-children');
-    parentLink.on('click', function() {
-        $(this).find('.sub-menu').slideToggle();
+    $parentLink.on('click', function() {
+        if (windowWidth < 768) {
+			$(this).find('.sub-menu').slideToggle();
+		}
     });
+
+	$mainNav.on('mouseup', function(e) {
+	    var $container = $mainNav.children('ul');
+		if (!$container.is(e.target) && $container.has(e.target).length === 0 && !$menuBtn.is(e.target)) {
+			closeNav();
+		}
+	});
+
+	$document.on('keyup', function(e) {
+		if (e.keyCode === 27) {
+			closeNav();
+		}
+	});
 
     /*--------------------------------------------------------------
     # Slick Slider
     --------------------------------------------------------------*/
-    var slider = '[data-slider]';
-    $(slider).slick({
+    var $slider = $('[data-slider]');
+    $slider.slick({
         infinite: true,
         slidesToShow: 4,
         slidesToScroll: 1,

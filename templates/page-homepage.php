@@ -9,6 +9,14 @@
 
 get_header(); ?>
 
+	<div class="banner" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/images/_demo/banner.jpg);">
+		<div class="banner-caption">
+			<span style="color: white;" class="font-happy"></span>
+			<h1><?php bloginfo( 'name' ); ?></h1>
+			<p>Here goes description paragraph</p>
+		</div>
+	</div><!-- .banner -->
+
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main">
 
