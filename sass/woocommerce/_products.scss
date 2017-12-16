@@ -30,7 +30,7 @@ ul.products {
 		li.product {
 			@include column-width(3);
 			float: left;
-			margin-right: $columns__margin;
+			margin-right: $columns-margin;
 
 			&.first {
 				clear: both;
@@ -55,7 +55,7 @@ ul.products {
 		.columns-#{$i} {
 			ul.products {
 				li.product {
-					@include column-width( $i );
+					@include column-width($i);
 				}
 			}
 		}

@@ -69,15 +69,15 @@
 }
 
 .stock {
-	&:empty:before {
+	&:empty::before {
 		display: none;
 	}
 
 	&.in-stock {
-		color: $woocommerce__color-success;
+		color: $woo-color-success;
 	}
 
 	&.out-of-stock {
-		color: $woocommerce__color-error;
+		color: $woo-color-error;
 	}
 }

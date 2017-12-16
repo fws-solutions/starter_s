@@ -34,15 +34,14 @@
 	font-family: 'star';
 	font-weight: 400;
 
-	&:before {
-		content: "\53\53\53\53\53";
+	&::before {
+		content: '\53\53\53\53\53';
 		opacity: .25;
 		float: left;
 		top: 0;
 		left: 0;
 		position: absolute;
 	}
-
 	span {
 		overflow: hidden;
 		float: left;
@@ -52,8 +51,8 @@
 		padding-top: 1.5em;
 	}
 
-	span:before {
-		content: "\53\53\53\53\53";
+	span::before {
+		content: '\53\53\53\53\53';
 		top: 0;
 		position: absolute;
 		left: 0;
@@ -72,7 +71,7 @@ p.stars {
 		margin-right: 1px;
 		font-weight: 400;
 
-		&:before {
+		&::before {
 			display: block;
 			position: absolute;
 			top: 0;
@@ -80,16 +79,16 @@ p.stars {
 			width: 1em;
 			height: 1em;
 			line-height: 1;
-			font-family: "star";
-			content: "\53";
+			font-family: 'star';
+			content: '\53';
 			color: $color-main;
 			text-indent: 0;
 			opacity: .25;
 		}
 
 		&:hover {
-			~ a:before {
-				content: "\53";
+			~ a::before {
+				content: '\53';
 				color: $color-main;
 				opacity: .25;
 			}
@@ -98,8 +97,8 @@ p.stars {
 
 	&:hover {
 		a {
-			&:before {
-				content: "\53";
+			&::before {
+				content: '\53';
 				color: $black;
 				opacity: 1;
 			}
@@ -108,22 +107,22 @@ p.stars {
 
 	&.selected {
 		a.active {
-			&:before {
-				content: "\53";
+			&::before {
+				content: '\53';
 				color: $black;
 				opacity: 1;
 			}
 
-			~ a:before {
-				content: "\53";
+			~ a::before {
+				content: '\53';
 				color: $color-main;
 				opacity: .25;
 			}
 		}
 
 		a:not(.active) {
-			&:before {
-				content: "\53";
+			&::before {
+				content: '\53';
 				color: $black;
 				opacity: 1;
 			}
@@ -167,19 +166,19 @@ p.stars {
 	text-align: right;
 
 	&.strong {
-		color: $woocommerce__color-success;
+		color: $woo-color-success;
 	}
 
 	&.short {
-		color: $woocommerce__color-error;
+		color: $woo-color-error;
 	}
 
 	&.bad {
-		color: $woocommerce__color-error;
+		color: $woo-color-error;
 	}
 
 	&.good {
-		color: $woocommerce__color-info;
+		color: $woo-color-info;
 	}
 }
 
@@ -189,19 +188,19 @@ p.stars {
 .form-row {
 	&.woocommerce-validated {
 		input.input-text {
-			box-shadow: inset 2px 0 0 $woocommerce__color-success;
+			box-shadow: inset 2px 0 0 $woo-color-success;
 		}
 	}
 
 	&.woocommerce-invalid {
 		input.input-text {
-			box-shadow: inset 2px 0 0 $woocommerce__color-error;
+			box-shadow: inset 2px 0 0 $woo-color-error;
 		}
 	}
 }
 
 .required {
-	color: red;
+	color: #ff0;
 }
 
 /**
@@ -213,18 +212,18 @@ p.stars {
 .woocommerce-noreviews,
 p.no-comments {
 	@include clearfix;
-	background-color: $woocommerce__color-success;
+	background-color: $woo-color-success;
 	clear: both;
 }
 
 .woocommerce-info,
 .woocommerce-noreviews,
 p.no-comments {
-	background-color: $woocommerce__color-info;
+	background-color: $woo-color-info;
 }
 
 .woocommerce-error {
-	background-color: $woocommerce__color-error;
+	background-color: $woo-color-error;
 }
 
 .demo_store {
@@ -234,7 +233,7 @@ p.no-comments {
 	right: 0;
 	margin: 0;
 	padding: 1em;
-	background-color: $woocommerce__color-info;
+	background-color: $woo-color-info;
 	z-index: 9999;
 }
 
