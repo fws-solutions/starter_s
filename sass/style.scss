@@ -26,6 +26,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Reset and Variables
 # Helpers
 # Bootstrap
+# WooCommerce
 # Base
 # Components
 # Partials / Templates
@@ -51,6 +52,17 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 // @import 'bootstrap/bsconfig';
 // @import 'bootstrap/bsmixins';
 // @import 'bootstrap/bootstrap';
+
+/*--------------------------------------------------------------
+# WooCommerce
+--------------------------------------------------------------*/
+//@import "woocommerce/main";
+//@import "woocommerce/tables";
+//@import "woocommerce/products";
+//@import "woocommerce/single-product";
+//@import "woocommerce/checkout";
+//@import "woocommerce/components";
+//@import "woocommerce/widgets";
 
 /*--------------------------------------------------------------
 # Base

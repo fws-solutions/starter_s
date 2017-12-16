@@ -1,0 +1,22 @@
+// WooCommerce
+$woocommerce__color-error: #e2401c;
+$woocommerce__color-success: #0f834d;
+$woocommerce__color-info: #3D9CD2;
+
+$columns: (
+		1: 100%,
+		2: 50%,
+		3: 33.33%,
+		4: 25%,
+		5: 20%,
+		6: 16.66%,
+		7: 14.28%,
+		8: 12.5%,
+		9: 11.11%
+);
+$columns__margin: 3.8%;
+
+// Column width with margin
+@mixin column-width($numberColumns: 3) {
+	width: map-get( $columns, $numberColumns ) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
+}

@@ -122,7 +122,7 @@ var msgJS = {
 //error notification settings for plumber
 var msgERROR = {
 	errorHandler: notify.onError({
-		title: 'Fix that ERROR, bitch:',
+		title: 'Fix that ERROR:',
 		message: "<%= error.message %>",
 		icon: path.join(__dirname, 'config/notify-error.png'),
 		time: 2000,
