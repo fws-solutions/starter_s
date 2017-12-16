@@ -1,16 +1,16 @@
 <?php
 /**
- * Custom template tags for this theme
+ * Custom theme functions
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
  * @package starter_s
  */
 
-if ( ! function_exists( 'starter_s_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
+if ( ! function_exists( 'starter_s_posted_on' ) ) :
 function starter_s_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
@@ -42,10 +42,10 @@ function starter_s_posted_on() {
 endif;
 
 
-if ( ! function_exists( 'starter_s_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
+if ( ! function_exists( 'starter_s_entry_footer' ) ) :
 function starter_s_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' === get_post_type() ) {
@@ -103,10 +103,10 @@ function starter_s_entry_footer() {
 endif;
 
 
-if ( ! function_exists( 'starter_s_paging_nav' ) ) :
 /**
  * Custom pagination
  */
+if ( ! function_exists( 'starter_s_paging_nav' ) ) :
 function starter_s_paging_nav() {
 	global $wp_query, $wp_rewrite;
 

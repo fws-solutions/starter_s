@@ -1,4 +1,29 @@
 /*--------------------------------------------------------------
+## Wrapper and Ratios
+--------------------------------------------------------------*/
+.media-wrap {
+	position: relative;
+	overflow: hidden;
+
+	&::before {
+		content: '';
+		display: block;
+		width: 100%;
+	}
+}
+
+.media-wrap-square::before {
+	padding-top: 100%;
+}
+
+// item
+.media-item {
+	display: block;
+	width: 100%;
+	@include center;
+}
+
+/*--------------------------------------------------------------
 ## WP Media
 --------------------------------------------------------------*/
 .page-content .wp-smiley,

@@ -135,11 +135,11 @@ function starter_s_scripts() {
 add_action( 'wp_enqueue_scripts', 'starter_s_scripts' );
 
 /**
- * Custom template tags for this theme.
+ * Custom theme functions for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/inc/theme-functions.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/inc/theme-hooks.php';
