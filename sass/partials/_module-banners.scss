@@ -10,11 +10,7 @@
     position: relative;
 	max-height: 600px;
 
-	@include mq(tablet) {
-		max-height: 500px;
-	}
-
-	@include mq(phone) {
+	@include mq($phone) {
 		max-height: 400px;
 	}
 }

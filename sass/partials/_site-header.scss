@@ -99,7 +99,7 @@
 		}
 	}
 
-	@include mq(phone) {
+	@include mq($phone) {
 		display: block;
 	}
 }
