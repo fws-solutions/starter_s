@@ -60,7 +60,7 @@ gulp.task('plugins-css', function() {
 });
 
 gulp.task('plugins-js', function() {
-	return gulp.src(['assets/js/_plugins/*.js'])
+	return gulp.src(['assets/js/_libs/*.js', 'assets/js/_plugins/*.js'])
 	.pipe(concat('plugins.min.js'))
 	.pipe(uglify())
 	.pipe(gulp.dest('dist'))

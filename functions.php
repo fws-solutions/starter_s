@@ -101,18 +101,18 @@ add_action( 'after_setup_theme', 'starter_s_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
-//function starter_s_widgets_init() {
-//	register_sidebar( array(
-//		'name'          => esc_html__( 'Sidebar', 'starter_s' ),
-//		'id'            => 'sidebar-1',
-//		'description'   => esc_html__( 'Add widgets here.', 'starter_s' ),
-//		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-//		'after_widget'  => '</section>',
-//		'before_title'  => '<h2 class="widget-title">',
-//		'after_title'   => '</h2>',
-//	) );
-//}
-//add_action( 'widgets_init', 'starter_s_widgets_init' );
+function starter_s_widgets_init() {
+	register_sidebar( array(
+		'name'          => esc_html__( 'Sidebar', 'starter_s' ),
+		'id'            => 'sidebar-1',
+		'description'   => esc_html__( 'Add widgets here.', 'starter_s' ),
+		'before_widget' => '<section id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</section>',
+		'before_title'  => '<h2 class="widget-title">',
+		'after_title'   => '</h2>',
+	) );
+}
+add_action( 'widgets_init', 'starter_s_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
@@ -121,8 +121,6 @@ function starter_s_scripts() {
 	wp_enqueue_style( 'starter_s-plugins-css', get_template_directory_uri() . '/dist/plugins.min.css' );
 
 	wp_enqueue_style( 'starter_s-style', get_stylesheet_uri() );
-
-	wp_enqueue_script('jquery');
 
 	wp_enqueue_script( 'starter_s-plugins-js', get_template_directory_uri() . '/dist/plugins.min.js', array(), '', true );
 

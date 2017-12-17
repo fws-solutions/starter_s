@@ -44,7 +44,7 @@
 	&::after,
 	&::before {
 		content: '';
-		transition: 0.3s width 0.4s ease-out;
+		transition: $dur width $dur $ease;
 	}
 
 	&::after {
@@ -60,7 +60,7 @@
 	span {
 		top: 50%;
 		margin-top: -1.5px;
-		transition: transform 0.3s ease-out;
+		transition: transform $dur $ease;
 
 		&::before {
 			content: '';
@@ -69,14 +69,14 @@
 			height: 3px;
 			position: absolute;
 			left: 0;
-			transition: transform 0.3s ease-out;
+			transition: transform $dur $ease;
 		}
 	}
 
 	&.open {
 		&::after,
 		&::before {
-			transition: 0.2s ease-out;
+			transition: $dur $ease;
 			width: 0;
 		}
 
@@ -90,11 +90,11 @@
 
 		span {
 			transform: rotate(45deg);
-			transition: 0.3s transform 0.4s ease-out;
+			transition: $dur transform $dur $ease;
 
 			&::before {
 				transform: rotate(-90deg);
-				transition: 0.3s transform 0.4s ease-out;
+				transition: $dur transform $dur $ease;
 			}
 		}
 	}
