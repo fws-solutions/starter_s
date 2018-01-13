@@ -66,3 +66,14 @@ function community_solutions_loginlogo_url($url) {
 	return $url;
 }
 add_filter( 'login_headerurl', 'community_solutions_loginlogo_url' );
+
+
+/**
+ * Plugin dependencies
+ */
+function starter_s_dependencies() {
+	if( ! function_exists('get_field') ) {
+		echo '<div class="error"><p>' . __( 'Warning: The theme needs ACF Pro plugin to function', 'starter_s' ) . '</p></div>';
+	}
+}
+add_action( 'admin_notices', 'starter_s_dependencies' );
