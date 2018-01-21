@@ -142,8 +142,6 @@ function starter_s_scripts() {
 
 	wp_enqueue_style( 'starter_s-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'starter_s-plugins-js', get_template_directory_uri() . '/dist/plugins.min.js', array(), '', true );
-
 	wp_enqueue_script( 'starter_s-site-js', get_template_directory_uri() . '/dist/site.min.js', array(), '', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

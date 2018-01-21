@@ -13,49 +13,44 @@ a {
 }
 
 .main-navigation {
-	ul {
+	.primary-menu {
 		list-style: none;
 		margin: 0;
 		padding: 0;
-
-		ul {
-			position: absolute;
-			left: 0;
-			top: 100%;
-			border-top: 3px solid $gold;
-			z-index: 99999;
-			background-color: $grey-dark;
-			transition: $dur $ease;
-			transform: translateY(5px);
-			opacity: 0;
-
-			ul {
-				left: -999em;
-				top: 0;
-			}
-
-			li {
-				border-bottom: 1px solid $grey-light;
-
-				&:last-of-type {
-					border-bottom: none;
-				}
-
-				&:hover > ul,
-				&.focus > ul {
-					left: 100%;
-				}
-			}
-
-			a {
-				width: 200px;
-			}
-		}
 
 		li:hover > ul,
 		li.focus > ul {
 			transform: translateY(0);
 			opacity: 1;
+		}
+	}
+
+	.sub-menu {
+		position: absolute;
+		left: 0;
+		top: 100%;
+		border-top: 3px solid $gold;
+		z-index: 99999;
+		background-color: $grey-dark;
+		transition: $dur $ease;
+		transform: translateY(5px);
+		opacity: 0;
+
+		.sub-menu {
+			left: 100%;
+			top: 0;
+		}
+
+		li {
+			border-bottom: 1px solid $grey-light;
+
+			&:last-of-type {
+				border-bottom: none;
+			}
+		}
+
+		a {
+			width: 200px;
 		}
 	}
 
@@ -121,7 +116,7 @@ a {
 			}
 		}
 
-		> ul {
+		.primary-menu {
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -133,21 +128,25 @@ a {
 			z-index: 100;
 			transform: translateX(100%);
 			transition: $dur ease;
+		}
 
-			ul {
-				position: static;
-				transition: initial;
-				transform: none;
-				background-color: transparent;
+		.sub-menu {
+			position: static;
+			transition: initial;
+			transform: none;
+			background-color: transparent;
+			border: 0;
+			padding: 5px 0 10px 10px;
+			opacity: 1;
+			display: none;
+
+			li {
 				border: 0;
-				padding: 5px 0 10px;
-				opacity: 1;
-				display: none;
+				font-size: .85em;
+			}
 
-				li {
-					border: 0;
-					font-size: .8em;
-				}
+			.sub-icon {
+				top: 1px;
 			}
 		}
 
@@ -161,7 +160,19 @@ a {
 		}
 
 		a {
+			display: inline-block;
 			padding: 0 15px;
+		}
+
+		.sub-icon {
+			line-height: 1;
+			display: block;
+			color: $white;
+			font-size: 18px;
+			position: absolute;
+			right: 60px;
+			top: 3px;
+			transition: $dur $ease;
 		}
 	}
 }

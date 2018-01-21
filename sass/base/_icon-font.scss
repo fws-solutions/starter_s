@@ -25,6 +25,9 @@
 	@if $filename == happy {
 		$char: "\E001";
 	}
+	@if $filename == plus-circle {
+		$char: "\E002";
+	}
 
 	@return $char;
 }
@@ -42,5 +45,8 @@
 
 .font-happy {
 	@include font(happy);
+}
+.font-plus-circle {
+	@include font(plus-circle);
 }
 
