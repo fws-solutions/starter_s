@@ -1,8 +1,8 @@
 var siteMenu = function() {
 	// cache dom and classes
 	var $dom = {
-		menuBtn: $('[data-menu-btn]'),
-		menuNav: $('[data-main-nav]'),
+		menuBtn: $('.js-menu-btn'),
+		menuNav: $('.js-main-nav'),
 		menuHasSub: $('.menu-item-has-children')
 	};
 
@@ -18,7 +18,7 @@ var siteMenu = function() {
 		$Dom.body.removeClass(classes.openMenu);
 	}
 
-	if ($Var.windowWidth < 768) {
+	if (Var.windowWidth < 768) {
 		$dom.menuHasSub.each(function(i, el) {
 			$(el).append('<span class="sub-icon font-plus-circle" data-open-sub></span>');
 		});
@@ -33,7 +33,7 @@ var siteMenu = function() {
 	});
 
 	$dom.menuNav.on('click', '[data-open-sub]', function() {
-		if ($Var.windowWidth < 768) {
+		if (Var.windowWidth < 768) {
 			$(this).siblings('.sub-menu').slideToggle();
 		}
 	});

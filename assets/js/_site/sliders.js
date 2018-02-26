@@ -1,7 +1,7 @@
 var siteSliders = function() {
 	// cache dom and classes
 	var $dom = {
-		slider: $('[data-slider]')
+		slider: $('.js-slider')
 	};
 
 	// slider

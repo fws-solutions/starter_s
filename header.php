@@ -32,9 +32,9 @@
 			</h1>
 		</div><!-- .site-branding -->
 
-		<a href="javascript:;" class="menu-btn" data-menu-btn><span></span></a>	<!-- menu-button -->
+		<a href="javascript:;" class="menu-btn js-menu-btn"><span></span></a>	<!-- menu-button -->
 
-		<nav id="site-navigation" class="main-navigation" data-main-nav>
+		<nav id="site-navigation" class="main-navigation js-main-nav">
 			<?php
 				wp_nav_menu( array(
 					'theme_location' => 'menu-1',

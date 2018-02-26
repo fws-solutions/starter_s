@@ -41,7 +41,7 @@ get_header(); ?>
 				<blockquote>Excepteur sint occaecat cupidatat non proident</blockquote>
 			</div>
 
-			<div class="slider" data-slider>
+			<div class="slider js-slider">
 				<figure>
 					<img src="<?php echo get_stylesheet_directory_uri(); ?>/images/_demo/slide-1.jpg" alt="">
 				</figure>

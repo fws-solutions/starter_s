@@ -3,7 +3,7 @@ var $Dom = {
 	body: $('body')
 };
 
-var $Var = {
+var Var = {
 	windowWidth: window.innerWidth
 };
 
