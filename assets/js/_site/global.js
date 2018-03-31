@@ -9,7 +9,7 @@ module.exports = {
 		windowWidth: window.innerWidth
 	},
 
-	funct: {
+	functions: {
 		escKey: function (callback) {
 			$(document).on('keyup', function (e) {
 				if (e.keyCode === 27) {

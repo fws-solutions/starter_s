@@ -44,8 +44,8 @@ module.exports = {
 			}
 		});
 
-		Global.funct.clickOutsideContainer($dom.menuNav, $dom.menuNav.children('ul'), $dom.menuBtn, closeNav);
+		Global.functions.clickOutsideContainer($dom.menuNav, $dom.menuNav.children('ul'), $dom.menuBtn, closeNav);
 
-		Global.funct.escKey(closeNav);
+		Global.functions.escKey(closeNav);
 	}
 };
