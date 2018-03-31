@@ -5,12 +5,15 @@ module.exports = {
 		# Cache dom and strings
 	-------------------------------------------------------------------------------*/
 	$dom: {
+		exampleSelector: $('.js-something')
 	},
 
 	classes: {
+		exampleShow: 'show-something'
 	},
 
 	attr: {
+		exampleDataAttr: 'data-something'
 	},
 
 
@@ -24,6 +27,17 @@ module.exports = {
 		var attr = this.attr;
 
 		// functions
+		function someFunction(selector) {
+			var something = selector.attr(attr.exampleDataAttr);
 
+			if (selector.hasClass(classes.exampleShow)) {
+				console.log(something);
+			}
+		}
+
+		// bind events
+		$dom.exampleSelector.on('click', function () {
+			someFunction($(this));
+		});
 	}
 };
