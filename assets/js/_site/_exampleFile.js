@@ -25,12 +25,13 @@ module.exports = {
 		var $dom = this.$dom;
 		var classes = this.classes;
 		var attr = this.attr;
+		var ww = Global.vars.windowWidth; // this variable is called from global.js file
 
 		// functions
 		function someFunction(selector) {
 			var something = selector.attr(attr.exampleDataAttr);
 
-			if (selector.hasClass(classes.exampleShow)) {
+			if (selector.hasClass(classes.exampleShow) && ww > 768) {
 				console.log(something);
 			}
 		}
