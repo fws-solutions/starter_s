@@ -21,6 +21,7 @@ function starter_s_woocommerce_setup() {
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 }
+
 add_action( 'after_setup_theme', 'starter_s_woocommerce_setup' );
 
 /**
@@ -41,8 +42,9 @@ function starter_s_woocommerce_scripts() {
 			font-style: normal;
 		}';
 
-	wp_add_inline_style( 'starter_s-plugins-css', $inline_font );
+	wp_add_inline_style( 'starter_s-woocommerce-style', $inline_font );
 }
+
 add_action( 'wp_enqueue_scripts', 'starter_s_woocommerce_scripts' );
 
 /**
@@ -59,6 +61,7 @@ add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
  * Add 'woocommerce-active' class to the body tag.
  *
  * @param  array $classes CSS classes applied to the body tag.
+ *
  * @return array $classes modified to include 'woocommerce-active' class.
  */
 function starter_s_woocommerce_active_body_class( $classes ) {
@@ -66,6 +69,7 @@ function starter_s_woocommerce_active_body_class( $classes ) {
 
 	return $classes;
 }
+
 add_filter( 'body_class', 'starter_s_woocommerce_active_body_class' );
 
 /**
@@ -76,6 +80,7 @@ add_filter( 'body_class', 'starter_s_woocommerce_active_body_class' );
 function starter_s_woocommerce_products_per_page() {
 	return 12;
 }
+
 add_filter( 'loop_shop_per_page', 'starter_s_woocommerce_products_per_page' );
 
 /**
@@ -86,6 +91,7 @@ add_filter( 'loop_shop_per_page', 'starter_s_woocommerce_products_per_page' );
 function starter_s_woocommerce_thumbnail_columns() {
 	return 4;
 }
+
 add_filter( 'woocommerce_product_thumbnails_columns', 'starter_s_woocommerce_thumbnail_columns' );
 
 /**
@@ -96,12 +102,14 @@ add_filter( 'woocommerce_product_thumbnails_columns', 'starter_s_woocommerce_thu
 function starter_s_woocommerce_loop_columns() {
 	return 3;
 }
+
 add_filter( 'loop_shop_columns', 'starter_s_woocommerce_loop_columns' );
 
 /**
  * Related Products Args.
  *
  * @param array $args related products args.
+ *
  * @return array $args related products args.
  */
 function starter_s_woocommerce_related_products_args( $args ) {
@@ -114,6 +122,7 @@ function starter_s_woocommerce_related_products_args( $args ) {
 
 	return $args;
 }
+
 add_filter( 'woocommerce_output_related_products_args', 'starter_s_woocommerce_related_products_args' );
 
 if ( ! function_exists( 'starter_s_woocommerce_product_columns_wrapper' ) ) {
@@ -158,7 +167,7 @@ if ( ! function_exists( 'starter_s_woocommerce_wrapper_before' ) ) {
 	function starter_s_woocommerce_wrapper_before() {
 		?>
 		<div id="primary" class="content-area">
-			<main id="main" class="site-main" role="main">
+		<main id="main" class="site-main" role="main">
 		<?php
 	}
 }
@@ -174,7 +183,7 @@ if ( ! function_exists( 'starter_s_woocommerce_wrapper_after' ) ) {
 	 */
 	function starter_s_woocommerce_wrapper_after() {
 		?>
-			</main><!-- #main -->
+		</main><!-- #main -->
 		</div><!-- #primary -->
 		<?php
 	}
@@ -186,11 +195,11 @@ add_action( 'woocommerce_after_main_content', 'starter_s_woocommerce_wrapper_aft
  *
  * You can add the WooCommerce Mini Cart to header.php like so ...
  *
-	<?php
-		if ( function_exists( 'starter_s_woocommerce_header_cart' ) ) {
-			starter_s_woocommerce_header_cart();
-		}
-	?>
+ * <?php
+ * if ( function_exists( 'starter_s_woocommerce_header_cart' ) ) {
+ * starter_s_woocommerce_header_cart();
+ * }
+ * ?>
  */
 
 if ( ! function_exists( 'starter_s_woocommerce_cart_link_fragment' ) ) {
@@ -200,6 +209,7 @@ if ( ! function_exists( 'starter_s_woocommerce_cart_link_fragment' ) ) {
 	 * Ensure cart contents update when products are added to the cart via AJAX.
 	 *
 	 * @param array $fragments Fragments to refresh via AJAX.
+	 *
 	 * @return array Fragments to refresh via AJAX.
 	 */
 	function starter_s_woocommerce_cart_link_fragment( $fragments ) {
@@ -222,10 +232,16 @@ if ( ! function_exists( 'starter_s_woocommerce_cart_link' ) ) {
 	 */
 	function starter_s_woocommerce_cart_link() {
 		?>
-			<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'starter_s' ); ?>">
-				<?php /* translators: number of items in the mini cart. */ ?>
-				<span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span> <span class="count"><?php echo wp_kses_data( sprintf( _n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'starter_s' ), WC()->cart->get_cart_contents_count() ) );?></span>
-			</a>
+		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'starter_s' ); ?>">
+			<?php
+			$item_count_text = sprintf(
+			/* translators: number of items in the mini cart. */
+				_n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'starter_s' ),
+				WC()->cart->get_cart_contents_count()
+			);
+			?>
+			<span class="amount"><?php echo wp_kses_data( WC()->cart->get_cart_subtotal() ); ?></span>
+			<span class="count"><?php echo esc_html( $item_count_text ); ?></span> </a>
 		<?php
 	}
 }
@@ -249,11 +265,11 @@ if ( ! function_exists( 'starter_s_woocommerce_header_cart' ) ) {
 			</li>
 			<li>
 				<?php
-					$instance = array(
-						'title' => '',
-					);
+				$instance = array(
+					'title' => '',
+				);
 
-					the_widget( 'WC_Widget_Cart', $instance );
+				the_widget( 'WC_Widget_Cart', $instance );
 				?>
 			</li>
 		</ul>
