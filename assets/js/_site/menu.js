@@ -1,6 +1,9 @@
 "use strict";
-let Global = require('./global');
+var Global = require('./global');
 module.exports = {
+	/*-------------------------------------------------------------------------------
+		# Cache dom and strings
+	-------------------------------------------------------------------------------*/
 	$dom: {
 		menuBtn: $('.js-menu-btn'),
 		menuNav: $('.js-main-nav'),
@@ -12,8 +15,11 @@ module.exports = {
 		openMenu: 'menu-open'
 	},
 
+	/*-------------------------------------------------------------------------------
+		# Initialize
+	-------------------------------------------------------------------------------*/
 	init: function() {
-		// cache dom and classes
+		// get dom and strings
 		var $dom = this.$dom;
 		var classes = this.classes;
 
