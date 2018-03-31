@@ -13,10 +13,15 @@ var gulp             = require('gulp'),
 	sassLint         = require('gulp-sass-lint'),
 	path             = require('path'),
 	flexBugsFix      = require('postcss-flexbugs-fixes'),
-	filter 			 = require('gulp-filter'),
 	concat			 = require('gulp-concat'),
 	concatCss		 = require('gulp-concat-css'),
 	cleanCss		 = require('gulp-clean-css'),
+	babel            = require('gulp-babel'),
+	browserify       = require('browserify'),
+	source           = require('vinyl-source-stream'),
+	buffer           = require('vinyl-buffer'),
+	gulpSequence     = require('gulp-sequence'),
+	clean            = require('gulp-clean'),
 	uglify			 = require('gulp-uglify');
 
 
@@ -120,12 +125,27 @@ gulp.task('sass-lint', function () {
 });
 
 // script
-gulp.task('js', function() {
+gulp.task('plugins-js', function() {
 	return gulp.src([
 		'assets/js/_libs/*.js',
-		'assets/js/_plugins/*.js',
-		'assets/js/_site/*.js',
-		'assets/js/site.js'
+		'assets/js/_plugins/*.js'
+	])
+		.pipe(concat('plugins.js'))
+		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('site-js', function() {
+	return browserify('assets/js/site.js').bundle()
+		.pipe(source('site.js'))
+		.pipe(buffer())
+		.pipe(babel({presets: ['es2015'], compact: false}))
+		.pipe(gulp.dest('dist'));
+});
+
+gulp.task('merge-js', function() {
+	return gulp.src([
+		'dist/plugins.js',
+		'dist/site.js'
 	])
 		.pipe(plumber(msgERROR))
 		.pipe(sourcemaps.init())
@@ -134,12 +154,10 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('js-prod', function() {
+gulp.task('merge-js-prod', function() {
 	return gulp.src([
-		'assets/js/_libs/*.js',
-		'assets/js/_plugins/*.js',
-		'assets/js/_site/*.js',
-		'assets/js/site.js'
+		'dist/plugins.js',
+		'dist/site.js'
 	])
 		.pipe(plumber(msgERROR))
 		.pipe(sourcemaps.init())
@@ -148,6 +166,16 @@ gulp.task('js-prod', function() {
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('dist'));
 });
+
+gulp.task('clean-js', function () {
+	return gulp.src(['dist/plugins.js', 'dist/site.js'], {read: false})
+		.pipe(clean());
+});
+
+gulp.task('js', function(callback) {
+	gulpSequence('site-js', 'plugins-js', 'merge-js', 'clean-js')(callback)
+});
+gulp.task('js-prod', gulpSequence('site-js', 'plugins-js', 'merge-js-prod', 'clean-js'));
 
 
 //watch

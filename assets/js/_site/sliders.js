@@ -1,29 +1,34 @@
-var siteSliders = function() {
-	// cache dom and classes
-	var $dom = {
+"use strict";
+module.exports = {
+	$dom: {
 		slider: $('.js-slider')
-	};
+	},
 
-	// slider
-	$dom.slider.slick({
-		infinite: true,
-		slidesToShow: 4,
-		slidesToScroll: 1,
-		speed: 1000,
-		arrows: false,
-		responsive: [
-			{
-				breakpoint: 991,
-				settings: {
-					slidesToShow: 3
+	init: function () {
+		// cache dom and classes
+		var $dom = this.$dom;
+
+		// slider
+		$dom.slider.slick({
+			infinite: true,
+			slidesToShow: 4,
+			slidesToScroll: 1,
+			speed: 1000,
+			arrows: false,
+			responsive: [
+				{
+					breakpoint: 991,
+					settings: {
+						slidesToShow: 3
+					}
+				},
+				{
+					breakpoint: 767,
+					settings: {
+						slidesToShow: 2
+					}
 				}
-			},
-			{
-				breakpoint: 767,
-				settings: {
-					slidesToShow: 2
-				}
-			}
-		]
-	});
+			]
+		});
+	}
 };

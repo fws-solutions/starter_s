@@ -1,9 +1,13 @@
 jQuery(function($) {
 
 	// Site Menu
-	siteMenu();
+	let menu = require('./_site/menu');
+	menu.init();
+
+
 
 	// Slick Slider
-	siteSliders();
+	let sliders = require('./_site/sliders');
+	sliders.init();
 
 });
