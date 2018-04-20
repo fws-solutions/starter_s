@@ -28,8 +28,8 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Bootstrap
 # WooCommerce
 # Base
-# Components
-# Partials / Templates
+# Parts
+# Components / Templates
 --------------------------------------------------------------*/
 
 
@@ -71,18 +71,18 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 @import 'base/base';
 
 /*--------------------------------------------------------------
-# Components
+# Parts
 --------------------------------------------------------------*/
-@import 'components/buttons';
-@import 'components/forms';
-@import 'components/media';
+@import 'parts/buttons';
+@import 'parts/forms';
+@import 'parts/media';
 
 /*--------------------------------------------------------------
-# Partials / Templates
+# Components / Templates
 --------------------------------------------------------------*/
-@import 'partials/site-header';
-@import 'partials/site-navigation';
-@import 'partials/site-footer';
-@import 'partials/site-main';
-@import 'partials/site-entry-content';
-@import 'partials/module-banners';
+@import 'components/site-header';
+@import 'components/site-navigation';
+@import 'components/site-footer';
+@import 'components/site-sections';
+@import 'components/site-entry-content';
+@import 'components/component-example-banner';
