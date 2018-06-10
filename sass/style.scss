@@ -37,6 +37,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Reset and Variables
 --------------------------------------------------------------*/
 @import 'config/reset';
+@import 'base/fonts';
 @import 'config/variables';
 @import 'base/icon-font';
 
@@ -45,6 +46,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 --------------------------------------------------------------*/
 @import 'helpers/mixins';
 @import 'helpers/helpers';
+@import 'helpers/print';
 
 /*--------------------------------------------------------------
 # Bootstrap
@@ -54,19 +56,20 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # WooCommerce
 --------------------------------------------------------------*/
-//@import "woocommerce/main";
-//@import "woocommerce/tables";
-//@import "woocommerce/products";
-//@import "woocommerce/single-product";
-//@import "woocommerce/checkout";
-//@import "woocommerce/components";
-//@import "woocommerce/widgets";
+//@import 'woocommerce/main';
+//@import 'woocommerce/tables';
+//@import 'woocommerce/products';
+//@import 'woocommerce/single-product';
+//@import 'woocommerce/checkout';
+//@import 'woocommerce/components';
+//@import 'woocommerce/widgets';
 
 /*--------------------------------------------------------------
 # Base
 --------------------------------------------------------------*/
 @import 'base/typography';
 @import 'base/base';
+@import 'base/layout';
 
 /*--------------------------------------------------------------
 # Parts
@@ -81,6 +84,5 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 @import 'components/site-header';
 @import 'components/site-navigation';
 @import 'components/site-footer';
-@import 'components/site-sections';
 @import 'components/site-entry-content';
 @import 'components/component-example-banner';

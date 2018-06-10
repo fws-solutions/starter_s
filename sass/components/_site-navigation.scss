@@ -29,9 +29,9 @@ a {
 		position: absolute;
 		left: 0;
 		top: 100%;
-		border-top: 3px solid $gold;
+		border-top: 3px solid $white;
 		z-index: 99999;
-		background-color: $grey-dark;
+		background-color: $black;
 		transition: $dur $ease;
 		transform: translateY(5px);
 		opacity: 0;
@@ -42,7 +42,7 @@ a {
 		}
 
 		li {
-			border-bottom: 1px solid $grey-light;
+			border-bottom: 1px solid $black;
 
 			&:last-of-type {
 				border-bottom: none;
@@ -61,7 +61,7 @@ a {
 
 		&:hover > a,
 		&.focus > a {
-			background-color: $gold;
+			background-color: $white;
 		}
 	}
 
@@ -122,7 +122,7 @@ a {
 			right: 0;
 			width: 230px;
 			height: 100%;
-			background-color: $grey;
+			background-color: $black;
 			padding-top: 60px;
 			overflow: auto;
 			z-index: 100;

@@ -117,30 +117,10 @@ function starter_s_widgets_init() {
 }
 add_action( 'widgets_init', 'starter_s_widgets_init' );
 
-/*
-* Get Google Fonts
-*/
-function get_google_fonts() {
-	$font = 'Roboto:300,400,500,700';
-
-	/*
-	Translators: If there are characters in your language that are not supported
-	by chosen font(s), translate this to 'off'. Do not translate into your own language.
-	 */
-	if ( 'off' !== _x( 'on', 'Google font: on or off', 'starter_s' ) ) {
-		$font_url = add_query_arg( 'family', urlencode( $font ), '//fonts.googleapis.com/css');
-	} else {
-		$font_url = '';
-	}
-	return $font_url;
-}
-
 /**
  * Enqueue scripts and styles.
  */
 function starter_s_scripts() {
-	wp_enqueue_style( 'starter_s-googlefonts', get_google_fonts() );
-
 	wp_enqueue_style( 'starter_s-plugins-css', get_template_directory_uri() . '/dist/plugins.min.css' );
 
 	wp_enqueue_style( 'starter_s-style', get_stylesheet_uri() );

@@ -7,7 +7,7 @@ input,
 select,
 optgroup,
 textarea {
-	color: $color-main;
+	color: $black;
 	font-family: $font-main;
 	font-size: 16px;
 	line-height: 1.35;
@@ -22,7 +22,7 @@ blockquote {
 }
 
 pre {
-	background: $grey-light;
+	background: $black;
 	max-width: 100%;
 	overflow: auto;
 	padding: 1.6em;
@@ -30,8 +30,10 @@ pre {
 
 // Icon font
 [class*='font-'] {
-	display: inline-block;
-	font-size: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	color: $black;
+	font-size: 30px;
 	line-height: 1;
 }

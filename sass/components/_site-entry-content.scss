@@ -13,7 +13,7 @@
 	h6 {
 		line-height: 1.35;
 		margin-bottom: 15px;
-		color: $grey-dark;
+		color: $black;
 	}
 
 	h2 {
@@ -43,7 +43,7 @@
 
 		strong {
 			font-weight: 400;
-			color: $grey-dark;
+			color: $black;
 		}
 	}
 
@@ -91,7 +91,7 @@
 			bottom: 0;
 			height: 1px;
 			width: 0;
-			background: $grey-dark;
+			background: $black;
 			transition: $dur $ease;
 		}
 
@@ -104,7 +104,7 @@
 
 	table {
 		border-collapse: collapse;
-		color: $grey;
+		color: $black;
 		margin: 25px 0 35px;
 		overflow-x: visible;
 		table-layout: fixed;
@@ -136,14 +136,14 @@
 	}
 
 	th {
-		border-bottom: 2px solid $grey-light;
+		border-bottom: 2px solid $black;
 		font-weight: 400;
 		padding-bottom: 8px;
-		color: $grey-dark;
+		color: $black;
 	}
 
 	td {
-		border-bottom: 1px solid $grey-light;
+		border-bottom: 1px solid $black;
 		padding: 20px 0 5px;
 	}
 }
