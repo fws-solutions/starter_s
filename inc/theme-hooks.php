@@ -50,7 +50,7 @@ add_action( 'login_head', 'starter_s_remove_login_shake' );
 
 // add custom stylesheet
 function starter_s_add_login_styles() {
-	wp_enqueue_style('starter_s-login-style', get_template_directory_uri() . '/config/customize-login/login.css' );
+	wp_enqueue_style('starter_s-login-style', get_template_directory_uri() . '/assets/config/customize-login/login.css' );
 }
 add_action( 'login_enqueue_scripts', 'starter_s_add_login_styles' );
 
@@ -61,11 +61,11 @@ function starter_s_add_login_title() {
 add_action( 'login_form', 'starter_s_add_login_title' );
 
 // change logo url
-function community_solutions_loginlogo_url($url) {
+function starter_s_loginlogo_url($url) {
 	$url = esc_url( home_url( '/' ) );
 	return $url;
 }
-add_filter( 'login_headerurl', 'community_solutions_loginlogo_url' );
+add_filter( 'login_headerurl', 'starter_s_loginlogo_url' );
 
 
 /**

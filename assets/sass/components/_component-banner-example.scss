@@ -1,7 +1,7 @@
 /*--------------------------------------------------------------
 ## Banners
 --------------------------------------------------------------*/
-.example-banner {
+.banner-example {
 	height: 100vh;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -15,7 +15,7 @@
 	}
 }
 
-.example-banner-caption {
+.banner-example-caption {
 	@include center;
 	text-align: center;
 

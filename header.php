@@ -16,7 +16,7 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png" />
+	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png"/>
 
 	<?php wp_head(); ?>
 </head>
@@ -26,22 +26,20 @@
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'starter_s' ); ?></a>
 
 	<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<h1 class="site-title">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-			</h1>
-		</div><!-- .site-branding -->
+		<a class="site-branding" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
+		</a><!-- .site-branding -->
 
-		<a href="javascript:;" class="menu-btn js-menu-btn"><span></span></a>	<!-- menu-button -->
+		<a href="javascript:;" class="menu-btn js-menu-btn"><span></span></a>    <!-- menu-button -->
 
 		<nav id="site-navigation" class="main-navigation js-main-nav">
 			<?php
-				wp_nav_menu( array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-					'menu_class'	 => 'primary-menu clear',
-					'container'		 => false
-				) );
+			wp_nav_menu( array(
+				'theme_location' => 'menu-1',
+				'menu_id'        => 'primary-menu',
+				'menu_class'     => 'primary-menu clear',
+				'container'      => false
+			) );
 			?>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->

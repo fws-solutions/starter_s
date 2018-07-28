@@ -35,8 +35,8 @@ gulp.task('fonticons', function() {
 		.pipe(iconfontCss({
 			fontName: 'fonticons',
 			cssClass: 'font',
-			path: 'config/icon-font-config.scss',
-			targetPath: '../../sass/base/_icon-font.scss',
+			path: 'assets/config/icon-font-config.scss',
+			targetPath: '../../assets/sass/base/_icon-font.scss',
 			fontPath: 'assets/icons/'
 		}))
 		.pipe(iconfont({
@@ -59,7 +59,6 @@ var msgERROR = {
 	errorHandler: notify.onError({
 		title: 'Fix that ERROR:',
 		message: "<%= error.message %>",
-		icon: path.join(__dirname, 'config/notify-error.png'),
 		time: 2000
 	})
 };
@@ -84,7 +83,7 @@ gulp.task('css', function() {
 		autoprefixer({ browsers: ['last 3 versions', 'ios >= 6'] }),
 		flexBugsFix
 	];
-	return gulp.src(['sass/**/*.scss'])
+	return gulp.src(['assets/sass/**/*.scss'])
 		.pipe(plumber(msgERROR))
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: 'expanded'}))
@@ -98,7 +97,7 @@ gulp.task('css-prod', function() {
 		autoprefixer({ browsers: ['last 3 versions', 'ios >= 6'] }),
 		flexBugsFix
 	];
-	return gulp.src(['sass/**/*.scss'])
+	return gulp.src(['assets/sass/**/*.scss'])
 		.pipe(plumber(msgERROR))
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: 'compressed'}))
@@ -108,7 +107,7 @@ gulp.task('css-prod', function() {
 });
 
 gulp.task('plugins-css', function() {
-	return gulp.src(['assets/css/*.css'])
+	return gulp.src(['assets/css-plugins/*.css'])
 		.pipe(concatCss("plugins.min.css"))
 		.pipe(cleanCss())
 		.pipe(gulp.dest('dist'))
@@ -116,7 +115,7 @@ gulp.task('plugins-css', function() {
 
 // sass-lint
 gulp.task('sass-lint', function () {
-	return gulp.src('sass/**/*.scss')
+	return gulp.src('assets/sass/**/*.scss')
 		.pipe(sassLint({
 			config: '.sass-lint.yml'
 		}))
@@ -181,7 +180,7 @@ gulp.task('js-prod', gulpSequence('site-js', 'plugins-js', 'merge-js-prod', 'cle
 //watch
 gulp.task('watch', function() {
 	//watch .scss files
-	gulp.watch('sass/**/*.scss', ['css', 'sass-lint']);
+	gulp.watch('assets/sass/**/*.scss', ['css', 'sass-lint']);
 	//watch site.dev.js
 	gulp.watch('assets/js/**/*.js', ['js']);
 	//watch added or changed svg files to optimize them
