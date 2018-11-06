@@ -1,0 +1,67 @@
+/*----------------------------------------------------------
+# ACF Flexible Content Improved Styling
+----------------------------------------------------------*/
+.acf-fields .acf-fc-thumbnail {
+	position: absolute;
+	background-color: #fff;
+	border: 1px solid #e1e1e1;
+	bottom: 7px;
+	left: 39px;
+	width: 50px;
+	padding: 3px;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.acf-fields .acf-fc-thumbnail img {
+	display: block;
+	width: 100%;
+}
+
+.acf-fields .acf-flexible-content .layout {
+	margin-top: 25px;
+	background: #f9f9f9;
+}
+
+.acf-fields .acf-flexible-content .layout .acf-fc-layout-handle {
+	background: #f2f2f2;
+}
+
+.acf-fields .acf-flexible-content .layout .acf-fc-layout-order {
+	border-radius: 50%;
+	border: 1px solid #E1E1E1;
+	background: #fff;
+}
+
+.acf-fields .acf-fc-title {
+	display: inline-block;
+	margin: 0 0 0 20px;
+}
+
+.acf-fields .acf-flexible-content {
+	margin-top: 25px;
+}
+
+.acf-fc-popup-text {
+	display: block;
+	line-height: 1;
+	margin-left: 15px;
+}
+
+.wp-admin .acf-fc-popup a {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wp-admin .acf-fc-popup a:hover {
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.wp-admin .acf-fc-popup ul li:last-child a {
+	border-bottom: none;
+}
