@@ -16,13 +16,12 @@ var gulp             = require('gulp'),
 	concat			 = require('gulp-concat'),
 	concatCss		 = require('gulp-concat-css'),
 	cleanCss		 = require('gulp-clean-css'),
-	babel            = require('gulp-babel'),
 	browserify       = require('browserify'),
-	source           = require('vinyl-source-stream'),
-	buffer           = require('vinyl-buffer'),
-	gulpSequence     = require('gulp-sequence'),
+	runSequence 	 = require('run-sequence'),
+	webpack 		 = require('gulp-webpack'),
+	webpackConfig 	 = require('./webpack.config'),
 	clean            = require('gulp-clean'),
-	uglify			 = require('gulp-uglify');
+	uglify			 = require('gulp-uglify-es').default;
 
 
 // build
@@ -133,11 +132,10 @@ gulp.task('plugins-js', function() {
 		.pipe(gulp.dest('dist'));
 });
 
-gulp.task('site-js', function() {
-	return browserify('assets/js/site.js').bundle()
-		.pipe(source('site.js'))
-		.pipe(buffer())
-		.pipe(babel({presets: ['es2015'], compact: false}))
+gulp.task('site-js', function () {
+	return gulp.src('assets/js/**.js')
+		.pipe(plumber())
+		.pipe(webpack(webpackConfig))
 		.pipe(gulp.dest('dist'));
 });
 
@@ -171,10 +169,9 @@ gulp.task('clean-js', function () {
 		.pipe(clean());
 });
 
-gulp.task('js', function(callback) {
-	gulpSequence('site-js', 'plugins-js', 'merge-js', 'clean-js')(callback)
+gulp.task('js', function () {
+	runSequence('site-js', 'plugins-js', 'merge-js', 'clean-js', () => false);
 });
-gulp.task('js-prod', gulpSequence('site-js', 'plugins-js', 'merge-js-prod', 'clean-js'));
 
 
 //watch

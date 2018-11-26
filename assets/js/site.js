@@ -1,9 +1,10 @@
-jQuery(function($) {
+import Menu from './_site/menu';
+import Sliders from './_site/sliders';
+
+jQuery(function () {
 	// Site Menu
-	const menu = require('./_site/menu');
-	menu.init();
+	Menu.init();
 
 	// Slick Slider
-	const sliders = require('./_site/sliders');
-	sliders.init();
+	Sliders.init();
 });

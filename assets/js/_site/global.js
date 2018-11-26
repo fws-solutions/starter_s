@@ -1,17 +1,16 @@
-"use strict";
-module.exports = {
-	$dom: {
-		window: $('window'),
-		body: $('body')
-	},
+const $ = jQuery.noConflict();
 
-	vars: {
-		windowWidth: window.innerWidth
-	},
+'use strict';
+const Global = {
+	$domWindow: $(window),
+	$domDoc: $(document),
+	$domBody: $('body'),
+
+	varsWindowWidth: window.innerWidth,
 
 	functions: {
 		escKey: function (callback) {
-			$(document).on('keyup', function (e) {
+			Global.$domDoc.on('keyup', function (e) {
 				if (e.keyCode === 27) {
 					callback();
 				}
@@ -28,3 +27,5 @@ module.exports = {
 		}
 	}
 };
+
+export default Global;

@@ -1,21 +1,18 @@
-"use strict";
-module.exports = {
+const $ = jQuery.noConflict();
+
+'use strict';
+const Sliders = {
 	/*-------------------------------------------------------------------------------
 		# Cache dom and strings
 	-------------------------------------------------------------------------------*/
-	$dom: {
-		slider: $('.js-slider')
-	},
+	$domSlider: $('.js-slider'),
 
 	/*-------------------------------------------------------------------------------
 		# Initialize
 	-------------------------------------------------------------------------------*/
 	init: function () {
-		// get dom and strings
-		var $dom = this.$dom;
-
 		// slider
-		$dom.slider.slick({
+		this.$domSlider.slick({
 			infinite: true,
 			slidesToShow: 4,
 			slidesToScroll: 1,
@@ -38,3 +35,5 @@ module.exports = {
 		});
 	}
 };
+
+export default Sliders;

@@ -1,57 +1,52 @@
-"use strict";
-var Global = require('./global');
-module.exports = {
+const $ = jQuery.noConflict();
+import Global from './global';
+
+'use strict';
+const Menu = {
 	/*-------------------------------------------------------------------------------
 		# Cache dom and strings
 	-------------------------------------------------------------------------------*/
-	$dom: {
-		menuBtn: $('.js-menu-btn'),
-		menuNav: $('.js-main-nav'),
-		menuHasSub: $('.menu-item-has-children')
-	},
-
-	classes: {
-		open: 'open',
-		openMenu: 'menu-open'
-	},
+	$domMenuBtn: $('.js-menu-btn'),
+	$domMenuNav: $('.js-main-nav'),
+	$domMenuHasSub: $('.menu-item-has-children'),
+	classOpen: 'open',
+	classOpenMenu: 'menu-open',
 
 	/*-------------------------------------------------------------------------------
 		# Initialize
 	-------------------------------------------------------------------------------*/
-	init: function() {
-		// get dom and strings
-		var $dom = this.$dom;
-		var classes = this.classes;
-
+	init: function () {
 		// functions
 		function closeNav() {
-			$dom.menuBtn.removeClass(classes.open);
-			$dom.menuNav.removeClass(classes.open);
-			Global.$dom.body.removeClass(classes.openMenu);
+			Menu.$domMenuBtn.removeClass(Menu.classOpen);
+			Menu.$domMenuNav.removeClass(Menu.classOpen);
+			Global.$domBody.removeClass(Menu.classOpenMenu);
 		}
 
-		if (Global.vars.windowWidth < 768) {
-			$dom.menuHasSub.each(function(i, el) {
+		if (Global.varsWindowWidth < 768) {
+			this.$domMenuHasSub.each(function (i, el) {
 				$(el).append('<span class="sub-icon font-plus-circle" data-open-sub></span>');
 			});
 		}
 
 		// bind events
-		$dom.menuBtn.on('click', function(e) {
+		this.$domMenuBtn.on('click', function (e) {
 			e.preventDefault();
-			$dom.menuBtn.toggleClass(classes.open);
-			$dom.menuNav.toggleClass(classes.open);
-			Global.$dom.body.toggleClass(classes.openMenu);
+			Menu.$domMenuBtn.toggleClass(Menu.classOpen);
+			Menu.$domMenuNav.toggleClass(Menu.classOpen);
+			Global.$domBody.toggleClass(Menu.classOpenMenu);
 		});
 
-		$dom.menuNav.on('click', '[data-open-sub]', function() {
-			if (Global.vars.windowWidth < 768) {
+		this.$domMenuNav.on('click', '[data-open-sub]', function () {
+			if (Global.varsWindowWidth < 768) {
 				$(this).siblings('.sub-menu').slideToggle();
 			}
 		});
 
-		Global.functions.clickOutsideContainer($dom.menuNav, $dom.menuNav.children('ul'), $dom.menuBtn, closeNav);
+		Global.functions.clickOutsideContainer(this.$domMenuNav, this.$domMenuNav.children('ul'), this.$domMenuBtn, closeNav);
 
 		Global.functions.escKey(closeNav);
 	}
 };
+
+export default Menu;
