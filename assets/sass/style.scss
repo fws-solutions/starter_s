@@ -51,7 +51,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Bootstrap
 --------------------------------------------------------------*/
-//@import 'bootstrap/bootstrap-grid';
+@import 'bootstrap/bootstrap-grid';
 
 /*--------------------------------------------------------------
 # WooCommerce
@@ -84,5 +84,6 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 @import 'components/site-header';
 @import 'components/site-navigation';
 @import 'components/site-footer';
+@import 'components/site-404';
 @import 'components/site-entry-content';
 @import 'components/component-banner-example';

@@ -1,0 +1,185 @@
+///* ========================================================================
+//   #404/403
+//   ======================================================================== */
+.error404 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	overflow: hidden;
+	background-color: $white;
+
+	.site-header,
+	.site-footer {
+		display: none;
+	}
+}
+
+.s-404__logo {
+	display: inline-block;
+	animation: puff-in-middle 0.35s cubic-bezier(0.47, 0, 0.745, 0.715) both 1.5s;
+
+	&:hover {
+		img {
+			transform: scale(1.05);
+		}
+	}
+
+	img {
+		width: 180px;
+		transition: transform 0.2s ease-in-out;
+	}
+}
+
+.s-404__title {
+	animation: puff-in-middle 0.35s cubic-bezier(0.47, 0, 0.745, 0.715) both .5s;
+
+	span {
+		font-size: 250px;
+		line-height: 1;
+		color: $color-404;
+		display: inline-block;
+		position: relative;
+		margin: 0 10px;
+		text-shadow: 2px 3px 10px rgb(211, 211, 212);
+
+		@include mq($tablet) {
+			font-size: 200px;
+		}
+
+		@include mq($phone) {
+			font-size: 125px;
+		}
+	}
+
+	&-1 {
+		transform: rotate(-7deg);
+		animation: 5s float ease-in-out infinite alternate-reverse 0.5s;
+	}
+
+	&-2 {
+		transform: translateY(10%);
+		animation: 5s float-2 ease-in-out infinite alternate-reverse 0.5s;
+	}
+
+	&-3 {
+		transform: rotate(10deg);
+		animation: 5s float-3 ease-in-out infinite alternate-reverse 0.5s;
+	}
+}
+
+.s-404__title-icon {
+	font-size: 62px;
+	color: $color-404;
+	@include center;
+
+	@include mq($tablet) {
+		font-size: 55px;
+	}
+
+	@include mq($phone) {
+		font-size: 40px;
+	}
+}
+
+.s-404__text {
+	font-size: 40px;
+	line-height: 1.1;
+	color: $black;
+	letter-spacing: 1px;
+	animation: puff-in-middle 0.35s cubic-bezier(0.47, 0, 0.745, 0.715) both .8s;
+	margin-top: 40px;
+	padding: 0 15px;
+
+	@include mq($phone) {
+		margin-top: 25px;
+		font-size: 30px;
+	}
+}
+
+.s-404__btn {
+	font-size: 17px;
+	color: $white;
+	background-color: $black;
+	text-transform: uppercase;
+	display: inline-block;
+	position: relative;
+	margin-top: 35px;
+	padding: 8px 35px;
+	min-width: 180px;
+	border: 2px solid $black;
+	border-radius: 30px;
+	transition: 0.2s ease-in-out;
+	animation: puff-in-middle 0.35s cubic-bezier(0.47, 0, 0.745, 0.715) both 1s;
+
+	&:hover {
+		color: $black;
+		background-color: $white;
+	}
+
+	@include mq($tablet) {
+		font-size: 16px;
+		padding: 5px 20px;
+		margin-top: 25px;
+	}
+}
+
+
+@keyframes puff-in-center {
+	0% {
+		transform: scale(0.5);
+		filter: blur(2px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: scale(1);
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+
+@keyframes puff-in-middle {
+	0% {
+		transform: scale(1.4);
+		filter: blur(2px);
+		opacity: 0;
+	}
+
+	100% {
+		transform: scale(1);
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+
+// 404 / 403 floating animation
+@keyframes float {
+	0% {
+		transform: rotate(-1deg) translate(0, 0);
+	}
+
+	100% {
+		transform: rotate(-7deg) translate(10%, 10%);
+	}
+}
+
+@keyframes float-2 {
+	0% {
+		transform: translateY(0);
+	}
+
+	100% {
+		transform: translateY(10%);
+	}
+}
+
+@keyframes float-3 {
+	0% {
+		transform: rotate(-4deg) translateY(0);
+	}
+
+	100% {
+		transform: rotate(10deg) translateY(-10%);
+	}
+}

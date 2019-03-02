@@ -9,25 +9,18 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
-
-			<section class="error-404 not-found container">
-				<header class="page-header">
-					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'starter_s' ); ?></h1>
-				</header><!-- .page-header -->
-
-				<div class="page-content">
-					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'starter_s' ); ?></p>
-
-					<?php get_search_form(); ?>
-
-
-				</div><!-- .page-content -->
-			</section><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+<div class="s-404__wrap">
+    <a class="s-404__logo" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="logo-small">
+    </a>
+    <h1 class="s-404__title">
+        <span class="s-404__title-1">4</span>
+        <span class="s-404__title-2">0</span>
+        <span class="s-404__title-3">4</span>
+    </h1>
+    <div class="s-404__text">Looks like you are lost!</div>
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="s-404__btn"></span>Back to homepage</a>
+</div>
 
 <?php
 get_footer();

@@ -11,6 +11,9 @@ $font-main: $font-default-sans-serif;
 $white: #fff;
 $black: #000;
 
+//set this color to follow site style
+$color-404: $black;
+
 // Transitions
 $dur: 350ms;
 $ease: ease;
