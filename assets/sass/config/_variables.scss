@@ -11,8 +11,11 @@ $font-main: $font-default-sans-serif;
 $white: #fff;
 $black: #000;
 
-//set this color to follow site style
-$color-404: $black;
+//set this colors to follow site style at 404 page
+$c-404-numbers: $black;
+$c-404-text: $black;
+$c-404-btn-color: $white;
+$c-404-btn-bg: $black;
 
 // Transitions
 $dur: 350ms;

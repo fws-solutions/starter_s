@@ -8,6 +8,25 @@
 	text-align: center;
 	overflow: hidden;
 	background-color: $white;
+	background-size: cover;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	///* =====================
+	// TODO uncoment this to add backgroound image
+	// ( specifay final path to 404 image in IMAGES folder )
+	// ============================== */
+
+	// background-image: url('assets/images/');
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba($white, 0.7);
+	}
 
 	.site-header,
 	.site-footer {
@@ -37,11 +56,10 @@
 	span {
 		font-size: 250px;
 		line-height: 1;
-		color: $color-404;
+		color: $c-404-numbers;
 		display: inline-block;
 		position: relative;
 		margin: 0 10px;
-		text-shadow: 2px 3px 10px rgb(211, 211, 212);
 
 		@include mq($tablet) {
 			font-size: 200px;
@@ -70,7 +88,7 @@
 
 .s-404__title-icon {
 	font-size: 62px;
-	color: $color-404;
+	color: $c-404-numbers;
 	@include center;
 
 	@include mq($tablet) {
@@ -85,7 +103,7 @@
 .s-404__text {
 	font-size: 40px;
 	line-height: 1.1;
-	color: $black;
+	color: $c-404-text;
 	letter-spacing: 1px;
 	animation: puff-in-middle 0.35s cubic-bezier(0.47, 0, 0.745, 0.715) both .8s;
 	margin-top: 40px;
@@ -99,22 +117,22 @@
 
 .s-404__btn {
 	font-size: 17px;
-	color: $white;
-	background-color: $black;
+	color: $c-404-btn-color;
+	background-color: $c-404-btn-bg;
 	text-transform: uppercase;
 	display: inline-block;
 	position: relative;
 	margin-top: 35px;
 	padding: 8px 35px;
 	min-width: 180px;
-	border: 2px solid $black;
+	border: 2px solid $c-404-btn-bg;
 	border-radius: 30px;
 	transition: 0.2s ease-in-out;
 	animation: puff-in-middle 0.35s cubic-bezier(0.47, 0, 0.745, 0.715) both 1s;
 
 	&:hover {
-		color: $black;
-		background-color: $white;
+		color: $c-404-btn-bg;
+		background-color: $c-404-btn-color;
 	}
 
 	@include mq($tablet) {
