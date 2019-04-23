@@ -1,8 +1,7 @@
 {
-  "name": "starter_timber",
-  "description": "WeDo IT Sourcing - Timber Starter Theme",
+  "name": "starter_s",
   "author": "WeDo IT Sourcing",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "gulpfile.js",
   "dependencies": {
     "autoprefixer": "^9.3.1",

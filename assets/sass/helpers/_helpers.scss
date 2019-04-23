@@ -33,6 +33,18 @@
 	text-align: center;
 }
 
+// Theming and colors iterator
+@each $colors-name in $site-colors {
+	$name: nth($colors-name, 1);
+	$color: nth($colors-name, 2);
+	.bg-#{$name} {
+		background-color: $color;
+	}
+	.color-#{$name} {
+		color: $color;
+	}
+}
+
 //Text meant only for screen readers.
 .screen-reader-text {
 	clip: rect(1px, 1px, 1px, 1px);

@@ -1,5 +1,5 @@
 /*--------------------------------------------------------------
-## Variables
+## Main Variables
 --------------------------------------------------------------*/
 // Fonts
 $font-default-serif: Georgia, serif;
@@ -11,11 +11,20 @@ $font-main: $font-default-sans-serif;
 $white: #fff;
 $black: #000;
 
-//set this colors to follow site style at 404 page
+$site-colors: (
+	'white': $white,
+	'black': $black
+) !default;
+
+// 404 - Set this color to follow site style
 $c-404-numbers: $black;
 $c-404-text: $black;
 $c-404-btn-color: $white;
 $c-404-btn-bg: $black;
+
+// Styleguide colors
+$styleguide-orange: #e95626;
+$styleguide-blue: #71999e;
 
 // Transitions
 $dur: 350ms;
@@ -28,3 +37,29 @@ $tablet-l: 1199;
 $lap-small: 1250;
 $lap-large: 1400;
 
+
+/*--------------------------------------------------------------
+## Bootstrap Variables
+--------------------------------------------------------------*/
+$enable-grid-classes: true !default;
+
+// Media queries breakpoints - Grid breakpoint
+$grid-breakpoints: (
+	xs: 0,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px
+) !default;
+
+// Grid containers
+$container-max-widths: (
+	sm: 540px,
+	md: 720px,
+	lg: 960px,
+	xl: 1140px
+) !default;
+
+// Grid columns
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;

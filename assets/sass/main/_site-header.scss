@@ -13,10 +13,18 @@
 	width: 100%;
 	min-height: 60px;
 	z-index: 10;
+
+	.admin-bar & {
+		top: 32px;
+	}
 }
 
-.site-branding a {
+.site-header__logo {
 	color: $white;
+}
+
+.site-header__logo-img {
+	display: block;
 }
 
 /*--------------------------------------------------------------

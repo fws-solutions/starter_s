@@ -78,10 +78,6 @@ a {
 	.current-menu-ancestor > a {
 	}
 
-	.sub-icon {
-		display: none;
-	}
-
 	@include mq($phone) {
 		position: fixed;
 		top: 0;
@@ -124,10 +120,10 @@ a {
 			position: absolute;
 			top: 0;
 			right: 0;
-			width: 280px;
+			width: 230px;
 			height: 100%;
 			background-color: $black;
-			padding-top: 70px;
+			padding-top: 60px;
 			overflow: auto;
 			z-index: 100;
 			transform: translateX(100%);
@@ -172,10 +168,10 @@ a {
 			line-height: 1;
 			display: block;
 			color: $white;
-			font-size: 22px;
+			font-size: 18px;
 			position: absolute;
-			right: 22px;
-			top: 1px;
+			right: 60px;
+			top: 3px;
 			transition: $dur $ease;
 		}
 	}

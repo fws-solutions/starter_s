@@ -28,6 +28,7 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 # Bootstrap
 # WooCommerce
 # Base
+# Main
 # Parts
 # Components / Templates
 --------------------------------------------------------------*/
@@ -51,7 +52,10 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 /*--------------------------------------------------------------
 # Bootstrap
 --------------------------------------------------------------*/
-@import 'bootstrap/bootstrap-grid';
+@import 'bootstrap/grid-breakpoints';
+@import 'bootstrap/grid-framework';
+@import 'bootstrap/grid';
+@import 'bootstrap/grid-layout';
 
 /*--------------------------------------------------------------
 # WooCommerce
@@ -79,11 +83,15 @@ Nicolas Gallagher and Jonathan Neal http://necolas.github.io/normalize.css/
 @import 'parts/media';
 
 /*--------------------------------------------------------------
+# Main
+--------------------------------------------------------------*/
+@import 'main/site-styleguide';
+@import 'main/site-header';
+@import 'main/site-navigation';
+@import 'main/site-footer';
+@import 'main/site-404';
+
+/*--------------------------------------------------------------
 # Components / Templates
 --------------------------------------------------------------*/
-@import 'components/site-header';
-@import 'components/site-navigation';
-@import 'components/site-footer';
-@import 'components/site-404';
-@import 'components/site-entry-content';
 @import 'components/component-banner-example';

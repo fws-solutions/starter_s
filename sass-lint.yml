@@ -9,15 +9,10 @@ files:
     - 'assets/sass/layout/_sprite.scss'
     - 'assets/sass/base/_icon-font.scss'
     - 'assets/sass/config/_reset.scss'
-    - 'assets/sass/bootstrap/_bootstrap-grid.scss'
-    - 'assets/sass/bootstrap/_functions.scss'
-    - 'assets/sass/bootstrap/_variables.scss'
-    - 'assets/sass/bootstrap/mixins/_breakpoints.scss'
-    - 'assets/sass/bootstrap/mixins/_grid-framework.scss'
-    - 'assets/sass/bootstrap/mixins/_grid.scss'
+    - 'assets/sass/bootstrap/_grid-breakpoints.scss'
+    - 'assets/sass/bootstrap/_grid-framework.scss'
+    - 'assets/sass/bootstrap/_grid-layout.scss'
     - 'assets/sass/bootstrap/_grid.scss'
-    - 'assets/sass/bootstrap/utilities/_display.scss'
-    - 'assets/sass/bootstrap/utilities/_flex.scss'
 
 rules:
   attribute-quotes: 2

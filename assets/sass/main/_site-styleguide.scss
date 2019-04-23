@@ -1,0 +1,131 @@
+/*--------------------------------------------------------------
+## Styleguide site
+--------------------------------------------------------------*/
+
+.styleguide {
+    padding: 0 0 100px;
+}
+
+.styleguide__scrollspy-nav {
+	position: fixed;
+	left: 0;
+	top: 20%;
+	width: 130px;
+	color: $white;
+	font-size: 14px;
+	transition: $dur $ease;
+
+	&.is-hidden {
+		transform: translateX(-100%);
+	}
+
+	a {
+		display: block;
+		width: 130px;
+		padding: 3px 10px;
+		color: $white;
+		border-bottom: 1px solid $white;
+		transition: $dur $ease;
+		background-color: rgba($styleguide-orange, .5);
+		@include text-overflow;
+
+		&.active {
+			color: $styleguide-orange;
+			background-color: $white;
+		}
+	}
+
+	li:last-child a {
+		border: 0;
+	}
+}
+
+.styleguide__scrollspy-nav-title {
+	display: block;
+	font-weight: bold;
+	padding: 5px 10px;
+	border-bottom: 1px solid $white;
+	background-color: $styleguide-orange;
+}
+
+.styleguide__scrollspy-nav-close {
+	display: block;
+	line-height: 1;
+	position: absolute;
+	right: 5px;
+	top: 7px;
+	cursor: pointer;
+}
+
+.styleguide__main-head {
+    font-weight: bold;
+    font-size: 48px;
+    color: $styleguide-orange;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 100px 0;
+}
+
+.styleguide__head {
+    width: 100%;
+    padding: 0 0 20px;
+    border-bottom: 1px solid $styleguide-orange;
+    margin: 0 0 55px;
+}
+
+.styleguide__head--mod {
+    color: $styleguide-orange;
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.styleguide__body {
+    margin: 0 0 140px;
+}
+
+.styleguide__colorpallet {
+    display: flex;
+    flex-direction: row;
+}
+
+.styleguide__color {
+    display: inline-block;
+    width: 100px;
+    height: 48px;
+}
+
+.styleguide__color-name {
+    display: block;
+    font-size: 16px;
+    color: #bebebe;
+    text-align: center;
+    margin: 20px 0 0;
+}
+
+.styleguide__flex--wrap {
+    display: flex;
+}
+
+.styleguide__section--left {
+    width: 50%;
+}
+
+.styleguide__section--right {
+    width: 50%;
+}
+
+.styleguide__typography-special-titles {
+    margin: 0 0 70px;
+	color: $styleguide-blue;
+}
+
+.styleguide__subtitle {
+    font-size: 18px;
+    font-family: $font-main;
+    color: $black;
+    margin: 0 0 25px;
+}
+
+.sections-guide {
+    margin: 60px 0;
+}
