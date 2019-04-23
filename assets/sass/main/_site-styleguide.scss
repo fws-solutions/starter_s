@@ -1,9 +1,8 @@
 /*--------------------------------------------------------------
 ## Styleguide site
 --------------------------------------------------------------*/
-
 .styleguide {
-    padding: 0 0 100px;
+	padding: 50px 0 150px;
 }
 
 .styleguide__scrollspy-nav {
@@ -14,6 +13,7 @@
 	color: $white;
 	font-size: 14px;
 	transition: $dur $ease;
+	z-index: 10;
 
 	&.is-hidden {
 		transform: translateX(-100%);
@@ -63,7 +63,11 @@
     color: $styleguide-orange;
     text-transform: uppercase;
     text-align: center;
-    margin: 100px 0;
+    padding: 100px 0;
+}
+
+.styleguide__section {
+	margin-bottom: 100px;
 }
 
 .styleguide__head {
@@ -80,7 +84,7 @@
 }
 
 .styleguide__body {
-    margin: 0 0 140px;
+	background-color: $white;
 }
 
 .styleguide__colorpallet {
@@ -102,18 +106,6 @@
     margin: 20px 0 0;
 }
 
-.styleguide__flex--wrap {
-    display: flex;
-}
-
-.styleguide__section--left {
-    width: 50%;
-}
-
-.styleguide__section--right {
-    width: 50%;
-}
-
 .styleguide__typography-special-titles {
     margin: 0 0 70px;
 	color: $styleguide-blue;
@@ -124,8 +116,4 @@
     font-family: $font-main;
     color: $black;
     margin: 0 0 25px;
-}
-
-.sections-guide {
-    margin: 60px 0;
 }

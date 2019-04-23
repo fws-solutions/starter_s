@@ -18,9 +18,5 @@
 .banner-example__caption {
 	@include center;
 	text-align: center;
-
-	h1,
-	p {
-		color: $white;
-	}
+	color: $white;
 }

@@ -139,6 +139,11 @@ function starter_s_scripts() {
 add_action( 'wp_enqueue_scripts', 'starter_s_scripts' );
 
 /**
+ * Styleguide helper functions.
+ */
+require get_template_directory() . '/inc/styleguide-functions.php';
+
+/**
  * Custom theme functions for this theme.
  */
 require get_template_directory() . '/inc/theme-functions.php';
