@@ -34,6 +34,26 @@ add_action( 'wp_head', 'starter_s_pingback_header' );
 
 
 /**
+ * Page default wrappers
+ */
+function starter_s_page_wrapper_before() {
+	?>
+	<div id="primary" class="content-area">
+	<main id="main" class="site-main" role="main">
+	<?php
+}
+add_action( 'starter_s_before_main_content', 'starter_s_page_wrapper_before' );
+
+function starter_s_page_wrapper_after() {
+	?>
+	</main><!-- #main -->
+	</div><!-- #primary -->
+	<?php
+}
+add_action( 'starter_s_after_main_content', 'starter_s_page_wrapper_after' );
+
+
+/**
  * Modify WP Login
  */
 // change error message

@@ -12,23 +12,17 @@
  * @package starter_s
  */
 
-get_header(); ?>
+// get header
+get_header();
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+// open main content wrappers
+do_action( 'starter_s_before_main_content' );
 
-			<div class="container">
-				<?php
-				while ( have_posts() ) : the_post();
+// get content blocks
+get_template_part( 'template-parts/content', 'blocks' );
 
-					get_template_part( 'template-parts/content', 'page' );
+// close main content wrappers
+do_action( 'starter_s_after_main_content' );
 
-				endwhile; // End of the loop.
-				?>
-			</div>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
+// get footer
 get_footer();
