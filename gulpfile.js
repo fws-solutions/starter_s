@@ -173,6 +173,11 @@ gulp.task('js', function () {
 	runSequence('site-js', 'plugins-js', 'merge-js', 'clean-js', () => false);
 });
 
+gulp.task('js-prod', function () {
+	runSequence('site-js', 'plugins-js', 'merge-js-prod', 'clean-js', () => false);
+});
+
+
 
 //watch
 gulp.task('watch', function() {
