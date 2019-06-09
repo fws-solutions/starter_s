@@ -22,10 +22,10 @@
 @function font-char($filename) {
 	$char: "";
 
-	@if $filename == happy {
+	@if $filename == ico-happy {
 		$char: "\E001";
 	}
-	@if $filename == plus-circle {
+	@if $filename == ico-plus-circle {
 		$char: "\E002";
 	}
 
@@ -43,10 +43,9 @@
 	}
 }
 
-.font-happy {
-	@include font(happy);
+.font-ico-happy {
+	@include font(ico-happy);
 }
-.font-plus-circle {
-	@include font(plus-circle);
+.font-ico-plus-circle {
+	@include font(ico-plus-circle);
 }
-

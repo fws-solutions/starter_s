@@ -1,18 +1,23 @@
 const path = require('path');
 
 module.exports = {
-	entry: {
-		'site': './assets/js/site.js'
-	},
+	mode: 'none',
+	entry: './assets/js/site.js',
 	output: {
-		path: path.join(__dirname, './dist/js/'),
-		filename: '[name].js'
+		path: path.join(__dirname, './dist/'),
+		filename: 'site.js'
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
-				test: path.join(__dirname),
-				loader: 'babel-loader'
+				test: /\.m?js$/,
+				exclude: /(node_modules|bower_components)/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						presets: ['@babel/preset-env']
+					}
+				}
 			}
 		]
 	}
