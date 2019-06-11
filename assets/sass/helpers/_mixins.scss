@@ -88,3 +88,13 @@
 		@content;
 	}
 }
+
+// Hover mixin only for desktop devices
+// to include use @include hover {your hover styles} can also include elements
+@mixin hover {
+	@media only screen and (min-width: 1025px) {
+		&:hover {
+			@content;
+		}
+	}
+}
