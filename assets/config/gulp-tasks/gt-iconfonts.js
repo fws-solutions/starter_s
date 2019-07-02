@@ -155,7 +155,7 @@ function buildFontIcons() {
 			fontName: 'fonticons',
 			cssClass: 'font',
 			path: 'assets/config/icon-font-config.scss',
-			targetPath: '../../assets/sass/base/_icon-font.scss',
+			targetPath: '../sass/base/_icon-font.scss',
 			fontPath: 'assets/icons/'
 		}))
 		.pipe(iconfont({
