@@ -38,19 +38,6 @@ function starter_s_acf_flexible_content_layout_title( $title, $field, $layout, $
 
 add_filter( 'acf/fields/flexible_content/layout_title', 'starter_s_acf_flexible_content_layout_title', 10, 4 );
 
-
-/*
-** Change acf-json Dir Path
-*/
-function starter_s_acf_json_save_point( $path ) {
-	$path = get_stylesheet_directory() . '/assets/config/acf-json';
-
-	return $path;
-}
-
-add_filter( 'acf/settings/save_json', 'starter_s_acf_json_save_point' );
-
-
 /*
 ** Render ACF Link Field
  *
