@@ -3,6 +3,11 @@
 --------------------------------------------------------------*/
 .styleguide {
 	padding: 50px 0 150px;
+	background:
+		linear-gradient(135deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px),
+		linear-gradient(225deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px)0 64px;
+	background-color: $sg-grey;
+	background-size: 64px 128px;
 }
 
 .styleguide__scrollspy-nav {
@@ -26,11 +31,11 @@
 		color: $white;
 		border-bottom: 1px solid $white;
 		transition: $dur $ease;
-		background-color: rgba($styleguide-orange, .5);
+		background-color: rgba($sg-orange, .5);
 		@include text-overflow;
 
 		&.active {
-			color: $styleguide-orange;
+			color: $sg-orange;
 			background-color: $white;
 		}
 	}
@@ -45,7 +50,7 @@
 	font-weight: bold;
 	padding: 5px 10px;
 	border-bottom: 1px solid $white;
-	background-color: $styleguide-orange;
+	background-color: $sg-orange;
 }
 
 .styleguide__scrollspy-nav-close {
@@ -60,7 +65,7 @@
 .styleguide__main-head {
     font-weight: bold;
     font-size: 48px;
-    color: $styleguide-orange;
+    color: $sg-orange;
     text-transform: uppercase;
     text-align: center;
     padding: 100px 0;
@@ -73,23 +78,23 @@
 .styleguide__head {
     width: 100%;
     padding: 0 0 20px;
-    border-bottom: 1px solid $styleguide-orange;
+    border-bottom: 1px solid $sg-orange;
     margin: 0 0 55px;
 }
 
 .styleguide__head--mod {
-    color: $styleguide-orange;
+    color: $sg-orange;
     font-size: 35px;
     font-weight: 500;
 }
 
-.styleguide__body {
-	background-color: $white;
-}
-
 .styleguide__colorpallet {
     display: flex;
-    flex-direction: row;
+    margin: 0 -15px;
+}
+
+.styleguide__colorpallet--mod {
+	padding: 15px;
 }
 
 .styleguide__color {
@@ -108,7 +113,7 @@
 
 .styleguide__typography-special-titles {
     margin: 0 0 70px;
-	color: $styleguide-blue;
+	color: $sg-blue;
 }
 
 .styleguide__subtitle {
@@ -116,4 +121,48 @@
     font-family: $font-main;
     color: $black;
     margin: 0 0 25px;
+}
+
+.styleguide__buttons {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	margin: 0 -15px;
+}
+
+.styleguide__btn {
+	padding: 15px;
+}
+
+.styleguide__section-content {
+	border-style: dashed;
+	border-color: $sg-blue;
+	border-width: 1px 0;
+	position: relative;
+
+	&::before,
+	&::after {
+		display: block;
+		background-color: $sg-blue;
+		padding: 1px;
+		color: $white;
+		text-align: center;
+		width: 48px;
+		font-size: 11px;
+		letter-spacing: 2px;
+		position: absolute;
+		left: 50%;
+	}
+
+	&::before {
+		content: 'start';
+		top: 0;
+		transform: translate(-50%, -100%);
+	}
+
+	&::after {
+		content: 'end';
+		bottom: 0;
+		transform: translate(-50%, 100%);
+	}
 }

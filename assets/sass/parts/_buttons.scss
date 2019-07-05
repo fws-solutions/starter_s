@@ -1,3 +1,24 @@
 /*--------------------------------------------------------------
 ## Buttons
 --------------------------------------------------------------*/
+.btn {
+	display: inline-block;
+	text-align: center;
+	border: 1px solid $black;
+	border-radius: 30px;
+	background-color: $white;
+	color: $black;
+	padding: 5px 10px;
+	min-width: 200px;
+	transition: $dur $ease;
+
+	@include hover {
+		background-color: $black;
+		color: $white;
+	}
+}
+
+.btn--big {
+	min-width: 250px;
+	padding: 10px 20px;
+}

@@ -32,7 +32,7 @@ get_header(); ?>
 				get_template_part('styleguide/sg', 'buttons');
 
 				// Sections & Components
-				get_template_part('styleguide/styleguide-sections');
+				get_template_part('styleguide/sg', 'sections');
 				?>
 
 			</div>
