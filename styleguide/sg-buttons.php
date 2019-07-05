@@ -1,8 +1,8 @@
 <?php
 // Set buttons
 $buttons = [
-	'<a href="javascript:;" class="btn">Normal</a>',
-	'<a href="javascript:;" class="btn btn--big">Big Button</a>'
+	new SG_Element( 'btn', 'Normal' ),
+	new SG_Element( 'btn btn--big', 'Big Button' ),
 ];
 
 // Render buttons

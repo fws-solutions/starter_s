@@ -113,7 +113,6 @@
 
 .styleguide__typography-special-titles {
     margin: 0 0 70px;
-	color: $sg-blue;
 }
 
 .styleguide__subtitle {
@@ -147,7 +146,7 @@
 		padding: 1px;
 		color: $white;
 		text-align: center;
-		width: 48px;
+		width: 120px;
 		font-size: 11px;
 		letter-spacing: 2px;
 		position: absolute;
@@ -155,13 +154,13 @@
 	}
 
 	&::before {
-		content: 'start';
+		content: 'start section';
 		top: 0;
 		transform: translate(-50%, -100%);
 	}
 
 	&::after {
-		content: 'end';
+		content: 'end section';
 		bottom: 0;
 		transform: translate(-50%, 100%);
 	}
