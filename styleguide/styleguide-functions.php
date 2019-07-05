@@ -132,7 +132,7 @@ function styleguide_get_titles( $titles ) {
 			<h3 class="styleguide__subtitle">Special Titles</h3>
 
 			<?php foreach ( $titles as $t ) { ?>
-				<span class="<?php echo $t->class; ?>"><?php echo $t->title; ?></span>
+				<span class="<?php echo $t->classes; ?>"><?php echo $t->title; ?></span>
 			<?php } ?>
 		</div>
 
