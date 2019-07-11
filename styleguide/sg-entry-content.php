@@ -26,7 +26,7 @@
 			<li>Ordered list</li>
 		</ol>
 
-		<table style="width:100%" border="1">
+		<table style="width: 100%; border: 1px solid;">
 			<tr>
 				<th>Row</th>
 				<th>Row</th>

@@ -56,5 +56,6 @@ function sasslint() {
 // export tasks
 module.exports = {
 	css: css,
-	pluginsCss: pluginsCss
+	pluginsCss: pluginsCss,
+	sasslint: sasslint
 };

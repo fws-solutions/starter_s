@@ -4,6 +4,7 @@ const globalVars = require('./assets/config/gulp-tasks/_global-vars');
 
 // import gulp parts
 require('./assets/config/gulp-tasks/gt-iconfonts');
+const gtHtmlLint = require('./assets/config/gulp-tasks/gt-htmllint');
 const gtCss = require('./assets/config/gulp-tasks/gt-css');
 const gtJs = require('./assets/config/gulp-tasks/gt-js');
 const gtWatch = require('./assets/config/gulp-tasks/gt-watch');
@@ -26,7 +27,11 @@ gulp.task('build', gulp.series(
 	gulp.parallel(
 		gtCss.pluginsCss,
 		gtCss.css,
-		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS)
+		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
+		gtCss.sasslint,
+		gtHtmlLint.htmlLint.bind(null, false),
+		gtHtmlLint.htmlLint.bind(null, true),
+		gtHtmlLint.htmlw3
 	)
 ));
 
@@ -37,7 +42,11 @@ gulp.task('build-dev', gulp.series(
 	gulp.parallel(
 		gtCss.pluginsCss,
 		gtCss.css,
-		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS)
+		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
+		gtCss.sasslint,
+		gtHtmlLint.htmlLint.bind(null, false),
+		gtHtmlLint.htmlLint.bind(null, true),
+		gtHtmlLint.htmlw3
 	)
 ));
 
@@ -54,7 +63,11 @@ gulp.task('watch', gulp.series(
 	gulp.parallel(
 		gtCss.pluginsCss,
 		gtCss.css,
-		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS)
+		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
+		gtCss.sasslint,
+		gtHtmlLint.htmlLint.bind(null, false),
+		gtHtmlLint.htmlLint.bind(null, true),
+		gtHtmlLint.htmlw3
 	),
 	gtWatch.watchFiles
 ));
