@@ -35,13 +35,6 @@ module.exports = {
 		if (!fs.existsSync('dist')) {
 			fs.mkdirSync('./dist');
 		}
-		if (!fs.existsSync('dist/assets')) {
-			fs.mkdirSync('./dist/assets');
-		}
-		if (!fs.existsSync('dist/assets/images')) {
-			fs.mkdirSync('./dist/assets/images');
-		}
-
 		done();
 	}
 };

@@ -8,12 +8,11 @@ const validator = require('html-validator');
 /*----------------------------------------------------------------------------------------------
 	W3 Validator
  ----------------------------------------------------------------------------------------------*/
-const url = 'http://starter.local/';
-
 gulp.task('html-w3', htmlw3);
 
+const gulpfile = require('../../../gulpfile');
 function htmlw3(done) {
-	getPages(url, done);
+	getPages(gulpfile.localURL, done);
 }
 
 function ValidatorConfig(url) {

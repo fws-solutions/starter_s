@@ -2,7 +2,15 @@ const gulp = require('gulp');
 const clean = require('gulp-clean');
 const globalVars = require('./assets/config/gulp-tasks/_global-vars');
 
-// import gulp parts
+/*----------------------------------------------------------------------------------------------
+	Prepare and Run all Gulp Tasks
+ ----------------------------------------------------------------------------------------------*/
+const localURL = 'http://starter.local/';
+
+module.exports = {
+	localURL: localURL
+};
+
 require('./assets/config/gulp-tasks/gt-iconfonts');
 const gtHtmlLint = require('./assets/config/gulp-tasks/gt-htmllint');
 const gtCss = require('./assets/config/gulp-tasks/gt-css');

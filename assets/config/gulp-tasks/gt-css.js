@@ -49,8 +49,7 @@ function sasslint() {
 		.pipe(sassLint({
 			config: '.sass-lint.yml'
 		}))
-		.pipe(sassLint.format())
-		.pipe(sassLint.failOnError());
+		.pipe(sassLint.format());
 }
 
 // export tasks

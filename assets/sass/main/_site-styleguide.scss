@@ -90,6 +90,7 @@
 
 .styleguide__colorpallet {
     display: flex;
+	flex-wrap: wrap;
     margin: 0 -15px;
 }
 
@@ -99,8 +100,8 @@
 
 .styleguide__color {
     display: inline-block;
-    width: 100px;
-    height: 48px;
+    width: 120px;
+    height: 50px;
 }
 
 .styleguide__color-name {
