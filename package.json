@@ -1,7 +1,7 @@
 {
   "name": "starter_s",
-  "author": "WeDo IT Sourcing",
-  "version": "1.1.0",
+  "author": "Forwardslash NY",
+  "version": "1.1.1",
   "main": "gulpfile.js",
   "dependencies": {
     "@babel/core": "^7.4.5",
