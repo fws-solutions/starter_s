@@ -37,25 +37,3 @@ function fws_acf_flexible_content_layout_title( $title, $field, $layout, $i ) {
 }
 
 add_filter( 'acf/fields/flexible_content/layout_title', 'fws_acf_flexible_content_layout_title', 10, 4 );
-
-/*
-** Render ACF Link Field
- *
- * @param array $link_field
- * @param string $link_classes
- * @return string
-*/
-function fws_render_acf_link_field( $link_field, $link_classes ) {
-	$link_html = '';
-
-	if ($link_field) {
-		$link_url = $link_field['url'];
-		$link_title = $link_field['title'];
-		$link_target = $link_field['target'] ? $link_field['target'] : '_self';
-		$link_classes = $link_classes ? 'class="' . $link_classes . '"' : '';
-
-		$link_html = '<a ' . $link_classes . ' href="' . esc_url($link_url) . '" target="' . esc_attr($link_target) . '">' . esc_html($link_title) . '</a>';
-	}
-
-	return $link_html;
-}
