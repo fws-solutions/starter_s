@@ -16,14 +16,14 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 /*
 ** ACF Styled flexible content head to help user make visible difference between content blocks
 */
-function acf_dashboard_style() {
+function fws_acf_dashboard_style() {
 	wp_enqueue_style( 'fws-dashboard-style', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.css' );
 
 	$translation_array = array( 'themeUrl' => get_stylesheet_directory_uri() );
 	wp_localize_script( 'fws-dashboard-js', 'object_name', $translation_array );
 }
 
-add_action( 'admin_enqueue_scripts', 'acf_dashboard_style' );
+add_action( 'admin_enqueue_scripts', 'fws_acf_dashboard_style' );
 
 
 /*
@@ -45,7 +45,7 @@ add_filter( 'acf/fields/flexible_content/layout_title', 'fws_acf_flexible_conten
  * @param string $link_classes
  * @return string
 */
-function render_acf_link_field( $link_field, $link_classes ) {
+function fws_render_acf_link_field( $link_field, $link_classes ) {
 	$link_html = '';
 
 	if ($link_field) {
