@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package starter_s
+ * @package fws
  */
 
 get_header(); ?>
@@ -16,7 +16,7 @@ get_header(); ?>
 		while ( have_posts() ) : the_post();
 			get_template_part( 'template-parts/content', get_post_type() );
 
-			starter_s_paging_nav();
+			fws_paging_nav();
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :

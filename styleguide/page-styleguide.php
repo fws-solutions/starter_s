@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package starter_s
+ * @package fws
  */
 
 get_header(); ?>

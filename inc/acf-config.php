@@ -6,7 +6,7 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 	acf_add_options_page( array(
 		'page_title' => 'Theme Settings',
 		'menu_title' => 'Theme Settings',
-		'menu_slug'  => 'starter_s-settings',
+		'menu_slug'  => 'fws-settings',
 		'capability' => 'edit_posts',
 		'redirect'   => false
 	) );
@@ -17,10 +17,10 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 ** ACF Styled flexible content head to help user make visible difference between content blocks
 */
 function acf_dashboard_style() {
-	wp_enqueue_style( 'starter_s-dashboard-style', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.css' );
+	wp_enqueue_style( 'fws-dashboard-style', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.css' );
 
 	$translation_array = array( 'themeUrl' => get_stylesheet_directory_uri() );
-	wp_localize_script( 'starter_s-dashboard-js', 'object_name', $translation_array );
+	wp_localize_script( 'fws-dashboard-js', 'object_name', $translation_array );
 }
 
 add_action( 'admin_enqueue_scripts', 'acf_dashboard_style' );
@@ -29,14 +29,14 @@ add_action( 'admin_enqueue_scripts', 'acf_dashboard_style' );
 /*
 ** Customize Flexible Content Title
 */
-function starter_s_acf_flexible_content_layout_title( $title, $field, $layout, $i ) {
+function fws_acf_flexible_content_layout_title( $title, $field, $layout, $i ) {
 	$newTitle = '';
 	$newTitle .= '<h4 class="acf-fc-title">' . $title . '</h4>';
 
 	return $newTitle;
 }
 
-add_filter( 'acf/fields/flexible_content/layout_title', 'starter_s_acf_flexible_content_layout_title', 10, 4 );
+add_filter( 'acf/fields/flexible_content/layout_title', 'fws_acf_flexible_content_layout_title', 10, 4 );
 
 /*
 ** Render ACF Link Field

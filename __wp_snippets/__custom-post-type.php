@@ -2,25 +2,25 @@
 /*------------------------------------------------------------------------------------------
      # CUSTOM POST TYPE
  ------------------------------------------------------------------------------------------*/
-function starter_s_post_type_name() {
+function fws_post_type_name() {
 	$singular = 'Custom Post';
 	$plural   = 'Custom Posts';
 	$slug     = str_replace( ' ', '_', strtolower( $singular ) );
 
 	$labels = array(
-		'name'               => __( $plural, 'starter_s' ),
-		'singular_name'      => __( $singular, 'starter_s' ),
-		'add_new'            => _x( 'Add New', 'starter_s', 'starter_s' ),
-		'add_new_item'       => __( 'Add New ' . $singular, 'starter_s' ),
-		'edit'               => __( 'Edit', 'starter_s' ),
-		'edit_item'          => __( 'Edit ' . $singular, 'starter_s' ),
-		'new_item'           => __( 'New ' . $singular, 'starter_s' ),
-		'view'               => __( 'View ' . $singular, 'starter_s' ),
-		'view_item'          => __( 'View ' . $singular, 'starter_s' ),
-		'search_term'        => __( 'Search ' . $plural, 'starter_s' ),
-		'parent'             => __( 'Parent ' . $singular, 'starter_s' ),
-		'not_found'          => __( 'No ' . $plural . ' found', 'starter_s' ),
-		'not_found_in_trash' => __( 'No ' . $plural . ' in Trash', 'starter_s' ),
+		'name'               => __( $plural, 'fws' ),
+		'singular_name'      => __( $singular, 'fws' ),
+		'add_new'            => _x( 'Add New', 'fws', 'fws' ),
+		'add_new_item'       => __( 'Add New ' . $singular, 'fws' ),
+		'edit'               => __( 'Edit', 'fws' ),
+		'edit_item'          => __( 'Edit ' . $singular, 'fws' ),
+		'new_item'           => __( 'New ' . $singular, 'fws' ),
+		'view'               => __( 'View ' . $singular, 'fws' ),
+		'view_item'          => __( 'View ' . $singular, 'fws' ),
+		'search_term'        => __( 'Search ' . $plural, 'fws' ),
+		'parent'             => __( 'Parent ' . $singular, 'fws' ),
+		'not_found'          => __( 'No ' . $plural . ' found', 'fws' ),
+		'not_found_in_trash' => __( 'No ' . $plural . ' in Trash', 'fws' ),
 	);
 
 	$args = array(
@@ -39,13 +39,13 @@ function starter_s_post_type_name() {
 	register_post_type( $slug, $args );
 }
 
-add_action( 'init', 'starter_s_post_type_name' );
+add_action( 'init', 'fws_post_type_name' );
 
 
 /*------------------------------------------------------------------------------------------
      # CUSTOM POST TYPE - Taxonomy
  ------------------------------------------------------------------------------------------*/
-function starter_s_tax_category() {
+function fws_tax_category() {
 	$singular = 'Category';
 	$plural   = 'Categories';
 	$slug     = str_replace( ' ', '_', strtolower( $singular ) );
@@ -74,4 +74,4 @@ function starter_s_tax_category() {
 	register_taxonomy( 'cpt_categories', 'post_type_name', $args );
 }
 
-add_action( 'init', 'starter_s_tax_category', 0 );
+add_action( 'init', 'fws_tax_category', 0 );

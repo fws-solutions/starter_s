@@ -9,20 +9,20 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package starter_s
+ * @package fws
  */
 
 // get header
 get_header();
 
 // open main content wrappers
-do_action( 'starter_s_before_main_content' );
+do_action( 'fws_before_main_content' );
 
 // get content blocks
-get_template_part( 'template-parts/content', 'blocks' );
+//get_template_part( 'template-parts/flex-content/fc-loop' );
 
 // close main content wrappers
-do_action( 'starter_s_after_main_content' );
+do_action( 'fws_after_main_content' );
 
 // get footer
 get_footer();
