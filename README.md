@@ -1,7 +1,8 @@
 # _S WP Starter
+*Version: 2.0.0*
 
-*"Do Not Underestimate The Power Of
-  WordPress."*
+> Do Not Underestimate The Power Of
+  WordPress.
 
 
 
@@ -32,6 +33,18 @@ To start *watch mode* and *local server*, execute `gulp watch` task.
 
     gulp watch
 
+### Creating Views
+
+To create a new view, execute `gulp cf` task and pass `--component` or `--partial` with an argument.
+
+    gulp cf --component component-name
+    gulp cf --partial partial-name
+
+This command will create new module files in appropriate directory `template-views/components` or `template-views/partial`:
+* .php
+* .scss
+
+It will also update appropriate scss file `_components.scss` or `_partials.scss` in `assets/sass/layout` directory.
 
 ### Generate Font Icons
 

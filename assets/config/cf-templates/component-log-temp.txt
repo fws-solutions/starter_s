@@ -1,0 +1,15 @@
+
+------------------------------------------------------------------------
+
+    CREATED COMPONENT -------------------------------------- @{str}
+
+
+    - created PHP file:  '@{str}.php' in dir 'template-views/components/@{str}'
+
+    - created PHP file:  '_fe-@{str}.php' in dir 'template-views/components/@{str}'
+
+    - created SCSS file: '_@{str}.scss' in dir 'template-views/components/@{str}'
+
+    - updated SCSS file: '_components.scss' in dir 'src/scss/layout'
+
+------------------------------------------------------------------------

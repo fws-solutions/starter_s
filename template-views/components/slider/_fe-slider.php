@@ -14,4 +14,4 @@
 	<figure>
 		<img src="<?php echo get_stylesheet_directory_uri(); ?>/__demo/slide-5.jpg" alt="">
 	</figure>
-</div><!-- .slider-example -->
+</div><!-- .slider -->

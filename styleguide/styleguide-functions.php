@@ -1,17 +1,16 @@
 <?php
 
 class SG_Section {
-	function __construct( $sg_title, $temp_part_name, $temp_part_slug ) {
+	function __construct( $sg_title, $temp_part_name ) {
 		$this->temp_title     = $sg_title;
 		$this->temp_part_name = $temp_part_name;
-		$this->temp_part_slug = $temp_part_slug;
 	}
 }
 
 class SG_Element {
 	function __construct( $classes, $title ) {
 		$this->classes = $classes;
-		$this->title = $title;
+		$this->title   = $title;
 	}
 }
 
@@ -19,7 +18,9 @@ class SG_Element {
  * Render Styleguide Sections
  */
 function styleguide_render_section( $templates ) {
-	$counter = 3;
+	$counter       = 3;
+	$temp_dir_root = 'template-views/components';
+
 	foreach ( $templates as $t ) {
 		?>
 		<div id="section-<?php echo $counter; ?>" data-section-title="<?php echo $t->temp_title; ?>" class="styleguide__section js-styleguide-section">
@@ -30,7 +31,10 @@ function styleguide_render_section( $templates ) {
 			</div>
 
 			<div class="styleguide__section-content">
-				<?php get_template_part( $t->temp_part_slug, $t->temp_part_name ); ?>
+				<?php
+				$temp_dir = $temp_dir_root . '/' . $t->temp_part_name . '/_fe-' . $t->temp_part_name;
+				get_template_part( $temp_dir );
+				?>
 			</div>
 		</div>
 		<?php

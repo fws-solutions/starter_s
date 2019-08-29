@@ -19,7 +19,7 @@ get_header();
 do_action( 'fws_before_main_content' );
 
 // get content blocks
-get_template_part( 'template-parts/flex-content/flex-content-loop' );
+get_template_part( 'template-flex-content/flex-content-loop' );
 
 // close main content wrappers
 do_action( 'fws_after_main_content' );

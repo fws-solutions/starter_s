@@ -1,5 +1,9 @@
 const gulp = require('gulp');
 const clean = require('gulp-clean');
+const tap = require('gulp-tap');
+const fs = require('fs');
+const path = require('path');
+const colors = require('ansi-colors');
 const globalVars = require('./assets/config/gulp-tasks/_global-vars');
 
 /*----------------------------------------------------------------------------------------------
@@ -12,6 +16,7 @@ module.exports = {
 };
 
 require('./assets/config/gulp-tasks/gt-iconfonts');
+require('./assets/config/gulp-tasks/gt-cf');
 const gtHtmlLint = require('./assets/config/gulp-tasks/gt-htmllint');
 const gtCss = require('./assets/config/gulp-tasks/gt-css');
 const gtJs = require('./assets/config/gulp-tasks/gt-js');
@@ -58,11 +63,32 @@ gulp.task('build-dev', gulp.series(
 	)
 ));
 
-// delete dist folder
-gulp.task('reset-dev', function () {
+// remove dist folder
+gulp.task('reset-dev', resetDev);
+
+function resetDev() {
 	return gulp.src('dist', {read: false})
 		.pipe(clean());
-});
+}
+
+// remove all _fe files in template-views dir
+gulp.task('remove-fe', removeFeFiles);
+
+function removeFeFiles() {
+	console.log(colors.red(`DELETED FE FILES:`));
+
+	return gulp.src('template-views/**')
+		.pipe(tap(function (file) {
+			const filePath = file.path;
+			const fileStat = fs.lstatSync(filePath);
+			const fileName = path.basename(filePath);
+
+			if (!fileStat.isDirectory() && path.extname(filePath) === '.php' && fileName.substring(0, 4) === '_fe-') {
+				fs.unlinkSync(filePath);
+				console.log(colors.red(fileName));
+			}
+		}));
+}
 
 // start dev tasks
 gulp.task('watch', gulp.series(

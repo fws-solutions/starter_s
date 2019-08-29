@@ -1,7 +1,7 @@
 {
   "name": "starter_s",
   "author": "Forwardslash NY",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "main": "gulpfile.js",
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -29,6 +29,7 @@
     "gulp-sass": "^4.0.2",
     "gulp-sass-lint": "^1.4.0",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-tap": "^2.0.0",
     "gulp-uglify-es": "^1.0.4",
     "html-validator": "^4.0.3",
     "postcss-flexbugs-fixes": "^4.1.0",

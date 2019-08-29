@@ -27,14 +27,19 @@ class Render {
 
 	/**
 	 *
-	 * @param array $temp_part_vals
-	 * @param string $temp_part_name
-	 * @param string $temp_part_slug
+	 * @param array $view_vals
+	 * @param string $view_name
+	 * @param boolean $is_partial
 	 */
-	public function template_component( $temp_part_vals, $temp_part_name, $temp_part_slug = 'template-components/component' ): void {
+	public function template_view( $view_vals, $view_name, $is_partial = false ): void {
+		$view_type     = ! $is_partial ? 'components' : 'partials';
+		$view_var_name = 'content-' . $view_type;
+		$view_dir      = 'template-views/' . $view_type . '/' . $view_name . '/' . $view_name;
 
-		set_query_var( 'content', $temp_part_vals );
-		get_template_part( $temp_part_slug, $temp_part_name );
+		if ( $view_vals ) {
+			set_query_var( $view_var_name, $view_vals );
+			get_template_part( $view_dir );
+		}
 	}
 
 	/**
