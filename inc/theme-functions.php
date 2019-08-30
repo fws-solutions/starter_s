@@ -4,14 +4,14 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package fws
+ * @package starter_s
  */
 
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-if ( ! function_exists( 'fws_posted_on' ) ) :
-	function fws_posted_on() {
+if ( ! function_exists( 'starter_s_posted_on' ) ) :
+	function starter_s_posted_on() {
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -26,13 +26,13 @@ if ( ! function_exists( 'fws_posted_on' ) ) :
 
 		$posted_on = sprintf(
 		/* translators: %s: post date. */
-			esc_html_x( 'Posted on %s', 'post date', 'fws' ),
+			esc_html_x( 'Posted on %s', 'post date', 'starter_s' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
 		$byline = sprintf(
 		/* translators: %s: post author. */
-			esc_html_x( 'by %s', 'post author', 'fws' ),
+			esc_html_x( 'by %s', 'post author', 'starter_s' ),
 			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 		);
 
@@ -45,22 +45,22 @@ endif;
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-if ( ! function_exists( 'fws_entry_footer' ) ) :
-	function fws_entry_footer() {
+if ( ! function_exists( 'starter_s_entry_footer' ) ) :
+	function starter_s_entry_footer() {
 		// Hide category and tag text for pages.
 		if ( 'post' === get_post_type() ) {
 			/* translators: used between list items, there is a space after the comma */
-			$categories_list = get_the_category_list( esc_html__( ', ', 'fws' ) );
+			$categories_list = get_the_category_list( esc_html__( ', ', 'starter_s' ) );
 			if ( $categories_list ) {
 				/* translators: 1: list of categories. */
-				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'fws' ) . '</span>', $categories_list ); // WPCS: XSS OK.
+				printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'starter_s' ) . '</span>', $categories_list ); // WPCS: XSS OK.
 			}
 
 			/* translators: used between list items, there is a space after the comma */
-			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'fws' ) );
+			$tags_list = get_the_tag_list( '', esc_html_x( ', ', 'list item separator', 'starter_s' ) );
 			if ( $tags_list ) {
 				/* translators: 1: list of tags. */
-				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'fws' ) . '</span>', $tags_list ); // WPCS: XSS OK.
+				printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'starter_s' ) . '</span>', $tags_list ); // WPCS: XSS OK.
 			}
 		}
 
@@ -70,7 +70,7 @@ if ( ! function_exists( 'fws_entry_footer' ) ) :
 				sprintf(
 					wp_kses(
 					/* translators: %s: post title */
-						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'fws' ),
+						__( 'Leave a Comment<span class="screen-reader-text"> on %s</span>', 'starter_s' ),
 						array(
 							'span' => array(
 								'class' => array(),
@@ -87,7 +87,7 @@ if ( ! function_exists( 'fws_entry_footer' ) ) :
 			sprintf(
 				wp_kses(
 				/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Edit <span class="screen-reader-text">%s</span>', 'fws' ),
+					__( 'Edit <span class="screen-reader-text">%s</span>', 'starter_s' ),
 					array(
 						'span' => array(
 							'class' => array(),
@@ -103,14 +103,14 @@ if ( ! function_exists( 'fws_entry_footer' ) ) :
 endif;
 
 
-if ( ! function_exists( 'fws_post_thumbnail' ) ) :
+if ( ! function_exists( 'starter_s_post_thumbnail' ) ) :
 	/**
 	 * Displays an optional post thumbnail.
 	 *
 	 * Wraps the post thumbnail in an anchor element on index views, or a div
 	 * element when on single views.
 	 */
-	function fws_post_thumbnail() {
+	function starter_s_post_thumbnail() {
 		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 			return;
 		}
@@ -143,8 +143,8 @@ endif;
 /**
  * Custom pagination
  */
-if ( ! function_exists( 'fws_paging_nav' ) ) :
-	function fws_paging_nav() {
+if ( ! function_exists( 'starter_s_paging_nav' ) ) :
+	function starter_s_paging_nav() {
 		global $wp_query, $wp_rewrite;
 
 		// Don't print empty markup if there's only one page.
@@ -175,8 +175,8 @@ if ( ! function_exists( 'fws_paging_nav' ) ) :
 			'current'   => $paged,
 			'mid_size'  => 3,
 			'add_args'  => array_map( 'urlencode', $query_args ),
-			'prev_text' => __( 'Prev', 'fws' ),
-			'next_text' => __( 'Next', 'fws' ),
+			'prev_text' => __( 'Prev', 'starter_s' ),
+			'next_text' => __( 'Next', 'starter_s' ),
 		) );
 
 		if ( $links ) :
