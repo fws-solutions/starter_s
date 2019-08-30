@@ -2,7 +2,10 @@
 // Set colors
 $colors = [
 	'black',
-	'white'
+	'white',
+	'red',
+	'green',
+	'blue'
 ];
 
 // Render colors

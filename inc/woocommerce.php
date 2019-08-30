@@ -17,7 +17,7 @@
  */
 function starter_s_woocommerce_setup() {
 	add_theme_support( 'woocommerce' );
-	add_theme_support( 'wc-product-gallery-zoom' );
+	//add_theme_support( 'wc-product-gallery-zoom' );
 	add_theme_support( 'wc-product-gallery-lightbox' );
 	add_theme_support( 'wc-product-gallery-slider' );
 }
@@ -78,10 +78,11 @@ add_filter( 'body_class', 'starter_s_woocommerce_active_body_class' );
  * @return integer number of products.
  */
 function starter_s_woocommerce_products_per_page() {
-	return 12;
+	return 9;
 }
 
 add_filter( 'loop_shop_per_page', 'starter_s_woocommerce_products_per_page' );
+
 
 /**
  * Product gallery thumnbail columns.
@@ -94,16 +95,6 @@ function starter_s_woocommerce_thumbnail_columns() {
 
 add_filter( 'woocommerce_product_thumbnails_columns', 'starter_s_woocommerce_thumbnail_columns' );
 
-/**
- * Default loop columns on product archives.
- *
- * @return integer products per row.
- */
-function starter_s_woocommerce_loop_columns() {
-	return 3;
-}
-
-add_filter( 'loop_shop_columns', 'starter_s_woocommerce_loop_columns' );
 
 /**
  * Related Products Args.
@@ -114,8 +105,7 @@ add_filter( 'loop_shop_columns', 'starter_s_woocommerce_loop_columns' );
  */
 function starter_s_woocommerce_related_products_args( $args ) {
 	$defaults = array(
-		'posts_per_page' => 3,
-		'columns'        => 3,
+		'posts_per_page' => 3
 	);
 
 	$args = wp_parse_args( $defaults, $args );
@@ -132,8 +122,7 @@ if ( ! function_exists( 'starter_s_woocommerce_product_columns_wrapper' ) ) {
 	 * @return  void
 	 */
 	function starter_s_woocommerce_product_columns_wrapper() {
-		$columns = starter_s_woocommerce_loop_columns();
-		echo '<div class="columns-' . absint( $columns ) . '">';
+		echo '<div class="woocommerce-products-wrapper">';
 	}
 }
 add_action( 'woocommerce_before_shop_loop', 'starter_s_woocommerce_product_columns_wrapper', 40 );

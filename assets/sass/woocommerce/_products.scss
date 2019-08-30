@@ -2,18 +2,12 @@
  * Products
  */
 ul.products {
-	@include clearfix;
-	margin: 0;
-	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
 
 	li.product {
-		list-style: none;
 		position: relative;
-		margin-bottom: 2em;
-
-		.woocommerce-loop-product__title {
-			font-size: 1rem;
-		}
+		width: 33%;
 
 		img {
 			display: block;
@@ -21,43 +15,6 @@ ul.products {
 
 		.button {
 			display: block;
-		}
-	}
-}
-
-@media screen and (min-width: 48em) {
-	ul.products {
-		li.product {
-			@include column-width(3);
-			float: left;
-			margin-right: $columns-margin;
-
-			&.first {
-				clear: both;
-			}
-
-			&.last {
-				margin-right: 0;
-			}
-		}
-	}
-
-	.columns-1 {
-		ul.products {
-			li.product {
-				float: none;
-				width: 100%;
-			}
-		}
-	}
-
-	@for $i from 2 through 6 {
-		.columns-#{$i} {
-			ul.products {
-				li.product {
-					@include column-width($i);
-				}
-			}
 		}
 	}
 }
