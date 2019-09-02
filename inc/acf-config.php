@@ -16,14 +16,14 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 /*
 ** ACF Styled flexible content head to help user make visible difference between content blocks
 */
-function acf_dashboard_style() {
+function starter_s_acf_dashboard_style() {
 	wp_enqueue_style( 'starter_s-dashboard-style', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.css' );
 
 	$translation_array = array( 'themeUrl' => get_stylesheet_directory_uri() );
 	wp_localize_script( 'starter_s-dashboard-js', 'object_name', $translation_array );
 }
 
-add_action( 'admin_enqueue_scripts', 'acf_dashboard_style' );
+add_action( 'admin_enqueue_scripts', 'starter_s_acf_dashboard_style' );
 
 
 /*

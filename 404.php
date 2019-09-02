@@ -19,7 +19,7 @@ get_header(); ?>
         <span class="s-404__title-3">4</span>
     </h1>
     <div class="s-404__text">Looks like you are lost!</div>
-    <a href="<?php echo esc_url(home_url('/')); ?>" class="s-404__btn"></span>Back to homepage</a>
+    <a href="<?php echo esc_url(home_url('/')); ?>" class="s-404__btn">Back to homepage</a>
 </div>
 
 <?php

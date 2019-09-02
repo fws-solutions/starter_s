@@ -57,7 +57,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 # WooCommerce
 --------------------------------------------------------------*/
-//@import 'woocommerce/main';
 //@import 'woocommerce/tables';
 //@import 'woocommerce/products';
 //@import 'woocommerce/single-product';
@@ -70,7 +69,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 --------------------------------------------------------------*/
 @import 'base/typography';
 @import 'base/base';
-@import 'base/layout';
 
 /*--------------------------------------------------------------
 # Parts
@@ -91,4 +89,5 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 # Components / Templates
 --------------------------------------------------------------*/
-@import 'components/component-banner-example';
+@import 'layout/partials';
+@import 'layout/components';

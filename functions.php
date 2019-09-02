@@ -140,6 +140,11 @@ function starter_s_scripts() {
 add_action( 'wp_enqueue_scripts', 'starter_s_scripts' );
 
 /**
+ * FWS framework
+ */
+require get_template_directory() . '/fws/FWS.php';
+
+/**
  * Styleguide helper functions.
  */
 require get_template_directory() . '/styleguide/styleguide-functions.php';

@@ -10,10 +10,16 @@ $font-main: $font-default-sans-serif;
 // Colors
 $white: #fff;
 $black: #000;
+$red: #e2401c;
+$green: #0f834d;
+$blue: #3d9cd2;
 
 $site-colors: (
 	'white': $white,
-	'black': $black
+	'black': $black,
+	'red': $red,
+	'green': $green,
+	'blue': $blue
 ) !default;
 
 // 404 - Set this color to follow site style
@@ -64,3 +70,29 @@ $container-max-widths: (
 // Grid columns
 $grid-columns: 12 !default;
 $grid-gutter-width: 30px !default;
+
+
+/*--------------------------------------------------------------
+## Woocommerce Variables
+--------------------------------------------------------------*/
+$woo-color-error: $red;
+$woo-color-success: $green;
+$woo-color-info: $blue;
+
+$columns: (
+	1: 100%,
+	2: 50%,
+	3: 33.33%,
+	4: 25%,
+	5: 20%,
+	6: 16.66%,
+	7: 14.28%,
+	8: 12.5%,
+	9: 11.11%
+);
+$columns-margin: 3.8%;
+
+// Column width with margin
+@mixin column-width($number-columns: 3) {
+	width: map-get($columns, $number-columns) - (($columns-margin * ($number-columns - 1)) / $number-columns);
+}

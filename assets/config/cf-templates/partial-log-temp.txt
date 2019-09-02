@@ -1,0 +1,15 @@
+
+------------------------------------------------------------------------
+
+    CREATED PARTIAL -------------------------------------- @{str}
+
+
+    - created PHP file: '@{str}.php' in dir 'template-views/partials/@{str}'
+
+    - created PHP file: '_fe-@{str}.php' in dir 'template-views/partials/@{str}'
+
+    - created SCSS file: '_@{str}.scss' in dir 'template-views/partials/@{str}'
+
+    - updated SCSS file: '_partials.scss' in dir 'src/scss/layout'
+
+------------------------------------------------------------------------

@@ -1,66 +1,63 @@
 /**
  * Single Product
  */
-.single-product {
-	div.product {
+.single-product .product {
+	position: relative;
+}
+
+.woocommerce-product-gallery {
+	position: relative;
+
+	.woocommerce-product-gallery__trigger {
+		position: absolute;
+		top: 1em;
+		right: 1em;
+		display: block;
+		z-index: 99;
+	}
+
+	.flex-viewport {
+		margin-bottom: 30px;
+	}
+
+	.flex-control-thumbs {
 		@include clearfix;
-		position: relative;
+		margin: 0;
+		padding: 0;
 
-		.woocommerce-product-gallery {
-			position: relative;
+		li {
+			list-style: none;
+			cursor: pointer;
+			float: left;
 
-			.woocommerce-product-gallery__trigger {
-				position: absolute;
-				top: 1em;
-				right: 1em;
-				display: block;
-				z-index: 99;
-			}
+			img {
+				opacity: .5;
 
-			.flex-viewport {
-				margin-bottom: 1em;
-			}
-
-			.flex-control-thumbs {
-				@include clearfix;
-				margin: 0;
-				padding: 0;
-
-				li {
-					list-style: none;
-					cursor: pointer;
-					float: left;
-
-					img {
-						opacity: .5;
-
-						&.flex-active {
-							opacity: 1;
-						}
-					}
-
-					&:hover {
-						img {
-							opacity: 1;
-						}
-					}
+				&.flex-active {
+					opacity: 1;
 				}
 			}
 
-			@for $i from 2 through 5 {
-				&.woocommerce-product-gallery--columns-#{$i} {
-					.flex-control-thumbs {
-						li {
-							@include column-width($i);
+			&:hover {
+				img {
+					opacity: 1;
+				}
+			}
+		}
+	}
 
-							&:nth-child(#{$i}n) {
-								margin-right: 0;
-							}
+	@for $i from 2 through 5 {
+		&.woocommerce-product-gallery--columns-#{$i} {
+			.flex-control-thumbs {
+				li {
+					@include column-width($i);
 
-							&:nth-child(#{$i}n+1) {
-								clear: both;
-							}
-						}
+					&:nth-child(#{$i}n) {
+						margin-right: 0;
+					}
+
+					&:nth-child(#{$i}n+1) {
+						clear: both;
 					}
 				}
 			}
