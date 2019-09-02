@@ -59,3 +59,126 @@ function render_acf_link_field( $link_field, $link_classes ) {
 
 	return $link_html;
 }
+
+/**
+ * Automatic ACF group sync on admin page open
+ */
+function starter_s_automatic_acf_sync() {
+
+	// Bail if not on the right admin page
+	if ( ! isset( $_GET['post_type'] ) || $_GET['post_type'] !== 'acf-field-group' ) {
+		return;
+	}
+
+	$sync = [];
+
+	$groups = acf_get_field_groups();
+
+	// Bail if no field groups
+	if( empty($groups) ) return;
+
+	// Find JSON field groups which have not yet been imported
+	foreach( $groups as $group ) {
+
+		$local = acf_maybe_get($group, 'local', false);
+		$modified = acf_maybe_get($group, 'modified', 0);
+		$private = acf_maybe_get($group, 'private', false);
+
+		// Ignore if is private.
+		if( $private ) {
+			continue;
+
+		} // Ignore not local "json".
+		elseif( $local !== 'json' ) {
+			continue;
+
+		} // Append to sync if not yet in database.
+		elseif( !$group['ID'] ) {
+			$sync[ $group['key'] ] = $group;
+
+		} // Append to sync if "json" modified time is newer than database.
+		elseif( $modified && $modified > get_post_modified_time('U', true, $group['ID'], true) ) {
+			$sync[ $group['key'] ]  = $group;
+		}
+	}
+
+	// Bail if nothing to sync
+	if ( empty( $sync ) ) {
+		return;
+	}
+
+	// Disable filters to ensure ACF loads raw data from DB
+	acf_disable_filters();
+	acf_enable_filter('local');
+
+	// Disable JSON
+	// - this prevents a new JSON file being created and causing a 'change' to theme files - solves git anoyance
+	acf_update_setting('json', false);
+
+	$new_ids = [];
+
+	// Do the sync
+	foreach( $sync as $group ) {
+
+		// Append fields.
+		$group['fields'] = acf_get_fields( $group );
+
+		// Import field group.
+		$group = acf_import_field_group( $group );
+
+		// Append imported ID.
+		$new_ids[] = $group['ID'];
+	}
+
+	// redirect
+	wp_redirect( admin_url( 'edit.php?post_type=acf-field-group&acfsynccomplete=' . implode(',', $new_ids)) );
+	exit;
+}
+
+add_action( 'admin_init', 'starter_s_automatic_acf_sync' );
+
+/**
+ * Display Admin error notice on ACF group pages on any server but local
+ */
+function starter_s_acf_edit_not_allowed_notice() {
+	global $current_screen;
+
+	// Show only on ACF group edit page
+	if ( $current_screen->post_type !== 'acf-field-group' ) {
+		return;
+	}
+
+	// Show only if not on local
+	if ( strpos( home_url(), '.local' ) !== false || strpos( home_url(), 'localhost/' ) !== false ) {
+		return;
+	} ?>
+
+	<div class="notice notice-error">
+		<p><strong>You are not allowed to edit ACF fields on any server but local!</strong></p>
+		<p>Your local changes will be synced with this server through GIT/theme deployment.</p>
+	</div>
+
+	<?php
+}
+
+add_action( 'admin_notices', 'starter_s_acf_edit_not_allowed_notice' );
+
+/**
+ * Prevent editing ACF groups on any server byt local
+ */
+function starter_s_prevent_saving_acf_group( $post_ID, $data ) {
+
+	if ( strpos( home_url(), '.local' ) !== false || strpos( home_url(), 'localhost/' ) !== false ) {
+		return;
+	}
+
+	if ( $data['post_type'] !== 'acf-field-group' ) {
+		return;
+	}
+
+	wp_redirect( admin_url( 'edit.php?post_type=acf-field-group' ) );
+
+	die( 'Obey the rules or risk finding yourself in a deep, dark place.' );
+}
+
+add_action( 'pre_post_update', 'starter_s_prevent_saving_acf_group', 10, 2 );
