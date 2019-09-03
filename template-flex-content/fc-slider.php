@@ -5,4 +5,4 @@ $slider = [
 	]
 ];
 
-FWS()->Render->template_view( $slider, 'slider' );
+fws()->render->templateView( $slider, 'slider' );

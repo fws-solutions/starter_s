@@ -160,11 +160,6 @@ require get_template_directory() . '/inc/theme-functions.php';
 require get_template_directory() . '/inc/theme-hooks.php';
 
 /**
- * ACF Config
- */
-require get_template_directory() . '/inc/acf-config.php';
-
-/**
  * Load WooCommerce compatibility file.
  */
 //require get_template_directory() . '/inc/woocommerce.php';

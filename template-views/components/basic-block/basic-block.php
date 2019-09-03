@@ -15,6 +15,6 @@ extract( (array) get_query_var( 'content-components' ) );
 			<?php echo $text; ?>
 		</div>
 
-		<?php FWS()->Render->template_view( $list, 'check-list', true ); ?>
+		<?php fws()->render->templateView( $list, 'check-list', true ); ?>
 	</div>
 </div><!-- .basic-block -->

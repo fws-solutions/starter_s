@@ -4,34 +4,25 @@ declare( strict_types=1 );
 namespace FWS;
 
 /**
- * Class Render
+ * Singleton Class Render
+ *
  * @package FWS
+ * @author Nikola Topalovic <nick@forwardslashny.com>
  */
-class Render {
+class Render
+{
 
-	// Singleton instance
-	private static $instance = null;
-
-	/**
-	 * Return Singleton instance
-	 *
-	 * @return Render
-	 */
-	public static function get_instance() {
-		if ( self::$instance === null ) {
-			self::$instance = new Render();
-		}
-
-		return self::$instance;
-	}
+	use Main;
 
 	/**
+	 * TODO Needs an explanation how to use it and what it does
 	 *
 	 * @param array $view_vals
 	 * @param string $view_name
 	 * @param boolean $is_partial
 	 */
-	public function template_view( $view_vals, $view_name, $is_partial = false ): void {
+	public function templateView( array $view_vals, string $view_name, bool $is_partial = false ): void
+	{
 		$view_type     = ! $is_partial ? 'components' : 'partials';
 		$view_var_name = 'content-' . $view_type;
 		$view_dir      = 'template-views/' . $view_type . '/' . $view_name . '/' . $view_name;
@@ -43,11 +34,15 @@ class Render {
 	}
 
 	/**
+	 * Renders ACF link field with all field params
 	 *
 	 * @param array $link_field
 	 * @param string $link_classes
+	 *
+	 * @return string
 	 */
-	public function acf_link_field( $link_field, $link_classes ): string {
+	public function acfLinkField( array $link_field, string $link_classes ): string
+	{
 		$link_html = '';
 
 		if ( $link_field ) {
@@ -61,16 +56,6 @@ class Render {
 
 		return $link_html;
 	}
-
-	/**
-	 * @return bool|string
-	 */
-	public function getName() {
-		return substr( strrchr( __CLASS__, "\\" ), 1 );
-	}
-
-	private function __construct() {
-	}
 }
 
-return Render::get_instance();
+return Render::getInstance();

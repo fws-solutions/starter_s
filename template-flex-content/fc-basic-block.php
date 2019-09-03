@@ -7,4 +7,4 @@ $basic_block = [
 	]
 ];
 
-FWS()->Render->template_view( $basic_block, 'basic-block' );
+fws()->render->templateView( $basic_block, 'basic-block' );

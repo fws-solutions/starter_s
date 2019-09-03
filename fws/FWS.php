@@ -1,21 +1,38 @@
 <?php
 declare( strict_types=1 );
 
+require_once '../mock.php';
+
 /**
- * Class FWS
+ * Singleton Class FWS
  *
  * @author Boris Djemrovski <boris@forwardslashny.com>
  *
- * @property \FWS\Images $Images
- * @property \FWS\Render $Render
+ * @property \FWS\Example $example
+ * @property \FWS\Images $images
+ * @property \FWS\Render $render
+ * @property \FWS\ACF $acf
  */
-class FWS {
+class FWS
+{
 
+	/** @var \FWS */
 	private static $instance = null;
 
-	private function __construct() {
-		foreach ( glob( get_template_directory() . "/FWS/src/*.php" ) as $filename ) {
-			$class = include $filename;
+	/**
+	 * This will automatically include and create a singleton
+	 * instance for all class files in the ./src directory
+	 */
+	private function __construct()
+	{
+		require_once get_template_directory() . '/fws/src/Main.php';
+
+		foreach ( glob( get_template_directory() . "/fws/src/*.php" ) as $filename ) {
+			$class = require_once $filename;
+
+			if ( ! is_object( $class ) || ! method_exists( $class, 'getName' ) ) {
+				continue;
+			}
 
 			$className = $class->getName();
 
@@ -23,7 +40,11 @@ class FWS {
 		}
 	}
 
-	public static function getInstance() {
+	/**
+	 * @return self
+	 */
+	public static function getInstance(): self
+	{
 		if ( self::$instance === null ) {
 			self::$instance = new self;
 		}
@@ -35,8 +56,9 @@ class FWS {
 /**
  * @return \FWS
  */
-function FWS() {
+function fws(): FWS
+{
 	return FWS::getInstance();
 }
 
-FWS();
+fws();
