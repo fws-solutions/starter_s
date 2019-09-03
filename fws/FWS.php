@@ -1,8 +1,6 @@
 <?php
 declare( strict_types=1 );
 
-require_once '../mock.php';
-
 /**
  * Singleton Class FWS
  *
