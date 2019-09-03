@@ -5,4 +5,4 @@ $basic_block = [
 	'image' => get_sub_field( 'image' )
 ];
 
-FWS()->Render->template_view( $basic_block, 'banner' );
+fws()->render->templateView( $basic_block, 'banner' );
