@@ -21,7 +21,7 @@ class Render
 	 * @param string $view_name
 	 * @param boolean $is_partial
 	 */
-	public function templateView( array $view_vals, string $view_name, bool $is_partial = false ): void
+	public function templateView( $view_vals, string $view_name, bool $is_partial = false ): void
 	{
 		$view_type     = ! $is_partial ? 'components' : 'partials';
 		$view_var_name = 'content-' . $view_type;

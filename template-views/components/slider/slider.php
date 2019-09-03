@@ -1,13 +1,13 @@
 <?php
 /**
- * @var array $slider
+ * @var array $slides
  */
 extract( (array) get_query_var( 'content-components' ) );
 ?>
 
-<?php if ( $slider ) : ?>
+<?php if ( $slides ) : ?>
 	<div class="slider js-slider">
-		<?php foreach ( $slider['slider'] as $item ) : ?>
+		<?php foreach ( $slides as $item ) : ?>
 			<figure>
 				<img src="<?php echo $item['url']; ?>" alt="">
 			</figure>
