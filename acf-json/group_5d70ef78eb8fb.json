@@ -1,0 +1,50 @@
+{
+    "key": "group_5d70ef78eb8fb",
+    "title": "RE Section ID",
+    "fields": [
+        {
+            "key": "field_5d6669154d8b7",
+            "label": "Section ID",
+            "name": "section_id",
+            "type": "text",
+            "instructions": "Add section ID - not required, but handy for creating #links\r\nSection ID MUST NOT use any spaces.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "left",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 0,
+    "description": "",
+    "acfe_display_title": "",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_permissions": "",
+    "acfe_note": "",
+    "acfe_meta": "",
+    "modified": 1567682658
+}

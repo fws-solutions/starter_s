@@ -35,8 +35,9 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "acfe_permissions": "",
                             "clone": [
-                                "field_5d6e5a46550c5"
+                                "group_5d70e7dfa2562"
                             ],
                             "display": "seamless",
                             "layout": "block",
@@ -66,8 +67,9 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "acfe_permissions": "",
                             "clone": [
-                                "field_5d6e512bc27d2"
+                                "group_5d70e7ea08bce"
                             ],
                             "display": "seamless",
                             "layout": "block",
@@ -97,8 +99,9 @@
                                 "class": "",
                                 "id": ""
                             },
+                            "acfe_permissions": "",
                             "clone": [
-                                "field_5d6e518bc27d6"
+                                "group_5d70e7f775076"
                             ],
                             "display": "seamless",
                             "layout": "block",
@@ -134,5 +137,12 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1567513772
+    "acfe_display_title": "Content",
+    "acfe_autosync": [
+        "json"
+    ],
+    "acfe_permissions": "",
+    "acfe_note": "",
+    "acfe_meta": "",
+    "modified": 1567684090
 }

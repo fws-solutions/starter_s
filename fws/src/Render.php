@@ -15,7 +15,8 @@ class Render
 	use Main;
 
 	/**
-	 * TODO Needs an explanation how to use it and what it does
+	 * Renders template component or part with configured *array* variable that maps out template view's variables.
+	 * The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.
 	 *
 	 * @param array $view_vals
 	 * @param string $view_name
@@ -34,7 +35,7 @@ class Render
 	}
 
 	/**
-	 * Renders ACF link field with all field params
+	 * Renders ACF link field with all field params.
 	 *
 	 * @param array $link_field
 	 * @param string $link_classes

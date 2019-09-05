@@ -1,9 +1,4 @@
-<?php
-/**
- * @var array $check_list
- */
-extract( (array) get_query_var( 'content-partials' ) );
-?>
+<?php $check_list = get_query_var( 'content-partials' ); ?>
 
 <div class="check-list">
 	<?php if ( $check_list ) : ?>
