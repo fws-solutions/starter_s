@@ -3,6 +3,8 @@ declare( strict_types=1 );
 
 namespace FWS;
 
+use WP_Term;
+
 /**
  * Singleton Class ACF
  *
@@ -25,9 +27,11 @@ class ACF
 		add_action( 'admin_enqueue_scripts', [ $this, 'adminEnqueueScripts' ] );
 		add_action( 'admin_notices', [ $this, 'editNotAllowedNotice' ] );
 		add_action( 'pre_post_update', [ $this, 'preventEditingGroups' ], 10, 2 );
+		add_action( 'acf/import_field_group', [ $this, 'loadGroupCategoryJson' ] );
 
 		// Filters
 		add_filter( 'acf/fields/flexible_content/layout_title', [ $this, 'flexibleContentLayoutTitle' ], 10, 1 );
+		add_filter( 'acf/prepare_field_group_for_export', [ $this, 'saveGroupCategoryJson' ] );
 	}
 
 	/**
@@ -197,6 +201,77 @@ class ACF
 
 		// Die, just in case
 		die( 'Obey the rules or risk finding yourself in a deep, dark place.' );
+	}
+
+	/**
+	 * Save ACF Extended field group category in JSON while syncing
+	 *
+	 * @param array $field_group
+	 *
+	 * @return array
+	 */
+	public function saveGroupCategoryJson( array $field_group ): array
+	{
+		$post_id = get_posts( [
+			'name' => $field_group['key'],
+			'post_type' => 'acf-field-group',
+			'post_status' => 'acf-disabled',
+			'posts_per_page' => 1,
+			'fields' => 'ids'
+		] )[0];
+
+		$terms = wp_get_object_terms( $post_id, [ 'acf-field-group-category' ], [ 'hide_empty' => true ] );
+
+		if ( count( $terms ) ) {
+
+			$terms = array_map( function( WP_Term $term ) {
+				return [
+					'slug' => $term->slug,
+					'name' => $term->name
+				];
+			}, $terms );
+
+			$field_group['acf-field-group-category'] = $terms;
+		}
+
+		return $field_group;
+	}
+
+	/**
+	 * Load ACF Extended field group category from JSON while syncing
+	 *
+	 * This will create the categories that doesn't exist already.
+	 * Matching is done by slug.
+	 *
+	 * @param array $field_group
+	 */
+	public function loadGroupCategoryJson( array $field_group ): void
+	{
+		if ( empty( $field_group['acf-field-group-category'] ) ) {
+			return;
+		}
+
+		$post_id = get_posts( [
+			'name' => $field_group['key'],
+			'post_type' => 'acf-field-group',
+			'post_status' => 'acf-disabled',
+			'posts_per_page' => 1,
+			'fields' => 'ids'
+		] )[0];
+
+		foreach ( $field_group['acf-field-group-category'] as $category ) {
+			$term = get_term_by( 'slug', $category['slug'], 'acf-field-group-category' );
+
+			// Create the term if doesn't exist
+			if ( ! $term instanceof WP_Term ) {
+				$term_res = wp_insert_term( $category['name'], 'acf-field-group-category' );
+				$term_id = $term_res['term_id'];
+			} else {
+				$term_id = $term->term_id;
+			}
+
+			wp_add_object_terms( $post_id, $term_id, 'acf-field-group-category' );
+		}
 	}
 }
 
