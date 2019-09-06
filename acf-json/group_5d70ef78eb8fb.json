@@ -7,7 +7,7 @@
             "label": "Section ID",
             "name": "section_id",
             "type": "text",
-            "instructions": "Add section ID - not required, but handy for creating #links\r\nSection ID MUST NOT use any spaces.",
+            "instructions": "Add Section ID - not required, but handy for creating #links\r\nSection ID MUST NOT use any spaces.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -15,11 +15,14 @@
                 "class": "",
                 "id": ""
             },
+            "acfe_permissions": "",
             "default_value": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": ""
+            "maxlength": "",
+            "acfe_validate": "",
+            "acfe_update": ""
         }
     ],
     "location": [
@@ -46,5 +49,5 @@
     "acfe_permissions": "",
     "acfe_note": "",
     "acfe_meta": "",
-    "modified": 1567682658
+    "modified": 1567781202
 }

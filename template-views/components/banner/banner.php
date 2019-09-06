@@ -26,8 +26,9 @@ extract( (array) get_query_var( 'content-components' ) );
 	<?php endif; ?>
 
 	<div class="banner__caption">
-		<span class="banner-example__caption-icon font-ico-happy"></span>
-		<h1 class="banner__caption-title"><?php echo $title; ?></h1>
+		<span class="banner__caption-icon font-ico-happy"></span>
+		<h1 class="banner__caption-title js-scroll-link" data-scroll-to="slider"><?php echo $title; ?></h1>
 		<p class="banner__caption-text"><?php echo $subtitle; ?></p>
+		<a class="banner__btn btn" href="#scroll-section-example">Scroll Down</a>
 	</div>
 </div><!-- .banner -->

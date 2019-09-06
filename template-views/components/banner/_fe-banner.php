@@ -7,8 +7,9 @@
 	</picture>
 
 	<div class="banner__caption">
-		<span class="banner-example__caption-icon font-ico-happy"></span>
+		<span class="banner__caption-icon font-ico-happy"></span>
 		<h1 class="banner__caption-title">Banner Title</h1>
 		<p class="banner__caption-text">Here goes description paragraph</p>
+		<a class="banner__btn btn" href="#scroll-section-example">Scroll Down</a>
 	</div>
 </div><!-- .banner -->
