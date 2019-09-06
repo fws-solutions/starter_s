@@ -15,24 +15,30 @@ const globalVars = require('./_global-vars');
 	SCSS
  ----------------------------------------------------------------------------------------------*/
 const sassSRC = ['assets/sass/**/*.scss', 'template-views/**/**/*.scss'];
+const dashSassSRC = ['assets/config/customize-dashboard/dashboard.scss'];
+const loginSassSRC = ['assets/config/customize-dashboard/login.scss'];
+const dashDistSRC = 'assets/config/customize-dashboard/dashboard.css';
+const loginDistSRC = 'assets/config/customize-dashboard/login.css';
+
+const processors = [
+	autoprefixer({overrideBrowserslist: ['last 2 versions', 'ios >= 8']}),
+	flexBugsFix
+];
 
 // compile scss files
 gulp.task('plugins-css', pluginsCss);
-gulp.task('css', css);
+gulp.task('css', css.bind(null, sassSRC, 'style.css'));
+gulp.task('css-dash', css.bind(null, dashSassSRC, dashDistSRC));
+gulp.task('css-login', css.bind(null, loginSassSRC, loginDistSRC));
 gulp.task('sass-lint', sasslint);
 
-function css() {
-	const processors = [
-		autoprefixer({overrideBrowserslist: ['last 2 versions', 'ios >= 8']}),
-		flexBugsFix
-	];
-
-	return gulp.src(sassSRC)
+function css(src, name) {
+	return gulp.src(src)
 		.pipe(plumber(globalVars.msgERROR))
 		.pipe(sourcemaps.init())
 		.pipe(sass({outputStyle: globalVars.productionBuild ? 'compressed' : 'expanded'}))
 		.pipe(postcss(processors))
-		.pipe(rename('style.css'))
+		.pipe(rename(name))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest('./'));
 }

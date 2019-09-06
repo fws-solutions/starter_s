@@ -10,6 +10,7 @@ const globalVars = require('./assets/config/gulp-tasks/_global-vars');
 	Prepare and Run all Gulp Tasks
  ----------------------------------------------------------------------------------------------*/
 const localURL = 'http://starter.local/';
+const sassSRC = ['assets/sass/**/*.scss', 'template-views/**/**/*.scss'];
 
 module.exports = {
 	localURL: localURL
@@ -39,7 +40,7 @@ gulp.task('build', gulp.series(
 	prodBuild,
 	gulp.parallel(
 		gtCss.pluginsCss,
-		gtCss.css,
+		gtCss.css.bind(null, sassSRC, 'style.css'),
 		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
@@ -54,7 +55,7 @@ gulp.task('build-dev', gulp.series(
 	devBuild,
 	gulp.parallel(
 		gtCss.pluginsCss,
-		gtCss.css,
+		gtCss.css.bind(null, sassSRC, 'style.css'),
 		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
@@ -96,7 +97,7 @@ gulp.task('watch', gulp.series(
 	devBuild,
 	gulp.parallel(
 		gtCss.pluginsCss,
-		gtCss.css,
+		gtCss.css.bind(null, sassSRC, 'style.css'),
 		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),

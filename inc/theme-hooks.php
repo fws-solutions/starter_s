@@ -70,7 +70,7 @@ add_action( 'login_head', 'starter_s_remove_login_shake' );
 
 // add custom stylesheet
 function starter_s_add_login_styles() {
-	wp_enqueue_style('starter_s-login-style', get_template_directory_uri() . '/assets/config/customize-login/login.css' );
+	wp_enqueue_style('starter_s-login-style', get_template_directory_uri() . '/assets/config/customize-dashboard/login.css' );
 }
 add_action( 'login_enqueue_scripts', 'starter_s_add_login_styles' );
 

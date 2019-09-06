@@ -6,6 +6,10 @@ dist
 .sass-cache
 style.css
 style.css.map
+dashboard.css
+dashboard.css.map
+login.css
+login.css.map
 
 # ignore Editor files
 .idea

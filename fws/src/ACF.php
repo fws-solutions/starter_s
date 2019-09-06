@@ -51,6 +51,8 @@ class ACF
 	{
 		wp_enqueue_style( 'starter_s-dashboard-style', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.css' );
 
+		wp_enqueue_script( 'starter_s-dashboard-js', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.js', array(), '', true );
+
 		$translation_array = [ 'themeUrl' => get_stylesheet_directory_uri() ];
 		wp_localize_script( 'starter_s-dashboard-js', 'object_name', $translation_array );
 	}
