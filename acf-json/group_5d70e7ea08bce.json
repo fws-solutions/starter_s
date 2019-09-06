@@ -111,5 +111,20 @@
     "acfe_permissions": "",
     "acfe_note": "",
     "acfe_meta": "",
-    "modified": 1567682700
+    "acf-field-group-category": [
+        {
+            "slug": "test",
+            "name": "Test"
+        },
+		{
+			"slug": "test-5",
+			"name": "Test 5"
+		},
+
+		{
+			"slug": "test-6",
+			"name": "Test 6"
+		}
+    ],
+    "modified": 1567780462
 }
