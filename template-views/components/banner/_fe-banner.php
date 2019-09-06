@@ -1,4 +1,11 @@
-<div class="banner" style="background-image: url(<?php echo fws()->images->assets_src('banner.jpg', true); ?>);">
+<div class="banner">
+	<picture class="banner__image">
+		<source media="(min-width: 1200px)" srcset="<?php echo fws()->images->assets_src( 'banner.jpg', true ); ?>">
+		<source media="(min-width: 640px)" srcset="<?php echo fws()->images->assets_src( 'banner-tab.jpg', true ); ?>">
+		<source media="(min-width: 320px)" srcset="<?php echo fws()->images->assets_src( 'banner-mob.jpg', true ); ?>">
+		<img class="cover-img" src="<?php echo fws()->images->assets_src( 'banner.jpg', true ); ?>" alt="">
+	</picture>
+
 	<div class="banner__caption">
 		<span class="banner-example__caption-icon font-ico-happy"></span>
 		<h1 class="banner__caption-title">Banner Title</h1>

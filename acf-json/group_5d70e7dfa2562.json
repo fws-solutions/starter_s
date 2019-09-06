@@ -47,11 +47,28 @@
             "acfe_update": ""
         },
         {
-            "key": "field_5d70eb6209ca7",
-            "label": "Image",
-            "name": "image",
-            "type": "image",
+            "key": "field_5d72497863ba1",
+            "label": "Desk",
+            "name": "",
+            "type": "tab",
             "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5d70eb6209ca7",
+            "label": "Desktop Image",
+            "name": "desktop_image",
+            "type": "image",
+            "instructions": "Recommended image width should be no more then 2000px.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -71,8 +88,98 @@
             "max_size": "",
             "mime_types": "",
             "acfe_thumbnail": 0,
-            "acfe_validate": false,
-            "acfe_update": false
+            "acfe_validate": "",
+            "acfe_update": ""
+        },
+        {
+            "key": "field_5d72498463ba2",
+            "label": "Tab",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5d7249bc63ba6",
+            "label": "Tablet Image",
+            "name": "tablet_image",
+            "type": "image",
+            "instructions": "Recommended image width should be no more then 1024px.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "acfe_thumbnail": 0,
+            "acfe_validate": "",
+            "acfe_update": ""
+        },
+        {
+            "key": "field_5d72498963ba3",
+            "label": "Mob",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5d7249c563ba7",
+            "label": "Mobile Image",
+            "name": "mobile_image",
+            "type": "image",
+            "instructions": "Recommended image width should be no more then 640px.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "acfe_permissions": "",
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "min_width": "",
+            "min_height": "",
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "",
+            "acfe_thumbnail": 0,
+            "acfe_validate": "",
+            "acfe_update": ""
         }
     ],
     "location": [
@@ -96,8 +203,11 @@
     "acfe_autosync": [
         "json"
     ],
-    "acfe_permissions": "",
+    "acfe_permissions": [
+        "administrator",
+        "editor"
+    ],
     "acfe_note": "",
     "acfe_meta": "",
-    "modified": 1567681394
+    "modified": 1567771338
 }
