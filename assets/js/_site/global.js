@@ -24,24 +24,24 @@ const Global = {
 					callback();
 				}
 			});
-		}
-	},
+		},
 
-	/**
-	 * @description Fancy box custom popup functionality.
-	 * @link https: //fancyapps.com/fancybox/3/docs/#inline (documentation)
-	 * @example Global.functions.fancyboxPopup('.popup-btn', '.popup', 'my-custom-class');
-	 * @param {srting} trigger - popup trigger
-	 * @param {string} popup - popup wrapper class
-	 * @param {srting} customClass - custom class for each popup (optional)
-	 */
-	fancyboxPopup: (trigger, popup, customClass = '') => {
-		$(trigger).fancybox({
-			src: popup,
-			type: 'inline',
-			smallBtn: true,
-			baseClass: customClass,
-		});
+		/**
+		 * @description Fancy box custom popup functionality.
+		 * @link https: //fancyapps.com/fancybox/3/docs/#inline (documentation)
+		 * @example Global.functions.fancyboxPopup('.popup-btn', '.popup', 'my-custom-class');
+		 * @param {srting} trigger - popup trigger
+		 * @param {string} popup - popup wrapper class
+		 * @param {srting} customClass - custom class for each popup (optional)
+		 */
+		fancyboxPopup: (trigger, popup, customClass = '') => {
+			$(trigger).fancybox({
+				src: popup,
+				type: 'inline',
+				smallBtn: true,
+				baseClass: customClass,
+			});
+		}
 	}
 };
 
