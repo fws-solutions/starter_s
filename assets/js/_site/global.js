@@ -17,6 +17,16 @@ const Global = {
 			});
 		},
 
+		/**
+		 * @description Click outside container to close it (e.g. popups, menu...)
+		 * @example Global.functions.clickOutsideContainer(this.$domMenuNav, this.$domMenuNav.children('ul'), this.$domMenuBtn, closeNav);
+		 * @param {jQuery} selector - element that trigger function ( e.g. $('body') );
+		 * @param {jQuery} container - popup wrapper
+		 * @param {jQuery} closeBtn - close button
+		 * @param {function} callback - callback function
+			 
+		 }}
+		 */
 		clickOutsideContainer: function (selector, container, closeBtn, callback) {
 			selector.on('mouseup', function (e) {
 				e.preventDefault();
@@ -28,11 +38,11 @@ const Global = {
 
 		/**
 		 * @description Fancy box custom popup functionality.
-		 * @link https: //fancyapps.com/fancybox/3/docs/#inline (documentation)
+		 * @link documentation https://fancyapps.com/fancybox/3/docs/#inline 
 		 * @example Global.functions.fancyboxPopup('.popup-btn', '.popup', 'my-custom-class');
-		 * @param {srting} trigger - popup trigger
+		 * @param {string} trigger - popup trigger
 		 * @param {string} popup - popup wrapper class
-		 * @param {srting} customClass - custom class for each popup (optional)
+		 * @param {string} customClass - custom class for each popup (optional)
 		 */
 		fancyboxPopup: (trigger, popup, customClass = '') => {
 			$(trigger).fancybox({
@@ -48,7 +58,7 @@ const Global = {
 		 * @example Global.functions.afterFormSubmit('.js-cf7-holder', 'form-is-sent', 8000);
 		 * @param {string} formHolder - form holder class (recommended/default is '.js-cf7-holder')
 		 * @param {string} sentClass - class added to form parent to trigger popup (default is 'form-is-sent')
-		 * @param {number} delay - delay time before sentClass is removed (default delay time ix 5000ms)
+		 * @param {number} delay - delay time before sentClass is removed (default delay time is 5000ms)
 		 */
 		afterFormSubmit: (formHolder = '.js-cf7-holder', sentClass = 'form-is-sent', delay = 5000) => {
 			document.addEventListener('wpcf7mailsent', (e) => {
@@ -60,7 +70,27 @@ const Global = {
 					$(formHolder).removeClass(sentClass);
 				}, delay);
 			}, false);
-		}
+		},
+
+		/**
+		 * @description Equal height function for multiple elements. This function should be used on load and on resize also.
+		 * @example Global.functions.equalHeights('.some-element-class');
+		 * @example $(window).on('resize', ()=> { Global.functions.equalHeights('.some-element-class'); });
+		 * 
+		 * @param {string} elm - element class
+		 */
+		equalHeights: (elm) => {
+			let x = 0;
+			$(elm).height('auto');
+
+			$(elm).each((index, el) => {
+				if ($(el).height() > x) {
+					x = $(el).height();
+				}
+			});
+
+			$(elm).height(x + 1);
+		},
 	}
 };
 
