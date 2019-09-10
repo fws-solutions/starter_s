@@ -5,10 +5,17 @@ const Global = {
 	$domWindow: $(window),
 	$domDoc: $(document),
 	$domBody: $('body'),
+	$select: $('.js-select'),
 
 	varsWindowWidth: window.innerWidth,
-
+	
 	functions: {
+		/**
+		 * @description do something on escape key click
+		 * @example Global.functions.escKey(closeNav);
+		 * @param {function} callback - pass callback function 
+		 */
+		
 		escKey: function (callback) {
 			Global.$domDoc.on('keyup', function (e) {
 				if (e.keyCode === 27) {
@@ -24,8 +31,6 @@ const Global = {
 		 * @param {jQuery} container - popup wrapper
 		 * @param {jQuery} closeBtn - close button
 		 * @param {function} callback - callback function
-			 
-		 }}
 		 */
 		clickOutsideContainer: function (selector, container, closeBtn, callback) {
 			selector.on('mouseup', function (e) {
@@ -76,7 +81,6 @@ const Global = {
 		 * @description Equal height function for multiple elements. This function should be used on load and on resize also.
 		 * @example Global.functions.equalHeights('.some-element-class');
 		 * @example $(window).on('resize', ()=> { Global.functions.equalHeights('.some-element-class'); });
-		 * 
 		 * @param {string} elm - element class
 		 */
 		equalHeights: (elm) => {
@@ -91,7 +95,23 @@ const Global = {
 
 			$(elm).height(x + 1);
 		},
-	}
+	},
+
+	/**
+	 * @description Call all plugins here. This will be called at site.js .
+	 * @example Global.pluginsCall();
+	 */
+	pluginsCall: ()=> {
+		Global.select2();
+	},
+
+	select2: ()=> {
+		Global.$select.select2({
+			minimumResultsForSearch: -1,
+			width: 'style',
+			dropdownCssClass: 'custom-class'
+		});
+	},
 };
 
 export default Global;
