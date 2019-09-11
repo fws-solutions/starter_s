@@ -133,3 +133,46 @@ $basic_block = [
 
 fws()->render->templateView( $basic_block, 'banner' );
 ```
+
+## Using ACF Flexible Content
+With modular template views it is essential that ACF Flexible Content is organized and implemented in a defined manner.
+
+Moving away from default Flexible Content implementation...
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-old.png)
+
+... and make full use of Clone field.
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-new.png)
+
+Each Flexible Content block will use Clone field to copy **all** fields from certain field group.
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-groups.png)
+
+Making those fields a direct sub fields in a Flexible Content blocks.
+
+Using this system translates very good when it comes to passing Flexible Content values to template views.
+Insted of using ACF basic loop, it is required to use standard PHP switch method in a foreach loop.
+
+```
+foreach ( get_field( 'flexible_content' ) as $fc ) {
+  switch ( $fc['acf_fc_layout'] ) {
+    case 'banner':
+      fws()->render->templateView( $fc, 'banner' );
+      break;
+    case 'slider':
+      fws()->render->templateView( $fc, 'slider' );
+      break;
+    default:
+      fws()->render->templateView( $fc, 'basic-block' );
+  }
+}
+```
+
+In the example above, it is important to note that variable that is being passed to *templateView()* function is not mapped out as an array like in the previous example, but rather instead it is simply passed the current item from the loop.
+
+The reason this is possible is because of the way ACF fields are named in their field groups. Meaning, it is absolutely required to name the fields as variables in the template views.
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-mapping.png)
+
+Naming the fields same names as variables in the template views will make sure that each component gets properly formated array values which it needs for rendering properly.

@@ -2,6 +2,7 @@
 /**
  * @var string $title
  * @var string $subtitle
+ * @var array $button
  * @var array $desktop_image
  * @var array $tablet_image
  * @var array $mobile_image
@@ -29,6 +30,6 @@ extract( (array) get_query_var( 'content-components' ) );
 		<span class="banner__caption-icon font-ico-happy"></span>
 		<h1 class="banner__caption-title js-scroll-link" data-scroll-to="slider"><?php echo $title; ?></h1>
 		<p class="banner__caption-text"><?php echo $subtitle; ?></p>
-		<a class="banner__btn btn" href="#scroll-section-example">Scroll Down</a>
+		<?php echo fws()->render->acfLinkField($button, 'banner__btn btn'); ?>
 	</div>
 </div><!-- .banner -->
