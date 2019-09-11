@@ -39,13 +39,130 @@ class ACF
 	 */
 	public function acfInit(): void
 	{
+		// Register Options page
 		acf_add_options_page( [
 			'page_title' => 'Theme Settings',
 			'menu_title' => 'Theme Settings',
-			'menu_slug'  => 'starter_s-settings',
+			'menu_slug' => 'starter_s-settings',
 			'capability' => 'edit_posts',
-			'redirect'   => false,
+			'redirect' => false,
 		] );
+
+		// Add Flexible content group from all Flexible Content groups
+		$this->addFlexContentGroup();
+	}
+
+	/**
+	 * Add Flexible content group from all Flexible Content groups
+	 */
+	private function addFlexContentGroup(): void
+	{
+		$groups = array_filter( acf_get_local_field_groups(), [ $this, 'filterACFGroupsFlexContent' ] );
+
+		$args = [
+			'key' => 'flexible_content_5d6e5b15887c9',
+			'title' => 'Content',
+			'fields' => [
+				[
+					'key' => 'field_5d6e5b15887c9',
+					'label' => '',
+					'name' => 'flexible_content',
+					'type' => 'flexible_content',
+					'instructions' => '',
+					'required' => 0,
+					'conditional_logic' => 0,
+					'wrapper' => [
+						'width' => '',
+						'class' => '',
+						'id' => '',
+					],
+					'layouts' => [],
+					'button_label' => 'Add Section',
+					'min' => '',
+					'max' => '',
+				],
+			],
+			'location' => [
+				[
+					[
+						'param' => 'page_template',
+						'operator' => '==',
+						'value' => 'default',
+					],
+				],
+			],
+			'menu_order' => 0,
+			'position' => 'normal',
+			'style' => 'default',
+			'label_placement' => 'top',
+			'instruction_placement' => 'label',
+			'hide_on_screen' => [
+				0 => 'the_content',
+			],
+			'active' => true,
+			'description' => '',
+			'modified' => 1567782198,
+		];
+
+		foreach ( $groups as $key => $group ) {
+			$label = trim( str_replace( 'FC ', '', $group['title'] ) );
+			$name = str_replace( '-', '_', sanitize_title( $label ) );
+
+			$args['fields'][0]['layouts']["layout_$key"] = [
+				'key' => "layout_$key",
+				'name' => $name,
+				'label' => $label,
+				'display' => 'block',
+				'sub_fields' => [
+					[
+						'key' => "field_$key",
+						'label' => '',
+						'name' => $name,
+						'type' => 'clone',
+						'instructions' => '',
+						'required' => 0,
+						'conditional_logic' => 0,
+						'wrapper' => [
+							'width' => '',
+							'class' => '',
+							'id' => '',
+						],
+						'acfe_permissions' => '',
+						'clone' => [
+							0 => $key,
+						],
+						'display' => 'seamless',
+						'layout' => 'block',
+						'prefix_label' => 0,
+						'prefix_name' => 0,
+					],
+				],
+				'min' => '',
+				'max' => '',
+			];
+		}
+
+		acf_add_local_field_group( $args );
+	}
+
+	/**
+	 * @param array $group
+	 *
+	 * @return bool
+	 */
+	private function filterACFGroupsFlexContent( array $group ): bool
+	{
+		if ( ! isset( $group['acf-field-group-category'] ) || ! is_array( $group['acf-field-group-category'] ) ) {
+			return false;
+		}
+
+		foreach ( $group['acf-field-group-category'] as $category ) {
+			if ( $category['slug'] === 'flexible-content' ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
@@ -55,7 +172,7 @@ class ACF
 	{
 		wp_enqueue_style( 'starter_s-dashboard-style', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.css' );
 
-		wp_enqueue_script( 'starter_s-dashboard-js', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.js', array(), '', true );
+		wp_enqueue_script( 'starter_s-dashboard-js', get_template_directory_uri() . '/assets/config/customize-dashboard/dashboard.js', [], '', true );
 
 		$translation_array = [ 'themeUrl' => get_stylesheet_directory_uri() ];
 		wp_localize_script( 'starter_s-dashboard-js', 'object_name', $translation_array );
