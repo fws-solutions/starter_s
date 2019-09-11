@@ -16,6 +16,9 @@ class ACF
 
 	use Main;
 
+	/** @var int  */
+	private $flexContentCounter = 0;
+
 	/**
 	 * Hookers live here.
 	 */
@@ -49,24 +52,27 @@ class ACF
 		] );
 
 		// Add Flexible content group from all Flexible Content groups
-		$this->addFlexContentGroup();
+		$this->addMainFlexContentGroup();
 	}
 
 	/**
-	 * Add Flexible content group from all Flexible Content groups
+	 * @param string $fieldName
+	 * @param array  $location
+	 * @param array  $layouts
+	 * @param array  $hideOnScreen
 	 */
-	private function addFlexContentGroup(): void
+	public function registerFlexContent( string $fieldName, array $location, array $layouts, array $hideOnScreen = [] ): void
 	{
-		$groups = array_filter( acf_get_local_field_groups(), [ $this, 'filterACFGroupsFlexContent' ] );
+		$key = 'flexible_content_' . $this->flexContentCounter ++;
 
 		$args = [
-			'key' => 'flexible_content_5d6e5b15887c9',
-			'title' => 'Content',
+			'key' => $key,
+			'title' => $fieldName,
 			'fields' => [
 				[
-					'key' => 'field_5d6e5b15887c9',
+					'key' => "field_$key",
 					'label' => '',
-					'name' => 'flexible_content',
+					'name' => str_replace( '-', '_', sanitize_title( $fieldName ) ),
 					'type' => 'flexible_content',
 					'instructions' => '',
 					'required' => 0,
@@ -85,9 +91,9 @@ class ACF
 			'location' => [
 				[
 					[
-						'param' => 'page_template',
+						'param' => $location['param'],
 						'operator' => '==',
-						'value' => 'default',
+						'value' => $location['value'],
 					],
 				],
 			],
@@ -96,17 +102,16 @@ class ACF
 			'style' => 'default',
 			'label_placement' => 'top',
 			'instruction_placement' => 'label',
-			'hide_on_screen' => [
-				0 => 'the_content',
-			],
+			'hide_on_screen' => $hideOnScreen,
 			'active' => true,
 			'description' => '',
 			'modified' => 1567782198,
 		];
 
-		foreach ( $groups as $key => $group ) {
-			$label = trim( str_replace( 'FC ', '', $group['title'] ) );
-			$name = str_replace( '-', '_', sanitize_title( $label ) );
+		foreach ( $layouts as $layout ) {
+			$label = $layout['label'];
+			$name = $layout['name'];
+			$key = $layout['clone_group_key'];
 
 			$args['fields'][0]['layouts']["layout_$key"] = [
 				'key' => "layout_$key",
@@ -115,7 +120,7 @@ class ACF
 				'display' => 'block',
 				'sub_fields' => [
 					[
-						'key' => "field_$key",
+						'key' => "layout_field_$key",
 						'label' => '',
 						'name' => $name,
 						'type' => 'clone',
@@ -129,7 +134,7 @@ class ACF
 						],
 						'acfe_permissions' => '',
 						'clone' => [
-							0 => $key,
+							0 => $layout['clone_group_key'],
 						],
 						'display' => 'seamless',
 						'layout' => 'block',
@@ -143,6 +148,35 @@ class ACF
 		}
 
 		acf_add_local_field_group( $args );
+	}
+
+	/**
+	 * Add Flexible content group from all Flexible Content groups
+	 */
+	private function addMainFlexContentGroup(): void
+	{
+		$groups = array_filter( acf_get_local_field_groups(), [ $this, 'filterACFGroupsFlexContent' ] );
+
+		$layouts = array_map( function( array $group ) {
+			$label = trim( str_replace( 'FC ', '', $group['title'] ) );
+			$name = str_replace( '-', '_', sanitize_title( $label ) );
+
+			return [
+				'label' => $label,
+				'name' => $name,
+				'clone_group_key' => $group['key']
+			];
+		}, $groups );
+
+		$this->registerFlexContent(
+			'Content',
+			[
+				'param' => 'page_template',
+				'value' => 'default'
+			],
+			$layouts,
+			[ 'the_content' ]
+		);
 	}
 
 	/**
