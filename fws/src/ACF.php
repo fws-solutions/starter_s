@@ -166,7 +166,7 @@ class ACF
 				'name' => $name,
 				'clone_group_key' => $group['key']
 			];
-		}, $groups );
+		}, array_reverse($groups, true) );
 
 		$this->registerFlexContent(
 			'Content',

@@ -1,5 +1,5 @@
 <?php
-foreach ( get_field( 'flexible_content' ) as $fc ) {
+foreach ( get_field( 'flexible_content_0' ) as $fc ) {
 	switch ( $fc['acf_fc_layout'] ) {
 		case 'banner':
 			fws()->render->templateView( $fc, 'banner' );
