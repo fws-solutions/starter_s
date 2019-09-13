@@ -152,13 +152,13 @@ Each Flexible Content block will use Clone field to copy **all** fields from cer
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-groups.png)
 
-Making those fields a direct sub fields in a Flexible Content blocks.
+Making those fields a direct sub fields in a Flexible Content layouts.
 
 Using this system translates very good when it comes to passing Flexible Content values to template views.
 Insted of using ACF basic loop, it is required to use standard PHP switch method in a foreach loop.
 
 ```
-foreach ( get_field( 'flexible_content_0' ) as $fc ) {
+foreach ( get_field( 'content' ) as $fc ) {
   switch ( $fc['acf_fc_layout'] ) {
     case 'banner':
       fws()->render->templateView( $fc, 'banner' );
@@ -291,3 +291,28 @@ fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen 
 ```
 
 Needless to state that this part of the workflow assumes that ACF: Extended plugin is being used.
+
+## FWS Helper functions
+
+List of all helper functions from this Starter Theme:
+
+- Render.php
+    - templateView() - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
+    - acfLinkField() - *Renders ACF link field with all field params.*
+- Images.php
+    - assets_src() - *Render image src from 'assets/images' or '__demo' directory.*
+- ACF.php
+    - registerFlexContent() - *Register new flexible content field group.*
+   
+All helper functions are defined as methods in defined classes that are all loading from *fws/FWS.php* file.
+
+Each method is available through instance of FWS class and instances of other classes located in *fws/src* directory.
+
+Example:
+```
+fws()->render->templateView( $view_vals, $view_name, $is_partial );
+fws()->images->assets_src( $image_file, $is_demo );
+fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
+```
+
+For full description of each method, see appropriate files and examples in the theme.
