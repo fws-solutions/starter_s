@@ -3,20 +3,19 @@ import Global from './global';
 
 'use strict';
 const Menu = {
-	/*-------------------------------------------------------------------------------
-		# Cache dom and strings
-	-------------------------------------------------------------------------------*/
+	/**
+	 * @description Cache dom and strings
+	 * @type {object}
+	 */
 	$domMenuBtn: $('.js-menu-btn'),
 	$domMenuNav: $('.js-main-nav'),
 	$domMenuHasSub: $('.menu-item-has-children'),
 	classOpen: 'open',
 	classOpenMenu: 'menu-open',
 
-	/*-------------------------------------------------------------------------------
-		# Initialize
-	-------------------------------------------------------------------------------*/
+	/** @description Initialize */
 	init: function () {
-		// functions
+		/** @description functions */
 		function closeNav() {
 			Menu.$domMenuBtn.removeClass(Menu.classOpen);
 			Menu.$domMenuNav.removeClass(Menu.classOpen);
@@ -29,7 +28,7 @@ const Menu = {
 			});
 		}
 
-		// bind events
+		/** @description bind events */
 		this.$domMenuBtn.on('click', function (e) {
 			e.preventDefault();
 			Menu.$domMenuBtn.toggleClass(Menu.classOpen);

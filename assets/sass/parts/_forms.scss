@@ -20,11 +20,17 @@
 			opacity: 0;
 		}
 	}
+
+	.wpcf7-mail-sent-ok {
+		display: none !important;//sass-lint:disable-line no-important
+	}
 }
 
-.cf7-form-thank-you-message { //thank you message popup
+.cf7-holder__popup {
+	//thank you message popup
 	position: absolute;
 	top: 50%;
+	color: $black;
 	left: 50%;
 	transform: translate(-50%, -50%) scale(1.2);
 	z-index: 1;
@@ -46,4 +52,9 @@
 		pointer-events: all;
 		transform: translate(-50%, -50%) scale(1);
 	}
+}
+
+.cf7-holder__popup-img {
+	max-width: 80px;
+	margin: 0 auto 15px;
 }

@@ -1,15 +1,19 @@
 <div class="banner">
 	<picture class="banner__image">
-		<source media="(min-width: 1200px)" srcset="<?php echo fws()->images->assets_src( 'banner.jpg', true ); ?>">
-		<source media="(min-width: 640px)" srcset="<?php echo fws()->images->assets_src( 'banner-tab.jpg', true ); ?>">
-		<source media="(min-width: 320px)" srcset="<?php echo fws()->images->assets_src( 'banner-mob.jpg', true ); ?>">
-		<img class="cover-img" src="<?php echo fws()->images->assets_src( 'banner.jpg', true ); ?>" alt="">
+		<source media="(min-width: 1200px)" srcset="<?php echo fws()->images->assets_src('banner.jpg', true); ?>">
+		<source media="(min-width: 640px)" srcset="<?php echo fws()->images->assets_src('banner-tab.jpg', true); ?>">
+		<source media="(min-width: 320px)" srcset="<?php echo fws()->images->assets_src('banner-mob.jpg', true); ?>">
+		<img class="cover-img" src="<?php echo fws()->images->assets_src('banner.jpg', true); ?>" alt="">
 	</picture>
 
 	<div class="banner__caption">
 		<span class="banner__caption-icon font-ico-happy"></span>
 		<h1 class="banner__caption-title">Banner Title</h1>
 		<p class="banner__caption-text">Here goes description paragraph</p>
+		<a href="javascript:;" class="js-popup-trigger popup-trigger btn">Open Popup</a>
 		<a class="banner__btn btn" href="#scroll-section-example">Scroll Down</a>
+	</div>
+	<div class="popup js-popup">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 	</div>
 </div><!-- .banner -->

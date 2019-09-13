@@ -3,9 +3,10 @@ import Global from './global';
 
 'use strict';
 const Styleguide = {
-	/*-------------------------------------------------------------------------------
-		# Cache dom and strings
-	-------------------------------------------------------------------------------*/
+	/**
+	 * @description Cache dom and strings
+	 * @type {object}
+	 */
 	$domStyleNavWrap: $('.js-styleguide-nav-wrap'),
 	$domStyleNav: $('.js-styleguide-nav'),
 	$domStyleSection: $('.js-styleguide-section'),
@@ -13,9 +14,7 @@ const Styleguide = {
 	selectorStyleNav: '.js-styleguide-nav',
 	classHidden: 'is-hidden',
 
-	/*-------------------------------------------------------------------------------
-		# Initialize
-	-------------------------------------------------------------------------------*/
+	/** @description slider example description e.g Banner slider */
 	init: function () {
 		if (this.$domStyleNav.length) {
 			this.$domStyleSection.each((i, el) => {

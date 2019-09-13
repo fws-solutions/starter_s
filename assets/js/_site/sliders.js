@@ -2,24 +2,26 @@ const $ = jQuery.noConflict();
 
 'use strict';
 const Sliders = {
-	/*-------------------------------------------------------------------------------
-		# Cache dom and strings
-	-------------------------------------------------------------------------------*/
+	/**
+	 * @description Cache dom and strings
+	 * @type {object}
+	 */
 	$domSlider: $('.js-slider'),
 
-	/*-------------------------------------------------------------------------------
-		# Initialize
-	-------------------------------------------------------------------------------*/
+	/** @description Initialize */
 	init: function () {
-		// slider
-		this.$domSlider.slick({
+		this.sliderExample();
+	},
+
+	/** @description slider example description e.g Banner slider */
+	sliderExample: ()=> {
+		Sliders.$domSlider.slick({
 			infinite: true,
 			slidesToShow: 4,
 			slidesToScroll: 1,
 			speed: 1000,
 			arrows: false,
-			responsive: [
-				{
+			responsive: [{
 					breakpoint: 991,
 					settings: {
 						slidesToShow: 3

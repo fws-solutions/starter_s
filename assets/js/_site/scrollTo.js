@@ -1,28 +1,19 @@
 const $ = jQuery.noConflict();
 
 'use strict';
+/**
+ * @description In order to create link that scrolls to certain section, simply place '#scroll-section-example' to a desired tag and id with same value to the section page should scroll to.
+ * @description Alternately, you can enable any URL with# to autoscroll on page load. For example: some - website.com / #scroll - section - example
+ * @example tag: <a class="btn" href="#scroll-section-example"> will scroll to: <div class="some-section" id="scroll-section-example">
+ */
 const ScrollTo = {
-	/*
-		In order to create link that scrolls to certain section, simply place '#scroll-section-example' to a desired tag
-		and id with same value to the section page should scroll to.
-
-		For example:
-		tag: <a class="btn" href="#scroll-section-example">
-		will scroll to: <div class="some-section" id="scroll-section-example">
-
-		Alternately, you can enable any URL with # to autoscroll on page load.
-
-		For example: some-website.com/#scroll-section-example
+	/**
+	 * @description Cache dom and strings
+	 * @type {object}
 	 */
-
-	/*-------------------------------------------------------------------------------
-		# Cache dom and strings
-	-------------------------------------------------------------------------------*/
 	$domScrollLink: $('a[href*=\\#]:not([href=\\#])'),
 
-	/*-------------------------------------------------------------------------------
-		# Initialize
-	-------------------------------------------------------------------------------*/
+	/** @description Initialize */
 	init: function () {
 		this.bindEvents();
 		this.hashScroll();

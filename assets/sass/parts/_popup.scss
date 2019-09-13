@@ -1,0 +1,13 @@
+/*--------------------------------------------------------------
+## Popup example
+--------------------------------------------------------------*/
+.popup {
+	display: none;
+	max-width: 600px;
+}
+
+.popup-custom-class {
+	.fancybox-bg {
+		background: rgba($black, 0.7);
+	}
+}
