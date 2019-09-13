@@ -90,7 +90,7 @@ Each component has three files:
 File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP variables, methods or any other logic should be written here *(except helper functions for rendering images)*.
 
 ```
-<div class="banner" style="background-image: url(<?php echo get_stylesheet_directory_uri(); ?>/__demo/banner.jpg);">
+<div class="banner" style="background-image: url(<?php echo fws()->images->assets_src('banner.jpg', true); ?>);">
     <div class="banner__caption">
         <span style="color: white;" class="banner-example__caption-icon font-ico-happy"></span>
         <h1 class="banner__caption-title">Banner Title</h1>
@@ -100,6 +100,12 @@ File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP v
 ```
 
 *.php file:*
+
+PHP template view file is relying on globally set variables that should be accessed using get_query_var() function.
+
+Template view should also use extract() function in order to break an array to separate variables.
+
+The idea is to always pass all values using an array.
 ```
 <?php
 /**
