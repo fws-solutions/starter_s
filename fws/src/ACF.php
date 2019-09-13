@@ -56,6 +56,8 @@ class ACF
 	}
 
 	/**
+	 * Register new flexible content field group.
+	 *
 	 * @param string $fieldName
 	 * @param array  $location
 	 * @param array  $layouts
