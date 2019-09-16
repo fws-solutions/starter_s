@@ -20,6 +20,19 @@ class ACF
 	private $flexContentCounter = 0;
 
 	/**
+	 * Main constructor.
+	 */
+	private function __construct()
+	{
+		// Bail if ACF plugin isn't activated
+		if ( ! function_exists( 'acf' ) ) {
+			return;
+		}
+
+		$this->hookersAndCocaine();
+	}
+
+	/**
 	 * Hookers live here.
 	 */
 	private function hookersAndCocaine(): void
