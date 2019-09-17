@@ -248,7 +248,13 @@ class ACF
 	public function automaticJsonSync(): void
 	{
 		// Bail if not on the right admin page
-		if ( ! isset( $_GET['post_type'] ) || $_GET['post_type'] !== 'acf-field-group' ) {
+		if ( acf_maybe_get_GET( 'post_type' ) !== 'acf-field-group'
+		     && get_post_type( acf_maybe_get_GET( 'post' ) ) !== 'acf-field-group' ) {
+			return;
+		}
+
+		// Bail to prevent redirect loop
+		if ( acf_maybe_get_GET( 'acfsynccomplete' ) ) {
 			return;
 		}
 
