@@ -8,7 +8,7 @@
 extract( (array) get_query_var( 'content-components' ) );
 ?>
 
-<div class="basic-block"<?php echo $section_id ? ' id=' . $section_id : ''; ?>>
+<div class="basic-block"<?php echo $section_id ? ' id="' . $section_id .'"' : ''; ?>>
 	<div class="container">
 		<h2 class="section-title"><?php echo $section_title; ?></h2>
 

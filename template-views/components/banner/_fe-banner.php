@@ -10,7 +10,7 @@
 		<span class="banner__caption-icon font-ico-happy"></span>
 		<h1 class="banner__caption-title">Banner Title</h1>
 		<p class="banner__caption-text">Here goes description paragraph</p>
-		<a href="javascript:;" class="js-popup-trigger popup-trigger btn">Open Popup</a>
+		<a class="js-popup-trigger popup-trigger btn" href="javascript:;">Open Popup</a>
 		<a class="banner__btn btn" href="#scroll-section-example">Scroll Down</a>
 	</div>
 	<div class="popup js-popup">

@@ -90,22 +90,25 @@ function LintConfig(isFe = true) {
 		this['attr-no-dup'] = false;
 		this['indent-style'] = false;
 		this['indent-width'] = false;
+		this['class-style'] = false;
+		this['attr-order'] = false;
 	} else {
-		this['indent-style'] = 'tabs';
+		this['class-style'] = 'bem';
+		this['attr-order'] = ['class', 'id', 'href', 'src', 'target', 'title', 'name', 'value', 'alt', 'selected', 'checked', 'required', 'disabled'];
 	}
 
+	this['line-end-style'] = false;
+	this['indent-style'] = false;
 	this['img-req-alt'] = 'allownull';
 	this['id-class-no-ad'] = false;
 	this['id-class-style'] = false;
-	this['class-style'] = 'bem';
 	this['spec-char-escape'] = false;
-	this['attr-order'] = ['class', 'id', 'href', 'src', 'target', 'title', 'name', 'value', 'alt', 'selected', 'checked', 'required', 'disabled'];
 	this['attr-bans'] = ['align', 'background', 'bgcolor', 'border', 'frameborder', 'longdesc', 'marginwidth', 'marginheight', 'scrolling', 'width'];
 }
 
 function htmlLint(isFe) {
 	const configRules = new LintConfig(isFe);
-	const htmlSrc = isFe ? '__fe-template-parts/**/*.php' : 'template-parts/**/*.php';
+	const htmlSrc = isFe ? 'template-views/**/_*.php' : ['template-views/**/*.php', '!template-views/**/_*.php' ];
 
 	return gulp.src(htmlSrc)
 		.pipe(htmllint({
