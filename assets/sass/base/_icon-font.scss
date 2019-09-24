@@ -28,8 +28,14 @@
 	@if $filename == ico-happy {
 		$char: "\E002";
 	}
-	@if $filename == ico-plus-circle {
+	@if $filename == ico-lock {
 		$char: "\E003";
+	}
+	@if $filename == ico-plus-circle {
+		$char: "\E004";
+	}
+	@if $filename == ico-user {
+		$char: "\E005";
 	}
 
 	@return $char;
@@ -52,7 +58,13 @@
 .font-ico-happy {
 	@include font(ico-happy);
 }
+.font-ico-lock {
+	@include font(ico-lock);
+}
 .font-ico-plus-circle {
 	@include font(ico-plus-circle);
+}
+.font-ico-user {
+	@include font(ico-user);
 }
 

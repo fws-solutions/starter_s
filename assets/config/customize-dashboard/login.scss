@@ -1,6 +1,13 @@
 @import '../../sass/config/variables';
 @import '../../sass/helpers/mixins';
 @import '../../sass/helpers/helpers';
+@import '../../sass/base/icon-font';
+
+@font-face {
+	font-family: "fonticons";
+	src: url('./../../icons/fonticons.woff2') format('woff2'), url('./../../icons/fonticons.woff') format('woff'), url('./../../icons/fonticons.ttf') format('truetype');
+	;
+}
 
 body {
 	background-color: $login-bkg;
@@ -8,112 +15,253 @@ body {
 
 #login {
 	position: relative;
-}
-
-.login h1 a {
-	background-image: url('../../images/logo.png');
-	background-size: contain;
-	background-position: center;
-	background-repeat: no-repeat;
-	width: 70%;
-	transition: $dur $ease;
-}
-
-.login h1 a:hover,
-.login h1 a:focus,
-.login h1 a:active {
-	opacity: .8;
-	outline: 0;
-	box-shadow: none;
-}
-
-.login form {
+	background-color: $white;
+	padding: 45px 45px 50px;
+	display: flex;
+	flex-direction: column;
 	border-radius: 10px;
-	position: relative;
-	padding-top: 88px;
+	box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.2);
+	margin: 0;
+
+	form p.submit {
+		margin: 35px 0 0;
+	}
+
+	@include mq($phone + 12, min) {
+		animation: zoom-out 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) 1s both;
+		position: relative;
+		width: 330px;
+	}
+
+	@include mq($phone) {
+		padding: 45px 20px 40px;
+	}
+}
+
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	.message,
+	#login_error {
+		order: 1;
+		color: $login-text;
+		margin-bottom: 0;
+		padding: 0 12px 15px;
+		box-shadow: none;
+		text-align: center;
+		border-left: 0;
+	}
+
+	#login_error {
+		color: red;
+	}
+
+	h1 {
+		order: 2;
+
+		a {
+			background-image: url('../../images/logo.png');
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			width: 70%;
+			height: 70px;
+			transition: $dur $ease;
+			margin: 0 auto 5px;
+
+			&:hover,
+			&:focus,
+			&:active {
+				opacity: .8;
+				outline: 0;
+				box-shadow: none;
+			}
+
+			@include mq($phone) {
+				height: 55px;
+			}
+		}
+	}
+
+	form {
+		position: relative;
+		box-shadow: none;
+		margin-top: 0;
+		padding: 70px 0 0;
+		order: 3;
+	}
+
+	label {
+		font-size: 0;
+		position: relative;
+		display: block;
+		margin-bottom: 20px;
+
+		&::before {
+			font-size: 20px;
+			color: $login-text;
+			position: absolute;
+			left: 15px;
+			top: 50%;
+			transform: translateY(-50%);
+		}
+
+		br {
+			display: none;
+		}
+	}
+
+	[for="user_login"] {
+		@include font(ico-user);
+	}
+
+	[for="user_pass"] {
+		@include font(ico-lock);
+	}
+
+	form .input,
+	input[type=text] {
+		font-size: 16px;
+		font-weight: 300;
+		margin: 0;
+		padding: 12px 20px 12px 40px;
+		outline: 0;
+		border-radius: 30px;
+		transition: 0.15s ease-in-out;
+
+		@include placeholder {
+			font-size: 16px;
+			font-weight: 300;
+		}
+
+		&:focus {
+			border-color: $login-text;
+		}
+	}
+
+	form .forgetmenot,
+	.login .button-primary {
+		float: none;
+	}
+
+	form .forgetmenot {
+		margin-top: 3px;
+
+		label {
+			color: $login-text;
+		}
+
+		@include mq($phone + 1, min) {
+			label {
+				font-size: 14px;
+			}
+		}
+	}
+
+	#nav {
+		margin: 0;
+		position: absolute;
+		bottom: 137px;
+		right: 26px;
+
+		a {
+			color: $login-text;
+			text-decoration: underline;
+
+			&:focus {
+				text-decoration: none;
+				box-shadow: none;
+			}
+		}
+
+		@include mq($phone) {
+			bottom: 128px;
+			right: 0;
+
+			a {
+				font-size: 12px;
+			}
+		}
+	}
+
+	@include mq($phone) {
+		padding: 0 15px;
+	}
 }
 
 .login-title {
+	font-size: 20px;
 	position: absolute;
-	top: 34px;
+	color: $login-text;
+	top: 17px;
 	left: 0;
 	width: 100%;
 	text-align: center;
-	text-transform: uppercase;
-	font-size: 20px;
-	letter-spacing: -1px;
 }
 
-.login form .input,
-.login input[type=text] {
-	margin: 8px 0 20px;
-	outline: 0;
-	border-radius: 5px;
-}
 
-.login form .forgetmenot,
-.login .button-primary {
-	float: none;
-}
 
-#login form p.submit {
-	margin: 33px 0 0;
-}
-
-#wp-submit,
-#wp-submit:focus,
-#wp-submit:active {
+#wp-submit {
+	font-size: 16px;
+	padding: 12px;
+	background-color: $login-btn;
 	text-shadow: none;
 	box-shadow: none;
 	border: none;
-	background-color: $login-btn;
 	transition: 250ms ease;
-}
+	width: 100%;
+	border-radius: 30px;
+	text-transform: uppercase;
 
-#wp-submit:focus,
-#wp-submit:active,
-#wp-submit:hover {
-	opacity: .8;
-}
+	&:focus,
+	&:active {
+		font-size: 16px;
+		padding: 12px;
+		text-shadow: none;
+		box-shadow: none;
+		border: none;
+		background-color: $login-btn;
+		transition: 250ms ease;
+	}
 
-.login form .forgetmenot {
-	margin-top: 3px;
-}
+	&:focus,
+	&:active,
+	&:hover {
+		opacity: 0.8;
+	}
 
-.login #nav {
-	margin: 0;
-	position: absolute;
-	bottom: 55px;
-	right: 0;
-}
+	@include mq($phone + 1, min) {
+		min-width: 100px;
+		height: auto;
 
-.login #nav a {
-	color: $login-btn;
+		&:focus,
+		&:active {
+			text-transform: uppercase;
+			font-weight: bold;
+			min-width: 100px;
+			padding: 12px;
+			height: auto;
+		}
+	}
 }
 
 #backtoblog {
 	display: none;
 }
 
-@media (min-width: 768px) {
-	#login {
-		position: relative;
-		width: 384px;
+// Login Animation
+@keyframes zoom-out {
+	0% {
+		transform: scale(1.2);
+		filter: blur(2px);
+		opacity: 0;
 	}
 
-	.login form .forgetmenot label {
-		font-size: 14px;
-	}
-
-	#wp-submit,
-	#wp-submit:focus,
-	#wp-submit:active {
-		text-transform: uppercase;
-		font-weight: bold;
-		font-size: 14px;
-		min-width: 100px;
-		width: auto;
-		padding: 6px;
-		height: auto;
+	100% {
+		transform: scale(1);
+		filter: blur(0px);
+		opacity: 1;
 	}
 }
