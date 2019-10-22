@@ -1,9 +1,10 @@
 <?php
 
 class SG_Section {
-	function __construct( $sg_title, $temp_part_name ) {
+	function __construct( $sg_title, $temp_part_name, $temp_part_dir = '' ) {
 		$this->temp_title     = $sg_title;
 		$this->temp_part_name = $temp_part_name;
+		$this->temp_part_dir = $temp_part_dir;
 	}
 }
 
@@ -14,11 +15,18 @@ class SG_Element {
 	}
 }
 
+class SG_Page {
+	function __construct( $url, $title ) {
+		$this->url   = $url;
+		$this->title = $title;
+	}
+}
+
 /**
  * Render Styleguide Sections
  */
 function styleguide_render_section( $templates ) {
-	$counter       = 3;
+	$counter       = 4;
 	$temp_dir_root = 'template-views/components';
 
 	foreach ( $templates as $t ) {
@@ -32,7 +40,8 @@ function styleguide_render_section( $templates ) {
 
 			<div class="styleguide__section-content">
 				<?php
-				$temp_dir = $temp_dir_root . '/' . $t->temp_part_name . '/_fe-' . $t->temp_part_name;
+				$temp_dir_subfolder = $t->temp_part_dir != '' ? $t->temp_part_dir : $t->temp_part_name;
+				$temp_dir = $temp_dir_root . '/' . $temp_dir_subfolder . '/_fe-' . $t->temp_part_name;
 				get_template_part( $temp_dir );
 				?>
 			</div>
@@ -68,6 +77,35 @@ function styleguide_render_section_wrap( $title, $section_id, $content, $row = f
 }
 
 /**
+ * Render Styleguide List of all Pages
+ */
+function styleguide_get_pages( $pages ) {
+	ob_start();
+	?>
+
+	<div class="entry-content">
+		<ol>
+			<?php foreach ( $pages as $page ) { ?>
+				<li>
+					<a href="<?php echo $page->url; ?>" target="_blank" rel="noopener"><?php echo $page->title; ?></a>
+				</li>
+			<?php } ?>
+		</ol>
+	</div>
+
+	<?php
+	$pages_html = ob_get_contents();
+	ob_end_clean();
+
+	return $pages_html;
+}
+
+function styleguide_render_pages( $pages ) {
+	$pages_html = styleguide_get_pages( $pages );
+	styleguide_render_section_wrap( 'Pages', 'section-0', $pages_html );
+}
+
+/**
  * Render Styleguide Colors
  */
 function styleguide_get_colors( $colors ) {
@@ -92,7 +130,7 @@ function styleguide_get_colors( $colors ) {
 
 function styleguide_render_colors( $colors ) {
 	$colors_html = styleguide_get_colors( $colors );
-	styleguide_render_section_wrap( 'Colors', 'section-0', $colors_html );
+	styleguide_render_section_wrap( 'Colors', 'section-1', $colors_html );
 }
 
 
@@ -121,7 +159,7 @@ function styleguide_get_buttons( $buttons ) {
 
 function styleguide_render_buttons( $buttons ) {
 	$buttons_html = styleguide_get_buttons( $buttons );
-	styleguide_render_section_wrap( 'Buttons', 'section-2', $buttons_html );
+	styleguide_render_section_wrap( 'Buttons', 'section-3', $buttons_html );
 }
 
 /**
@@ -177,5 +215,5 @@ function styleguide_render_typography( $titles ) {
 
 	$content = $titles_html . $entry_content_html;
 
-	styleguide_render_section_wrap( 'Typography', 'section-1', $content, true );
+	styleguide_render_section_wrap( 'Typography', 'section-2', $content, true );
 }

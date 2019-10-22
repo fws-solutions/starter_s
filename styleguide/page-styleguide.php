@@ -27,6 +27,7 @@ get_header(); ?>
 
 				<?php
 				// Base
+				get_template_part('styleguide/sg', 'pages-list');
 				get_template_part('styleguide/sg', 'colors');
 				get_template_part('styleguide/sg', 'typography');
 				get_template_part('styleguide/sg', 'buttons');
