@@ -384,15 +384,19 @@ class ACF
 	 */
 	public function saveGroupCategoryJson( array $field_group ): array
 	{
-		$post_id = get_posts( [
+		$post_ids = get_posts( [
 			'name' => $field_group['key'],
 			'post_type' => 'acf-field-group',
 			'post_status' => 'acf-disabled',
 			'posts_per_page' => 1,
 			'fields' => 'ids'
-		] )[0];
+		] );
 
-		$terms = wp_get_object_terms( $post_id, [ 'acf-field-group-category' ], [ 'hide_empty' => true ] );
+		if ( ! isset( $post_ids[0] ) ) {
+			return $field_group;
+		}
+
+		$terms = wp_get_object_terms( $post_ids[0], [ 'acf-field-group-category' ], [ 'hide_empty' => true ] );
 
 		if ( count( $terms ) ) {
 
