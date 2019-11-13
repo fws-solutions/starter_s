@@ -41,7 +41,7 @@ gulp.task('build', gulp.series(
 	gulp.parallel(
 		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css'),
-		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
+		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS), gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),
@@ -56,7 +56,7 @@ gulp.task('build-dev', gulp.series(
 	gulp.parallel(
 		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css'),
-		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
+		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS), gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),
@@ -98,7 +98,7 @@ gulp.task('watch', gulp.series(
 	gulp.parallel(
 		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css'),
-		gulp.series(gtJs.siteJS, gtJs.pluginsJS, gtJs.mergeJS, gtJs.cleanJS),
+		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS), gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),
