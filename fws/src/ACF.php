@@ -258,6 +258,9 @@ class ACF
 			return;
 		}
 
+		// Remove hook to prevent redirect loop
+		remove_action( 'pre_post_update', [ $this, 'preventEditingGroups' ], 10 );
+
 		$sync = [];
 
 		$groups = acf_get_field_groups();
