@@ -3,7 +3,7 @@ const {VueLoaderPlugin} = require('vue-loader');
 
 module.exports = {
 	// mode set in gulpfile
-	entry: join(__dirname, 'vue/app.js'),
+	entry: join(__dirname, 'assets/vue/app.js'),
 	output: {
 		path: join(__dirname, 'build'),
 		filename: 'build.js'
@@ -26,7 +26,15 @@ module.exports = {
 				use: [
 					'vue-style-loader',
 					'css-loader',
-					'sass-loader'
+					{
+						loader: 'sass-loader',
+						options: {
+							prependData: `
+								@import "./assets/sass/config/_variables.scss";
+								@import "./assets/sass/helpers/_mixins.scss";
+							`
+						}
+					}
 				]
 			}
 		]

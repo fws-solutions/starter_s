@@ -10,6 +10,9 @@ if ( $flexible_content ) {
 			case 'slider':
 				fws()->render->templateView( $fc, 'slider' );
 				break;
+			case 'vue_block':
+				fws()->render->templateView( $fc, 'vue-block' );
+				break;
 			default:
 				fws()->render->templateView( $fc, 'basic-block' );
 		}

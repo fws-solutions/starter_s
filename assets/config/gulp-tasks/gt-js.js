@@ -34,7 +34,7 @@ gulp.task('vue-js', vueJS);
 webpackVue.mode = globalVars.productionBuild ? 'production' : 'development';
 
 function vueJS() {
-	return gulp.src('vue/app.js')
+	return gulp.src('assets/vue/app.js')
 		.pipe(plumber())
 		.pipe(webpack(webpackVue))
 		.pipe(gulp.dest(destDir));

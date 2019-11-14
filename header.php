@@ -44,6 +44,4 @@
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
-	<div id="app"></div>
-
 	<div id="content" class="site-content">
