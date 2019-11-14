@@ -1,27 +1,44 @@
 <template>
 	<div class="vue-block">
 		<div class="vue-block__container container">
-			<h1 class="vue-block__title section-title">{{title}}</h1>
-
-			<div class="entry-content">
-				<p>This count is: <strong>{{count}}</strong></p>
-			</div>
-
-			<button class="vue-block__btn btn" @click="inc">Incrament!</button>
+			<Count :title="title" :count="count" :inc="inc"/>
+			<List :title="subtitle" :pages="pages" />
 		</div>
 	</div>
 </template>
 
 <script>
+	import Count from './parts/Count.vue';
+	import List from './parts/List.vue';
+
 	export default {
+		beforeMount() {
+			this.$store.dispatch('setPages');
+		},
+
+		data() {
+			return {
+				subtitle: 'This is subtitle'
+			}
+		},
+
+		components: {
+			Count,
+			List
+		},
+
 		computed: {
 			title() {
 				return this.$store.getters.getTitle;
 			},
 			count() {
 				return this.$store.getters.getCount;
+			},
+			pages() {
+				return this.$store.getters.getPages;
 			}
 		},
+
 		methods: {
 			inc() {
 				this.$store.commit('increment');
@@ -30,7 +47,7 @@
 	};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.vue-block {
 		padding: 50px 0;
 	}
@@ -41,14 +58,5 @@
 		border-style: solid;
 		padding-top: 50px;
 		padding-bottom: 50px;
-	}
-
-	.vue-block__title {
-		margin-bottom: 30px;
-		color: $red;
-	}
-
-	.vue-block__btn {
-		margin-top: 30px;
 	}
 </style>
