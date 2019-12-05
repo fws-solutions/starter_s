@@ -20,13 +20,13 @@ trait Main
 	 */
 	private function __construct()
 	{
-		$this->hookersAndCocaine();
+		$this->hooks();
 	}
 
 	/**
-	 * Hookers live here.
+	 * Drop your hooks here.
 	 */
-	private function hookersAndCocaine(): void
+	private function hooks(): void
 	{
 		// Exists to make it optional
 	}

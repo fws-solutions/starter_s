@@ -29,13 +29,13 @@ class ACF
 			return;
 		}
 
-		$this->hookersAndCocaine();
+		$this->hooks();
 	}
 
 	/**
-	 * Hookers live here.
+	 * Drop your hooks here.
 	 */
-	private function hookersAndCocaine(): void
+	private function hooks(): void
 	{
 		// Actions
 		add_action( 'init', [ $this, 'acfInit' ] );
