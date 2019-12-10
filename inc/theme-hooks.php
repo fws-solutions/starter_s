@@ -99,3 +99,22 @@ function starter_s_dependencies() {
 	}
 }
 add_action( 'admin_notices', 'starter_s_dependencies' );
+
+/**
+ * Change the fatal error handler email address from admin's to our internal
+ *
+ * @param array $data
+ *
+ * @return array
+ */
+function starter_s_recovery_mode_email( array $data ): array
+{
+	$data['to'] = [
+		'hello@forwardslashny.com',
+		'boris@forwardslashny.com'
+	];
+
+	return $data;
+}
+
+add_filter( 'recovery_mode_email', 'starter_s_recovery_mode_email' );
