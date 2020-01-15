@@ -7,14 +7,14 @@ gulp.task('watch-files', watchFiles);
 
 function watchFiles(done) {
 	// watch .scss files
-	gulp.watch(['assets/sass/**/*.scss', 'template-views/**/**/*.scss'], gulp.parallel(['css', 'sass-lint']));
-	gulp.watch(['assets/config/customize-dashboard/*.scss'], gulp.parallel(['css-dash', 'css-login']));
+	gulp.watch(['src/scss/**/*.scss', 'template-views/**/**/*.scss'], gulp.parallel(['css', 'sass-lint']));
+	gulp.watch(['src/config/customize-dashboard/*.scss'], gulp.parallel(['css-dash', 'css-login']));
 
 	// watch .js files
-	gulp.watch('assets/js/**/*.js', gulp.series('js'));
+	gulp.watch('src/js/**/*.js', gulp.series('js'));
 
 	// watch vue folder
-	gulp.watch('assets/vue/**', gulp.series('js'));
+	gulp.watch('src/vue/**', gulp.series('js'));
 
 	// watch .scss files
 	gulp.watch(['__fe-template-parts/**/*.php'], gulp.parallel(['html-lint-fe', 'html-w3']));

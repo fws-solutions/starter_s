@@ -21,7 +21,7 @@ gulp.task('js', gulp.series(gulp.parallel(siteJS, pluginsJS, vueJS), mergeJS, cl
 gulp.task('site-js', siteJS);
 
 function siteJS() {
-	return gulp.src('assets/js/**.js')
+	return gulp.src('src/js/**.js')
 		.pipe(plumber())
 		.pipe(webpack(webpackConfig))
 		.pipe(gulpif(globalVars.productionBuild, uglify()))
@@ -34,7 +34,7 @@ gulp.task('vue-js', vueJS);
 webpackVue.mode = globalVars.productionBuild ? 'production' : 'development';
 
 function vueJS() {
-	return gulp.src('assets/vue/app.js')
+	return gulp.src('src/vue/app.js')
 		.pipe(plumber())
 		.pipe(webpack(webpackVue))
 		.pipe(gulp.dest(destDir));
@@ -44,7 +44,7 @@ function vueJS() {
 gulp.task('lint-js', lintJS);
 
 function lintJS() {
-	return gulp.src('assets/js/**/*.js')
+	return gulp.src('src/js/**/*.js')
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
@@ -54,7 +54,7 @@ function lintJS() {
 gulp.task('plugins-js', pluginsJS);
 
 function pluginsJS() {
-	return gulp.src(['assets/js/_plugins/**/*.js'])
+	return gulp.src(['src/js/_plugins/**/*.js'])
 		.pipe(concat('plugins.js'))
 		.pipe(gulp.dest(destDir));
 }

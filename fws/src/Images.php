@@ -14,7 +14,7 @@ class Images
 
 	use Main;
 
-	/** Render image src from assets/images or __demo directory.
+	/** Render image src from src/assets/images or __demo directory.
 	 *
 	 * @param string $image_file
 	 * @param bool $is_demo
@@ -23,7 +23,7 @@ class Images
 	 */
 	public function assets_src( string $image_file, bool $is_demo = false ): string
 	{
-		return get_template_directory_uri() . ($is_demo ? '/__demo/' : '/assets/images/') . $image_file;
+		return get_template_directory_uri() . ($is_demo ? '/__demo/' : '/src/assets/images/') . $image_file;
 	}
 
 }

@@ -70,9 +70,9 @@ add_action( 'login_head', 'starter_s_remove_login_shake' );
 
 // add custom stylesheet
 function starter_s_add_login_styles() {
-	wp_enqueue_style('starter_s-login-style', get_template_directory_uri() . '/assets/config/customize-dashboard/login.css' );
+	wp_enqueue_style('starter_s-login-style', get_template_directory_uri() . '/src/config/customize-dashboard/login.css' );
 
-	wp_enqueue_script('starter_s-login-script', get_template_directory_uri() . '/assets/config/customize-dashboard/login.js', array(), '', true);
+	wp_enqueue_script('starter_s-login-script', get_template_directory_uri() . '/src/config/customize-dashboard/login.js', array(), '', true);
 }
 add_action( 'login_enqueue_scripts', 'starter_s_add_login_styles' );
 

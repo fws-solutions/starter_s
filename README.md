@@ -44,7 +44,7 @@ This command will create new module files in appropriate directory `template-vie
 * .php
 * .scss
 
-It will also update appropriate scss file `_components.scss` or `_partials.scss` in `assets/sass/layout` directory.
+It will also update appropriate scss file `_components.scss` or `_partials.scss` in `src/scss/layout` directory.
 
 ### Generate Font Icons
 
@@ -263,7 +263,7 @@ Few things to keep in mind, when auto generating Flexible Content layouts from a
 
 Field Group: FC Basic Block will translate into Flexible Content layout:
 Label: Basic Block
-Name: basic_block 
+Name: basic_block
 
 When needed to create more Flexible Content field groups with specific number of options, use registerFlexContent() function with required configuration.
 
@@ -306,10 +306,10 @@ List of all helper functions from this Starter Theme:
     - templateView() - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
     - acfLinkField() - *Renders ACF link field with all field params.*
 - Images.php
-    - assets_src() - *Render image src from 'assets/images' or '__demo' directory.*
+    - assets_src() - *Render image src from 'src/assets/images' or '__demo' directory.*
 - ACF.php
     - registerFlexContent() - *Register new flexible content field group.*
-   
+
 All helper functions are defined as methods in defined classes that are all loading from *fws/FWS.php* file.
 
 Each method is available through instance of FWS class and instances of other classes located in *fws/src* directory.

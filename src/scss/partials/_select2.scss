@@ -32,7 +32,8 @@
 			height: 34px;
 			width: 30px;
 			right: 0;
-			@include font(ico-chevron-down);
+			// TODO: replace with SVG icon
+			//@include font(ico-chevron-down);
 
 			&::before {
 				@include center;

@@ -4,23 +4,23 @@ const tap = require('gulp-tap');
 const fs = require('fs');
 const path = require('path');
 const colors = require('ansi-colors');
-const globalVars = require('./assets/config/gulp-tasks/_global-vars');
+const globalVars = require('./src/config/gulp-tasks/_global-vars');
 
 /*----------------------------------------------------------------------------------------------
 	Prepare and Run all Gulp Tasks
  ----------------------------------------------------------------------------------------------*/
 const localURL = 'http://starter.local/';
-const sassSRC = ['assets/sass/**/*.scss', 'template-views/**/**/*.scss'];
+const sassSRC = ['src/scss/**/*.scss', 'template-views/**/**/*.scss'];
 
 module.exports = {
 	localURL: localURL
 };
 
-require('./assets/config/gulp-tasks/gt-cf');
-const gtHtmlLint = require('./assets/config/gulp-tasks/gt-htmllint');
-const gtCss = require('./assets/config/gulp-tasks/gt-css');
-const gtJs = require('./assets/config/gulp-tasks/gt-js');
-const gtWatch = require('./assets/config/gulp-tasks/gt-watch');
+require('./src/config/gulp-tasks/gt-cf');
+const gtHtmlLint = require('./src/config/gulp-tasks/gt-htmllint');
+const gtCss = require('./src/config/gulp-tasks/gt-css');
+const gtJs = require('./src/config/gulp-tasks/gt-js');
+const gtWatch = require('./src/config/gulp-tasks/gt-watch');
 
 // prepare for build
 function prodBuild(done) {

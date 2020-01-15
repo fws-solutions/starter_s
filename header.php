@@ -27,7 +27,7 @@
 
 	<header id="masthead" class="site-header">
 		<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-			<img class="site-header__logo-img" src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
+			<img class="site-header__logo-img" src="<?php echo get_template_directory_uri(); ?>/src/assets/images/logo.png" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
 		</a><!-- .site-branding -->
 
 		<a href="javascript:;" class="menu-btn js-menu-btn"><span></span></a>    <!-- menu-button -->

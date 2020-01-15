@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	mode: 'none',
-	entry: './assets/js/site.js',
+	entry: './src/js/site.js',
 	output: {
 		path: path.join(__dirname, './dist/'),
 		filename: 'site.js'

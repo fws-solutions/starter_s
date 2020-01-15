@@ -4,7 +4,7 @@ const notify = require('gulp-notify');
 module.exports = {
 	productionBuild: false,
 	distAssets: [],
-	warningTemp: 'assets/config/cf-templates/warning-log-temp.txt',
+	warningTemp: 'src/config/cf-templates/warning-log-temp.txt',
 	msgERROR: {
 		errorHandler: notify.onError({
 			title: 'Please, fix the ERROR below:',

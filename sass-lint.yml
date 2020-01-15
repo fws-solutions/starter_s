@@ -3,16 +3,11 @@ options:
 files:
   include: '**/*.s+(a|c)ss'
   ignore:
-    - 'assets/sass/helpers/_print.scss'
-    - 'assets/sass/helpers/_mixins.scss'
-    - 'assets/sass/helpers/_helpers.scss'
-    - 'assets/sass/layout/_sprite.scss'
-    - 'assets/sass/base/_icon-font.scss'
-    - 'assets/sass/config/_reset.scss'
-    - 'assets/sass/bootstrap/_grid-breakpoints.scss'
-    - 'assets/sass/bootstrap/_grid-framework.scss'
-    - 'assets/sass/bootstrap/_grid-layout.scss'
-    - 'assets/sass/bootstrap/_grid.scss'
+    - 'src/scss/helpers/*.scss'
+    - 'src/scss/layout/_sprite.scss'
+    - 'src/scss/base/_icon-font.scss'
+    - 'src/scss/config/_reset.scss'
+    - 'src/scss/bootstrap/*.scss'
 
 rules:
   attribute-quotes: 2

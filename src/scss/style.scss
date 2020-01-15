@@ -20,6 +20,7 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
+# Plugins
 # Reset and Variables
 # Helpers
 # Bootstrap
@@ -29,7 +30,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 # Parts
 # Components / Templates
 --------------------------------------------------------------*/
-
 
 /*--------------------------------------------------------------
 # Reset and Variables
@@ -72,11 +72,11 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 # Parts
 --------------------------------------------------------------*/
-@import 'parts/buttons';
-@import 'parts/forms';
-@import 'parts/media';
-@import 'parts/popup';
-@import 'parts/select2';
+@import 'partials/buttons';
+@import 'partials/forms';
+@import 'partials/media';
+@import 'partials/popup';
+@import 'partials/select2';
 
 /*--------------------------------------------------------------
 # Main

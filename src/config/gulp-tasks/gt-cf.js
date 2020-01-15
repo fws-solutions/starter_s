@@ -25,8 +25,8 @@ function createFiles(arg, type) {
 			filename = `${arg}.php`;
 		}
 
-		const styleSRC = `assets/sass/layout/_${part}.scss`;
-		const readDir = file === 'style' ? styleSRC : `assets/config/cf-templates/${temp}`;
+		const styleSRC = `src/scss/layout/_${part}.scss`;
+		const readDir = file === 'style' ? styleSRC : `src/config/cf-templates/${temp}`;
 		const writeDir = file === 'style' ? styleSRC : `${directory}/${filename}`;
 
 		globalVars.rf(readDir, function (data) {
@@ -51,7 +51,7 @@ function createFiles(arg, type) {
 		create('scss');
 		create('style');
 
-		globalVars.logMSG(`assets/config/cf-templates/${type}-log-temp.txt`, arg, 'green');
+		globalVars.logMSG(`src/config/cf-templates/${type}-log-temp.txt`, arg, 'green');
 	} else {
 		globalVars.logMSG(globalVars.warningTemp, `ERROR: ${type} '${arg}' already exists`);
 	}

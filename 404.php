@@ -11,7 +11,7 @@ get_header(); ?>
 
 <div class="s-404__wrap">
     <a class="s-404__logo" href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="logo-small">
+        <img src="<?php echo get_template_directory_uri(); ?>/src/assets/images/logo.png" alt="logo-small">
     </a>
     <h1 class="s-404__title">
         <span class="s-404__title-1">4</span>

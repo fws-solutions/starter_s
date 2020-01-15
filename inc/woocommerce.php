@@ -30,7 +30,7 @@ add_action( 'after_setup_theme', 'starter_s_woocommerce_setup' );
  * @return void
  */
 function starter_s_woocommerce_scripts() {
-	$font_path   = WC()->plugin_url() . '/assets/fonts/';
+	$font_path   = WC()->plugin_url() . '/src/assets/fonts/';
 	$inline_font = '@font-face {
 			font-family: "star";
 			src: url("' . $font_path . 'star.eot");

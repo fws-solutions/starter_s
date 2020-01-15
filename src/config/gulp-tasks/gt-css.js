@@ -14,11 +14,11 @@ const globalVars = require('./_global-vars');
 /*----------------------------------------------------------------------------------------------
 	SCSS
  ----------------------------------------------------------------------------------------------*/
-const sassSRC = ['assets/sass/**/*.scss', 'template-views/**/**/*.scss'];
-const dashSassSRC = ['assets/config/customize-dashboard/dashboard.scss'];
-const loginSassSRC = ['assets/config/customize-dashboard/login.scss'];
-const dashDistSRC = 'assets/config/customize-dashboard/dashboard.css';
-const loginDistSRC = 'assets/config/customize-dashboard/login.css';
+const sassSRC = ['src/scss/**/*.scss', 'template-views/**/**/*.scss'];
+const dashSassSRC = ['src/config/customize-dashboard/dashboard.scss'];
+const loginSassSRC = ['src/config/customize-dashboard/login.scss'];
+const dashDistSRC = 'src/config/customize-dashboard/dashboard.css';
+const loginDistSRC = 'src/config/customize-dashboard/login.css';
 
 const processors = [
 	autoprefixer({overrideBrowserslist: ['last 2 versions', 'ios >= 8']}),
@@ -44,7 +44,7 @@ function css(src, name) {
 }
 
 function pluginsCss() {
-	return gulp.src(['assets/css-plugins/*.css'])
+	return gulp.src(['src/css/*.css'])
 		.pipe(concatCss('plugins.min.css'))
 		.pipe(cleanCss())
 		.pipe(gulp.dest('dist'));

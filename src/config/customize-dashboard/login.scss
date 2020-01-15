@@ -1,7 +1,7 @@
-@import '../../sass/config/variables';
-@import '../../sass/helpers/mixins';
-@import '../../sass/helpers/helpers';
-@import '../../sass/base/icon-font';
+@import '../../scss/config/variables';
+@import '../../scss/helpers/mixins';
+@import '../../scss/helpers/helpers';
+@import '../../scss/base/icon-font';
 
 @font-face {
 	font-family: "fonticons";
@@ -62,7 +62,7 @@ body {
 		order: 2;
 
 		a {
-			background-image: url('../../images/logo.png');
+			background-image: url('../../assets/images/logo.png');
 			background-size: contain;
 			background-position: center;
 			background-repeat: no-repeat;
