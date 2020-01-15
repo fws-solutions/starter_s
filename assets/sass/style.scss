@@ -37,7 +37,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 @import 'config/reset';
 @import 'base/fonts';
 @import 'config/variables';
-@import 'base/icon-font';
 
 /*--------------------------------------------------------------
 # Helpers
@@ -91,6 +90,6 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 # Components / Templates
 --------------------------------------------------------------*/
-@import 'layout/partials';
-@import 'layout/components';
+@import 'layout/parts';
+@import 'layout/blocks';
 

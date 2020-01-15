@@ -1,3 +1,0 @@
-<div class="@{partial}">
-	<span>@{partial} title</span>
-</div><!-- .@{partial} -->

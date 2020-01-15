@@ -5,6 +5,6 @@
 extract( (array) get_query_var( 'content-components' ) );
 ?>
 
-<div class="@{component}">
+<div class="@{block}">
 	<h2><?php echo $title; ?></h2>
-</div><!-- .@{component} -->
+</div><!-- .@{block} -->

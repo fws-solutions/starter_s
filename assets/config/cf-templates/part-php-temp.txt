@@ -5,6 +5,6 @@
 extract( (array) get_query_var( 'content-partials' ) );
 ?>
 
-<div class="@{partial}">
+<div class="@{part}">
 	<span><?php echo $title; ?></span>
-</div><!-- .@{partial} -->
+</div><!-- .@{part} -->

@@ -58,12 +58,12 @@ function createFiles(arg, type) {
 }
 
 function cf(done) {
-	if (argv.component && typeof argv.component === 'string') {
+	if (argv.block && typeof argv.block === 'string') {
 		// create component TWIG, JSON and SCSS files
-		createFiles(argv.component.toLowerCase(), 'component');
-	} else if (argv.partial && typeof argv.partial === 'string') {
+		createFiles(argv.block.toLowerCase(), 'block');
+	} else if (argv.part && typeof argv.part === 'string') {
 		// create partial TWIG and SCSS files
-		createFiles(argv.partial.toLowerCase(), 'partial');
+		createFiles(argv.part.toLowerCase(), 'part');
 	} else {
 		globalVars.logMSG(globalVars.warningTemp, 'ERROR: no parameters were passed');
 	}

@@ -16,7 +16,6 @@ module.exports = {
 	localURL: localURL
 };
 
-require('./assets/config/gulp-tasks/gt-iconfonts');
 require('./assets/config/gulp-tasks/gt-cf');
 const gtHtmlLint = require('./assets/config/gulp-tasks/gt-htmllint');
 const gtCss = require('./assets/config/gulp-tasks/gt-css');
