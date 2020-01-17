@@ -27,7 +27,7 @@ extract( (array) get_query_var( 'content-components' ) );
 	<?php endif; ?>
 
 	<div class="banner__caption">
-		<span class="banner__caption-icon font-ico-happy"></span>
+		<?php echo fws()->render->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
 		<h1 class="banner__caption-title js-scroll-link" data-scroll-to="slider"><?php echo $title; ?></h1>
 		<p class="banner__caption-text"><?php echo $subtitle; ?></p>
 		<?php echo fws()->render->acfLinkField($button, 'banner__btn btn'); ?>

@@ -7,7 +7,7 @@
 	</picture>
 
 	<div class="banner__caption">
-		<span class="banner__caption-icon font-ico-happy"></span>
+		<?php echo fws()->render->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
 		<h1 class="banner__caption-title">Banner Title</h1>
 		<p class="banner__caption-text">Here goes description paragraph</p>
 		<a class="js-popup-trigger popup-trigger btn" href="javascript:;">Open Popup</a>

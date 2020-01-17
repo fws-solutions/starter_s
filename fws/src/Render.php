@@ -57,6 +57,19 @@ class Render
 
 		return $link_html;
 	}
+
+	/**
+	 * Renders an inline SVG file.
+	 *
+	 * @param string $svg_name
+	 * @param string $classes
+	 */
+	public function inlineSVG( string $svg_name, string $classes = '' ): string
+	{
+		$svg_classes = $classes ? $classes . ' ' : '';
+		$svg = file_get_contents(get_template_directory_uri() . '/src/assets/svg/' . $svg_name . '.svg');
+		return '<span class="' . $svg_classes . 'svg-icon">' . $svg . '</span>';
+	}
 }
 
 return Render::getInstance();

@@ -14,9 +14,9 @@ get_header();
 do_action( 'starter_s_before_main_content' );
 
 // get content blocks
-get_template_part( 'template-views/components/banner/_fe-banner' );
-get_template_part( 'template-views/components/basic-block/_fe-basic-block' );
-get_template_part( 'template-views/components/slider/_fe-slider' );
+get_template_part( 'template-views/blocks/banner/_fe-banner' );
+get_template_part( 'template-views/blocks/basic-block/_fe-basic-block' );
+get_template_part( 'template-views/blocks/slider/_fe-slider' );
 
 // close main content wrappers
 do_action( 'starter_s_after_main_content' );

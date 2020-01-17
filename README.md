@@ -1,5 +1,5 @@
 # _S WP Starter
-*Version: 2.0.0*
+*Version: 2.1.0*
 
 > Do Not Underestimate The Power Of
   WordPress.
@@ -7,70 +7,88 @@
 
 
 ## Installation Instructions
+Install Forwardslash CLI globaly (if you haven't already).
+
+    npm i forwardslash-cli -g
 
 Install dependencies by running Node.js package manager.
 
-       npm install
+    npm install
 
 
-## Gulp Tasks
+## CLI
+For the full list of all commands, execute `fws --help`.
+
+    fws --help
+
 ### Building Files
 
-To create development version files, execute `gulp build-dev` task.
+To create development version files, execute `fws dev` task.
 
-    gulp build-dev
+    fws dev
 
-To create production version files, execute `gulp build` task.
+To create production version files, execute `fws build` task.
 
-    gulp build
+    fws build
 
-*please note that build tasks will NOT generate font icons*
+*Please note that build tasks will NOT handle SVG icons.*
 
 
 ### Starting Dev Mode
 
-To start *watch mode* and *local server*, execute `gulp watch` task.
+To start *watch mode* and *local server*, execute `fws watch` task.
 
-    gulp watch
+    fws watch
 
 ### Creating Views
 
-To create a new view, execute `gulp cf` task and pass `--component` or `--partial` with an argument.
+To create a new view, execute `fws creates files` command and pass `--block` or `--part` with an argument.
 
-    gulp cf --component component-name
-    gulp cf --partial partial-name
+    fws create-file component-name --block
+    fws create-file part-name --part
 
-This command will create new module files in appropriate directory `template-views/components` or `template-views/partial`:
+Alternatevly, it is possible and **recommended** to use short aliases.
+
+    fws cf component-name -b
+    fws cf part-name -p
+
+Note that in this case the option argument is passed with one '-' instead of two '--'.
+
+This command will create new module files in appropriate directory `template-views/blocks` or `template-views/parts`:
 * .php
 * .scss
 
-It will also update appropriate scss file `_components.scss` or `_partials.scss` in `src/scss/layout` directory.
+It will also update appropriate scss file `_blocks.scss` or `_parts.scss` in `src/scss/layout` directory.
 
-### Generate Font Icons
+### SVG Icons
 
-To generate font icons, execute `gulp fonticons` task.
+To generate SVG icons, execute `fws icons` task.
 
-    gulp fonticons
+    fws icons
 
-This command will generate fonts:
- * .woff
- * .woff2
- * .ttf
+This command will optimize all SVG files in `src/assets/svg` directory directory.
 
- in `dist/icons` directory based on svg files from `src/assets/svg` directory.
+It will then be possible to use `inlineSVG` render function to import a SVG file as an inline element in any template.
 
- It will also update `_icon-font.scss` file in `src/scss/base` directory.
+To achive this use function as shown in this example `fws()->render->inlineSVG('ico-happy', 'banner__caption-icon')`.
 
-See this file for css classes you can use to display font icons.
+The first argument is the name of the file.
 
-In order to show icons, all you need to do is add class `"icon font-ico-heart"`
+The second argument is additional classes.
 
-    <span class="icon font-ico-heart"></span>
+
+    Example:
+    <?php echo fws()->render->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
+
+    Will render:
+    <span class="banner__caption-icon svg-icon">
+        <svg>...</svg>
+    </span>
 
 ## SCSS
 All components and parts styles should be written in corresponding directory.
 
-All global styles should be written in `src/sass` directories.
+All global styles should be written in `src/scss` directories.
 
 CSS code quality is checked with [Sass Lint](https://github.com/sasstools/sass-lint)
 
@@ -305,6 +323,7 @@ List of all helper functions from this Starter Theme:
 - Render.php
     - templateView() - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
     - acfLinkField() - *Renders ACF link field with all field params.*
+    - inlineSVG() - *Renders an inline SVG into any template.*
 - Images.php
     - assets_src() - *Render image src from 'src/assets/images' or '__demo' directory.*
 - ACF.php

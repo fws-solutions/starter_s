@@ -27,7 +27,7 @@ class SG_Page {
  */
 function styleguide_render_section( $templates ) {
 	$counter       = 4;
-	$temp_dir_root = 'template-views/components';
+	$temp_dir_root = 'template-views/blocks';
 
 	foreach ( $templates as $t ) {
 		?>
