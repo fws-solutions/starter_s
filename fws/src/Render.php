@@ -7,7 +7,7 @@ namespace FWS;
  * Singleton Class Render
  *
  * @package FWS
- * @author Nikola Topalovic <nick@forwardslashny.com>
+ * @author  Nikola Topalovic <nick@forwardslashny.com>
  */
 class Render
 {
@@ -18,15 +18,15 @@ class Render
 	 * Renders template component or part with configured *array* variable that maps out template view's variables.
 	 * The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.
 	 *
-	 * @param array $view_vals
-	 * @param string $view_name
+	 * @param array   $view_vals
+	 * @param string  $view_name
 	 * @param boolean $is_partial
 	 */
 	public function templateView( $view_vals, string $view_name, bool $is_partial = false ): void
 	{
-		$view_type     = ! $is_partial ? 'components' : 'partials';
+		$view_type = ! $is_partial ? 'components' : 'partials';
 		$view_var_name = 'content-' . $view_type;
-		$view_dir      = 'template-views/' . $view_type . '/' . $view_name . '/' . $view_name;
+		$view_dir = 'template-views/' . $view_type . '/' . $view_name . '/' . $view_name;
 
 		if ( $view_vals ) {
 			set_query_var( $view_var_name, $view_vals );
@@ -37,7 +37,7 @@ class Render
 	/**
 	 * Renders ACF link field with all field params.
 	 *
-	 * @param array $link_field
+	 * @param array  $link_field
 	 * @param string $link_classes
 	 *
 	 * @return string
@@ -47,9 +47,9 @@ class Render
 		$link_html = '';
 
 		if ( $link_field ) {
-			$link_url     = $link_field['url'];
-			$link_title   = $link_field['title'];
-			$link_target  = $link_field['target'] ? $link_field['target'] : '_self';
+			$link_url = $link_field['url'];
+			$link_title = $link_field['title'];
+			$link_target = $link_field['target'] ? $link_field['target'] : '_self';
 			$link_classes = $link_classes ? 'class="' . $link_classes . '"' : '';
 
 			$link_html = '<a ' . $link_classes . ' href="' . esc_url( $link_url ) . '" target="' . esc_attr( $link_target ) . '">' . esc_html( $link_title ) . '</a>';
@@ -63,13 +63,36 @@ class Render
 	 *
 	 * @param string $svg_name
 	 * @param string $classes
+	 *
+	 * @return string
 	 */
 	public function inlineSVG( string $svg_name, string $classes = '' ): string
 	{
 		$svg_classes = $classes ? $classes . ' ' : '';
-		$svg = file_get_contents(get_template_directory_uri() . '/src/assets/svg/' . $svg_name . '.svg');
+		$svg = file_get_contents( get_template_directory_uri() . '/src/assets/svg/' . $svg_name . '.svg' );
+
 		return '<span class="' . $svg_classes . 'svg-icon">' . $svg . '</span>';
 	}
+
+	/**
+	 * Prints HTML with meta information for the current post-date/time and author.
+	 *
+	 * @param string $format
+	 *
+	 * @return string
+	 */
+	public function fws_posted_on( string $format = '' ): string
+	{
+		$date = get_the_date( $format );
+		$link = get_the_permalink();
+		$author = get_the_author();
+		$author_page_link = get_author_posts_url( get_the_author_meta( 'ID' ) );
+
+		$html = '<div class="entry-meta"><span class="posted-on">Posted on <a href="' . $link . '" class="post_url"><span>' . $date . '</span></a> by <a class="author_name" href="' . $author_page_link . '">' . $author . '</a></span></div>';
+
+		return $html;
+	}
+
 }
 
 return Render::getInstance();
