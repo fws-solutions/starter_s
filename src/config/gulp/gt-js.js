@@ -6,8 +6,9 @@ const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const eslint = require('gulp-eslint');
 const webpack = require('webpack-stream');
-const webpackConfig = require('../../../webpack.config.js');
-const webpackVue = require('../../../webpack.vue.js');
+const webpackConfig = require('../webpack/webpack.config.js');
+const webpackVue = require('../webpack/webpack.config.vue.js');
+const webpackAdmin = require('../webpack/webpack.config.admin.js');
 const gulpif = require('gulp-if');
 const globalVars = require('./_global-vars');
 const destDir = 'dist';
@@ -15,7 +16,20 @@ const destDir = 'dist';
 /*----------------------------------------------------------------------------------------------
 	JS
  ----------------------------------------------------------------------------------------------*/
-gulp.task('js', gulp.series(gulp.parallel(siteJS, pluginsJS, vueJS), mergeJS, cleanJS));
+gulp.task('js', gulp.series(gulp.parallel(siteJS, pluginsJS, vueJS, adminJS), mergeJS, cleanJS));
+
+// task: build admin javascript
+gulp.task('admin-js', adminJS);
+
+function adminJS() {
+	return gulp.src('src/config/admin/js/**.js')
+		.pipe(plumber())
+		.pipe(sourcemaps.init())
+		.pipe(webpack(webpackAdmin))
+		.pipe(gulpif(globalVars.productionBuild, uglify()))
+		.pipe(sourcemaps.write('.'))
+		.pipe(gulp.dest(destDir));
+}
 
 // task: build javascript
 gulp.task('site-js', siteJS);
@@ -88,6 +102,7 @@ function cleanJS() {
 
 // export tasks
 module.exports = {
+	adminJS: adminJS,
 	siteJS: siteJS,
 	pluginsJS: pluginsJS,
 	vueJS: vueJS,

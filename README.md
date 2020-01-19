@@ -7,7 +7,9 @@
 
 
 ## Installation Instructions
-Install Forwardslash CLI globaly (if you haven't already).
+Install Forwardslash CLI globaly.
+
+This only needs to be done once per machine, so if you installed it previously, skip this step.
 
     npm i forwardslash-cli -g
 
@@ -23,9 +25,9 @@ For the full list of all commands, execute `fws --help`.
 
 ### Building Files
 
-To create development version files, execute `fws dev` task.
+To create development version files, execute `fws build-dev` task.
 
-    fws dev
+    fws build-dev
 
 To create production version files, execute `fws build` task.
 
@@ -36,9 +38,9 @@ To create production version files, execute `fws build` task.
 
 ### Starting Dev Mode
 
-To start *watch mode* and *local server*, execute `fws watch` task.
+To start *watch mode* and *local server*, execute `fws dev` task.
 
-    fws watch
+    fws dev
 
 ### Creating Views
 
@@ -321,13 +323,13 @@ Needless to state that this part of the workflow assumes that ACF: Extended plug
 List of all helper functions from this Starter Theme:
 
 - Render.php
-    - templateView() - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
-    - acfLinkField() - *Renders ACF link field with all field params.*
-    - inlineSVG() - *Renders an inline SVG into any template.*
+    - `templateView()` - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
+    - `acfLinkField()` - *Renders ACF link field with all field params.*
+    - `inlineSVG()` - *Renders an inline SVG into any template.*
 - Images.php
-    - assets_src() - *Render image src from 'src/assets/images' or '__demo' directory.*
+    - `assets_src()` - *Render image src from 'src/assets/images' or '__demo' directory.*
 - ACF.php
-    - registerFlexContent() - *Register new flexible content field group.*
+    - `registerFlexContent()` - *Register new flexible content field group.*
 
 All helper functions are defined as methods in defined classes that are all loading from *fws/FWS.php* file.
 

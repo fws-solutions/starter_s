@@ -1,15 +1,4 @@
-@import '../../scss/config/variables';
-@import '../../scss/helpers/mixins';
-@import '../../scss/helpers/helpers';
-@import '../../scss/base/icon-font';
-
-@font-face {
-	font-family: "fonticons";
-	src: url('./../../icons/fonticons.woff2') format('woff2'), url('./../../icons/fonticons.woff') format('woff'), url('./../../icons/fonticons.ttf') format('truetype');
-	;
-}
-
-body {
+body.login {
 	background-color: $login-bkg;
 }
 
@@ -62,7 +51,7 @@ body {
 		order: 2;
 
 		a {
-			background-image: url('../../assets/images/logo.png');
+			background-image: url('../src/assets/images/logo.png');
 			background-size: contain;
 			background-position: center;
 			background-repeat: no-repeat;
@@ -112,14 +101,14 @@ body {
 			display: none;
 		}
 	}
-
-	[for="user_login"] {
-		@include font(ico-user);
-	}
-
-	[for="user_pass"] {
-		@include font(ico-lock);
-	}
+	//
+	//[for="user_login"] {
+	//	@include font(ico-user);
+	//}
+	//
+	//[for="user_pass"] {
+	//	@include font(ico-lock);
+	//}
 
 	form .input,
 	input[type=text] {
@@ -200,8 +189,6 @@ body {
 	width: 100%;
 	text-align: center;
 }
-
-
 
 #wp-submit {
 	font-size: 16px;

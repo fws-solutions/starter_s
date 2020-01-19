@@ -15,10 +15,7 @@ const globalVars = require('./_global-vars');
 	SCSS
  ----------------------------------------------------------------------------------------------*/
 const sassSRC = ['src/scss/**/*.scss', 'template-views/**/**/*.scss'];
-const dashSassSRC = ['src/config/customize-dashboard/dashboard.scss'];
-const loginSassSRC = ['src/config/customize-dashboard/login.scss'];
-const dashDistSRC = 'src/config/customize-dashboard/dashboard.css';
-const loginDistSRC = 'src/config/customize-dashboard/login.css';
+const adminSassSRC = ['src/config/admin/scss/admin.scss'];
 
 const processors = [
 	autoprefixer({overrideBrowserslist: ['last 2 versions', 'ios >= 8']}),
@@ -27,12 +24,11 @@ const processors = [
 
 // compile scss files
 gulp.task('plugins-css', pluginsCss);
-gulp.task('css', css.bind(null, sassSRC, 'style.css'));
-gulp.task('css-dash', css.bind(null, dashSassSRC, dashDistSRC));
-gulp.task('css-login', css.bind(null, loginSassSRC, loginDistSRC));
+gulp.task('css', css.bind(null, sassSRC, 'style.css', './'));
+gulp.task('css-admin', css.bind(null, adminSassSRC, 'admin.css', 'dist'));
 gulp.task('sass-lint', sasslint);
 
-function css(src, name) {
+function css(src, name, dest) {
 	return gulp.src(src)
 		.pipe(plumber(globalVars.msgERROR))
 		.pipe(sourcemaps.init())
@@ -40,7 +36,7 @@ function css(src, name) {
 		.pipe(postcss(processors))
 		.pipe(rename(name))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest('./'));
+		.pipe(gulp.dest(dest));
 }
 
 function pluginsCss() {

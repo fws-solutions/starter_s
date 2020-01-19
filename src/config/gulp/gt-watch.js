@@ -8,7 +8,7 @@ gulp.task('watch-files', watchFiles);
 function watchFiles(done) {
 	// watch .scss files
 	gulp.watch(['src/scss/**/*.scss', 'template-views/**/**/*.scss'], gulp.parallel(['css', 'sass-lint']));
-	gulp.watch(['src/config/customize-dashboard/*.scss'], gulp.parallel(['css-dash', 'css-login']));
+	gulp.watch(['src/config/admin/scss/**/*.scss'], gulp.parallel(['css-admin']));
 
 	// watch .js files
 	gulp.watch('src/js/**/*.js', gulp.series('js'));

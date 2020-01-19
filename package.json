@@ -1,8 +1,18 @@
 {
-	"name": "starter_s",
+	"name": "fws_starter_s",
 	"author": "Forwardslash NY",
 	"version": "2.1.0",
 	"main": "gulpfile.js",
+	"scripts": {
+		"build-dev": "gulp build-dev",
+		"build": "gulp build",
+		"css": "gulp css",
+		"js": "gulp js",
+		"dev": "gulp watch",
+		"w3": "gulp html-w3",
+		"lint-html": "gulp html-lint-fe",
+		"lint-css": "gulp sass-lint"
+	},
 	"dependencies": {
 		"@babel/cli": "^7.7.0",
 		"@babel/core": "^7.4.5",
@@ -42,5 +52,6 @@
 		"vuex": "^3.1.2",
 		"webpack-stream": "^5.2.1"
 	},
-	"sasslintConfig": "sass-lint.yml"
+	"sasslintConfig": "sass-lint.yml",
+	"forwardslash": "fws_starter_s"
 }

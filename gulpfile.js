@@ -4,23 +4,23 @@ const tap = require('gulp-tap');
 const fs = require('fs');
 const path = require('path');
 const colors = require('ansi-colors');
-const globalVars = require('./src/config/gulp-tasks/_global-vars');
+const globalVars = require('./src/config/gulp/_global-vars');
 
 /*----------------------------------------------------------------------------------------------
 	Prepare and Run all Gulp Tasks
  ----------------------------------------------------------------------------------------------*/
 const localURL = 'http://starter.local/';
 const sassSRC = ['src/scss/**/*.scss', 'template-views/**/**/*.scss'];
+const adminSassSRC = ['src/config/admin/scss/admin.scss'];
 
 module.exports = {
 	localURL: localURL
 };
 
-require('./src/config/gulp-tasks/gt-cf');
-const gtHtmlLint = require('./src/config/gulp-tasks/gt-htmllint');
-const gtCss = require('./src/config/gulp-tasks/gt-css');
-const gtJs = require('./src/config/gulp-tasks/gt-js');
-const gtWatch = require('./src/config/gulp-tasks/gt-watch');
+const gtHtmlLint = require('./src/config/gulp/gt-htmllint');
+const gtCss = require('./src/config/gulp/gt-css');
+const gtJs = require('./src/config/gulp/gt-js');
+const gtWatch = require('./src/config/gulp/gt-watch');
 
 // prepare for build
 function prodBuild(done) {
@@ -39,8 +39,9 @@ gulp.task('build', gulp.series(
 	prodBuild,
 	gulp.parallel(
 		gtCss.pluginsCss,
-		gtCss.css.bind(null, sassSRC, 'style.css'),
-		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS), gtJs.mergeJS, gtJs.cleanJS),
+		gtCss.css.bind(null, sassSRC, 'style.css', './'),
+		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
+		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS), gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),
@@ -54,8 +55,9 @@ gulp.task('build-dev', gulp.series(
 	devBuild,
 	gulp.parallel(
 		gtCss.pluginsCss,
-		gtCss.css.bind(null, sassSRC, 'style.css'),
-		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS), gtJs.mergeJS, gtJs.cleanJS),
+		gtCss.css.bind(null, sassSRC, 'style.css', './'),
+		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
+		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS), gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),
@@ -96,8 +98,9 @@ gulp.task('watch', gulp.series(
 	devBuild,
 	gulp.parallel(
 		gtCss.pluginsCss,
-		gtCss.css.bind(null, sassSRC, 'style.css'),
-		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS), gtJs.mergeJS, gtJs.cleanJS),
+		gtCss.css.bind(null, sassSRC, 'style.css', './'),
+		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
+		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS), gtJs.mergeJS, gtJs.cleanJS),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),

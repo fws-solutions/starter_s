@@ -3,9 +3,9 @@ const {VueLoaderPlugin} = require('vue-loader');
 
 module.exports = {
 	// mode set in gulpfile
-	entry: join(__dirname, 'src/vue/app.js'),
+	entry: './src/vue/app.js',
 	output: {
-		path: join(__dirname, 'build'),
+		path: join(__dirname, './dist/'),
 		filename: 'build.js'
 	},
 	module: {
