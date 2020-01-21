@@ -4,7 +4,7 @@ class SG_Section {
 	function __construct( $sg_title, $temp_part_name, $temp_part_dir = '' ) {
 		$this->temp_title     = $sg_title;
 		$this->temp_part_name = $temp_part_name;
-		$this->temp_part_dir = $temp_part_dir;
+		$this->temp_part_dir  = $temp_part_dir;
 	}
 }
 
@@ -22,11 +22,18 @@ class SG_Page {
 	}
 }
 
+class SG_Font {
+	function __construct( $name, $font ) {
+		$this->name = $name;
+		$this->font = $font;
+	}
+}
+
 /**
  * Render Styleguide Sections
  */
 function styleguide_render_section( $templates ) {
-	$counter       = 4;
+	$counter       = 6;
 	$temp_dir_root = 'template-views/blocks';
 
 	foreach ( $templates as $t ) {
@@ -41,7 +48,7 @@ function styleguide_render_section( $templates ) {
 			<div class="styleguide__section-content">
 				<?php
 				$temp_dir_subfolder = $t->temp_part_dir != '' ? $t->temp_part_dir : $t->temp_part_name;
-				$temp_dir = $temp_dir_root . '/' . $temp_dir_subfolder . '/_fe-' . $t->temp_part_name;
+				$temp_dir           = $temp_dir_root . '/' . $temp_dir_subfolder . '/_fe-' . $t->temp_part_name;
 				get_template_part( $temp_dir );
 				?>
 			</div>
@@ -133,6 +140,60 @@ function styleguide_render_colors( $colors ) {
 	styleguide_render_section_wrap( 'Colors', 'section-1', $colors_html );
 }
 
+/**
+ * Render Styleguide Icons
+ */
+function styleguide_get_icons( $icons ) {
+	ob_start();
+	?>
+
+	<ul class="styleguide__icons">
+		<?php foreach ( $icons as $icon ) { ?>
+			<li class="styleguide__icons-item">
+				<?php echo fws()->render->inlineSVG($icon, 'styleguide__icons-icon'); ?>
+				<span class="styleguide__icons-name"><?php echo $icon; ?></span>
+			</li>
+		<?php } ?>
+	</ul>
+
+	<?php
+	$colors_html = ob_get_contents();
+	ob_end_clean();
+
+	return $colors_html;
+}
+
+function styleguide_render_icons( $icons ) {
+	$icons_html = styleguide_get_icons( $icons );
+	styleguide_render_section_wrap( 'SVG Icons', 'section-2', $icons_html );
+}
+
+
+/**
+ * Render Styleguide Fonts
+ */
+function styleguide_get_fonts( $fonts ) {
+	ob_start();
+	?>
+
+	<ul class="styleguide__fonts">
+		<?php foreach ( $fonts as $font ) { ?>
+			<li class="styleguide__fonts-items font-<?php echo $font->font; ?>"><?php echo $font->name; ?></li>
+		<?php } ?>
+	</ul>
+
+	<?php
+	$pages_html = ob_get_contents();
+	ob_end_clean();
+
+	return $pages_html;
+}
+
+function styleguide_render_fonts( $fonts ) {
+	$fonts_html = styleguide_get_fonts( $fonts );
+	styleguide_render_section_wrap( 'Fonts', 'section-3', $fonts_html );
+}
+
 
 /**
  * Render Styleguide Buttons
@@ -159,7 +220,7 @@ function styleguide_get_buttons( $buttons ) {
 
 function styleguide_render_buttons( $buttons ) {
 	$buttons_html = styleguide_get_buttons( $buttons );
-	styleguide_render_section_wrap( 'Buttons', 'section-3', $buttons_html );
+	styleguide_render_section_wrap( 'Buttons', 'section-5', $buttons_html );
 }
 
 /**
@@ -201,7 +262,7 @@ function styleguide_get_titles( $titles ) {
 function styleguide_render_entry_content() {
 	ob_start();
 
-	get_template_part( 'styleguide/sg', 'entry-content' );
+	get_template_part( 'styleguide/config/sg', 'entry-content' );
 
 	$entry_content_html = ob_get_contents();
 	ob_end_clean();
@@ -215,5 +276,5 @@ function styleguide_render_typography( $titles ) {
 
 	$content = $titles_html . $entry_content_html;
 
-	styleguide_render_section_wrap( 'Typography', 'section-2', $content, true );
+	styleguide_render_section_wrap( 'Typography', 'section-4', $content, true );
 }

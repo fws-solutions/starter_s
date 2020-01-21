@@ -5,7 +5,11 @@
 $font-default-serif: Georgia, serif;
 $font-default-sans-serif: Arial, Helvetica, sans-serif;
 
-$font-main: $font-default-sans-serif;
+$font-main: 'Open Sans', $font-default-sans-serif;
+
+$site-fonts: (
+	'font-main': $font-main
+) !default;
 
 // Colors
 $white: #fff;

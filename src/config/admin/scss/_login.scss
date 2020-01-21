@@ -101,14 +101,20 @@ body.login {
 			display: none;
 		}
 	}
-	//
-	//[for="user_login"] {
-	//	@include font(ico-user);
-	//}
-	//
-	//[for="user_pass"] {
-	//	@include font(ico-lock);
-	//}
+
+	#user_login {
+		background-image: url('../src/assets/svg/ico-user.svg');
+		background-size: 13px;
+		background-position: 18px center;
+		background-repeat: no-repeat;
+	}
+
+	#user_pass {
+		background-image: url('../src/assets/svg/ico-lock.svg');
+		background-size: 13px;
+		background-position: 18px center;
+		background-repeat: no-repeat;
+	}
 
 	form .input,
 	input[type=text] {

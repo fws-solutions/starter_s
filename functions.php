@@ -147,7 +147,7 @@ require get_template_directory() . '/fws/FWS.php';
 /**
  * Styleguide helper functions.
  */
-require get_template_directory() . '/styleguide/styleguide-functions.php';
+require get_template_directory() . '/styleguide/inc/styleguide-functions.php';
 
 /**
  * Custom theme functions for this theme.

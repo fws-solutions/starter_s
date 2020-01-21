@@ -45,7 +45,7 @@
 	transition: $dur $ease;
 }
 
-// Theming and colors iterator
+// Theming and colors/fonts iterator
 @each $colors-name in $site-colors {
 	$name: nth($colors-name, 1);
 	$color: nth($colors-name, 2);
@@ -54,6 +54,14 @@
 	}
 	.color-#{$name} {
 		color: $color;
+	}
+}
+
+@each $font-name in $site-fonts {
+	$name: nth($font-name, 1);
+	$font: nth($font-name, 2);
+	.font-#{$name} {
+		font-family: $font;
 	}
 }
 
