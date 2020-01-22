@@ -81,8 +81,8 @@ $sm: map-get($grid-breakpoints, sm) - 1;
 $md: map-get($grid-breakpoints, md) - 1;
 $lg: map-get($grid-breakpoints, lg) - 1;
 $xl: map-get($grid-breakpoints, xl) - 1;
-$lap-small: 1250;
-$lap-large: 1400;
+$lap-small: 1250px;
+$lap-large: 1400px;
 
 // Grid columns
 $grid-columns: 12 !default;
