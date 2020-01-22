@@ -112,7 +112,7 @@
 	transition: color $dur $ease, background-color 0.2s ease;
 	position: relative;
 
-	@include mq($tablet-l) {
+	@include mq($xl) {
 		font-size: 15px;
 		padding: 4px 10px;
 		font-weight: 400;

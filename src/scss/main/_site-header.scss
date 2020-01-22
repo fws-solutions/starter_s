@@ -112,7 +112,7 @@ body {
 		}
 	}
 
-	@include mq($phone) {
+	@include mq($sm) {
 		display: block;
 	}
 }

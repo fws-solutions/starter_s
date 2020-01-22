@@ -47,20 +47,11 @@ $login-bkg: #f0f0f0;
 $dur: 350ms;
 $ease: ease;
 
-// Breakpoints
-$phone: 640;
-$tablet: 991;
-$tablet-l: 1199;
-$lap-small: 1250;
-$lap-large: 1400;
-
-
 /*--------------------------------------------------------------
 ## Bootstrap Variables
 --------------------------------------------------------------*/
 $enable-grid-classes: true !default;
 
-// Media queries breakpoints - Grid breakpoint
 $grid-breakpoints: (
 	xs: 0,
 	sm: 576px,
@@ -76,6 +67,22 @@ $container-max-widths: (
 	lg: 960px,
 	xl: 1140px
 ) !default;
+
+/*
+	Breakpoints for max-width.
+
+	These variables are mapped with $grid-breakpoints SCSS map variable which is used for bootstrap.
+	The reason for this setup is that it is needed to have variables that reflect bootstrap's breakpoints.
+	Bootstrap is using min-with and this starter max-with approach, so bootstrap's breakpoint at 992px (min-width)
+	is reflected as 991px (max-width), thus the mapped variables bellow.
+ */
+
+$sm: map-get($grid-breakpoints, sm) - 1;
+$md: map-get($grid-breakpoints, md) - 1;
+$lg: map-get($grid-breakpoints, lg) - 1;
+$xl: map-get($grid-breakpoints, xl) - 1;
+$lap-small: 1250;
+$lap-large: 1400;
 
 // Grid columns
 $grid-columns: 12 !default;

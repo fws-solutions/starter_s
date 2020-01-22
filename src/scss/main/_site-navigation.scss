@@ -78,7 +78,7 @@ a {
 	.current-menu-ancestor > a {
 	}
 
-	@include mq($phone) {
+	@include mq($sm) {
 		position: fixed;
 		top: 0;
 		left: 0;

@@ -4,7 +4,7 @@
 
 // Media Query
 @mixin mq($value, $constraint: max, $feature: width) {
-	@media screen and (#{$constraint}-#{$feature}: $value + px) {
+	@media screen and (#{$constraint}-#{$feature}: $value) {
 		@content;
 	}
 }
@@ -12,18 +12,18 @@
 /*
 	Example:
 	-------------------------------------------------------------------------------------------------
-	@include mq($phone) 			 	@media screen and (max-width: 640px)
+	@include mq($sm) 			 	@media screen and (max-width: 575px)
 	-------------------------------------------------------------------------------------------------
-	@include mq(991) 			 	 	@media screen and (max-width: 991px)
+	@include mq(991px) 			 	 	@media screen and (max-width: 991px)
 	-------------------------------------------------------------------------------------------------
-	@include mq($phone + 1, min) 	 	@media screen and (min-width: 641px)
+	@include mq($sm + 1, min) 	 	@media screen and (min-width: 576px)
 	-------------------------------------------------------------------------------------------------
-	@include mq(992, min) 			 	@media screen and (min-width: 992px)
+	@include mq(992px, min) 			 	@media screen and (min-width: 992px)
 	-------------------------------------------------------------------------------------------------
 	@include mq(400, min, height) 	 	@media screen and (min-height: 400px)
 	-------------------------------------------------------------------------------------------------
-	@include mq(992) {				 	@media screen and (max-width: 992px) and (min-width: 767px)
-		@include mq(767, min) {
+	@include mq(992px) {				 	@media screen and (max-width: 992px) and (min-width: 767px)
+		@include mq(767px, min) {
 
 		}
 	}

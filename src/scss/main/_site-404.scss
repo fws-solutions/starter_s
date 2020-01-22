@@ -61,11 +61,11 @@
 		position: relative;
 		margin: 0 10px;
 
-		@include mq($tablet) {
+		@include mq($lg) {
 			font-size: 200px;
 		}
 
-		@include mq($phone) {
+		@include mq($sm) {
 			font-size: 125px;
 		}
 	}
@@ -91,11 +91,11 @@
 	color: $c-404-numbers;
 	@include center;
 
-	@include mq($tablet) {
+	@include mq($lg) {
 		font-size: 55px;
 	}
 
-	@include mq($phone) {
+	@include mq($sm) {
 		font-size: 40px;
 	}
 }
@@ -109,7 +109,7 @@
 	margin-top: 40px;
 	padding: 0 15px;
 
-	@include mq($phone) {
+	@include mq($sm) {
 		margin-top: 25px;
 		font-size: 30px;
 	}
@@ -135,7 +135,7 @@
 		background-color: $c-404-btn-color;
 	}
 
-	@include mq($tablet) {
+	@include mq($lg) {
 		font-size: 16px;
 		padding: 5px 20px;
 		margin-top: 25px;

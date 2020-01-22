@@ -16,13 +16,13 @@ body.login {
 		margin: 35px 0 0;
 	}
 
-	@include mq($phone + 12, min) {
+	@include mq($sm + 12, min) {
 		animation: zoom-out 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) 1s both;
 		position: relative;
 		width: 330px;
 	}
 
-	@include mq($phone) {
+	@include mq($sm) {
 		padding: 45px 20px 40px;
 	}
 }
@@ -68,7 +68,7 @@ body.login {
 				box-shadow: none;
 			}
 
-			@include mq($phone) {
+			@include mq($sm) {
 				height: 55px;
 			}
 		}
@@ -148,7 +148,7 @@ body.login {
 			color: $login-text;
 		}
 
-		@include mq($phone + 1, min) {
+		@include mq($sm + 1, min) {
 			label {
 				font-size: 14px;
 			}
@@ -171,7 +171,7 @@ body.login {
 			}
 		}
 
-		@include mq($phone) {
+		@include mq($sm) {
 			bottom: 128px;
 			right: 0;
 
@@ -181,7 +181,7 @@ body.login {
 		}
 	}
 
-	@include mq($phone) {
+	@include mq($sm) {
 		padding: 0 15px;
 	}
 }
@@ -225,7 +225,7 @@ body.login {
 		opacity: 0.8;
 	}
 
-	@include mq($phone + 1, min) {
+	@include mq($sm + 1, min) {
 		min-width: 100px;
 		height: auto;
 

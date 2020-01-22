@@ -6,7 +6,7 @@
 	position: relative;
 	max-height: 600px;
 
-	@include mq($phone) {
+	@include mq($sm) {
 		max-height: 400px;
 	}
 }
