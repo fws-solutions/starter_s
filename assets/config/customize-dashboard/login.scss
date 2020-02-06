@@ -43,6 +43,10 @@ body {
 	align-items: center;
 	justify-content: center;
 
+	.privacy-policy-page-link {
+		display: none;
+	}
+
 	.message,
 	#login_error {
 		order: 1;
@@ -88,36 +92,73 @@ body {
 	form {
 		position: relative;
 		box-shadow: none;
+		border: 0;
 		margin-top: 0;
 		padding: 70px 0 0;
 		order: 3;
+		overflow: visible;
+
+		>p:first-of-type,
+		.wp-pwd {
+			font-size: 0;
+			position: relative;
+			display: block;
+			margin-bottom: 20px !important; //sass-lint:disable-line no-important
+
+			&::before {
+				font-size: 20px;
+				color: $login-text;
+				position: absolute;
+				left: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			br {
+				display: none;
+			}
+		}
+
+		>p:first-of-type {
+			@include font(ico-user);
+		}
+	}
+
+	.button.wp-hide-pw {
+		min-height: 47px;
+
+		&:focus {
+			outline: none;
+		}
 	}
 
 	label {
 		font-size: 0;
 		position: relative;
 		display: block;
-		margin-bottom: 20px;
+		margin: 0;
+		// margin-bottom: 20px;
 
-		&::before {
-			font-size: 20px;
-			color: $login-text;
-			position: absolute;
-			left: 15px;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+		// &::before {
+		// 	font-size: 20px;
+		// 	color: $login-text;
+		// 	position: absolute;
+		// 	left: 15px;
+		// 	top: 50%;
+		// 	transform: translateY(-50%);
+		// }
 
 		br {
 			display: none;
 		}
 	}
 
-	[for="user_login"] {
-		@include font(ico-user);
-	}
+	// [for="user_login"] {
+	// 	@include font(ico-user);
+	// }
 
-	[for="user_pass"] {
+	[for="user_pass"],
+	.wp-pwd {
 		@include font(ico-lock);
 	}
 
@@ -148,9 +189,19 @@ body {
 
 	form .forgetmenot {
 		margin-top: 3px;
+		display: flex;
+		width: 50%;
+
+		input {
+			width: 16px;
+			height: 16px;
+			margin-top: 0;
+		}
 
 		label {
+			font-size: 14px;
 			color: $login-text;
+			line-height: 1.2;
 		}
 
 		@include mq($phone + 1, min) {
@@ -163,7 +214,7 @@ body {
 	#nav {
 		margin: 0;
 		position: absolute;
-		bottom: 137px;
+		bottom: 141px;
 		right: 26px;
 
 		a {
@@ -177,7 +228,7 @@ body {
 		}
 
 		@include mq($phone) {
-			bottom: 128px;
+			bottom: 135px;
 			right: 0;
 
 			a {
@@ -199,6 +250,7 @@ body {
 	left: 0;
 	width: 100%;
 	text-align: center;
+	text-transform: uppercase;
 }
 
 
