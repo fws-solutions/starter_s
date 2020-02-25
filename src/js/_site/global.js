@@ -19,10 +19,10 @@ const Global = {
 		/**
 		 * @description do something on escape key click
 		 * @example Global.functions.escKey(closeNav);
-		 * @param {function} callback - pass callback function 
+		 * @param {function} callback - pass callback function
 		 */
-		escKey: function (callback) {
-			Global.$domDoc.on('keyup', function (e) {
+		escKey: function(callback) {
+			Global.$domDoc.on('keyup', function(e) {
 				if (e.keyCode === 27) {
 					callback();
 				}
@@ -37,8 +37,8 @@ const Global = {
 		 * @param {jQuery} closeBtn - close button
 		 * @param {function} callback - callback function
 		 */
-		clickOutsideContainer: function (selector, container, closeBtn, callback) {
-			selector.on('mouseup', function (e) {
+		clickOutsideContainer: function(selector, container, closeBtn, callback) {
+			selector.on('mouseup', function(e) {
 				e.preventDefault();
 				if (!container.is(e.target) && container.has(e.target).length === 0 && !closeBtn.is(e.target)) {
 					callback();

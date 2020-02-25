@@ -15,7 +15,7 @@ const Styleguide = {
 	classHidden: 'is-hidden',
 
 	/** @description slider example description e.g Banner slider */
-	init: function () {
+	init: function() {
 		if (this.$domStyleNav.length) {
 			this.$domStyleSection.each((i, el) => {
 				const navItem = `<li><a class="list-group-item" href="#section-${i}">${$(el).attr('data-section-title')}</a></li>`;
@@ -33,8 +33,8 @@ const Styleguide = {
 		}
 	},
 
-	scrollTo: function (selector) {
-		$(selector).on('click', function (e) {
+	scrollTo: function(selector) {
+		$(selector).on('click', function(e) {
 			e.preventDefault();
 			const target = $(this.hash);
 

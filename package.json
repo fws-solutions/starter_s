@@ -11,7 +11,9 @@
 		"dev": "gulp watch",
 		"w3": "gulp html-w3",
 		"lint-html": "gulp html-lint-fe",
-		"lint-css": "gulp sass-lint"
+		"lint-css": "gulp sass-lint",
+		"lint-js": "gulp js-lint",
+		"remove-fe": "gulp remove-fe"
 	},
 	"dependencies": {
 		"@babel/cli": "^7.7.0",

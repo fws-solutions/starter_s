@@ -55,10 +55,10 @@ function vueJS() {
 }
 
 // task: validate javascript source files
-gulp.task('lint-js', lintJS);
+gulp.task('js-lint', lintJS);
 
 function lintJS() {
-	return gulp.src('src/js/**/*.js')
+	return gulp.src('src/js/_site/*.js')
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
@@ -107,5 +107,6 @@ module.exports = {
 	pluginsJS: pluginsJS,
 	vueJS: vueJS,
 	mergeJS: mergeJS,
-	cleanJS: cleanJS
+	cleanJS: cleanJS,
+	lintJS: lintJS
 };

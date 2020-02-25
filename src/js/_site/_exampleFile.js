@@ -26,12 +26,12 @@ const ExampleFile = {
 	 * @description Initialize
 	 * @example this.someFunction();
 	 */
-	init: function () {
+	init: function() {
 		this.bindEvents();
 	},
 
-	bindEvents: function () {
-		this.$domExampleSelector.on('click', function () {
+	bindEvents: function() {
+		this.$domExampleSelector.on('click', function() {
 
 			/**
 			 * @description When keyword 'this' is no longer pointing to the main object, like in this scenario,
@@ -42,9 +42,9 @@ const ExampleFile = {
 		});
 	},
 
-	someFunction: function (selector) {
+	someFunction: function(selector) {
 		/** @description Global.varsWindowWidth; - this variable is called from global.js file */
-		const ww = Global.varsWindowWidth; 
+		const ww = Global.varsWindowWidth;
 		const something = selector.attr(this.attrExampleDataAttr);
 
 		if (selector.hasClass(this.classExampleShow) && ww > 768) {

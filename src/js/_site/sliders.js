@@ -9,19 +9,20 @@ const Sliders = {
 	$domSlider: $('.js-slider'),
 
 	/** @description Initialize */
-	init: function () {
+	init: function() {
 		this.sliderExample();
 	},
 
 	/** @description slider example description e.g Banner slider */
-	sliderExample: ()=> {
+	sliderExample: () => {
 		Sliders.$domSlider.slick({
 			infinite: true,
 			slidesToShow: 4,
 			slidesToScroll: 1,
 			speed: 1000,
 			arrows: false,
-			responsive: [{
+			responsive: [
+				{
 					breakpoint: 991,
 					settings: {
 						slidesToShow: 3

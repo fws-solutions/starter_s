@@ -14,15 +14,15 @@ const ScrollTo = {
 	$domScrollLink: $('a[href*=\\#]:not([href=\\#])'),
 
 	/** @description Initialize */
-	init: function () {
+	init: function() {
 		this.bindEvents();
 		this.hashScroll();
 	},
 
-	bindEvents: function () {
+	bindEvents: function() {
 		const _this = this;
 
-		_this.$domScrollLink.on('click', function (e) {
+		_this.$domScrollLink.on('click', function(e) {
 			e.preventDefault();
 			const target = $(e.currentTarget.hash);
 
@@ -32,7 +32,7 @@ const ScrollTo = {
 		});
 	},
 
-	hashScroll: function () {
+	hashScroll: function() {
 		const hash = window.location.hash;
 
 		if (hash) {
@@ -44,7 +44,7 @@ const ScrollTo = {
 		}
 	},
 
-	scrollToTarget: function (target, offset = 100, scrollSpeed = 1200) {
+	scrollToTarget: function(target, offset = 100, scrollSpeed = 1200) {
 		if (target.length) {
 			$('html,body').animate({
 				scrollTop: target.offset().top - offset

@@ -41,7 +41,12 @@ gulp.task('build', gulp.series(
 		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css', './'),
 		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
-		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS), gtJs.mergeJS, gtJs.cleanJS),
+		gulp.series(
+			gtJs.lintJS,
+			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS),
+			gtJs.mergeJS,
+			gtJs.cleanJS
+		),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),
@@ -57,7 +62,12 @@ gulp.task('build-dev', gulp.series(
 		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css', './'),
 		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
-		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS), gtJs.mergeJS, gtJs.cleanJS),
+		gulp.series(
+			gtJs.lintJS,
+			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS),
+			gtJs.mergeJS,
+			gtJs.cleanJS
+		),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),
@@ -80,7 +90,7 @@ function removeFeFiles() {
 	console.log(colors.red(`DELETED FE FILES:`));
 
 	return gulp.src('template-views/**')
-		.pipe(tap(function (file) {
+		.pipe(tap(function(file) {
 			const filePath = file.path;
 			const fileStat = fs.lstatSync(filePath);
 			const fileName = path.basename(filePath);
@@ -100,7 +110,12 @@ gulp.task('watch', gulp.series(
 		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css', './'),
 		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
-		gulp.series(gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS), gtJs.mergeJS, gtJs.cleanJS),
+		gulp.series(
+			gtJs.lintJS,
+			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS),
+			gtJs.mergeJS,
+			gtJs.cleanJS
+		),
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true),

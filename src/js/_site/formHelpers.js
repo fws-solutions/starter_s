@@ -9,7 +9,7 @@ const FormHelpers = {
 
 
 	/** @description Initialize */
-	init: function () {
+	init: function() {
 		this.afterFormSubmit();
 	},
 

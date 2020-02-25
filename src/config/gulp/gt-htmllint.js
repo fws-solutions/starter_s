@@ -11,6 +11,7 @@ const validator = require('html-validator');
 gulp.task('html-w3', htmlw3);
 
 const gulpfile = require('../../../gulpfile');
+
 function htmlw3(done) {
 	getPages(gulpfile.localURL, done);
 }
@@ -108,7 +109,7 @@ function LintConfig(isFe = true) {
 
 function htmlLint(isFe) {
 	const configRules = new LintConfig(isFe);
-	const htmlSrc = isFe ? 'template-views/**/_*.php' : ['template-views/**/*.php', '!template-views/**/_*.php' ];
+	const htmlSrc = isFe ? 'template-views/**/_*.php' : ['template-views/**/*.php', '!template-views/**/_*.php'];
 
 	return gulp.src(htmlSrc)
 		.pipe(htmllint({
@@ -118,7 +119,7 @@ function htmlLint(isFe) {
 
 function htmllintReporter(filepath, issues) {
 	if (issues.length > 0) {
-		issues.forEach(function (issue) {
+		issues.forEach(function(issue) {
 			filepath = filepath.split('/wp-content/themes/').pop();
 
 			fancyLog(colors.cyan('[gulp-htmllint] ') + colors.yellow('\n file:  ' + filepath + ' [' + issue.line + ',' + issue.column + ']: ') + colors.red('\n error: ' + issue.rule + ' --- ' + issue.msg + '\n----------------------------------------------------'));

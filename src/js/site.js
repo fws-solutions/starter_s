@@ -6,7 +6,7 @@ import Fancybox from './_site/fancybox';
 import Select2 from './_site/select2';
 import FormHelpers from './_site/formHelpers';
 
-jQuery(function () {
+jQuery(function() {
 	Styleguide.init();
 	Menu.init();
 	Sliders.init();
