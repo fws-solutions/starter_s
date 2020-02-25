@@ -16,12 +16,12 @@ export default new Vuex.Store({
 		},
 		setPages(state, pages) {
 			state.loadedPages = pages;
-		},
+		}
 	},
 	actions: {
 		setPages(vuexContext) {
 			if (vuexContext.getters.getPages === null) requestPages(vuexContext);
-		},
+		}
 	},
 	getters: {
 		getTitle(state) {
@@ -31,7 +31,7 @@ export default new Vuex.Store({
 			return state.count;
 		},
 		getPages(state) {
-			return state.loadedPages
+			return state.loadedPages;
 		}
 	}
 });

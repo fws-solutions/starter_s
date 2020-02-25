@@ -2,7 +2,7 @@
 	<div class="vue-block">
 		<div class="vue-block__container container">
 			<Count :title="title" :count="count" :inc="inc"/>
-			<List :title="subtitle" :pages="pages" />
+			<List :title="subtitle" :pages="pages"/>
 		</div>
 	</div>
 </template>
@@ -19,7 +19,7 @@
 		data() {
 			return {
 				subtitle: 'This is subtitle'
-			}
+			};
 		},
 
 		components: {

@@ -93,6 +93,7 @@ function LintConfig(isFe = true) {
 		this['indent-width'] = false;
 		this['class-style'] = false;
 		this['attr-order'] = false;
+		this['class-no-dup'] = false;
 	} else {
 		this['class-style'] = 'bem';
 		this['attr-order'] = ['class', 'id', 'href', 'src', 'target', 'title', 'name', 'value', 'alt', 'selected', 'checked', 'required', 'disabled'];

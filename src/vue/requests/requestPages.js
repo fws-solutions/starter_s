@@ -10,7 +10,8 @@ export function requestPages(vuexContext) {
 		.then((response) => {
 			const pagesResponse = response.data.data.pages.nodes;
 			vuexContext.commit('setPages', pagesResponse);
-		}).catch(e => {
-		throw e;
-	});
+		})
+		.catch(e => {
+			throw e;
+		});
 }

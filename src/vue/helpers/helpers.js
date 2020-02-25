@@ -1,7 +1,7 @@
 export class AxiosConfig {
 	constructor() {
 		this.method = 'POST';
-		this.url = `/graphql`;
+		this.url = '/graphql';
 		this.data = {};
 	}
 }
