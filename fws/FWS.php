@@ -7,6 +7,7 @@ declare( strict_types=1 );
  * @author Boris Djemrovski <boris@forwardslashny.com>
  *
  * @property \FWS\Example $example
+ * @property \FWS\ThemeHooks $themeHooks
  * @property \FWS\Images $images
  * @property \FWS\Render $render
  * @property \FWS\ACF $acf
