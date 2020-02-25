@@ -53,10 +53,10 @@ class ACF
 		add_filter( 'parent_file', [ $this, 'fieldGroupCategorySubmenuHighlight' ] );
 		add_filter( 'manage_edit-acf-field-group_columns', [ $this, 'fieldGroupCategoryColumn' ], 11 );
 		add_filter( 'views_edit-acf-field-group', [ $this, 'fieldGroupCategoryViews' ], 9 );
-		add_filter( 'acf/get_taxonomies', [ $this, 'fieldGroupCategoryExclude' ], 10, 2 );
+		add_filter( 'acf/get_taxonomies', [ $this, 'fieldGroupCategoryExclude' ], 10, 1 );
 	}
 
-	public function fieldGroupCategoryExclude( $taxonomies, $args )
+	public function fieldGroupCategoryExclude( $taxonomies )
 	{
 		if ( empty( $taxonomies ) ) {
 			return $taxonomies;
@@ -106,7 +106,7 @@ class ACF
 				$class = ' class="current"';
 			}
 
-			$views[ 'category-' . $term->slug ] = '<a href="' . admin_url( 'edit.php?acf-field-group-category=' . $term->slug . '&post_type=acf-field-group' ) . '"' . $class . '>' . $term->name . $html . '</a>';
+			$views[ 'category-' . $term->slug ] = '<a href="' . admin_url( 'edit.php?acf-field-group-category=' . $term->slug . '&post_type=acf-field-group' ) . '" ' . $class . '>' . $term->name . $html . '</a>';
 		}
 
 		return $views;
@@ -146,7 +146,7 @@ class ACF
 
 	public function fieldGroupCategorySubmenuHighlight( string $parentFile ): string
 	{
-		global $submenu_file, $current_screen, $pagenow;
+		global $current_screen, $pagenow;
 
 		if ( $current_screen->taxonomy === 'acf-field-group-category' && ( $pagenow === 'edit-tags.php' || $pagenow === 'term.php' ) ) {
 			$parentFile = 'edit.php?post_type=acf-field-group';
