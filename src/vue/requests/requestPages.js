@@ -1,15 +1,9 @@
 import axios from 'axios';
-import {queryPages} from '../graphql/queryPages';
-import {AxiosConfig} from '../helpers/helpers';
 
 export function requestPages(vuexContext) {
-	const pagesResConfig = new AxiosConfig();
-	pagesResConfig.data.query = queryPages();
-
-	axios(pagesResConfig)
+	axios.get('/wp-json/wp/v2/pages')
 		.then((response) => {
-			const pagesResponse = response.data.data.pages.nodes;
-			vuexContext.commit('setPages', pagesResponse);
+			vuexContext.commit('setPages', response.data);
 		})
 		.catch(e => {
 			throw e;

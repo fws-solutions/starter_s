@@ -25,7 +25,7 @@ rules:
     comma-style: [2, last]
     computed-property-spacing: [2, never]
     consistent-this: [1, _this]
-    indent: ["error", "tab", { SwitchCase: 1 }]
+    indent: [1, "tab", { SwitchCase: 1 }]
     key-spacing: [2, {beforeColon: false, afterColon: true}]
     new-cap: 0
     no-bitwise: 2
@@ -45,7 +45,7 @@ rules:
 overrides:
     -   files: "*.vue"
         rules:
-            indent: off
+            indent: 0
 env:
     es6: true
     browser: true

@@ -1,6 +1,6 @@
 <template>
-	<div class="vue-block">
-		<div class="vue-block__container container">
+	<div class="vue-example">
+		<div class="vue-example__container container">
 			<Count :title="title" :count="count" :inc="inc"/>
 			<List :title="subtitle" :pages="pages"/>
 		</div>
@@ -8,8 +8,8 @@
 </template>
 
 <script>
-	import Count from './parts/Count.vue';
-	import List from './parts/List.vue';
+	import Count from './blocks/Count.vue';
+	import List from './blocks/List.vue';
 
 	export default {
 		beforeMount() {
@@ -48,11 +48,11 @@
 </script>
 
 <style lang="scss" scoped>
-	.vue-block {
+	.vue-example {
 		padding: 50px 0;
 	}
 
-	.vue-block__container {
+	.vue-example__container {
 		border-width: 1px 0 1px 0;
 		border-color: rgba($black, .3);
 		border-style: solid;

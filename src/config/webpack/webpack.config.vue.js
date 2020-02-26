@@ -17,6 +17,13 @@ module.exports = {
 				exclude: /node_modules/
 			},
 			{
+				test: /\.svg$/,
+				use: [
+					'babel-loader',
+					'vue-svg-loader',
+				],
+			},
+			{
 				test: /\.js$/,
 				loader: 'babel-loader',
 				options: {
