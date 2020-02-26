@@ -5,7 +5,8 @@ $icons = [
 	'ico-happy',
 	'ico-lock',
 	'ico-plus-circle',
-	'ico-user'
+	'ico-user',
+	'ico-dog'
 ];
 
 // Render icons

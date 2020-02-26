@@ -1,7 +1,7 @@
 <template>
 	<div class="vue-listing">
 		<div class="vue-listing__head">
-			<SvgIcon class="vue-listing__icon" iconName="ico-happy"/>
+			<SvgIcon class="vue-listing__icon" iconName="ico-dog"/>
 			<h3 class="vue-listing__title" v-if="title">{{title}}</h3>
 		</div>
 

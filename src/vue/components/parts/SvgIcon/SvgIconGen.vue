@@ -6,7 +6,12 @@
 
 <script>
     import startcase from 'lodash.startcase';
-	import Happy from '../../../../assets/svg/ico-happy.svg';
+    import ChevronDown from '../../../../assets/svg/ico-chevron-down.svg';
+    import Dog from '../../../../assets/svg/ico-dog.svg';
+    import Happy from '../../../../assets/svg/ico-happy.svg';
+    import Lock from '../../../../assets/svg/ico-lock.svg';
+    import PlusCircle from '../../../../assets/svg/ico-plus-circle.svg';
+    import User from '../../../../assets/svg/ico-user.svg';
 
     export default {
         props: {
@@ -16,7 +21,13 @@
             }
         },
         components: {
-			Happy
+            ChevronDown,
+            Dog,
+            Happy,
+            Lock,
+            PlusCircle,
+            User,
+
         },
         computed: {
             component() {
