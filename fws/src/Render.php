@@ -81,18 +81,66 @@ class Render
 	 *
 	 * @return string
 	 */
-	public function fws_posted_on( string $format = '' ): string
+	public function postedOn( string $format = '' ): string
 	{
 		$date = get_the_date( $format );
 		$link = get_the_permalink();
 		$author = get_the_author();
 		$author_page_link = get_author_posts_url( get_the_author_meta( 'ID' ) );
 
-		$html = '<div class="entry-meta"><span class="posted-on">Posted on <a href="' . $link . '" class="post_url"><span>' . $date . '</span></a> by <a class="author_name" href="' . $author_page_link . '">' . $author . '</a></span></div>';
-
-		return $html;
+		return '<div class="entry-meta"><span class="posted-on">Posted on <a href="' . $link . '" class="post_url"><span>' . $date . '</span></a> by <a class="author_name" href="' . $author_page_link . '">' . $author . '</a></span></div>';
 	}
 
+	/**
+	 * Outputs the paging navigation based on the global query
+	 */
+	public function pagingNav(): void
+	{
+		global $wp_query, $wp_rewrite;
+
+		// Don't print empty markup if there's only one page.
+		if ( $wp_query->max_num_pages < 2 ) {
+			return;
+		}
+
+		$paged = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
+		$pagenum_link = html_entity_decode( get_pagenum_link() );
+		$query_args = [];
+		$url_parts = explode( '?', $pagenum_link );
+
+		if ( isset( $url_parts[1] ) ) {
+			wp_parse_str( $url_parts[1], $query_args );
+		}
+
+		$pagenum_link = remove_query_arg( array_keys( $query_args ), $pagenum_link );
+		$pagenum_link = trailingslashit( $pagenum_link ) . '%_%';
+
+		$format = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
+		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
+
+		// Set up paginated links.
+		$links = paginate_links( [
+			'base' => $pagenum_link,
+			'format' => $format,
+			'total' => $wp_query->max_num_pages,
+			'current' => $paged,
+			'mid_size' => 3,
+			'add_args' => array_map( 'urlencode', $query_args ),
+			'prev_text' => __( 'Prev', 'starter_s' ),
+			'next_text' => __( 'Next', 'starter_s' ),
+		] );
+
+		if ( $links ) :
+
+			?>
+			<nav class="navigation paging-navigation" role="navigation">
+				<div class="pagination loop-pagination">
+					<?php echo $links; ?>
+				</div><!-- .pagination -->
+			</nav><!-- .navigation -->
+		<?php
+		endif;
+	}
 }
 
 return Render::getInstance();

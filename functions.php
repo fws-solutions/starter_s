@@ -148,18 +148,3 @@ require get_template_directory() . '/fws/FWS.php';
  * Styleguide helper functions.
  */
 require get_template_directory() . '/styleguide/inc/styleguide-functions.php';
-
-/**
- * Custom theme functions for this theme.
- */
-require get_template_directory() . '/inc/theme-functions.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-require get_template_directory() . '/inc/theme-hooks.php';
-
-/**
- * Load WooCommerce compatibility file.
- */
-//require get_template_directory() . '/inc/woocommerce.php';
