@@ -133,7 +133,7 @@ class ACF
 	{
 		$new_columns = [];
 		foreach ( $columns as $key => $value ) {
-			if ( $key === 'title' ) {
+			if ( $key === 'acf-fg-status' ) {
 				$new_columns['acf-field-group-category'] = __( 'Categories' );
 			}
 
