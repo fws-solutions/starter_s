@@ -39,18 +39,11 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
-    "acfe_display_title": "",
-    "acfe_autosync": [
-        "json"
-    ],
-    "acfe_permissions": "",
-    "acfe_note": "",
-    "acfe_meta": "",
     "acf-field-group-category": [
         {
             "slug": "reusable-elements",
             "name": "Reusable Elements"
         }
     ],
-    "modified": 1567782288
+    "modified": 1582897533
 }

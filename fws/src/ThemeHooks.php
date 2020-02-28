@@ -25,7 +25,8 @@ class ThemeHooks
 		add_action( 'wp_head', [ $this, 'pingbackHeader' ] );
 		add_action( 'starter_s_before_main_content', [ $this, 'pageWrapperBefore' ] );
 		add_action( 'starter_s_after_main_content', [ $this, 'pageWrapperAfter' ] );
-		add_action( 'login_enqueue_scripts', [ $this, 'addLoginStyles' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'addAdminStyles' ] );
+		add_action( 'login_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
 		add_action( 'admin_notices', [ $this, 'dependenciesNotice' ] );
 
@@ -84,12 +85,12 @@ class ThemeHooks
 	}
 
 	/**
-	 * Add custom stylesheet to login
+	 * Add custom stylesheet to login and admin dashboard
 	 */
-	public function addLoginStyles(): void
+	public function addAdminStyles(): void
 	{
-		wp_enqueue_style( 'starter_s-login-style', get_template_directory_uri() . '/dist/admin.css' );
-		wp_enqueue_script( 'starter_s-login-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
+		wp_enqueue_style( 'starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css' );
+		wp_enqueue_script( 'starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
 	}
 
 	/**
@@ -152,6 +153,7 @@ class ThemeHooks
 	{
 		$data['to'] = [
 			'hello@forwardslashny.com',
+			'nick@forwardslashny.com',
 			'boris@forwardslashny.com',
 		];
 

@@ -41,7 +41,6 @@ class ACF
 		add_action( 'init', [ $this, 'acfInit' ] );
 		add_action( 'admin_init', [ $this, 'automaticJsonSync' ] );
 		add_action( 'admin_menu', [ $this, 'fieldGroupCategorySubmenu' ] );
-		add_action( 'admin_enqueue_scripts', [ $this, 'adminEnqueueScripts' ] );
 		add_action( 'admin_notices', [ $this, 'editNotAllowedNotice' ] );
 		add_action( 'pre_post_update', [ $this, 'preventEditingGroups' ], 10, 2 );
 		add_action( 'acf/import_field_group', [ $this, 'loadGroupCategoryJson' ] );
@@ -375,19 +374,6 @@ class ACF
 		}
 
 		return false;
-	}
-
-	/**
-	 * ACF Styled flexible content head to help user make visible difference between content blocks
-	 */
-	public function adminEnqueueScripts(): void
-	{
-		wp_enqueue_style( 'starter_s-dashboard-style', get_template_directory_uri() . '/src/config/customize-dashboard/dashboard.css' );
-
-		wp_enqueue_script( 'starter_s-dashboard-js', get_template_directory_uri() . '/src/config/customize-dashboard/dashboard.js', [], '', true );
-
-		$translation_array = [ 'themeUrl' => get_stylesheet_directory_uri() ];
-		wp_localize_script( 'starter_s-dashboard-js', 'object_name', $translation_array );
 	}
 
 	/**

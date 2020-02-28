@@ -1,10 +1,7 @@
 # _S WP Starter
 *Version: 2.1.0*
 
-> Do Not Underestimate The Power Of
-  WordPress.
-
-
+> It Only Does Everything.
 
 ## Installation Instructions
 Install Forwardslash CLI globaly.

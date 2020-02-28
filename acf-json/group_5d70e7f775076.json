@@ -50,18 +50,11 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
-    "acfe_display_title": "",
-    "acfe_autosync": [
-        "json"
-    ],
-    "acfe_permissions": "",
-    "acfe_note": "",
-    "acfe_meta": "",
     "acf-field-group-category": [
         {
             "slug": "flexible-content",
             "name": "Flexible Content"
         }
     ],
-    "modified": 1567782279
+    "modified": 1582897526
 }
