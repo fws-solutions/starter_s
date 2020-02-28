@@ -1,4 +1,15 @@
-body.login {
+@import '../../../scss/config/variables';
+@import '../../../scss/helpers/mixins';
+@import'../../../scss/helpers/helpers';
+// @import '../../../scss/base/icon-font';
+
+// @font-face {
+// 	font-family: "fonticons";
+// 	src: url('./../../icons/fonticons.woff2') format('woff2'), url('./../../icons/fonticons.woff') format('woff'), url('./../../icons/fonticons.ttf') format('truetype');
+// 	;
+// }
+
+body {
 	background-color: $login-bkg;
 }
 
@@ -16,13 +27,13 @@ body.login {
 		margin: 35px 0 0;
 	}
 
-	@include mq($sm + 12, min) {
+	@include mq($md + 12, min) {
 		animation: zoom-out 0.4s cubic-bezier(0.470, 0.000, 0.745, 0.715) 1s both;
 		position: relative;
 		width: 330px;
 	}
 
-	@include mq($sm) {
+	@include mq($md) {
 		padding: 45px 20px 40px;
 	}
 }
@@ -31,6 +42,10 @@ body.login {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+
+	.privacy-policy-page-link {
+		display: none;
+	}
 
 	.message,
 	#login_error {
@@ -68,7 +83,7 @@ body.login {
 				box-shadow: none;
 			}
 
-			@include mq($sm) {
+			@include mq($md) {
 				height: 55px;
 			}
 		}
@@ -77,43 +92,60 @@ body.login {
 	form {
 		position: relative;
 		box-shadow: none;
+		border: 0;
 		margin-top: 0;
 		padding: 70px 0 0;
 		order: 3;
+		overflow: visible;
+
+		>p:first-of-type,
+		.wp-pwd {
+			font-size: 0;
+			position: relative;
+			display: block;
+			margin-bottom: 20px !important; //sass-lint:disable-line no-important
+
+			&::before {
+				font-size: 20px;
+				color: $login-text;
+				position: absolute;
+				left: 15px;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			br {
+				display: none;
+			}
+		}
+
+		>p:first-of-type {
+			// @include font(ico-user);
+		}
+	}
+
+	.button.wp-hide-pw {
+		min-height: 47px;
+
+		&:focus {
+			outline: none;
+		}
 	}
 
 	label {
 		font-size: 0;
 		position: relative;
 		display: block;
-		margin-bottom: 20px;
-
-		&::before {
-			font-size: 20px;
-			color: $login-text;
-			position: absolute;
-			left: 15px;
-			top: 50%;
-			transform: translateY(-50%);
-		}
+		margin: 0;
 
 		br {
 			display: none;
 		}
 	}
 
-	#user_login {
-		background-image: url('../src/assets/svg/ico-user.svg');
-		background-size: 13px;
-		background-position: 18px center;
-		background-repeat: no-repeat;
-	}
-
-	#user_pass {
-		background-image: url('../src/assets/svg/ico-lock.svg');
-		background-size: 13px;
-		background-position: 18px center;
-		background-repeat: no-repeat;
+	[for="user_pass"],
+	.wp-pwd {
+		// @include font(ico-lock);
 	}
 
 	form .input,
@@ -142,13 +174,24 @@ body.login {
 	}
 
 	form .forgetmenot {
-		margin-top: 3px;
+		margin-top: 12px;
+		display: flex;
+		width: 50%;
 
-		label {
-			color: $login-text;
+		input {
+			width: 16px;
+			height: 16px;
+			margin-top: 0;
 		}
 
-		@include mq($sm + 1, min) {
+		label {
+			font-size: 14px;
+			color: $login-text;
+			line-height: 1.2;
+			display: flex;
+		}
+
+		@include mq($md + 1, min) {
 			label {
 				font-size: 14px;
 			}
@@ -158,7 +201,7 @@ body.login {
 	#nav {
 		margin: 0;
 		position: absolute;
-		bottom: 137px;
+		bottom: 138px;
 		right: 26px;
 
 		a {
@@ -171,8 +214,8 @@ body.login {
 			}
 		}
 
-		@include mq($sm) {
-			bottom: 128px;
+		@include mq($md) {
+			bottom: 135px;
 			right: 0;
 
 			a {
@@ -181,7 +224,7 @@ body.login {
 		}
 	}
 
-	@include mq($sm) {
+	@include mq($md) {
 		padding: 0 15px;
 	}
 }
@@ -194,11 +237,14 @@ body.login {
 	left: 0;
 	width: 100%;
 	text-align: center;
+	text-transform: uppercase;
 }
 
-#wp-submit {
+#wp-submit,
+#wfls-token-submit {
 	font-size: 16px;
-	padding: 12px;
+	padding: 18px;
+	line-height: 1;
 	background-color: $login-btn;
 	text-shadow: none;
 	box-shadow: none;
@@ -211,7 +257,7 @@ body.login {
 	&:focus,
 	&:active {
 		font-size: 16px;
-		padding: 12px;
+		padding: 18px;
 		text-shadow: none;
 		box-shadow: none;
 		border: none;
@@ -225,7 +271,7 @@ body.login {
 		opacity: 0.8;
 	}
 
-	@include mq($sm + 1, min) {
+	@include mq($md + 1, min) {
 		min-width: 100px;
 		height: auto;
 
@@ -234,7 +280,22 @@ body.login {
 			text-transform: uppercase;
 			font-weight: bold;
 			min-width: 100px;
-			padding: 12px;
+			padding: 18px;
+			height: auto;
+		}
+	}
+
+	@include mq($md) {
+		min-width: 100px;
+		height: auto;
+		line-height: 1;
+
+		&:focus,
+		&:active {
+			text-transform: uppercase;
+			font-weight: bold;
+			min-width: 100px;
+			padding: 18px;
 			height: auto;
 		}
 	}
@@ -257,4 +318,32 @@ body.login {
 		filter: blur(0px);
 		opacity: 1;
 	}
+}
+
+
+// 2FA
+#wfls-prompt-overlay {
+	z-index: 1;
+	padding: 0;
+}
+
+label[for="wfls-token"] {
+	font-size: 17px;
+	font-weight: 500;
+	color: $login-text;
+	padding-bottom: 10px;
+	text-align: center;
+}
+
+.wfls-2fa-code-help {
+	color: $login-text;
+
+	&:focus {
+		box-shadow: none;
+		transform: scale(1.2);
+	}
+}
+
+.login form .wfls-remember-device-wrapper {
+	margin-top: 5px;
 }
