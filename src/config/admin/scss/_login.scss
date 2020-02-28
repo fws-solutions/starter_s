@@ -112,6 +112,7 @@ body {
 				left: 15px;
 				top: 50%;
 				transform: translateY(-50%);
+				pointer-events: none;
 			}
 
 			br {
@@ -120,7 +121,15 @@ body {
 		}
 
 		>p:first-of-type {
-			// @include font(ico-user);
+			&::before {
+				content: '';
+				width: 20px;
+				height: 20px;
+				background-image:url('../src/assets/svg/ico-user.svg');
+				background-position: 50% 50%;
+				background-repeat: no-repeat;
+				background-size: contain;
+			}
 		}
 	}
 
@@ -145,7 +154,15 @@ body {
 
 	[for="user_pass"],
 	.wp-pwd {
-		// @include font(ico-lock);
+		&::before {
+			content: '';
+			width: 18px;
+			height: 18px;
+			background-image:url('../src/assets/svg/ico-lock.svg');
+			background-position: 50% 50%;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
 	}
 
 	form .input,
@@ -226,6 +243,15 @@ body {
 
 	@include mq($md) {
 		padding: 0 15px;
+	}
+}
+
+.dashicons,
+.login .button.wp-hide-pw {
+	&:focus {
+		outline: none;
+		border: 0;
+		box-shadow: none;
 	}
 }
 
