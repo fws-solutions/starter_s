@@ -35,15 +35,18 @@ class WCHooks
 		add_action( 'after_setup_theme', [ $this, 'setup' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
 
+		add_action( 'woocommerce_before_shop_loop', [ $this, 'productColumnsWrapper' ], 40 );
+		add_action( 'woocommerce_after_shop_loop', [ $this, 'productColumnsWrapperClose' ], 40 );
+
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 
-		add_action( 'woocommerce_before_shop_loop',
+		add_action( 'woocommerce_before_main_content',
 			function () {
 				do_action( 'starter_s_before_main_content' );
 			},
 			40 );
-		add_action( 'woocommerce_after_shop_loop',
+		add_action( 'woocommerce_after_main_content',
 			function () {
 				do_action( 'starter_s_after_main_content' );
 			},
@@ -55,8 +58,8 @@ class WCHooks
 		add_filter( 'body_class', [ $this, 'wcActiveBodyClass' ] );
 		add_filter( 'loop_shop_per_page', [ $this, 'productsPerPage' ] );
 		add_filter( 'woocommerce_product_thumbnails_columns', [ $this, 'thumbnailColumns' ] );
-		add_filter( 'woocommerce_output_related_products_args', 'starter_s_woocommerce_related_products_args' );
-		add_filter( 'woocommerce_add_to_cart_fragments', 'starter_s_woocommerce_cart_link_fragment' );
+		add_filter( 'woocommerce_output_related_products_args', [ $this, 'relatedProductsArgs' ] );
+		add_filter( 'woocommerce_add_to_cart_fragments', [ $this, 'cartLinkFragment' ] );
 	}
 
 	/**
@@ -154,7 +157,7 @@ class WCHooks
 	 *
 	 * @return array $args related products args.
 	 */
-	public function starter_s_woocommerce_related_products_args( array $args ): array
+	public function relatedProductsArgs( array $args ): array
 	{
 		$defaults = [
 			'posts_per_page' => 3,

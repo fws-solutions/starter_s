@@ -62,7 +62,7 @@ class WC
 		?>
 		<ul id="site-header-cart" class="site-header-cart">
 			<li class="<?php echo esc_attr( $class ); ?>">
-				<?php starter_s_woocommerce_cart_link(); ?>
+				<?php $this->cartLink(); ?>
 			</li>
 			<li>
 				<?php
