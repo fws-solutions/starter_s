@@ -8,6 +8,8 @@ Install Forwardslash CLI globaly.
 
 This only needs to be done once per machine, so if you installed it previously, skip this step.
 
+Although, keep in mind for most recent version of it: [forwardslash-cli](https://www.npmjs.com/package/forwardslash-cli).
+
     npm i forwardslash-cli -g
 
 Install dependencies by running Node.js package manager.
@@ -39,14 +41,14 @@ To start *watch mode* and *local server*, execute `fws dev` task.
 
     fws dev
 
-### Creating Views
+### Creating PHP Template Views
 
 To create a new view, execute `fws creates files` command and pass `--block` or `--part` with an argument.
 
     fws create-file component-name --block
     fws create-file part-name --part
 
-Alternatevly, it is possible and **recommended** to use short aliases.
+Alternatively, it is possible and **recommended** to use short aliases.
 
     fws cf component-name -b
     fws cf part-name -p
@@ -59,6 +61,41 @@ This command will create new module files in appropriate directory `template-vie
 
 It will also update appropriate scss file `_blocks.scss` or `_parts.scss` in `src/scss/layout` directory.
 
+### Creating Vue Compontents
+
+To create a new Vue component, execute `fws creates files` command and pass `--block-vue` or `--part-vue` with an argument.
+
+    fws create-file component-name --block-vue
+    fws create-file part-name --part-vue
+
+Alternatively, it is possible and **recommended** to use short aliases.
+
+    fws cf component-name -B
+    fws cf part-name -P
+
+Note that in this case the option argument is passed with one '-' instead of two '--'.
+
+This command will create new module file in appropriate directory `src/vue/components/blocks` or `src/vue/components/parts`:
+* .vue
+
+Naming convention for Vue files should be as follows:
+- each component should be named using PascalCase format,
+- each block component should have a prefix 'Block',
+- each part component should have a prefix 'Part'.
+
+It is essential to keep in mind these rules when creating the files manually.
+
+When using `create-file` or `cf` command, these rules will be applied automatically.
+
+    Example:
+    fws create-file team --block-vue
+
+    or short:
+    fws cf team -B
+
+    Will create:
+    src/vue/components/blocks/BlockTeam.vue
+
 ### SVG Icons
 
 To generate SVG icons, execute `fws icons` task.
@@ -67,14 +104,17 @@ To generate SVG icons, execute `fws icons` task.
 
 This command will optimize all SVG files in `src/assets/svg` directory directory.
 
-It will then be possible to use `inlineSVG` render function to import a SVG file as an inline element in any template.
+#### PHP Usage
 
-To achive this use function as shown in this example `fws()->render->inlineSVG('ico-happy', 'banner__caption-icon')`.
+Use `inlineSVG` render function to import a SVG file as an inline element in any template.
+
+Use the function as shown in this example:
+
+ `fws()->render->inlineSVG('ico-happy', 'banner__caption-icon')`.
 
 The first argument is the name of the file.
 
 The second argument is additional classes.
-
 
     Example:
     <?php echo fws()->render->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
@@ -84,12 +124,57 @@ The second argument is additional classes.
         <svg>...</svg>
     </span>
 
+#### Vue Usage
+
+Import SvgIcon.vue file like any other component from `src/vue/components/base/SvgIcon/SvgIcon.vue`.
+
+Use component as shown in this example:
+
+ `<SvgIcon class="banner__caption-icon" iconName="ico-dog"/>`.
+
+The attribute `iconName` is required, pass the name of the svg file from `src/assets/svg`.
+
+Additionally you can set any other standard HTML attributes, like `class`.
+
+    Example:
+    <SvgIcon class="banner__caption-icon" iconName="ico-dog"/>
+
+    Will render:
+    <span class="banner__caption-icon svg-icon">
+        <svg>...</svg>
+    </span>
+
 ## SCSS
-All components and parts styles should be written in corresponding directory.
+All Template Views styles should be written in corresponding directory.
+
+All Vue Components styles should be written in `.vue` files.
 
 All global styles should be written in `src/scss` directories.
 
-CSS code quality is checked with [Sass Lint](https://github.com/sasstools/sass-lint)
+CSS code quality is checked with [Sass Lint](https://github.com/sasstools/sass-lint).
+
+## JS
+As this is a WP theme, by default it is relying on jQuery library.
+
+Global JS scripts should be written in `src/js` directories.
+The file `site.js` should contain all load methods, and serve for invoking site script's init methods.
+
+    Example:
+    import Menu from './_site/menu';
+    import Sliders from './_site/sliders';
+
+    jQuery(function() {
+    	Menu.init();
+    	Sliders.init();
+    });
+
+All other files should be organized following this folder structure:
+- `_site` - contains all custom written scripts
+- `_plugins` - contains all plugins scripts
+
+Vue JS scripts and logic should be written in appropriate files in `src/vue` directories.
+
+JS code quality is checked with [ESLint](https://eslint.org/).
 
 ## Using Components
 
@@ -141,6 +226,11 @@ extract( (array) get_query_var( 'content-components' ) );
     </div>
 </div><!-- .banner -->
 ```
+
+HTML quality is checked with [htmllint](http://htmllint.github.io/).
+
+HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/).
+
 
 ### Rendering components
 
@@ -213,11 +303,10 @@ Main goal is to allow multiple developers to work on field groups simultaneously
 
 By splitting each Flexible Content block to a separate field group, the workflow is optimized to allow more developers to work in parallel. There is still a risk of creating a conflict if two developers are editing same field group, but in this workflow chances for that are slim.
 
-It is essential to have JSON generating enabled, which is an option set by default if ACF Extended plugin is not being used (more on this plugin below).
-If ACF Extended plugin is installed, it is necessary to set JSON generating per each field group.
+It is essential to have JSON generating enabled, which is an option set by default.
 Another thing to keep in mind, since these fields are being used exclusively for cloning purposes, it is important to set them as **inactive**.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/acf-inactive.png)
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-inactive2.png)
 
 In order to optimize the workflow even further, this Starter Theme comes with hook function that will automatically sync any changes in field groups registered by new JSON files.
 
@@ -243,16 +332,14 @@ For example, the Section Title field...
 
 Considering helper group fields together with block group fields, the number of groups in the dashboard will tend to get very long and unorganized.
 
-To resolve this issue, a new plugin is highly recommended to be used as the standard part of the development - [Advanced Custom Fields: Extended](https://wordpress.org/plugins/acf-extended/).
-
-This plugin offers multiple new functionalities and advantages, but for the purposes of resolving group fields organisation it is enough to only use field group categories taxonomy in order to group the field groups together.
+To resolve this issue, this theme comes with a Custom Taxonomy "Categories" for ACF plugin, which should be used in order to group the field groups together.
 
 Aside from using field group categories it is also required to follow defined naming convention.
 
 Every field group for blocks should be named with a prefix 'FC'.
 Every field group for reusable elements should be named with a prefix 'RE'.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/fc-cat-acf.png)
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-categories.png)
 
 With these two conventions, it is visually optimised to distinguish which fields are blocks and which helpers, and it is user friendly to use categories to filter out desired groups.
 
@@ -312,8 +399,6 @@ $hideOnScreen = [
 
 fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
 ```
-
-Needless to state that this part of the workflow assumes that ACF: Extended plugin is being used.
 
 ## FWS Helper functions
 

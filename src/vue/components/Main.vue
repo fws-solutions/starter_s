@@ -1,15 +1,15 @@
 <template>
 	<div class="vue-example">
 		<div class="vue-example__container container">
-			<Count :title="title" :count="count" :inc="inc"/>
-			<List :title="subtitle" :pages="pages"/>
+			<BlockCount :title="title" :count="count" :inc="inc"/>
+			<BlockList :title="subtitle" :pages="pages"/>
 		</div>
 	</div>
 </template>
 
 <script>
-	import Count from './blocks/Count.vue';
-	import List from './blocks/List.vue';
+	import BlockCount from './blocks/BlockCount.vue';
+	import BlockList from './blocks/BlockList.vue';
 
 	export default {
 		beforeMount() {
@@ -23,8 +23,8 @@
 		},
 
 		components: {
-			Count,
-			List
+			BlockCount,
+			BlockList
 		},
 
 		computed: {

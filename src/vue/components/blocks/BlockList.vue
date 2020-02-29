@@ -5,16 +5,13 @@
 			<h3 class="vue-listing__title" v-if="title">{{title}}</h3>
 		</div>
 
-		<ul class="vue-listing__list" v-if="pages">
-			<li class="vue-listing__item" v-for="page in pages" :key="page.id">
-				<a class="vue-listing__link" :href="page.link">{{page.title.rendered}}</a>
-			</li>
-		</ul>
+		<PartIconList v-if="pagesData" :items="pagesData"/>
 	</div>
 </template>
 
 <script>
-	import SvgIcon from '../parts/SvgIcon/SvgIcon.vue';
+	import SvgIcon from '../base/SvgIcon/SvgIcon.vue';
+	import PartIconList from '../parts/PartIconList.vue';
 
 	export default {
 		props: {
@@ -26,8 +23,32 @@
 			}
 		},
 		components: {
-			SvgIcon
+			SvgIcon,
+			PartIconList
 		},
+		computed: {
+			pagesData() {
+				if (!this.pages) {
+					return null;
+				}
+
+				return this.pages.reduce((agg, cur) => {
+					const page = {
+						key: cur.id,
+						url: cur.link,
+						title: cur.title.rendered,
+						target: '_blank',
+						rel: 'noopener'
+					};
+
+					if (page.title) {
+						agg.push(page);
+					}
+
+					return agg;
+				}, []);
+			}
+		}
 	};
 </script>
 
@@ -46,18 +67,5 @@
 
 	.vue-listing__title {
 		font-size: 20px;
-	}
-
-	.vue-listing__list {
-		padding-left: 15px;
-		margin-left: 10px;
-	}
-
-	.vue-listing__item {
-		list-style: initial;
-	}
-
-	.vue-listing__link:hover {
-		color: $red;
 	}
 </style>
