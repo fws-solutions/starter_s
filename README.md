@@ -1,5 +1,5 @@
 # _S WP Starter
-*Version: 2.1.0*
+*Version: 3.0.0*
 
 > It Only Does Everything.
 
