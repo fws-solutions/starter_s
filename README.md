@@ -1,5 +1,5 @@
-# _S WP Starter
-*Version: 3.0.0*
+# FWS Starter_S
+*Version: 3.0.1*
 
 > It Only Does Everything.
 
@@ -400,7 +400,84 @@ $hideOnScreen = [
 fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
 ```
 
-## FWS Helper functions
+## FWS framework
+
+FWS framework is a default part of this Starter Theme to which **the starter relies on heavily**.
+
+See `fws` and `fws/src` for it's structure and features.
+
+### WooCommerce support
+
+All WooCommerce functionality overrides should be written in `fws/src/WC.php` and `fws/src/WCHooks.php` files.
+
+All WooCommerce template overrides should be written in `woocommerce` directory.
+
+Before implementing any template overrides, all templates of the **current plugin version** should be **backed up** in `woocommerce/__templates-backup` directory.
+
+**This is important to do because if WooCommerce plugin is updated, you will loose original templates and will not be able to compare any overrides that need updating as well.**
+
+The `woocommerce` root directory should **only contain** files that are being overriden. **By all means, do NOT ever copy entire template structure to this folder**.
+
+### Custom Post Types and Taxonomies
+
+Registrating custom post types and taxonomies must always be done using FWS framework.
+
+Each custom post type with it's taxonomies must be placed in a single file inside `fws/src` directory.
+
+Always use `CTPName.php` example file located in `__wp_snippets` directory.
+
+Use `$private` array variable to configure names of custom post type and taxonomies.
+
+Example:
+
+    private $params = [
+        'postSingularName' => 'Custom Post',
+        'postPluralName'   => 'Custom Posts',
+        'taxSingularName'  => 'Custom Post Category',
+        'taxPluralName'    => 'Custom Post Categories',
+    ];
+
+Methods within the CPT class will handle `$params` varibale to pull appropriate names, labels and generate a slug.
+
+Slug and Nice Name are being based on singular name of a custom post type or taxonomy. FWS will replace any space characters for `_` or `-` character and add appropriate prefix when needed.
+
+Slug is used for registrating custom post type or taxonomy under this name, it will use `_` character and a prefix.
+
+Nice Name is used for URL structure, it will use `-` character and will not include a prefix.
+
+Prefixes are defined as follows:
+- for post type: `cpt_`
+- for taxonomy: `ctax_`
+
+Example:
+
+    private $params = [
+        'postSingularName' => 'Book',
+        'postPluralName'   => 'Books',
+        'taxSingularName'  => 'Book Category',
+        'taxPluralName'    => 'Books Categories',
+    ];
+
+This will result in custom post type and taxonomy being registrated under the slugs:
+
+    cpt_book
+    ctax_book_category
+
+and it will set `rewrite` rules for pretty URLs using Nice Name conversion:
+
+    somedomain.com/book/post-title
+    somedomain.com/book-category/category-title
+
+For the rest of a custom post type and taxonomies configuration, see functions:
+
+- `cptInit()`
+- `cptInitTax()`
+
+Always make a new function for additional taxonomies for a custom post type.
+
+When in need for a taxonomy that is shared accross multiple post types, create a seperate class file.
+
+### Utilities
 
 List of all helper functions from this Starter Theme:
 
@@ -408,8 +485,10 @@ List of all helper functions from this Starter Theme:
     - `templateView()` - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
     - `acfLinkField()` - *Renders ACF link field with all field params.*
     - `inlineSVG()` - *Renders an inline SVG into any template.*
+    - `postedOn()` - *Prints HTML with meta information for the current post-date/time and author.*
+    - `pagingNav()` - *Outputs the paging navigation based on the global query.*
 - Images.php
-    - `assets_src()` - *Render image src from 'src/assets/images' or '__demo' directory.*
+    - `assets_src()` - *Render image src from 'src/assets/images' or `__demo` directory.*
 - ACF.php
     - `registerFlexContent()` - *Register new flexible content field group.*
 
@@ -425,3 +504,10 @@ fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen 
 ```
 
 For full description of each method, see appropriate files and examples in the theme.
+
+For creating a new class file inside `fws/src` directory, reference `Example.php` file located in `__wp-snippets` directory.
+
+To make methods available for direct calls, add on the top of the `FWS.php` a `@property` comment.
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/03/fws-inc-example.png
+)

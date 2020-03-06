@@ -4,7 +4,7 @@ declare( strict_types=1 );
 namespace FWS;
 
 /**
- * WC Class
+ * WC Class. No methods are available for direct calls.
  *
  * @package FWS
  * @author  Boris Djemrovski <boris@forwardslashny.com>

@@ -6,7 +6,7 @@ namespace FWS;
 use WP_Term;
 
 /**
- * Singleton Class ACF
+ * Singleton Class ACF. No methods are available for direct calls.
  *
  * @package FWS
  * @author  Boris Djemrovski <boris@forwardslashny.com>

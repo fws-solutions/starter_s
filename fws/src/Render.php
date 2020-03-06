@@ -92,7 +92,7 @@ class Render
 	}
 
 	/**
-	 * Outputs the paging navigation based on the global query
+	 * Outputs the paging navigation based on the global query.
 	 */
 	public function pagingNav(): void
 	{
