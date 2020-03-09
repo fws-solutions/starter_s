@@ -1,5 +1,5 @@
 # FWS Starter_S
-*Version: 3.0.1*
+*Version: 3.0.2*
 
 > It Only Does Everything.
 
@@ -43,7 +43,7 @@ To start *watch mode* and *local server*, execute `fws dev` task.
 
 ### Creating PHP Template Views
 
-To create a new view, execute `fws creates files` command and pass `--block` or `--part` with an argument.
+To create a new view, execute `fws create-file` command and pass `--block` or `--part` with an argument.
 
     fws create-file component-name --block
     fws create-file part-name --part
@@ -60,6 +60,20 @@ This command will create new module files in appropriate directory `template-vie
 * .scss
 
 It will also update appropriate scss file `_blocks.scss` or `_parts.scss` in `src/scss/layout` directory.
+
+### Deleting PHP Frontend Template Views
+
+Once done with FE development phase, it is required to delete all FE components from `template-views` directory.
+
+To remove them all, , execute `fws remove-fe`
+
+    fws remove-fe
+
+Alternatively, it is possible and **recommended** to use short aliases.
+
+    fws rfe
+
+This command will delete all `.php` files in appropriate directory `template-views/blocks` or `template-views/parts` with `_fe-` prefix.
 
 ### Creating Vue Compontents
 

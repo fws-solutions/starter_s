@@ -83,25 +83,6 @@ function resetDev() {
 		.pipe(clean());
 }
 
-// remove all _fe files in template-views dir
-gulp.task('remove-fe', removeFeFiles);
-
-function removeFeFiles() {
-	console.log(colors.red(`DELETED FE FILES:`));
-
-	return gulp.src('template-views/**')
-		.pipe(tap(function(file) {
-			const filePath = file.path;
-			const fileStat = fs.lstatSync(filePath);
-			const fileName = path.basename(filePath);
-
-			if (!fileStat.isDirectory() && path.extname(filePath) === '.php' && fileName.substring(0, 4) === '_fe-') {
-				fs.unlinkSync(filePath);
-				console.log(colors.red(fileName));
-			}
-		}));
-}
-
 // start dev tasks
 gulp.task('watch', gulp.series(
 	globalVars.createDistFolder,
