@@ -86,4 +86,4 @@ class WC
 	}
 }
 
-return Example::getInstance();
+return WC::getInstance();

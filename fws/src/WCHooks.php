@@ -187,4 +187,4 @@ class WCHooks
 	}
 }
 
-return Example::getInstance();
+return WCHooks::getInstance();
