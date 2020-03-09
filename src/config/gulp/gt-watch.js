@@ -16,9 +16,8 @@ function watchFiles(done) {
 	// watch vue folder
 	gulp.watch('src/vue/**', gulp.series('js'));
 
-	// watch .scss files
-	gulp.watch(['__fe-template-parts/**/*.php'], gulp.parallel(['html-lint-fe', 'html-w3']));
-	gulp.watch(['template-parts/**/*.php'], gulp.parallel(['html-lint-be', 'html-w3']));
+	// watch .php files
+	gulp.watch(['template-views/**/*.php'], gulp.parallel(['html-lint-be', 'html-w3']));
 
 	done();
 }

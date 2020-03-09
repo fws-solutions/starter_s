@@ -19,7 +19,7 @@ get_header();
 do_action( 'starter_s_before_main_content' );
 
 // get content blocks
-get_template_part( 'template-parts/flex-content' );
+get_template_part( 'template-views/shared/flex-content' );
 
 // close main content wrappers
 do_action( 'starter_s_after_main_content' );

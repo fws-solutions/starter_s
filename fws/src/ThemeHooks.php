@@ -30,6 +30,42 @@ class ThemeHooks
 		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
 		add_action( 'admin_notices', [ $this, 'dependenciesNotice' ] );
 
+		// Remove RSS Feed from WP head
+		remove_action( 'wp_head', 'feed_links_extra', 3 );
+		remove_action( 'wp_head', 'feed_links', 2 );
+
+		// Remove REST API link from WP head
+		remove_action('wp_head', 'rest_output_link_wp_head', 10);
+		remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+		remove_action('template_redirect', 'rest_output_link_header', 11);
+
+		// Remove XML-RPC RSD link from WP head
+		remove_action ('wp_head', 'rsd_link');
+
+		// Remove WordPress version number from WP head
+		add_filter('the_generator', 'removeWpVersion');
+
+		// Remove wlwmanifest link from WP head
+		remove_action( 'wp_head', 'wlwmanifest_link');
+
+		// Remove shortlink from WP head
+		remove_action( 'wp_head', 'wp_shortlink_wp_head');
+
+		// Removing prev and nex article links from WP head
+		remove_action('wp_head', 'adjacent_posts_rel_link_wp_head');
+
+		// Disable the emoji's
+		remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+		remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+		remove_action( 'wp_print_styles', 'print_emoji_styles' );
+		remove_action( 'admin_print_styles', 'print_emoji_styles' );
+		remove_filter( 'the_content_feed', 'wp_staticize_emoji' );
+		remove_filter( 'comment_text_rss', 'wp_staticize_emoji' );
+		remove_filter( 'wp_mail', 'wp_staticize_emoji_for_email' );
+
+		// Remove from TinyMCE
+		add_filter( 'tiny_mce_plugins', [ $this, 'disableEmojisTinymce' ] );
+
 		// Remove login error shake
 		remove_action( 'login_head', 'wp_shake_js', 12 );
 
@@ -149,7 +185,7 @@ class ThemeHooks
 	 *
 	 * @return array
 	 */
-	function recoveryModeEmail( array $data ): array
+	public function recoveryModeEmail( array $data ): array
 	{
 		$data['to'] = [
 			'hello@forwardslashny.com',
@@ -160,6 +196,30 @@ class ThemeHooks
 		return $data;
 	}
 
+	/**
+	 * Filter out the tinymce emoji plugin.
+	 */
+	public function disableEmojisTinymce( $plugins ) {
+		if ( is_array( $plugins ) ) {
+			return array_diff( $plugins, array( 'wpemoji' ) );
+		} else {
+			return array();
+		}
+	}
+
+	/**
+	 * Disable RSS Feed
+	 */
+	public function wpbDisableFeed() {
+		wp_die( __('No feed available, please visit our <a href="'. get_bloginfo('url') .'">Homepage</a>!') );
+	}
+
+	/**
+	 * Remove WP version link
+	 */
+	public function removeWpVersion() {
+		return '';
+	}
 }
 
 return ThemeHooks::getInstance();
