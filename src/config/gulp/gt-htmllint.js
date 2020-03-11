@@ -2,8 +2,7 @@ const gulp = require('gulp');
 const htmllint = require('gulp-htmllint');
 const fancyLog = require('fancy-log');
 const colors = require('ansi-colors');
-const axios = require('axios');
-const validator = require('html-validator');
+const w3 = require('forwardslash-cli').w3;
 
 /*----------------------------------------------------------------------------------------------
 	W3 Validator
@@ -13,69 +12,9 @@ gulp.task('html-w3', htmlw3);
 const gulpfile = require('../../../gulpfile');
 
 function htmlw3(done) {
-	getPages(gulpfile.localURL, done);
+	w3(gulpfile.localURL, done);
 }
 
-function ValidatorConfig(url) {
-	this.url = url;
-	this.format = 'text';
-	this.isLocal = true;
-	this.ignore = [
-		'Warning: The "type" attribute is unnecessary for JavaScript resources.'
-	];
-}
-
-async function getPages(url, done) {
-	const pagesURL = `${url}/wp-json/wp/v2/pages?per_page=100`;
-	const postsURL = `${url}/wp-json/wp/v2/posts?per_page=5`;
-
-	try {
-		const pages = await axios.get(pagesURL);
-		const posts = await axios.get(postsURL);
-		const all = pages.data.concat(posts.data);
-
-		all.forEach((cur) => {
-			validateHTML(cur.link);
-		});
-
-		done();
-	} catch (error) {
-		console.error(error);
-		done();
-	}
-}
-
-async function validateHTML(url) {
-	const config = new ValidatorConfig(url);
-
-	try {
-		let counter = 0;
-		let result = await validator(config);
-		const hasErrorsString = 'There were errors.';
-
-		if (result.includes(hasErrorsString)) {
-			result = result.replace('\n' + hasErrorsString, '').split('\n');
-
-			await console.log('\n\n');
-			await console.log(colors.cyan(`########## W3 Validator Error on Page: ${url} ##########`));
-			await console.log('\n');
-
-			result.forEach((cur, i) => {
-				if (i % 2 !== 0) {
-					fancyLog(colors.yellow(`Location: ${cur}`));
-					fancyLog(colors.cyan('-----------------------------------------------------'));
-					console.log('\n');
-				} else {
-					counter++;
-					fancyLog(colors.cyan(`No.#${counter} -----------------------------------------------`));
-					fancyLog(colors.red(cur));
-				}
-			});
-		}
-	} catch (error) {
-		console.error(error);
-	}
-}
 
 /*----------------------------------------------------------------------------------------------
 	HTML Lint

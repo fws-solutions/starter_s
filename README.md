@@ -1,5 +1,5 @@
 # FWS Starter_S
-*Version: 3.0.3*
+*Version: 3.0.4*
 
 > It Only Does Everything.
 
@@ -16,6 +16,11 @@ Install dependencies by running Node.js package manager.
 
     npm install
 
+## Local Virtual Host
+
+Local enviorment and virtual host **must** be named exactly the same as it is defiend in `gulpfile.js` file in the variable `localURL`.
+
+    const localURL = 'http://somedomain.local/';
 
 ## CLI
 For the full list of all commands, execute `fws --help`.
@@ -157,6 +162,28 @@ Additionally you can set any other standard HTML attributes, like `class`.
     <span class="banner__caption-icon svg-icon">
         <svg>...</svg>
     </span>
+
+### W3 Validator
+
+To run W3 Validator, execute `fws w3-local` command.
+
+    fws w3-local
+
+HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/) API.
+
+This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `gulpfile.js` file in the variable `const localURL = 'http://somedomain.local/';`.
+
+**This is a must**, your virtual host URL must be **exactly the same** as `localURL` variable.
+
+Furthermore, W3 Validator has the **only** command that **can be run outside** of the Starter Theme's root directory.
+
+The command for checking any **online/live** URL is:
+
+    fws w3 https://somedomain.com/
+
+Note that you need to pass an actuall domain URL as an argument.
+
+The domain URL **needs to be very strictly formated**. It needs to start with `http` or `https` and needs to end with `/`.
 
 ## SCSS
 All Template Views styles should be written in corresponding directory.

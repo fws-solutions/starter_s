@@ -43,7 +43,7 @@ class ThemeHooks
 		remove_action ('wp_head', 'rsd_link');
 
 		// Remove WordPress version number from WP head
-		add_filter('the_generator', 'removeWpVersion');
+		add_filter('the_generator', [ $this, 'removeWpVersion' ]);
 
 		// Remove wlwmanifest link from WP head
 		remove_action( 'wp_head', 'wlwmanifest_link');
@@ -205,13 +205,6 @@ class ThemeHooks
 		} else {
 			return array();
 		}
-	}
-
-	/**
-	 * Disable RSS Feed
-	 */
-	public function wpbDisableFeed() {
-		wp_die( __('No feed available, please visit our <a href="'. get_bloginfo('url') .'">Homepage</a>!') );
 	}
 
 	/**

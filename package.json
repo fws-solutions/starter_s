@@ -1,7 +1,7 @@
 {
 	"name": "fws_starter_s",
 	"author": "Forwardslash NY",
-	"version": "3.0.3",
+	"version": "3.0.4",
 	"main": "gulpfile.js",
 	"scripts": {
 		"build-dev": "gulp build-dev",
@@ -9,7 +9,7 @@
 		"css": "gulp css",
 		"js": "gulp js",
 		"dev": "gulp watch",
-		"w3": "gulp html-w3",
+		"w3-local": "gulp html-w3",
 		"lint-html": "gulp html-lint-fe",
 		"lint-css": "gulp sass-lint",
 		"lint-js": "gulp js-lint"
@@ -28,6 +28,7 @@
 		"eslint-loader": "^3.0.3",
 		"eslint-plugin-vue": "^6.2.1",
 		"fancy-log": "^1.3.3",
+		"forwardslash-cli": "^0.5.1",
 		"gulp": "^4.0.2",
 		"gulp-clean": "^0.4.0",
 		"gulp-clean-css": "^4.2.0",
@@ -45,7 +46,6 @@
 		"gulp-sourcemaps": "^2.6.5",
 		"gulp-tap": "^2.0.0",
 		"gulp-uglify-es": "^2.0.0",
-		"html-validator": "^5.1.3",
 		"lodash.startcase": "^4.4.0",
 		"postcss-flexbugs-fixes": "^4.2.0",
 		"prerender-spa-plugin": "^3.4.0",
