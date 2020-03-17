@@ -81,11 +81,9 @@ class ThemeHooks
 	{
 		$user = get_currentuserinfo();
 
-		if ( strpos( $user->user_email, 'forwardslashny.com' ) ) {
-			return;
+		if ( ! $user->user_email || strpos( $user->user_email, 'forwardslashny.com' ) === false ) {
+			add_filter( 'file_mod_allowed', '__return_false' );
 		}
-
-		add_filter( 'file_mod_allowed', '__return_false' );
 	}
 
 	/**
