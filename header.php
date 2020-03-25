@@ -32,15 +32,44 @@
 
 		<a href="javascript:;" class="menu-btn js-menu-btn"><span></span></a>    <!-- menu-button -->
 
-		<nav id="site-navigation" class="main-navigation js-main-nav">
+		<nav id="site-navigation" class="main-nav js-main-nav">
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'menu-1',
-				'menu_id'        => 'primary-menu',
-				'menu_class'     => 'primary-menu clear',
+				'menu_class'     => 'main-nav__list',
 				'container'      => false
 			) );
 			?>
+		</nav><!-- #site-navigation -->
+
+		<nav class="main-nav js-main-nav">
+			<ul class="main-nav__list">
+				<li class="menu-item">
+					<a href="#">Menu Item</a>
+				</li>
+
+				<li class="menu-item menu-item-has-children">
+					<a href="#">Menu Item 2</a>
+					<ul class="sub-menu">
+						<li class="menu-item">
+							<a href="#">Submenu Item</a>
+						</li>
+
+						<li class="menu-item menu-item-has-children">
+							<a href="#">Submenu Item 2</a>
+							<ul class="sub-menu">
+								<li class="menu-item">
+									<a href="#">Third Level Item</a>
+								</li>
+
+								<li class="menu-item">
+									<a href="#">Third Level Item 2</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
