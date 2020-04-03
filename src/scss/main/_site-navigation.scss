@@ -12,167 +12,215 @@ a {
 	}
 }
 
-.main-nav {
-	.main-nav__list {
-		list-style: none;
-		margin: 0;
-		padding: 0;
+// Top Level Items
+.site-nav__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
 
-		li:hover > ul,
-		li.focus > ul {
-			transform: translateY(0);
-			opacity: 1;
+	@include mq($xl) {
+		display: block;
+	}
+
+	> .menu-item {
+		position: relative;
+
+		@include mq($xl + 1, 'min') {
+			margin-left: 20px;
+
+			&:first-child {
+				margin: 0;
+			}
+
+			&.menu-item-has-children {
+				padding-right: 20px;
+			}
+		}
+
+		@include mq($xl) {
+			margin: 0 0 5px;
+			padding-bottom: 5px;
+			border-bottom: 1px solid rgba($white, .2);
+			overflow: hidden;
+			transition: $dur $ease;
+
+			&:last-child {
+				border: 0;
+				margin: 0;
+			}
+		}
+
+		@include hover {
+			> a::after {
+				transform: translateX(-50%) scaleX(1);
+			}
+
+			> .sub-menu {
+				transform: translateY(0);
+				opacity: 1;
+				visibility: visible;
+			}
+		}
+
+		> a {
+			display: block;
+			position: relative;
+			text-decoration: none;
+			color: $white;
+			transition: $dur $ease;
+
+			&::after {
+				content: '';
+				display: block;
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				transform: translateX(-50%) scaleX(0);
+				width: 100%;
+				height: 1px;
+				background-color: $white;
+				transition: $dur $ease;
+			}
 		}
 	}
 
-	.sub-menu {
+	&.current_page_item > a,
+	&.current-menu-item > a,
+	&.current_page_ancestor > a,
+	&.current-menu-ancestor > a {
+		color: $red;
+	}
+}
+
+.site-nav__icon {
+	color: $white;
+	right: 0;
+	@include center(y);
+
+	@include mq($xl) {
+		z-index: 10;
+		cursor: pointer;
+		font-size: 20px;
+		padding: 5px;
+		top: 1px;
+		transform: none;
+		transition: $dur $ease;
+
+		&.is-active {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+// Sub Menu Items
+.sub-menu {
+	@include mq($xl + 1, 'min') {
 		position: absolute;
 		left: 0;
 		top: 100%;
-		border-top: 3px solid $white;
-		z-index: 99999;
-		background-color: $black;
+		z-index: 10;
+		background-color: $white;
 		transition: $dur $ease;
 		transform: translateY(5px);
 		opacity: 0;
+		visibility: hidden;
+		padding: 15px;
+		list-style: none;
+		margin: 0;
+		font-size: 14px;
+		line-height: 1.3;
+		box-shadow: 5px 5px 0 0 rgba($black, .3);
 
 		.sub-menu {
 			left: 100%;
 			top: 0;
+			transform: translateX(5px);
 		}
+	}
 
-		li {
-			border-bottom: 1px solid $black;
+	@include mq($xl) {
+		padding-left: 15px;
+		overflow: hidden;
+		display: none;
+	}
+
+	.menu-item {
+		position: relative;
+
+		@include mq($xl + 1, 'min') {
+			margin: 20px 0;
+			position: relative;
+
+			&:first-of-type {
+				margin-top: 0;
+			}
 
 			&:last-of-type {
-				border-bottom: none;
+				margin-bottom: 0;
+
+				&::after {
+					content: none;
+				}
+			}
+
+			&::after {
+				content: '';
+				display: block;
+				background-color: $red;
+				width: 100%;
+				height: 1px;
+				position: absolute;
+				bottom: -10px;
+				left: 0;
+			}
+
+			&.menu-item-has-children {
+				padding-right: 20px;
 			}
 		}
 
-		a {
-			width: 200px;
-		}
-	}
-
-	li {
-		position: relative;
-		float: left;
-		transition: $dur $ease;
-
-		&:hover > a,
-		&.focus > a {
-			background-color: $white;
-		}
-	}
-
-	a {
-		display: block;
-		text-decoration: none;
-		color: $white;
-		padding: 20px 15px;
-	}
-
-	.current_page_item > a,
-	.current-menu-item > a,
-	.current_page_ancestor > a,
-	.current-menu-ancestor > a {
-	}
-
-	@include mq($sm) {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		visibility: hidden;
-		z-index: 100;
-		transition: $dur $ease $dur;
-
-		&::before {
-			content: '';
-			display: block;
-			background-color: rgba($black, .4);
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			opacity: 0;
-			transition: $dur $ease;
-		}
-
-		&.open {
-			visibility: visible;
-			transition: none;
-
-			&::before {
-				opacity: 1;
-				transition: $dur $ease 10ms;
+		@include hover {
+			> a {
+				color: $red;
 			}
 
-			> ul {
+			> .sub-menu {
 				transform: translateX(0);
-				transition: $dur $ease 10ms;
-			}
-		}
-
-		.primary-menu {
-			position: absolute;
-			top: 0;
-			right: 0;
-			width: 230px;
-			height: 100%;
-			background-color: $black;
-			padding-top: 60px;
-			overflow: auto;
-			z-index: 100;
-			transform: translateX(100%);
-			transition: $dur ease;
-		}
-
-		.sub-menu {
-			position: static;
-			transition: initial;
-			transform: none;
-			background-color: transparent;
-			border: 0;
-			padding: 5px 0 10px 10px;
-			opacity: 1;
-			display: none;
-
-			li {
-				border: 0;
-				font-size: .85em;
-			}
-
-			.sub-icon {
-				top: 1px;
-			}
-		}
-
-		li {
-			float: none;
-
-			&:hover > a,
-			&.focus > a {
-				background-color: transparent;
+				opacity: 1;
+				visibility: visible;
 			}
 		}
 
 		a {
-			display: inline-block;
-			padding: 0 15px;
-		}
-
-		.sub-icon {
-			line-height: 1;
 			display: block;
-			color: $white;
-			font-size: 18px;
-			position: absolute;
-			right: 60px;
-			top: 3px;
+			color: $black;
 			transition: $dur $ease;
+
+			@include mq($xl + 1, 'min') {
+				width: 200px;
+			}
+
+			@include mq($xl) {
+				color: $white;
+				font-size: 14px;
+			}
+		}
+	}
+
+	.site-subnav__icon {
+		color: $black;
+
+		@include mq($xl) {
+			color: $white;
+			padding: 4px 5px;
+			top: 2px;
+
+			&.is-active {
+				transform: rotate(180deg);
+			}
 		}
 	}
 }
