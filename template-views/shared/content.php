@@ -9,8 +9,8 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="entry-header" style="margin-bottom: 30px;">
+<article id="post-<?php the_ID(); ?>" <?php post_class('post-article'); ?>>
+	<div class="entry-header">
 		<h1 class="entry-title"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h1>
 
 		<?php if ( 'post' === get_post_type() ) : ?>

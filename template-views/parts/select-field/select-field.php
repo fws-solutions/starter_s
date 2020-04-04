@@ -2,7 +2,7 @@
 /**
  * @var string $title
  */
-extract( (array) get_query_var( 'content-partials' ) );
+extract( (array) get_query_var( 'content-parts' ) );
 ?>
 
 <div class="select-field">

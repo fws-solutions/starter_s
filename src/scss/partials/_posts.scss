@@ -1,0 +1,16 @@
+/*--------------------------------------------------------------
+## Post Article
+--------------------------------------------------------------*/
+.post-article {
+	padding: 30px;
+	margin-bottom: 15px;
+	background-color: $grey-light;
+
+	&:last-of-type {
+		margin: 0;
+	}
+}
+
+.posts-archive {
+	margin: 50px 0;
+}

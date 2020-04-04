@@ -7,46 +7,38 @@
  * @package starter_s
  */
 
+// get header
 get_header();
-?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+// open main content wrappers
+do_action( 'starter_s_before_main_content' );
+do_action( 'starter_s_before_archive_listing' );
 
-			<?php if ( have_posts() ) : ?>
+// start the Loop
+if ( have_posts() ) {
+	$title    = get_the_archive_title();
+	$subtitle = get_the_archive_description();
+	fws()->render->pageDefaultHeader( $title, $subtitle );
 
-				<header class="page-header">
-					<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="archive-description">', '</div>' );
-					?>
-				</header><!-- .page-header -->
+	while ( have_posts() ) {
+		the_post();
 
-				<?php
-				/* Start the Loop */
-				while ( have_posts() ) :
-					the_post();
+		/*
+		 * Include the Post-Type-specific template for the content.
+		 * If you want to override this in a child theme, then include a file
+		 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+		 */
+		get_template_part( 'template-views/shared/content' );
+	}
 
-					/*
-					 * Include the Post-Type-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-					 */
-					get_template_part( 'template-views/shared/content' );
+	fws()->render->pagingNav();
+} else {
+	get_template_part( 'template-views/shared/content', 'none' );
+}
 
-				endwhile;
+// close main content wrappers
+do_action( 'starter_s_after_archive_listing' );
+do_action( 'starter_s_after_main_content' );
 
-				the_posts_navigation();
-
-			else :
-
-				get_template_part( 'template-views/shared/content', 'none' );
-
-			endif;
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
+// get footer
 get_footer();

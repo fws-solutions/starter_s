@@ -25,6 +25,8 @@ class ThemeHooks
 		add_action( 'wp_head', [ $this, 'pingbackHeader' ] );
 		add_action( 'starter_s_before_main_content', [ $this, 'pageWrapperBefore' ] );
 		add_action( 'starter_s_after_main_content', [ $this, 'pageWrapperAfter' ] );
+		add_action( 'starter_s_before_archive_listing', [ $this, 'archiveWrapperBefore' ] );
+		add_action( 'starter_s_after_archive_listing', [ $this, 'archiveWrapperAfter' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
@@ -79,7 +81,7 @@ class ThemeHooks
 	 */
 	public function preventPluginUpdate(): void
 	{
-		$user = get_currentuserinfo();
+		$user = wp_get_current_user();
 
 		if ( ! $user->user_email || strpos( $user->user_email, 'forwardslashny.com' ) === false ) {
 			add_filter( 'file_mod_allowed', '__return_false' );
@@ -101,10 +103,8 @@ class ThemeHooks
 	 */
 	public function pageWrapperBefore(): void
 	{
-		?>
-		<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-		<?php
+		echo '<div id="primary" class="content-area">';
+		echo '<main id="main" class="site-main" role="main">';
 	}
 
 	/**
@@ -112,10 +112,26 @@ class ThemeHooks
 	 */
 	public function pageWrapperAfter(): void
 	{
-		?>
-		</main><!-- #main -->
-		</div><!-- #primary -->
-		<?php
+		echo '</main><!-- #main -->';
+		echo '</div><!-- #primary -->';
+	}
+
+	/**
+	 * Archive page wrapper BEFORE
+	 */
+	public function archiveWrapperBefore(): void
+	{
+		echo '<div class="posts-archive">';
+		echo '<div class="posts-archive__container container">';
+	}
+
+	/**
+	 * Archive page wrapper AFTER
+	 */
+	public function archiveWrapperAfter(): void
+	{
+		echo '</div>';
+		echo '</div>';
 	}
 
 	/**

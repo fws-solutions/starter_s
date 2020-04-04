@@ -7,7 +7,7 @@
  * @var array $tablet_image
  * @var array $mobile_image
  */
-extract( (array) get_query_var( 'content-components' ) );
+extract( (array) get_query_var( 'content-blocks' ) );
 ?>
 
 <div class="banner">

@@ -1,13 +1,8 @@
 /*--------------------------------------------------------------
-## Popup
+## page-nav
 --------------------------------------------------------------*/
-.popup {
-	display: none;
-	max-width: 600px;
-}
-
-.popup-custom-class {
-	.fancybox-bg {
-		background: rgba($black, 0.7);
-	}
+.page-nav {
+	margin-top: 30px;
+	padding: 30px 0;
+	border-top: 1px solid $grey-light;
 }

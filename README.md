@@ -1,5 +1,5 @@
 # FWS Starter_S
-*Version: 3.0.4*
+*Version: 3.0.6*
 
 > It Only Does Everything.
 
@@ -256,7 +256,7 @@ The idea is to always pass all values using an array.
  * @var string $subtitle
  * @var array $image
  */
-extract( (array) get_query_var( 'content-components' ) );
+extract( (array) get_query_var( 'content-blocks' ) );
 ?>
 
 <div class="banner" style="background-image: url(<?php echo $image['sizes']['max-width']; ?>);">

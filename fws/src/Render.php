@@ -24,7 +24,7 @@ class Render
 	 */
 	public function templateView( $view_vals, string $view_name, bool $is_partial = false ): void
 	{
-		$view_type = ! $is_partial ? 'components' : 'partials';
+		$view_type = ! $is_partial ? 'blocks' : 'parts';
 		$view_var_name = 'content-' . $view_type;
 		$view_dir = 'template-views/' . $view_type . '/' . $view_name . '/' . $view_name;
 
@@ -137,16 +137,22 @@ class Render
 			'next_text' => __( 'Next', 'starter_s' ),
 		] );
 
-		if ( $links ) :
+		if ( $links ) {
+			$this->templateView($links, 'page-nav', true);
+		}
+	}
 
-			?>
-			<nav class="navigation paging-navigation" role="navigation">
-				<div class="pagination loop-pagination">
-					<?php echo $links; ?>
-				</div><!-- .pagination -->
-			</nav><!-- .navigation -->
-		<?php
-		endif;
+	/**
+	 * Default page Header
+	 */
+	public function pageDefaultHeader(string $title, string $subtitle = '', bool $isScreenReader = false): void
+	{
+		echo '<header class="page-header">';
+		echo '<h1 class="page-title' . ($isScreenReader ? ' screen-reader-text">' : '">') . $title . '</h1>';
+		if ($subtitle) {
+			echo '<div class="archive-description">' . $subtitle . '</div>';
+		}
+		echo '</header><!-- .page-header -->';
 	}
 }
 

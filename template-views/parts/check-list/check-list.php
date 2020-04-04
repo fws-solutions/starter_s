@@ -1,4 +1,4 @@
-<?php $check_list = get_query_var( 'content-partials' ); ?>
+<?php $check_list = get_query_var( 'content-parts' ); ?>
 
 <div class="check-list">
 	<?php if ( $check_list ) : ?>
