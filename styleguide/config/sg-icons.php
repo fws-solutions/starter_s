@@ -1,7 +1,10 @@
 <?php
 // Set icons
 $icons = [
-	'ico-chevron-down',
+	'ico-arrow-up',
+	'ico-arrow-down',
+	'ico-arrow-left',
+	'ico-arrow-right',
 	'ico-happy',
 	'ico-lock',
 	'ico-plus-circle',

@@ -69,9 +69,16 @@ class Render
 	public function inlineSVG( string $svg_name, string $classes = '' ): string
 	{
 		$svg_classes = $classes ? $classes . ' ' : '';
-		$svg = file_get_contents( get_template_directory_uri() . '/src/assets/svg/' . $svg_name . '.svg' );
+		$svg_path = '/src/assets/svg/' . $svg_name . '.svg';
 
-		return '<span class="' . $svg_classes . 'svg-icon">' . $svg . '</span>';
+		if (file_exists('./wp-content/themes/' . get_template() . $svg_path)) {
+			$svg = file_get_contents( get_template_directory_uri() . $svg_path );
+			$svg = '<span class="' . $svg_classes . 'svg-icon">' . $svg . '</span>';
+		} else {
+			$svg = '<span style="display: block; color: white; font-weight: bold; background-color: red; padding: 10px; text-align: center;">No SVG file found:<br><span style="font-weight: normal">' . $svg_path . '</span></span>';
+		}
+
+		return $svg;
 	}
 
 	/**

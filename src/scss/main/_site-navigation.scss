@@ -13,6 +13,10 @@ a {
 }
 
 // Top Level Items
+.site-nav {
+	line-height: 2;
+}
+
 .site-nav__list {
 	list-style: none;
 	margin: 0;
@@ -210,16 +214,17 @@ a {
 		}
 	}
 
-	.site-subnav__icon {
+	.site-nav__icon {
 		color: $black;
 
 		@include mq($xl) {
 			color: $white;
 			padding: 4px 5px;
 			top: 2px;
+			transform: rotate(90deg);
 
 			&.is-active {
-				transform: rotate(180deg);
+				transform: rotate(270deg);
 			}
 		}
 	}

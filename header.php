@@ -30,13 +30,13 @@
 			<div class="site-header__container">
 				<div class="site-header__branding">
 					<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<img class="site-header__logo-img" src="<?php echo get_template_directory_uri(); ?>/src/assets/images/logo.png" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
+						<img class="site-header__logo-img" src="<?php echo get_template_directory_uri(); ?>/src/assets/images/logo-white.png" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
 					</a>
 				</div>
 
-				<div class="site-header__nav-outer">
-					<div class="site-header__nav-inner">
-						<nav id="site-navigation" class="site-nav js-site-nav">
+				<div class="site-header__nav-outer js-nav-outer">
+					<div class="site-header__nav-inner js-nav-inner">
+						<nav id="site-navigation" class="site-nav">
 							<?php
 							/*
 							 * Enable this function once it's ready to replace FE code bellow.
@@ -70,7 +70,7 @@
 
 										<li class="menu-item menu-item-has-children">
 											<a href="#">Submenu Item 2</a>
-											<?php echo fws()->render->inlineSVG('ico-arrow-down', 'site-nav__icon js-nav-icon'); ?>
+											<?php echo fws()->render->inlineSVG('ico-arrow-right', 'site-nav__icon js-nav-icon'); ?>
 											<ul class="sub-menu">
 												<li class="menu-item">
 													<a href="#">Third Level Item</a>

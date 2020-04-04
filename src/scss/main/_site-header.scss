@@ -106,7 +106,10 @@
 }
 
 .site-header__hamburger {
+	display: none;
+
 	@include mq($xl) {
+		display: block;
 		right: 15px;
 		@include center(y);
 		z-index: 1100;

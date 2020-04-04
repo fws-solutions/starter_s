@@ -10,9 +10,10 @@ const ExampleFile = {
 	 * @description Cache dom and strings
 	 * @description Please always define selectors, classes and data attributes with the following prefixes
 	 * @type {object}
-	 * @param {jQuery} $dom	for any jQuery selectors
-	 * @param {string} class for any class strings
-	 * @param {string} attr for any data attributes strings
+	 * @param {jQuery} $dom     for any jQuery selectors    - example: $domMenu: $('.js-menu')
+	 * @param {string} sl       for any string selectors    - example: slMenu: '.js-menu'
+	 * @param {string} class    for any class strings       - example: classActive: 'is-active'
+	 * @param {string} attr     for any attributes strings  - example: attrIndex: 'data-index'
 	 */
 
 	$domExampleSelector: $('.js-something'),
