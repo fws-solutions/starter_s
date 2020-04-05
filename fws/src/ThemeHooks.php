@@ -23,10 +23,10 @@ class ThemeHooks
 	{
 		add_action( 'admin_init', [ $this, 'preventPluginUpdate' ] );
 		add_action( 'wp_head', [ $this, 'pingbackHeader' ] );
-		add_action( 'starter_s_before_main_content', [ $this, 'pageWrapperBefore' ] );
-		add_action( 'starter_s_after_main_content', [ $this, 'pageWrapperAfter' ] );
-		add_action( 'starter_s_before_archive_listing', [ $this, 'archiveWrapperBefore' ] );
-		add_action( 'starter_s_after_archive_listing', [ $this, 'archiveWrapperAfter' ] );
+		add_action( 'fws_starter_s_before_main_content', [ $this, 'pageWrapperBefore' ] );
+		add_action( 'fws_starter_s_after_main_content', [ $this, 'pageWrapperAfter' ] );
+		add_action( 'fws_starter_s_before_archive_listing', [ $this, 'archiveWrapperBefore' ] );
+		add_action( 'fws_starter_s_after_archive_listing', [ $this, 'archiveWrapperAfter' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
@@ -139,8 +139,8 @@ class ThemeHooks
 	 */
 	public function addAdminStyles(): void
 	{
-		wp_enqueue_style( 'starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css' );
-		wp_enqueue_script( 'starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
+		wp_enqueue_style( 'fws_starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css' );
+		wp_enqueue_script( 'fws_starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
 	}
 
 	/**
@@ -148,7 +148,7 @@ class ThemeHooks
 	 */
 	public function addLoginTitle(): void
 	{
-		echo '<span class="login-title">starter_s login</span>';
+		echo '<span class="login-title">fws_starter_s login</span>';
 	}
 
 	/**
@@ -157,7 +157,7 @@ class ThemeHooks
 	public function dependenciesNotice(): void
 	{
 		if ( ! function_exists( 'get_field' ) ) {
-			echo '<div class="error"><p>' . __( 'Warning: The theme needs ACF Pro plugin to function', 'starter_s' ) . '</p></div>';
+			echo '<div class="error"><p>' . __( 'Warning: The theme needs ACF Pro plugin to function', 'fws_starter_s' ) . '</p></div>';
 		}
 	}
 

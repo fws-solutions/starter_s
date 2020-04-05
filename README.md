@@ -1,5 +1,5 @@
-# FWS Starter_S
-*Version: 3.0.6*
+# FWS fws_starter_s
+*Version: 3.1.0*
 
 > It Only Does Everything.
 

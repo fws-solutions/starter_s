@@ -33,11 +33,11 @@ class WC
 	public function cartLink(): void
 	{
 		?>
-		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'starter_s' ); ?>">
+		<a class="cart-contents" href="<?php echo esc_url( wc_get_cart_url() ); ?>" title="<?php esc_attr_e( 'View your shopping cart', 'fws_starter_s' ); ?>">
 			<?php
 			$item_count_text = sprintf(
 			/* translators: number of items in the mini cart. */
-				_n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'starter_s' ),
+				_n( '%d item', '%d items', WC()->cart->get_cart_contents_count(), 'fws_starter_s' ),
 				WC()->cart->get_cart_contents_count()
 			);
 			?>

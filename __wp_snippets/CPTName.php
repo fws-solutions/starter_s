@@ -50,20 +50,20 @@ class CPTName {
 		$postNiceSlug = $this->createSlug( $singular, false, true );
 
 		$labels = [
-			'name'               => _x( $plural, 'cpt_plural_name', 'starter_s' ),
-			'singular_name'      => _x( $singular, 'cpt_singular_name', 'starter_s' ),
-			'all_items'          => __( 'All ' . $plural, 'starter_s' ),
-			'add_new'            => __( 'Add New', 'starter_s' ),
-			'add_new_item'       => __( 'Add New ' . $singular, 'starter_s' ),
-			'edit'               => __( 'Edit', 'starter_s' ),
-			'edit_item'          => __( 'Edit ' . $singular, 'starter_s' ),
-			'new_item'           => __( 'New ' . $singular, 'starter_s' ),
-			'view'               => __( 'View ' . $singular, 'starter_s' ),
-			'view_item'          => __( 'View ' . $singular, 'starter_s' ),
-			'search_term'        => __( 'Search ' . $plural, 'starter_s' ),
-			'parent'             => __( 'Parent ' . $singular, 'starter_s' ),
-			'not_found'          => __( 'No ' . $plural . ' found', 'starter_s' ),
-			'not_found_in_trash' => __( 'No ' . $plural . ' in Trash', 'starter_s' ),
+			'name'               => _x( $plural, 'cpt_plural_name', 'fws_starter_s' ),
+			'singular_name'      => _x( $singular, 'cpt_singular_name', 'fws_starter_s' ),
+			'all_items'          => __( 'All ' . $plural, 'fws_starter_s' ),
+			'add_new'            => __( 'Add New', 'fws_starter_s' ),
+			'add_new_item'       => __( 'Add New ' . $singular, 'fws_starter_s' ),
+			'edit'               => __( 'Edit', 'fws_starter_s' ),
+			'edit_item'          => __( 'Edit ' . $singular, 'fws_starter_s' ),
+			'new_item'           => __( 'New ' . $singular, 'fws_starter_s' ),
+			'view'               => __( 'View ' . $singular, 'fws_starter_s' ),
+			'view_item'          => __( 'View ' . $singular, 'fws_starter_s' ),
+			'search_term'        => __( 'Search ' . $plural, 'fws_starter_s' ),
+			'parent'             => __( 'Parent ' . $singular, 'fws_starter_s' ),
+			'not_found'          => __( 'No ' . $plural . ' found', 'fws_starter_s' ),
+			'not_found_in_trash' => __( 'No ' . $plural . ' in Trash', 'fws_starter_s' ),
 		];
 
 		$args = [
@@ -94,17 +94,17 @@ class CPTName {
 		$postSlug = $this->createSlug( $this->params['postSingularName'] );
 
 		$labels = [
-			'name'              => _x( $plural, 'ctax_plural_name', 'starter_s' ),
-			'singular_name'     => _x( $singular, 'ctax_singular_name', 'starter_s' ),
-			'search_items'      => __( 'Search ' . $plural, 'starter_s' ),
-			'all_items'         => __( 'All ' . $plural, 'starter_s' ),
-			'parent_item'       => __( 'Parent ' . $singular, 'starter_s' ),
-			'parent_item_colon' => __( 'Parent:' . $singular, 'starter_s' ),
-			'edit_item'         => __( 'Edit ' . $singular, 'starter_s' ),
-			'update_item'       => __( 'Update ' . $singular, 'starter_s' ),
-			'add_new_item'      => __( 'Add New ' . $singular, 'starter_s' ),
-			'new_item_name'     => __( 'New ' . $singular, 'starter_s' ),
-			'menu_name'         => __( $plural, 'starter_s' ),
+			'name'              => _x( $plural, 'ctax_plural_name', 'fws_starter_s' ),
+			'singular_name'     => _x( $singular, 'ctax_singular_name', 'fws_starter_s' ),
+			'search_items'      => __( 'Search ' . $plural, 'fws_starter_s' ),
+			'all_items'         => __( 'All ' . $plural, 'fws_starter_s' ),
+			'parent_item'       => __( 'Parent ' . $singular, 'fws_starter_s' ),
+			'parent_item_colon' => __( 'Parent:' . $singular, 'fws_starter_s' ),
+			'edit_item'         => __( 'Edit ' . $singular, 'fws_starter_s' ),
+			'update_item'       => __( 'Update ' . $singular, 'fws_starter_s' ),
+			'add_new_item'      => __( 'Add New ' . $singular, 'fws_starter_s' ),
+			'new_item_name'     => __( 'New ' . $singular, 'fws_starter_s' ),
+			'menu_name'         => __( $plural, 'fws_starter_s' ),
 		];
 
 		$args = [

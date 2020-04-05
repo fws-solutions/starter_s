@@ -43,12 +43,12 @@ class WCHooks
 
 		add_action( 'woocommerce_before_main_content',
 			function () {
-				do_action( 'starter_s_before_main_content' );
+				do_action( 'fws_starter_s_before_main_content' );
 			},
 			40 );
 		add_action( 'woocommerce_after_main_content',
 			function () {
-				do_action( 'starter_s_after_main_content' );
+				do_action( 'fws_starter_s_after_main_content' );
 			},
 			40 );
 
@@ -97,7 +97,7 @@ class WCHooks
 			font-style: normal;
 		}';
 
-		wp_add_inline_style( 'starter_s-woocommerce-style', $inline_font );
+		wp_add_inline_style( 'fws_starter_s-woocommerce-style', $inline_font );
 	}
 
 	/**

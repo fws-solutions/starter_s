@@ -5,4 +5,4 @@
 ?>
 
     <!-- string translate -->
-<?php _e('Some text that can be translated with String Translation.', 'starter_s'); ?>
+<?php _e('Some text that can be translated with String Translation.', 'fws_starter_s'); ?>

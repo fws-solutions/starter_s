@@ -16,6 +16,6 @@ extract( (array) get_query_var( 'content-blocks' ) );
 			<?php echo $content; ?>
 		</div>
 
-		<?php fws()->render->templateView( $check_list, 'check-list', true ); ?>
+		<?php fws()->render->templateView( $check_list, 'check-list', 'parts' ); ?>
 	</div>
 </div><!-- .basic-block -->

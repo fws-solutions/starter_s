@@ -4,15 +4,15 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#single-post
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
 // get header
 get_header();
 
 // open main content wrappers
-do_action( 'starter_s_before_main_content' );
-do_action( 'starter_s_before_archive_listing' );
+do_action( 'fws_starter_s_before_main_content' );
+do_action( 'fws_starter_s_before_archive_listing' );
 
 // get posty type
 while ( have_posts() ) {
@@ -33,8 +33,8 @@ while ( have_posts() ) {
 the_post_navigation();
 
 // close main content wrappers
-do_action( 'starter_s_after_archive_listing' );
-do_action( 'starter_s_after_main_content' );
+do_action( 'fws_starter_s_after_archive_listing' );
+do_action( 'fws_starter_s_after_main_content' );
 
 // get footer
 get_footer();

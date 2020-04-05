@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
 ?>
@@ -15,7 +15,7 @@
 
 		<?php if ( 'post' === get_post_type() ) : ?>
 			<div class="entry-meta">
-				<?php echo fws()->render->postedOn(); ?>
+				<?php echo fws()->render->getPostedOn(); ?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</div><!-- .entry-header -->

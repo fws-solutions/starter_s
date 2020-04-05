@@ -4,7 +4,7 @@
  *
  * @link https://codex.wordpress.org/Creating_an_Error_404_Page
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
 get_header(); ?>

@@ -7,7 +7,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
 /*
@@ -56,7 +56,7 @@ if ( post_password_required() ) {
 					'avatar_size' => 100,
 					'style'       => 'ol',
 					'short_ping'  => true,
-					'reply_text'  => __( 'Reply', 'starter_s' ),
+					'reply_text'  => __( 'Reply', 'fws_starter_s' ),
 				)
 			);
 			?>
@@ -65,8 +65,8 @@ if ( post_password_required() ) {
 		<?php
 		the_comments_pagination(
 			array(
-				'prev_text' => __( 'Prev', 'starter_s' ),
-				'next_text' => __( 'Next', 'starter_s' ),
+				'prev_text' => __( 'Prev', 'fws_starter_s' ),
+				'next_text' => __( 'Next', 'fws_starter_s' ),
 			)
 		);
 

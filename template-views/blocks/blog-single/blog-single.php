@@ -4,7 +4,7 @@
  *
  * @link    https://codex.wordpress.org/Template_Hierarchy
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
 ?>
@@ -20,7 +20,7 @@
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 
 		<div class="blog-single__meta entry-meta">
-			<?php echo fws()->render->postedOn(); ?>
+			<?php echo fws()->render->getPostedOn(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 

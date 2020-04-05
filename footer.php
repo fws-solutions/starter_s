@@ -6,7 +6,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
 ?>

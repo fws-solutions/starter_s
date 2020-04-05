@@ -20,11 +20,10 @@ class Render
 	 *
 	 * @param array   $view_vals
 	 * @param string  $view_name
-	 * @param boolean $is_partial
+	 * @param string  $view_type
 	 */
-	public function templateView( $view_vals, string $view_name, bool $is_partial = false ): void
+	public function templateView( $view_vals, string $view_name, string $view_type = 'blocks' ): void
 	{
-		$view_type = ! $is_partial ? 'blocks' : 'parts';
 		$view_var_name = 'content-' . $view_type;
 		$view_dir = 'template-views/' . $view_type . '/' . $view_name . '/' . $view_name;
 
@@ -88,7 +87,7 @@ class Render
 	 *
 	 * @return string
 	 */
-	public function postedOn( string $format = '' ): string
+	public function getPostedOn( string $format = '' ): string
 	{
 		$date = get_the_date( $format );
 		$link = get_the_permalink();
@@ -133,12 +132,12 @@ class Render
 			'current' => $paged,
 			'mid_size' => 3,
 			'add_args' => array_map( 'urlencode', $query_args ),
-			'prev_text' => __( 'Prev', 'starter_s' ),
-			'next_text' => __( 'Next', 'starter_s' ),
+			'prev_text' => __( 'Prev', 'fws_starter_s' ),
+			'next_text' => __( 'Next', 'fws_starter_s' ),
 		] );
 
 		if ( $links ) {
-			$this->templateView($links, 'page-nav', true);
+			$this->templateView($links, 'page-nav', 'parts');
 		}
 	}
 
