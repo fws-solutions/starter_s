@@ -1,6 +1,51 @@
 /*--------------------------------------------------------------
 ## Forms
 --------------------------------------------------------------*/
+input[type='text'],
+input[type='email'],
+input[type='url'],
+input[type='password'],
+input[type='search'],
+input[type='number'],
+input[type='tel'],
+input[type='range'],
+input[type='date'],
+input[type='month'],
+input[type='week'],
+input[type='time'],
+input[type='datetime'],
+input[type='datetime-local'],
+input[type='color'],
+textarea {
+	color: $grey;
+	background-color: $white;
+	background-image: linear-gradient(rgba($white, 0), rgba($white, 0));
+	border: 1px solid $grey-mid;
+	border-radius: 3px;
+	display: block;
+	padding: 10px;
+	width: 100%;
+
+	&:invalid {
+		background-color: rgba($red, 0.025);
+	}
+}
+
+input[type='submit'] {
+	border-radius: 3px;
+	border: 1px solid $red;
+	background-color: $red;
+	color: $white;
+
+	@include hover {
+		background-color: $white;
+		color: $red;
+	}
+}
+
+/*--------------------------------------------------------------
+## CF7 Plugin Form
+--------------------------------------------------------------*/
 // Form thank you example
 .cf7-holder { // wrapper that holding form and thank you message popup
 	position: relative;

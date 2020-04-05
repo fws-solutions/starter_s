@@ -230,12 +230,17 @@ a {
 	}
 }
 
+/*--------------------------------------------------------------
+## Post Nav
+--------------------------------------------------------------*/
 .comment-navigation,
 .posts-navigation,
 .post-navigation {
+	font-weight: bold;
+	font-size: 14px;
 
 	.site-main & {
-		margin: 0 0 1.5em;
+		margin: 50px 0;
 		overflow: hidden;
 	}
 
@@ -248,5 +253,12 @@ a {
 		float: right;
 		text-align: right;
 		width: 50%;
+	}
+
+	a {
+		@include hover {
+			color: $red;
+			transition: $dur $ease;
+		}
 	}
 }
