@@ -7,28 +7,30 @@ input,
 select,
 optgroup,
 textarea {
-	color: $black;
 	font-family: $font-main;
+	color: $black;
 	font-size: 16px;
 	line-height: 1.5;
 }
 
 pre {
-	background: #bebebe;
+	background: #ededed;
 	max-width: 100%;
 	overflow: auto;
 	padding: 1.6em;
+	font-size: 12px;
+	margin-bottom: 30px;
 }
 
 .page-title {
-	display: block;
-    font-weight: bold;
-	font-size: 60px;
+	font-size: 44px;
+	font-weight: bold;
+	line-height: 1.5;
 }
 
 .section-title {
 	display: block;
-    font-weight: bold;
+	font-weight: bold;
 	font-size: 50px;
 }
 
@@ -36,9 +38,6 @@ pre {
 ## Entry Content
 --------------------------------------------------------------*/
 .entry-content {
-	line-height: 1.35;
-	font-size: 16px;
-
 	h1,
 	h2,
 	h3,
@@ -46,6 +45,7 @@ pre {
 	h5,
 	h6 {
 		margin-bottom: 15px;
+		font-weight: bold;
 	}
 
 	h1 {
@@ -73,7 +73,6 @@ pre {
 	}
 
 	p {
-		line-height: 1.45;
 		margin-bottom: 25px;
 	}
 
@@ -88,18 +87,27 @@ pre {
 	ul,
 	ol {
 		margin-bottom: 27px;
-	}
-
-	ul {
-		margin-left: 20px;
 
 		li {
-			list-style: disc;
+			margin-bottom: 10px;
+
+			ul {
+				padding-top: 10px;
+				margin-bottom: 0;
+			}
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
 		}
 	}
 
+	ul {
+		margin-left: 35px;
+	}
+
 	ol {
-		margin-left: 28px;
+		margin-left: 43px;
 
 		li {
 			list-style: decimal;
@@ -109,6 +117,7 @@ pre {
 	a {
 		display: inline-block;
 		position: relative;
+		color: $red;
 
 		&::before {
 			content: '';
@@ -117,7 +126,7 @@ pre {
 			bottom: 0;
 			height: 1px;
 			width: 0;
-			background: $black;
+			background: $red;
 			transition: $dur $ease;
 		}
 
@@ -128,52 +137,92 @@ pre {
 		}
 	}
 
+	figure {
+		border: 1px solid $white;
+		border-radius: 5px;
+		overflow: hidden;
+
+		a {
+			display: block;
+			transition: $dur $ease;
+
+			&::before {
+				content: none;
+			}
+
+			&:hover {
+				opacity: .6;
+			}
+		}
+
+		.size-full {
+			width: 100%;
+			display: block;
+			opacity: .9;
+		}
+
+		.wp-caption-text {
+			background: $white;
+			color: $grey;
+			margin: 0;
+			padding: 5px;
+			font-size: 12px;
+		}
+	}
+
 	table {
-		border-collapse: collapse;
-		color: $black;
+		color: $grey;
 		margin: 25px 0 35px;
 		overflow-x: visible;
 		table-layout: fixed;
 		width: 100%;
-		max-width: 700px;
-		display: table;
 
-		@include mq(767px) {
+		&,
+		th,
+		td {
+			border: 0;
+			text-align: left;
+			padding: 8px;
+		}
+
+		th {
+			font-weight: bold;
+		}
+
+		tr:nth-child(even) {
+			background-color: $grey-light;
+		}
+
+		@include mq($lg) {
 			display: block;
 			overflow-x: scroll;
+			max-width: 700px;
 		}
 	}
 
 	tbody {
 		width: 100%;
 
-		@include mq(767px) {
+		@include mq($lg) {
 			width: 700px;
 			display: block;
 		}
 	}
 
-	tr {
-		vertical-align: top;
-
-		&:first-child td {
-			padding-top: 0;
-		}
-	}
-
-	th {
-		border-bottom: 2px solid $black;
-		font-weight: 400;
-		padding-bottom: 8px;
-		color: $black;
-	}
-
-	td {
-		border-bottom: 1px solid $black;
-		padding: 20px 0 5px;
-	}
-
 	blockquote {
-		margin: 20px 25px;
+		background: $grey-light;
+		border-left: 10px solid $red;
+		margin: 30px;
+		padding: 20px 30px;
+		quotes: '\201C''\201D''\2018''\2019';
+
+		&::before {
+			color: $grey-mid;
+			content: open-quote;
+			font-size: 4em;
+			line-height: 0.1em;
+			margin-right: 0.25em;
+			vertical-align: -0.4em;
+		}
 	}
 }
