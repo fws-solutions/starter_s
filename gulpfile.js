@@ -9,13 +9,8 @@ const globalVars = require('./src/config/gulp/_global-vars');
 /*----------------------------------------------------------------------------------------------
 	Prepare and Run all Gulp Tasks
  ----------------------------------------------------------------------------------------------*/
-const localURL = 'http://starter.local/';
 const sassSRC = ['src/scss/**/*.scss', 'template-views/**/**/*.scss'];
 const adminSassSRC = ['src/config/admin/scss/admin.scss'];
-
-module.exports = {
-	localURL: localURL
-};
 
 const gtHtmlLint = require('./src/config/gulp/gt-htmllint');
 const gtCss = require('./src/config/gulp/gt-css');

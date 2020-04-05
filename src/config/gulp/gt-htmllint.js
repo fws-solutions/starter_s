@@ -2,6 +2,8 @@ const gulp = require('gulp');
 const htmllint = require('gulp-htmllint');
 const fancyLog = require('fancy-log');
 const colors = require('ansi-colors');
+const yaml = require('js-yaml');
+const fs = require('fs');
 const w3 = require('forwardslash-cli').w3;
 
 /*----------------------------------------------------------------------------------------------
@@ -9,12 +11,10 @@ const w3 = require('forwardslash-cli').w3;
  ----------------------------------------------------------------------------------------------*/
 gulp.task('html-w3', htmlw3);
 
-const gulpfile = require('../../../gulpfile');
-
 function htmlw3(done) {
-	w3(gulpfile.localURL, done);
+	const localURL = yaml.safeLoad(fs.readFileSync('.fwsconfig.yml', 'utf8'))['virtual-host'];
+	w3(localURL, done);
 }
-
 
 /*----------------------------------------------------------------------------------------------
 	HTML Lint

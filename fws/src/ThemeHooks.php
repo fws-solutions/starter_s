@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace FWS;
 
 use WP_Error;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Theme Hooks. No methods are available for direct calls.
@@ -15,6 +16,13 @@ class ThemeHooks
 {
 
 	use Main;
+
+	/**
+	 * Get ymal parser
+	 */
+	private function getYmalParser() {
+		return new Parser();
+	}
 
 	/**
 	 * Drop your hooks here.
@@ -77,14 +85,19 @@ class ThemeHooks
 	}
 
 	/**
-	 * Only users logged in with email 'forwardslashny.com' are allowed to add/update/remove plugins
+	 * Only users logged in with declared email domain are allowed to add/update/remove plugins
 	 */
 	public function preventPluginUpdate(): void
 	{
-		$user = wp_get_current_user();
+		$yml = $this->getYmalParser();
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) );
 
-		if ( ! $user->user_email || strpos( $user->user_email, 'forwardslashny.com' ) === false ) {
-			add_filter( 'file_mod_allowed', '__return_false' );
+		if (array_key_exists('prevent-plugin-update', $config) && $config['prevent-plugin-update']['enable']) {
+			$user = wp_get_current_user();
+
+			if ( ! $user->user_email || strpos( $user->user_email, $config['prevent-plugin-update']['domain'] ) === false ) {
+				add_filter( 'file_mod_allowed', '__return_false' );
+			}
 		}
 	}
 
@@ -201,11 +214,12 @@ class ThemeHooks
 	 */
 	public function recoveryModeEmail( array $data ): array
 	{
-		$data['to'] = [
-			'hello@forwardslashny.com',
-			'nick@forwardslashny.com',
-			'boris@forwardslashny.com',
-		];
+		$yml = $this->getYmalParser();
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) );
+
+		if (array_key_exists('recovery-mode-emails', $config)) {
+			$data['to'] = $config['recovery-mode-emails'];
+		}
 
 		return $data;
 	}

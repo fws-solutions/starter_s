@@ -1,0 +1,10 @@
+# FWS CONFIG
+
+# set local env url
+virtual-host: 'http://starter.local/'
+# change the fatal error handler email address from admin's to our internal
+recovery-mode-emails: ['nick@forwardslashny.com', 'boris@forwardslashny.com']
+# only users logged in with declared email domain are allowed to add/update/remove plugins
+prevent-plugin-update:
+    enable: true
+    domain: forwardslashny.com
