@@ -20,7 +20,19 @@ Install PHP dependencies by running [Composer](https://getcomposer.org/doc/00-in
 
     composer install
 
-## Local Virtual Host
+## Starter Config
+
+Use `.fwsconfig.yml` file to configure top level theme options.
+
+    global:
+        theme-name: 'FWS Starter _S'
+        virtual-host: 'http://starter.local/'
+        recovery-mode-emails: ['nick@forwardslashny.com', 'boris@forwardslashny.com']
+        prevent-plugin-update:
+            enable: true
+            domain: forwardslashny.com
+
+### Local Virtual Host
 
 Local enviorment and virtual host **must** be named exactly the same as it is defiend in `.fwsconfig.yml` file in the variable `virtual-host`.
 
@@ -438,15 +450,15 @@ fws()->render->templateView( $basic_block, 'banner' );
 
 With modular template views it is essential that ACF Flexible Content is organized and implemented in a defined manner.
 
-Moving away from default Flexible Content implementation...
+**Moving away from default Flexible Content implementation...**
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-old.png)
 
-... and make full use of Clone field.
+**... and make full use of Clone field.**
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-new.png)
 
-Each Flexible Content block will use Clone field to copy **all** fields from certain field group.
+**Each Flexible Content block will use Clone field to copy ALL fields from certain field group.**
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-groups.png)
 
@@ -470,9 +482,9 @@ foreach ( get_field( 'content' ) as $fc ) {
 }
 ```
 
-In the example above, it is important to note that variable that is being passed to *templateView()* function is not mapped out as an array like in the previous example, but rather simply passed the current item from the loop.
+In the example above, it is **important to note** that variable that is being passed to *templateView()* function **is not mapped out** as an array like in the previous example, but rather simply passed the current item from the loop.
 
-The reason this is possible is because of the way ACF fields are named in their field groups. Meaning, it is absolutely required to name the fields as variables in the template views.
+The reason this is possible is because of **the way ACF fields are named** in their field groups. Meaning, it is **absolutely required** to name the fields **as variables** in the template views.
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-mapping.png)
 
@@ -482,9 +494,9 @@ Naming the fields same names as variables in the template views will make sure t
 
 The idea behind this approach of modular ACF fields is to take full advantage of ACF [Local JSON](https://www.advancedcustomfields.com/resources/local-json/).
 
-Inspiration for this workflow was drawn from this [post](https://www.awesomeacf.com/how-to-avoid-conflicts-when-using-the-acf-local-json-feature/). Although it has nice ideas it still doesn't resolve the issue when two developers are working on same field groups, in such a scenario a conflict of JSON files is inevitable.
+Inspiration for this workflow was drawn from this [post](https://www.awesomeacf.com/how-to-avoid-conflicts-when-using-the-acf-local-json-feature/). Although it has nice ideas it still doesn't resolve the issue when two developers are working on same field groups, in such a scenario **a conflict of JSON files is inevitable**.
 
-Main goal is to allow multiple developers to work on field groups simultaneously on local enviroment, with lowest possible risk of having conflicts in generated JSON files.
+Main goal is to **allow multiple developers** to work on field groups simultaneously on local enviroment, with **lowest possible risk** of having conflicts in generated JSON files.
 
 By splitting each Flexible Content block to a separate field group, the workflow is optimized to allow more developers to work in parallel. There is still a risk of creating a conflict if two developers are editing same field group, but in this workflow chances for that are slim.
 
@@ -493,19 +505,19 @@ Another thing to keep in mind, since these fields are being used exclusively for
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-inactive2.png)
 
-In order to optimize the workflow even further, this Starter Theme comes with hook function that will automatically sync any changes in field groups registered by new JSON files.
+In order to optimize the workflow even further, this Starter Theme comes with hook function **that will automatically sync any changes** in field groups registered by new JSON files.
 
 For example:
 - Developer A makes changes in field group Banners.
 - Developer B pulls changes into his local enviroment. On first dashboard load, the ACF field groups will get synced and updated as the internal script will detect changes in JSON files.
 
-Lastly, it is necessary to avoid any conflicts coming from any changes made directly on development or live server. To resolve this, Starter Theme actually comes with another hook which disables any field group editing on any other enviroment, forcing developers to make all changes exclusively on local enviroment.
+Lastly, it is necessary to **avoid any conflicts** coming from any changes **made directly on development or live server**. To resolve this, Starter Theme actually comes with another hook **which disables** any field group editing on any other enviroment, **forcing developers** to make all changes exclusively on **local enviroment**.
 
 ### Naming conventions and categorizing
 
-The workflow above resolves a lot of problems but it does have a small drawback, creating each block's fields as a separate field group will result in too meny groups in the dashboard.
+The workflow above resolves a lot of problems but it does have a **small drawback**, creating each block's fields as a separate field group **will result in too meny groups** in the dashboard.
 
-Furthermore, it is highly recommended to also create helper groups of fields that can be cloned in other block's fields.
+Furthermore, it is highly recommended to also create **helper groups** of fields that can be cloned in other block's fields.
 
 For example, the Section Title field...
 
@@ -515,14 +527,14 @@ For example, the Section Title field...
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/fc-acf.png)
 
-Considering helper group fields together with block group fields, the number of groups in the dashboard will tend to get very long and unorganized.
+Considering **helper group** fields together with **block group** fields, the number of groups in the dashboard will tend to get **very long and unorganized**.
 
-To resolve this issue, this theme comes with a Custom Taxonomy "Categories" for ACF plugin, which should be used in order to group the field groups together.
+To resolve this issue, this theme comes with a Custom Taxonomy **"Categories"** for ACF plugin, which **should** be used in order to group the field groups together.
 
-Aside from using field group categories it is also required to follow defined naming convention.
+Aside from using field group categories it is also **required to follow defined naming convention**.
 
-Every field group for blocks should be named with a prefix 'FC'.
-Every field group for reusable elements should be named with a prefix 'RE'.
+Every field group for **blocks** should be named with a **prefix 'FC'**.
+Every field group for **reusable elements** should be named with a **prefix 'RE'**.
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-categories.png)
 
@@ -530,64 +542,99 @@ With these two conventions, it is visually optimised to distinguish which fields
 
 ### Managing Flexible Content field
 
-With everything above fully implemented, tha last thing to tackle is Flexible Content field and potential conflicts which are still not covered by the defined workflow.
+With everything above fully implemented, tha **last thing** to tackle is **Flexible Content** field and potential conflicts which are still **not covered** by the defined workflow.
 
-Cloning separate field groups into Flexible Content blocks resolves avoiding JSON conflicts when multiple developers are working on a separate components (field groups), but it is still necessary for each developer to edit same field group for Flexible Content and make changes simultaneously and therefore create an inevitable JSON conflict.
+Cloning separate field groups into Flexible Content blocks **resolves avoiding JSON conflicts** when multiple developers are working **on a separate components (field groups)**, but it is still **necessary** for each developer **to edit same field group for Flexible Content** and make changes simultaneously and therefore create an inevitable JSON conflict.
 
-Final step in this workflow is to actually avoid creating/editing any Flexible Content group fields from the dashboard and make those changes only through PHP.
+**Final step** in this workflow is to actually **avoid creating/editing** any **Flexible Content** group fields from the dashboard and make those changes through `.fwsconfig.yml` file.
 
-Starter Theme comes with more helper functions to enable just that, in fact, it will automatically do few things:
-  - generate field group as Third Party under the name 'Content' and set it's location to Page Template: Default Template,
-  - create one Flexible Content field in this group,
-  - loop through all field groups that have Flexible Content category assigned,
-  - and create Flexible Content layout for each field group with assigned category and clone all fields from that group to the created layout as sub fields.
+Starter Theme comes with more helper functions to enable just that, bu it is **important to follow the proper formating** of `.fwsconfig.yml` file.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/acf-flex-reg.png)
+All values must be written under `acf-flexible-content` with defined **group name** as property name that includes the following sub properties:
 
-In other words, as soon as the category Flexible Content is assigned to certain field group it will get appended to auto generated Flexible Content field.
+- `field-name`
+    - Filed name that will show on page.
+    - See image **Field Name** bellow.
+- `location`
+    - `param` Set to what type this field group will be for.
+    - `value` Set to what type this field group will equal to.
+    - Set location where this field group will load.
+    - See image **Field Location** bellow.
+    - Some of the possible values:
+        - "post_type": "post"
+        - "page_template": "default"
+        - "taxonomy": "category"
+        - "options_page": "fws_starter_s-settings"
+    - For more information on avalible values, pleaase refer to [ACF Docs](https://www.advancedcustomfields.com/resources/)
+    - **Important Note**: Currently, the conditional logic for `param` and `value` is set to equal (`"operator": "=="`). This is hardcoded withing the theme, in order to expand this option and flexibility of `.fwsconfig.yml`, please reffer to `addNewFlexContentGroup` and `registerFlexContent` methods in *fws/src/ACF.php*.
+- `hide-on-screen`
+    - Set rules for default meta fields that should be hidden on a page.
+    - See image **Field Hidden Stuff** bellow.
+    - All possible values:
+        - permalink
+        - the_content
+        - excerpt
+        - discussion
+        - comments
+        - revisions
+        - slug
+        - author
+        - format
+        - page_attributes
+        - featured_image
+        - categories
+        - tags
+        - send-trackbacks
+- `layouts` set flex content layouts/blocks that will show for this group
+    - `title` This is the name that will show in flex content dropdown, it can be set arbitrarily.
+    - `group_id` This must be set to field group id/key value.
+    - See images **Field Layout Title** and **Field Layout Group ID** bellow.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/acf-flex-autogen.png)
+***Field Name***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-title.png)
 
-Few things to keep in mind, when auto generating Flexible Content layouts from assigned field groups, the script that is working under the hood will clean up Label and Name for each field group in the following manner.
+***Field Location***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-location.png)
 
-Field Group: FC Basic Block will translate into Flexible Content layout:
-Label: Basic Block
-Name: basic_block
+***Field Hidden Stuff***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-hide.png)
 
-When needed to create more Flexible Content field groups with specific number of options, use registerFlexContent() function with required configuration.
+***Field Layout Title***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-name.png)
 
-Example:
-```
-$fieldName = 'New Flex Group';
+***Field Layout Group ID***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/filed-group-id.png)
 
-$location = [
-    'param' => 'page_template',
-    'value' => 'default'
-];
+**Example of .fwsconfig.yml**
 
-$layouts = [
-    [
-        'label' => 'New Flex Block',
-        'name' => 'new_flex_block',
-        'clone_group_key' => 'group_5d70e7dfa2562' // key of the cloning group
-    ],
-    [
-        'label' => 'Another Flex Block',
-        'name' => 'another_flex_block',
-        'clone_group_key' => 'group_5d70e7ea08bce'
-    ]
-];
+    acf-flexible-content:
+        default-page-template:                          # define flexible content for default page template
+            field-name: 'Content'                       # filed name that will show on page
+            location:                                   # set location where this field group will load
+                param: 'page_template'
+                value: 'default'
+            hide-on-screen: [ 'the_content' ]           # set rules for default meta fields that should be hidden on a page
+            layouts:                                    # set flex content layouts/blocks that will show for this group
+                -
+                    title: 'Banner'
+                    group_id: 'group_5d70e7dfa2562'
+                -
+                    title: 'Basic Block'
+                    group_id: 'group_5d70e7ea08bce'
+                -
+                    title: 'Slider'
+                    group_id: 'group_5d70e7f775076'
+                -
+                    title: 'Vue Block'
+                    group_id: 'group_5dcd6b37b67a4'
 
-$hideOnScreen = [
-    'the_content'
-];
+Finaly, with all of the above setup, a function `addNewFlexContentGroup` must be called inside `acfInit` method that is located in **fws/src/ACF.php** class.
 
-fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
-```
+    $this->addNewFlexContentGroup('default-page-template');
 
-## FWS framework
+## FWS Engine
 
-FWS framework is a default part of this Starter Theme to which **the starter relies on heavily**.
+FWS Engine is a default part of this Starter Theme to which **the starter relies on heavily**.
 
 See `fws` and `fws/src` for it's structure and features.
 
@@ -605,7 +652,7 @@ The `woocommerce` root directory should **only contain** files that are being ov
 
 ### Custom Post Types and Taxonomies
 
-Registrating custom post types and taxonomies must always be done using FWS framework.
+Registrating custom post types and taxonomies must always be done using FWS Engine.
 
 Each custom post type with it's taxonomies must be placed in a single file inside `fws/src` directory.
 

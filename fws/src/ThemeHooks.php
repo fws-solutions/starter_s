@@ -90,7 +90,7 @@ class ThemeHooks
 	public function preventPluginUpdate(): void
 	{
 		$yml = $this->getYmalParser();
-		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) );
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
 
 		if (array_key_exists('prevent-plugin-update', $config) && $config['prevent-plugin-update']['enable']) {
 			$user = wp_get_current_user();
@@ -215,7 +215,7 @@ class ThemeHooks
 	public function recoveryModeEmail( array $data ): array
 	{
 		$yml = $this->getYmalParser();
-		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) );
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
 
 		if (array_key_exists('recovery-mode-emails', $config)) {
 			$data['to'] = $config['recovery-mode-emails'];

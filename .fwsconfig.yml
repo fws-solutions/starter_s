@@ -1,10 +1,34 @@
 # FWS CONFIG
 
-# set local env url
-virtual-host: 'http://starter.local/'
-# change the fatal error handler email address from admin's to our internal
-recovery-mode-emails: ['nick@forwardslashny.com', 'boris@forwardslashny.com']
-# only users logged in with declared email domain are allowed to add/update/remove plugins
-prevent-plugin-update:
-    enable: true
-    domain: forwardslashny.com
+# global settings
+global:
+    theme-name: 'FWS Starter _S'                    # set theme full name
+    virtual-host: 'http://starter.local/'           # set local env url
+    recovery-mode-emails:                           # change the fatal error handler email address from admin's to our internal
+        - 'nick@forwardslashny.com'
+        - 'boris@forwardslashny.com'
+    prevent-plugin-update:                          # only users logged in with declared email domain are allowed to add/update/remove plugins
+        enable: true
+        domain: forwardslashny.com
+
+# define acf flexible content groups and fields
+acf-flexible-content:
+    default-page-template:                          # define flexible content for default page template
+        field-name: 'Content'                       # filed name that will show on page
+        location:                                   # set location where this field group will load
+            param: 'page_template'
+            value: 'default'
+        hide-on-screen: [ 'the_content' ]           # set rules for default meta fields that should be hidden on a page
+        layouts:                                    # set flex content layouts/blocks that will show for this group
+            -
+                title: 'Banner'
+                group_id: 'group_5d70e7dfa2562'
+            -
+                title: 'Basic Block'
+                group_id: 'group_5d70e7ea08bce'
+            -
+                title: 'Slider'
+                group_id: 'group_5d70e7f775076'
+            -
+                title: 'Vue Block'
+                group_id: 'group_5dcd6b37b67a4'

@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace FWS;
 
 use WP_Term;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Singleton Class ACF. No methods are available for direct calls.
@@ -15,6 +16,13 @@ class ACF
 {
 
 	use Main;
+
+	/**
+	 * Get ymal parser
+	 */
+	private function getYmalParser() {
+		return new Parser();
+	}
 
 	/** @var int */
 	private $flexContentCounter = 0;
@@ -126,6 +134,8 @@ class ACF
 			}
 
 			echo implode( ' ', $categories );
+		} elseif ( $column === 'acf-group-id' ) {
+			echo  get_post_field( 'post_name', $post_id );
 		}
 	}
 
@@ -135,6 +145,7 @@ class ACF
 		foreach ( $columns as $key => $value ) {
 			if ( $key === 'acf-fg-status' ) {
 				$new_columns['acf-field-group-category'] = __( 'Categories' );
+				$new_columns['acf-group-id'] = __( 'Group ID' );
 			}
 
 			$new_columns[ $key ] = $value;
@@ -175,6 +186,28 @@ class ACF
 	 */
 	public function acfInit(): void
 	{
+		// Register Custom Taxonomy Categories for ACF
+		$this->register_acf_category_taxonomy();
+
+		// Register Options main page - Theme Settings
+		$yml = $this->getYmalParser();
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
+		$theme_name = $config['theme-name'];
+
+		$this->register_acf_options_page($theme_name . ' Settings', $theme_name . ' Settings');
+
+		// Register Options sub page - Mega menu
+		//$this->register_acf_options_subpage('Mega Menu', 'Mega Menu');
+
+		// Add Flexible Content Group for Default Page Template
+		$this->addNewFlexContentGroup('default-page-template');
+	}
+
+	/**
+	 * Register Custom Taxonomy Category for ACF
+	 */
+	private function register_acf_category_taxonomy()
+	{
 		register_taxonomy( 'acf-field-group-category',
 			[ 'acf-field-group' ],
 			[
@@ -200,33 +233,38 @@ class ACF
 					'menu_name' => __( 'category', 'acfe' ),
 				],
 			] );
+	}
 
-		// Register Options page
+	/**
+	 * Register ACF Options page
+	 *
+	 * @param string $page_title
+	 * @param string $menu_title
+	 */
+	private function register_acf_options_page($page_title, $menu_title)
+	{
 		acf_add_options_page( [
-			'page_title' => 'Theme Settings',
-			'menu_title' => 'Theme Settings',
-			'menu_slug' => 'asl-settings',
+			'page_title' => $page_title,
+			'menu_title' => $menu_title,
+			'menu_slug' => 'fws_starter_s-settings',
 			'capability' => 'edit_posts',
 			'redirect' => false,
 		] );
+	}
 
-
-		// Add sub page.
+	/**
+	 * Register ACF Options sub page
+	 *
+	 * @param string $page_title
+	 * @param string $menu_title
+	 */
+	private function register_acf_options_subpage($page_title, $menu_title)
+	{
 		acf_add_options_sub_page( [
-			'page_title' => __( 'Top Menu' ),
-			'menu_title' => __( 'Top Menu' ),
-			'parent_slug' => 'asl-settings',
+			'page_title' => $page_title,
+			'menu_title' => $menu_title,
+			'parent_slug' => 'fws_starter_s-settings',
 		] );
-
-		// Mega menu
-		acf_add_options_sub_page( [
-			'page_title' => 'Mega Menu',
-			'menu_title' => 'Mega Menu',
-			'parent_slug' => 'asl-settings',
-		] );
-
-		// Add Flexible content group from all Flexible Content groups
-		$this->addMainFlexContentGroup();
 	}
 
 	/**
@@ -328,31 +366,35 @@ class ACF
 
 	/**
 	 * Add Flexible content group from all Flexible Content groups
+	 *
+	 * @param string $group
 	 */
-	private function addMainFlexContentGroup(): void
+	private function addNewFlexContentGroup($group): void
 	{
-		$groups = array_filter( acf_get_local_field_groups(), [ $this, 'filterACFGroupsFlexContent' ] );
+		$yml = $this->getYmalParser();
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['acf-flexible-content'];
+		$layouts = $config[$group]['layouts'];
+		$fieldName = $config[$group]['field-name'];
+		$location = $config[$group]['location'];
+		$hideOnScreen = $config[$group]['hide-on-screen'];
+		$mapped_layouts = [];
 
-		$layouts = array_map( function ( array $group ) {
-			$label = trim( str_replace( 'FC ', '', $group['title'] ) );
+		foreach ($layouts as $layout) {
+			$label = $layout['title'];
 			$name = str_replace( '-', '_', sanitize_title( $label ) );
 
-			return [
+			$mapped_layouts[$layout['group_id']] = [
 				'label' => $label,
 				'name' => $name,
-				'clone_group_key' => $group['key'],
+				'clone_group_key' => $layout['group_id'],
 			];
-		},
-			array_reverse( $groups, true ) );
+		}
 
 		$this->registerFlexContent(
-			'Content',
-			[
-				'param' => 'page_template',
-				'value' => 'default',
-			],
-			$layouts,
-			[ 'the_content' ]
+			$fieldName,
+			$location,
+			$mapped_layouts,
+			$hideOnScreen
 		);
 	}
 

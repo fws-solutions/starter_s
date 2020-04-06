@@ -13,14 +13,14 @@ extract( (array) get_query_var( 'content-blocks' ) );
 <div class="banner">
 	<?php if ( $desktop_image ) : ?>
 		<picture class="banner__image">
-			<source media="(max-width: 1200px)" srcset="<?php echo $tablet_image['sizes']['max-width']; ?>">
+			<source media="(min-width: 1200px)" srcset="<?php echo $desktop_image['sizes']['max-width']; ?>">
 
 			<?php if ( $tablet_image ) : ?>
-				<source media="(max-width: 640px)" srcset="<?php echo $tablet_image['sizes']['large']; ?>">
+				<source media="(min-width: 640px)" srcset="<?php echo $tablet_image['sizes']['large']; ?>">
 			<?php endif; ?>
 
 			<?php if ( $mobile_image ) : ?>
-				<source media="(max-width: 320px)" srcset="<?php echo $mobile_image['sizes']['medium']; ?>">
+				<source media="(min-width: 320px)" srcset="<?php echo $mobile_image['sizes']['medium']; ?>">
 			<?php endif; ?>
 			<img class="cover-img" src="<?php echo $desktop_image['sizes']['max-width']; ?>" alt="">
 		</picture>
