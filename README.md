@@ -16,9 +16,11 @@ Install JS dependencies by running [Node.js](https://nodejs.org/en/) package man
 
     npm install
 
-Install PHP dependencies by running [Composer](https://getcomposer.org/doc/00-intro.md).
+Install PHP dependencies by running [Composer](https://getcomposer.org/doc/00-intro.md) dependency manager.
 
     composer install
+
+Install [Advanced Custom Fields](https://www.advancedcustomfields.com/) WordPress plugin as the Starter Theme depends on it. Works better with PRO version.
 
 ## Starter Config
 
@@ -27,7 +29,9 @@ Use `.fwsconfig.yml` file to configure top level theme options.
     global:
         theme-name: 'FWS Starter _S'
         virtual-host: 'http://starter.local/'
-        recovery-mode-emails: ['nick@forwardslashny.com', 'boris@forwardslashny.com']
+        recovery-mode-emails:
+            - 'nick@forwardslashny.com'
+            - 'boris@forwardslashny.com'
         prevent-plugin-update:
             enable: true
             domain: forwardslashny.com
@@ -721,8 +725,6 @@ List of all helper functions from this Starter Theme:
     - `pagingNav()` - *Outputs the paging navigation based on the global query.*
 - Images.php
     - `assets_src()` - *Render image src from 'src/assets/images' or `__demo` directory.*
-- ACF.php
-    - `registerFlexContent()` - *Register new flexible content field group.*
 
 All helper functions are defined as methods in defined classes that are all loading from **fws/FWS.php** file.
 
