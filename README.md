@@ -1,4 +1,4 @@
-# FWS fws_starter_s
+# FWS Starter _S
 *Version: 3.1.0*
 
 > It Only Does Everything.
@@ -12,15 +12,19 @@ Although, keep in mind for most recent version of it: [forwardslash-cli](https:/
 
     npm i forwardslash-cli -g
 
-Install dependencies by running Node.js package manager.
+Install JS dependencies by running [Node.js](https://nodejs.org/en/) package manager.
 
     npm install
 
+Install PHP dependencies by running [Composer](https://getcomposer.org/doc/00-intro.md).
+
+    composer install
+
 ## Local Virtual Host
 
-Local enviorment and virtual host **must** be named exactly the same as it is defiend in `gulpfile.js` file in the variable `localURL`.
+Local enviorment and virtual host **must** be named exactly the same as it is defiend in `.fwsconfig.yml` file in the variable `virtual-host`.
 
-    const localURL = 'http://somedomain.local/';
+    virtual-host: 'http://somedomain.local/'
 
 ## CLI
 For the full list of all commands, execute `fws --help`.
@@ -46,27 +50,107 @@ To start *watch mode* and *local server*, execute `fws dev` task.
 
     fws dev
 
-### Creating PHP Template Views
+## Working with Common Template Files
 
-To create a new view, execute `fws create-file` command and pass `--block` or `--part` with an argument.
+Below is a list of some basic theme templates and files found in the Starter Theme:
+
+- **index.php**
+    - The main template file. It is required in all themes.
+    - Any page that does not have template file created for it will default to this one.
+- **home.php**
+    - The home page template is the front page by default. If you do not set WordPress to use a static front page, this template is used to show latest **Blog** posts.
+- **single.php**
+    - The single post template is used when a visitor requests **any** single post, in case a post type doesn't have spacific template file for it.
+    - For example, if a custom post type Books doesn't find a template file named **single-book.php**, it will default to this one.
+    - In general, templates for single posts **should always** be created for **specific post type** as in the Book example above.
+    - Alternatevly, it can use this universal **single.php** file, but with conditional rendering handeled within.
+    - The example below shows conditional loading of template view for single **Blog** post:
+        - `if ( get_post_type() == 'post' ) { get_template_part( 'template-views/blocks/blog-single/blog-single' ); }`
+    	- `else { get_template_part( 'template-views/shared/content', get_post_type() ); }`
+- **page.php**
+    - The page template is used when visitors request individual pages, which are a built-in template.
+    - The Starter Theme uses this template **exclusively for ACF Flexible Content**.
+- **category.php**
+    - The category template is used when visitors request **Blog** posts by category.
+- **archive.php**
+    - Uses much of the same logic and rules as the **single.php** template file.
+    - The archive template is used when visitors request posts by taxnomy term, author, or date.
+    - Just like with **single.php**, this template will be overridden if more specific templates are present like **category.php**, **author.php**, **date.php**, etc.
+    - This rule obviously exapnds to a post type specific templates, for example, a cutom post type Books will use **archive.php** if it can't find **archive-book.php**.
+    - Same as before mentioned file, archive templates **should always** be created for **specific post type** as in the Book example above, unless a conditional rendering logic is written in the base template it self.
+- **taxonomy.php**
+    - Uses exactly the same logic and rules as the **archive.php** template file, but is specific for a custom taxonomies.
+    - In other words, this is the taxonomy term template that is used when a visitor requests a term in a custom taxonomy, where no specific template file is provided.
+    - For example, if a custom taxonomy Book Categories doesn't find a template named **taxonomy-book-category.php** it will default to this one.
+    - Furthermore, if **taxonomy.php** template file is also not present in the theme, it will default to **archive.php**.
+    - This is why it is **important to always** provide specific template files or implement conditional rendering in universal ones.
+
+To learn more about common WP template files, see the links bellow:
+- https://developer.wordpress.org/themes/basics/template-files/
+- https://developer.wordpress.org/themes/basics/template-hierarchy/
+
+Considering all of the above and the fact that WP for given situation:
+- will look for **taxonomy-book-category.php**
+- and if not found, will look for **taxonomy.php**
+- and if not found, will look for **archive.php**
+- and if not found, will look for **index.php**,
+
+it is clear why the suggested **workflow for specific template files is important** when working on complex projects that include **multiple custom post types and taxonomies with different designs and layout**.
+
+To promote these guidelines even more, **another** workflow **rule should always** be followed.
+
+**ALL Common Template Files should NOT contain ANY HTML and should always be written exclusivly with PHP.**
+
+    Example: archive-book.php
+
+    <?php
+    get_header();
+    do_action( 'fws_starter_s_before_main_content' );
+
+    $book = [
+        'title'    => get_the_archive_title(),
+        'subtitle' => get_the_archive_description()
+    ];
+    fws()->render->templateView( $book, 'book-listing', 'listings' );
+
+    do_action( 'fws_starter_s_after_main_content' );
+    get_footer();
+
+## Working with Components Template Files
+
+### Working with PHP Template Views
+
+#### Creating Template Views
+
+There are four types of template views:
+- Blocks
+- Listings
+- Parts
+- Shared
+
+To create a new view, execute `fws create-file` command and pass `--block`, `--listing` or `--part` with an argument.
 
     fws create-file component-name --block
+    fws create-file listing-name --listing
     fws create-file part-name --part
 
 Alternatively, it is possible and **recommended** to use short aliases.
 
     fws cf component-name -b
+    fws cf listing-name -l
     fws cf part-name -p
 
 Note that in this case the option argument is passed with one '-' instead of two '--'.
 
-This command will create new module files in appropriate directory `template-views/blocks` or `template-views/parts`:
+This command will create new module files in appropriate directory `template-views/blocks`, `template-views/listings` or `template-views/parts`:
 * .php
 * .scss
 
-It will also update appropriate scss file `_blocks.scss` or `_parts.scss` in `src/scss/layout` directory.
+It will also update appropriate scss file `_blocks.scss`, `_listings.scss` or `_parts.scss` in `src/scss/layout` directory.
 
-### Deleting PHP Frontend Template Views
+**Note:** There are no CLI commends for creating Shared type template views.
+
+#### Deleting PHP Frontend Template Views
 
 Once done with FE development phase, it is required to delete all FE components from `template-views` directory.
 
@@ -80,7 +164,9 @@ Alternatively, it is possible and **recommended** to use short aliases.
 
 This command will delete all `.php` files in appropriate directory `template-views/blocks` or `template-views/parts` with `_fe-` prefix.
 
-### Creating Vue Compontents
+### Working with Vue Compontents
+
+#### Creating Vue Components
 
 To create a new Vue component, execute `fws creates files` command and pass `--block-vue` or `--part-vue` with an argument.
 
@@ -96,6 +182,8 @@ Note that in this case the option argument is passed with one '-' instead of two
 
 This command will create new module file in appropriate directory `src/vue/components/blocks` or `src/vue/components/parts`:
 * .vue
+
+#### Naming Conventions
 
 Naming convention for Vue files should be as follows:
 - each component should be named using PascalCase format,
@@ -185,6 +273,20 @@ Note that you need to pass an actuall domain URL as an argument.
 
 The domain URL **needs to be very strictly formated**. It needs to start with `http` or `https` and needs to end with `/`.
 
+## Media
+
+All images (except logos and icons) should be rendered using declared image size in order to fit the dimensions of a section.
+
+Any media files that are used in frontend phase should be placed in **__demo** folder with **subfolders** for each page.
+
+Any media files that will be static should be placed in **src/assets/images** folder.
+
+Any image should not be larger then 2300px in width, unless there’s a special need for it. Starter Theme comes with predefined image size 'max-width', which **should always** be used for this purpose.
+
+    add_image_size('max-width', 2300, 9999, false);
+
+All image sizes **should** be delared in **fws/src/Images.php** file.
+
 ## SCSS
 All Template Views styles should be written in corresponding directory.
 
@@ -205,8 +307,8 @@ The file `site.js` should contain all load methods, and serve for invoking site 
     import Sliders from './_site/sliders';
 
     jQuery(function() {
-    	Menu.init();
-    	Sliders.init();
+        Menu.init();
+        Sliders.init();
     });
 
 All other files should be organized following this folder structure:
@@ -228,7 +330,7 @@ Each component has three files:
 * .php *(comopnent template)*
 * .scss *(component styles)*
 
-*(_fe).php file:*
+*(\_fe).php file:*
 
 File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP variables, methods or any other logic should be written here *(except helper functions for rendering images)*.
 
@@ -242,7 +344,9 @@ File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP v
 </div><!-- .banner -->
 ```
 
-*.php file:*
+##### Blocks and Parts
+
+**Blocks** and **Parts** view types **should always be coded as 'dump' components**, meaning they should never contain any functional logic and should only be used as templates that are receiving proper vaules to render.
 
 PHP template view file is relying on globally set variables that should be accessed using get_query_var() function.
 
@@ -268,10 +372,50 @@ extract( (array) get_query_var( 'content-blocks' ) );
 </div><!-- .banner -->
 ```
 
+##### Listings
+
+**Listings** view type, on the other hand, **can and should** contain some logic, but **only** limited to WP's Loop functionality.
+
+In fact, any Post type **should** have and use **Listings** view type to loop over it's posts.
+
+    Example:
+
+    <?php
+    /**
+     * @var string $title
+     */
+    extract( (array) get_query_var( 'content-listings' ) );
+    ?>
+
+    <div class="blog-listing">
+        <h1 class="blog-listing__title section-title"><?php echo $title ?></h1>
+
+        <?php
+        if ( have_posts() ) {
+            while ( have_posts() ) {
+                the_post();
+
+                $blog_article = [
+                    'permalink' => get_the_permalink(),
+                    'title' => get_the_title()
+                ];
+                fws()->render->templateView( $blog_article, 'blog-article', 'parts' );
+            }
+        } else {
+            get_template_part( 'template-views/shared/content', 'none' );
+        }
+        ?>
+    </div>
+
+##### Shared
+
+**Shared** view type is a helper type that servers for default content and other helper wrappers such as `flex-content`. This view type is handeled exclusively manually.
+
+### Quality control
+
 HTML quality is checked with [htmllint](http://htmllint.github.io/).
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/).
-
 
 ### Rendering components
 
@@ -533,7 +677,7 @@ List of all helper functions from this Starter Theme:
 - ACF.php
     - `registerFlexContent()` - *Register new flexible content field group.*
 
-All helper functions are defined as methods in defined classes that are all loading from *fws/FWS.php* file.
+All helper functions are defined as methods in defined classes that are all loading from **fws/FWS.php** file.
 
 Each method is available through instance of FWS class and instances of other classes located in *fws/src* directory.
 
