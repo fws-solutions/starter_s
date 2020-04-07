@@ -1,18 +1,27 @@
 # FWS CONFIG
 
-# global settings
-global:
+global:                                             # GLOBAL SETTINGS
     theme-name: 'FWS Starter _S'                    # set theme full name
     virtual-host: 'http://starter.local/'           # set local env url
     recovery-mode-emails:                           # change the fatal error handler email address from admin's to our internal
         - 'nick@forwardslashny.com'
         - 'boris@forwardslashny.com'
+        - 'petar@forwardslashny.com'
     prevent-plugin-update:                          # only users logged in with declared email domain are allowed to add/update/remove plugins
-        enable: true
-        domain: forwardslashny.com
+        enable: true                                # enable/disable this rule
+        domain: forwardslashny.com                  # allowed email domain
+    acf-only-local-editing:                         # acf only possible to edit and manage on local enviorment
+        enable: true                                # enable/disable this rule
+        allowed-hosts:                              # list of allowed hosts
+            - '.local'
+            - 'localhost/'
+            - '.lndo.site'
 
-# define acf flexible content groups and fields
-acf-flexible-content:
+acf-options-page:                                   # DEFINE ACF OPTIONS PAGES
+    enable: true                                    # enable/disable options top level page
+    subpages: []                                    # list of options sub pages
+
+acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTENT GROUPS AND FIELDS
     default-page-template:                          # define flexible content for default page template
         field-name: 'Content'                       # filed name that will show on page
         location:                                   # set location where this field group will load
