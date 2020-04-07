@@ -15,10 +15,14 @@ get_header(); ?>
 			<div class="styleguide">
 
 				<div class="styleguide__scrollspy-nav js-styleguide-nav-wrap">
+					<div class="styleguide-filter-input-wrap">
+						<input type="text" class="styleguide-filter-input js-styleguide-filter-input">
+					</div>
 					<span class="styleguide__scrollspy-nav-title">Style Nav</span>
 					<span class="styleguide__scrollspy-nav-close js-styleguide-close">X</span>
 					<ul class="styleguide__scrollspy-nav-list js-styleguide-nav">
 					</ul>
+					<a href="javascript:;" class="styleguide__scrollspy-nav-open js-styleguide-open"><?php echo fws()->render->inlineSVG('ico-arrow-right', 'styleguide-open-icon'); ?></a>
 				</div>
 
 				<div class="container">
@@ -37,7 +41,6 @@ get_header(); ?>
 				// Sections & Components
 				get_template_part('styleguide/config/sg', 'sections');
 				?>
-
 			</div>
 		</main><!-- #main -->
 	</div><!-- #primary -->

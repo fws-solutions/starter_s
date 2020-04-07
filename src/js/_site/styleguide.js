@@ -11,6 +11,7 @@ const Styleguide = {
 	$domStyleNav: $('.js-styleguide-nav'),
 	$domStyleSection: $('.js-styleguide-section'),
 	$domStyleNavClose: $('.js-styleguide-close'),
+	$domStyleNavOpen: $('.js-styleguide-open'),
 	selectorStyleNav: '.js-styleguide-nav',
 	classHidden: 'is-hidden',
 
@@ -27,9 +28,21 @@ const Styleguide = {
 
 			this.scrollTo('.list-group-item');
 
+			/**
+			 * @description close Styleguide
+			 */
 			this.$domStyleNavClose.on('click', () => {
 				this.$domStyleNavWrap.addClass(this.classHidden);
 			});
+
+			/**
+			 * @description open Styleguide
+			 */
+			this.$domStyleNavOpen.on('click', ()=> {
+				this.$domStyleNavWrap.removeClass(this.classHidden);
+			});
+
+			Styleguide.filterComponents();
 		}
 	},
 
@@ -44,6 +57,21 @@ const Styleguide = {
 				}, 1000);
 				return false;
 			}
+		});
+	},
+
+	/**
+	 * @description filter sidebar components
+	 */
+	filterComponents: ()=> {
+		$('.js-styleguide-filter-input').on('keyup', (e)=> {
+			const _self = $(e.currentTarget);
+			const value = _self.val().toLowerCase();
+
+			$('.js-styleguide-nav a').filter((e)=> {
+				const __self = $(e.currentTarget);
+				__self.toggle(__self.text().toLowerCase().indexOf(value) > -1);
+			});
 		});
 	}
 };

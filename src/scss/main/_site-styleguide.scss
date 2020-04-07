@@ -13,20 +13,25 @@
 .styleguide__scrollspy-nav {
 	position: fixed;
 	left: 0;
-	top: 20%;
-	width: 130px;
+	top: 100px;
+	width: 150px;
+	height: calc(100vh - 100px);
 	color: $white;
 	font-size: 14px;
+	background-color: $red;
 	transition: $dur $ease;
 	z-index: 10;
+	will-change: scroll-position;
 
 	&.is-hidden {
 		transform: translateX(-100%);
 	}
+}
 
+.styleguide__scrollspy-nav-list {
 	a {
 		display: block;
-		width: 130px;
+		width: 100%;
 		padding: 3px 10px;
 		color: $white;
 		border-bottom: 1px solid $white;
@@ -50,7 +55,6 @@
 	font-weight: bold;
 	padding: 5px 10px;
 	border-bottom: 1px solid $white;
-	background-color: $sg-orange;
 }
 
 .styleguide__scrollspy-nav-close {
@@ -60,6 +64,36 @@
 	right: 5px;
 	top: 7px;
 	cursor: pointer;
+}
+
+.styleguide__scrollspy-nav-open {
+	position: absolute;
+    right: 0;
+	top: 50%;
+    transform: translate(0, -50%);
+    width: 45px;
+	height: 65px;
+    background: $red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    color: $white;
+	border-radius: 0 10px 10px 0;
+	transition: $dur $ease;
+	opacity: 0;
+	visibility: hidden;
+
+	@include hover {
+		transform: translate(100%, -50%);
+	}
+
+	.is-hidden & {
+		transform: translate(80%, -50%);
+		opacity: 1;
+		visibility: visible;
+		transition: $dur $ease 0.35s;
+	}
 }
 
 .styleguide__main-head {
