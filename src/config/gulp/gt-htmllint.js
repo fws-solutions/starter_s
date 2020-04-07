@@ -12,7 +12,7 @@ const w3 = require('forwardslash-cli').w3;
 gulp.task('html-w3', htmlw3);
 
 function htmlw3(done) {
-	const localURL = yaml.safeLoad(fs.readFileSync('.fwsconfig.yml', 'utf8'))['virtual-host'];
+	const localURL = yaml.safeLoad(fs.readFileSync('.fwsconfig.yml', 'utf8'))['global']['virtual-host'];
 	w3(localURL, done);
 }
 
