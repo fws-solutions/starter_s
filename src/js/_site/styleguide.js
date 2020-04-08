@@ -12,7 +12,9 @@ const Styleguide = {
 	$domStyleSection: $('.js-styleguide-section'),
 	$domStyleNavClose: $('.js-styleguide-close'),
 	$domStyleNavOpen: $('.js-styleguide-open'),
+	$domStyleNavInput: $('.js-styleguide-filter-input'),
 	selectorStyleNav: '.js-styleguide-nav',
+	selectorStyleNavItem: '.styleguide__scrollspy-nav-list .list-group-item',
 	classHidden: 'is-hidden',
 
 	/** @description slider example description e.g Banner slider */
@@ -29,21 +31,14 @@ const Styleguide = {
 			this.scrollTo('.list-group-item');
 
 			/**
-			 * @description close Styleguide
-			 */
-			this.$domStyleNavClose.on('click', () => {
-				this.$domStyleNavWrap.addClass(this.classHidden);
-			});
-
-			/**
-			 * @description open Styleguide
+			 * @description close/open Styleguide Nav
 			 */
 			this.$domStyleNavOpen.on('click', ()=> {
-				this.$domStyleNavWrap.removeClass(this.classHidden);
+				this.$domStyleNavWrap.toggleClass(this.classHidden);
 			});
-
-			Styleguide.filterComponents();
 		}
+
+		Styleguide.filterComponents();
 	},
 
 	scrollTo: function(selector) {
@@ -64,12 +59,13 @@ const Styleguide = {
 	 * @description filter sidebar components
 	 */
 	filterComponents: ()=> {
-		$('.js-styleguide-filter-input').on('keyup', (e)=> {
+		Styleguide.$domStyleNavInput.on('keyup', (e)=> {
 			const _self = $(e.currentTarget);
 			const value = _self.val().toLowerCase();
 
-			$('.js-styleguide-nav a').filter((e)=> {
-				const __self = $(e.currentTarget);
+			$(Styleguide.selectorStyleNavItem).filter(function() {
+				const __self = $(this);
+
 				__self.toggle(__self.text().toLowerCase().indexOf(value) > -1);
 			});
 		});

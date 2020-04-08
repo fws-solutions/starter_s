@@ -14,7 +14,7 @@
 	position: fixed;
 	left: 0;
 	top: 100px;
-	width: 150px;
+	width: 160px;
 	height: calc(100vh - 100px);
 	color: $white;
 	font-size: 14px;
@@ -29,6 +29,9 @@
 }
 
 .styleguide__scrollspy-nav-list {
+	max-height: calc(100vh - 180px);
+	overflow-y: auto;
+	
 	a {
 		display: block;
 		width: 100%;
@@ -57,42 +60,67 @@
 	border-bottom: 1px solid $white;
 }
 
-.styleguide__scrollspy-nav-close {
-	display: block;
-	line-height: 1;
-	position: absolute;
-	right: 5px;
-	top: 7px;
-	cursor: pointer;
-}
-
 .styleguide__scrollspy-nav-open {
 	position: absolute;
     right: 0;
 	top: 50%;
-    transform: translate(0, -50%);
-    width: 45px;
+    transform: translate(80%, -50%);
+    width: 30px;
 	height: 65px;
     background: $red;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 35px;
+    font-size: 32px;
     color: $white;
 	border-radius: 0 10px 10px 0;
 	transition: $dur $ease;
-	opacity: 0;
-	visibility: hidden;
+	z-index: -1;
 
 	@include hover {
-		transform: translate(100%, -50%);
+		transform: translate(70%, -50%);
 	}
 
 	.is-hidden & {
 		transform: translate(80%, -50%);
 		opacity: 1;
 		visibility: visible;
-		transition: $dur $ease 0.35s;
+		transition: $dur $ease;
+
+		@include hover {
+			transform: translate(100%, -50%);
+		}
+
+		.styleguide-open-icon {
+			transform: rotate3d(0, 1, 0, 0);
+		}
+	}
+}
+
+.styleguide-open-icon {
+	transition: $dur $ease;
+	transform: rotate3d(0, 1, 0, 180deg);
+}
+
+.styleguide-filter-input-wrap {
+	padding: 10px 5px;
+}
+
+.styleguide-filter-input[type='text'] {
+	font-size: 14px;
+	color: $black;
+	padding: 4px 5px;
+	border-radius: 3px;
+	border: 0;
+	outline: none;
+
+	@include placeholder {
+		font-size: 14px;
+		color: $black;
+	}
+
+	&:focus {
+		outline: none;
 	}
 }
 
