@@ -23,6 +23,7 @@ acf-options-page:                                   # DEFINE ACF OPTIONS PAGES
 
 acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTENT GROUPS AND FIELDS
     default-page-template:                          # define flexible content for default page template
+        autoload: true                              # set whether or not to autoload this flexible content group
         field-name: 'Content'                       # filed name that will show on page
         location:                                   # set location where this field group will load
             param: 'page_template'

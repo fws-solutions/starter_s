@@ -26,21 +26,41 @@ Install [Advanced Custom Fields](https://www.advancedcustomfields.com/) WordPres
 
 Use `.fwsconfig.yml` file to configure top level theme options.
 
+### Global Options
+
+- `theme-name` - set theme full name
+- `virtual-host` - set local env url
+- `recovery-mode-emails` - set the fatal error handler email address from admin's to our internal
+- `prevent-plugin-update` - enable only logged in users with declared email domain to add/update/remove plugins
+`acf-only-local-editing` - enable acf to edit and manage only on local enviorment
+
+
     global:
         theme-name: 'FWS Starter _S'
         virtual-host: 'http://starter.local/'
         recovery-mode-emails:
             - 'nick@forwardslashny.com'
             - 'boris@forwardslashny.com'
+            - 'petar@forwardslashny.com'
         prevent-plugin-update:
             enable: true
             domain: forwardslashny.com
+        acf-only-local-editing:
+            enable: true
+            allowed-hosts:
+                - '.local'
+                - 'localhost/'
+                - '.lndo.site'
 
-### Local Virtual Host
+#### Local Virtual Host
 
 Local enviorment and virtual host **must** be named exactly the same as it is defiend in `.fwsconfig.yml` file in the variable `virtual-host`.
 
     virtual-host: 'http://somedomain.local/'
+
+### ACF Fields Config
+
+More details about `acf-options-page` and `acf-flexible-content` in the **Using Components** section, **Managing Options pages** sub section.
 
 ## CLI
 For the full list of all commands, execute `fws --help`.
@@ -552,10 +572,16 @@ Cloning separate field groups into Flexible Content blocks **resolves avoiding J
 
 **Final step** in this workflow is to actually **avoid creating/editing** any **Flexible Content** group fields from the dashboard and make those changes through `.fwsconfig.yml` file.
 
-Starter Theme comes with more helper functions to enable just that, bu it is **important to follow the proper formating** of `.fwsconfig.yml` file.
+Starter Theme comes with more helper functions to enable just that, but it is **important to follow the proper formating** of `.fwsconfig.yml` file.
 
-All values must be written under `acf-flexible-content` with defined **group name** as property name that includes the following sub properties:
+All values must be written under `acf-flexible-content` with defined **group name** as property name that includes the following sub properties.
 
+**The Starter Theme will automatically load any defined group names, unless the `autoload` property is disabled.**
+
+- `autoload`
+    - Set whether or not to autoload this flexible content group.
+    - If set to `false`, you'll need to use function directly in code somewhere in order to enable the field group.
+    - The function in question is `addNewFlexContentGroup($fc);` that is located in **fws/src/ACF.php**.
 - `field-name`
     - Filed name that will show on page.
     - See image **Field Name** bellow.
@@ -609,10 +635,11 @@ All values must be written under `acf-flexible-content` with defined **group nam
 ***Field Layout Group ID***
 ![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/filed-group-id.png)
 
-**Example of .fwsconfig.yml**
+**Example of .fwsconfig.yml**:
 
-    acf-flexible-content:
+    acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTENT GROUPS AND FIELDS
         default-page-template:                          # define flexible content for default page template
+            autoload: true                              # set whether or not to autoload this flexible content group
             field-name: 'Content'                       # filed name that will show on page
             location:                                   # set location where this field group will load
                 param: 'page_template'
@@ -632,9 +659,53 @@ All values must be written under `acf-flexible-content` with defined **group nam
                     title: 'Vue Block'
                     group_id: 'group_5dcd6b37b67a4'
 
-Finaly, with all of the above setup, a function `addNewFlexContentGroup` must be called inside `acfInit` method that is located in **fws/src/ACF.php** class.
+To sum up, all Flexible Content group fields must be defined as **arrays of an array**.
 
-    $this->addNewFlexContentGroup('default-page-template');
+In the example above, Flexible Content group `default-page-template` is an array value of `acf-flexible-content`.
+
+To register more then one Flexible Content group, it is neccessary to simply add another array into `acf-flexible-content`.
+
+**Example of .fwsconfig.yml** that is showing three Flexible Content groups for different post types:
+
+    acf-flexible-content:
+        default-page-template:
+            autoload: ...
+            field-name: ...
+            location: ...
+            hide-on-screen: ...
+            layouts: ...
+        blog-page-template:
+            autoload: ...
+            ...
+        product-page-template:
+            autoload: ...
+            ...
+
+### Managing Options pages
+
+Having in mind the workflow we have for Flexible Content, it is safe to assume that very similar apporach is used for ACF Options pages, so just like in the examples above it is **important to follow the proper formating** of `.fwsconfig.yml` file.
+
+All values must be written under `acf-options-page`:
+
+- `enable`
+    - Set to `true` or `false` in order to enable ACF Options Main page.
+    - The name of the Menu Item in the Dashboard will be the of the theme set in `global` property, `theme-name` sub property.
+- `subpages`
+    - Takes on array of strings, which will be used to create sub pages of ACF Options.
+    - See image **Sub pages** bellow.
+    - Leave empty array if no sub pages are needed - `subpages: []`.
+
+***Sub pages***
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/acf-options.png)
+
+**Example of .fwsconfig.yml**
+
+    acf-options-page:
+        enable: true
+        subpages:
+            - 'Mega Menu'
+            - 'Shared Sections'
 
 ## FWS Engine
 

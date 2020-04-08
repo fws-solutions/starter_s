@@ -75,24 +75,16 @@ class ACF
 		$options_page = $config['acf-options-page']['enable'];
 		$options_sub_pages = $config['acf-options-page']['subpages'];
 		$theme_name = $config['global']['theme-name'];
+		$flexible_content = $config['acf-flexible-content'];
 
 		// Register Custom Taxonomy Categories for ACF
 		$this->register_acf_category_taxonomy();
 
 		// Register Options Main Page
-		if ($options_page) {
-			$this->register_acf_options_page($theme_name . ' Settings', $theme_name . ' Settings');
-		}
+		$this->registerOptionsPages($options_page, $options_sub_pages, $theme_name);
 
-		// Register Options Sub Pages
-		if ($options_page && count($options_sub_pages) > 0) {
-			foreach($options_sub_pages as $sub_page ) {
-				$this->register_acf_options_subpage($sub_page, $sub_page);
-			}
-		}
-
-		// Add Flexible Content Group for Default Page Template
-		$this->addNewFlexContentGroup('default-page-template');
+		// Add Flexible Content Groups
+		$this->checkForFlexContentGroups($flexible_content);
 	}
 
 	/**
@@ -375,19 +367,53 @@ class ACF
 	}
 
 	/**
+	 * Register Options Pages
+	 *
+	 * @param array $fc
+	 */
+	private function registerOptionsPages($options_page, $options_sub_pages, $theme_name): void
+	{
+		// Register Options Main Page
+		if ($options_page) {
+			$this->register_acf_options_page($theme_name . ' Settings', $theme_name . ' Settings');
+		}
+
+		// Register Options Sub Pages
+		if ($options_page && count($options_sub_pages) > 0) {
+			foreach($options_sub_pages as $sub_page ) {
+				$this->register_acf_options_subpage($sub_page, $sub_page);
+			}
+		}
+	}
+
+	/**
+	 * Check config file for Flexible Content groups
+	 *
+	 * @param array $fc
+	 */
+	private function checkForFlexContentGroups($flexible_content): void
+	{
+		if (count($flexible_content) > 0) {
+			foreach ($flexible_content as $fc) {
+				if ($fc['autoload']) {
+					$this->addNewFlexContentGroup($fc);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Add Flexible content group from all Flexible Content groups
 	 *
-	 * @param string $group
+	 * @param array $fc
 	 */
-	private function addNewFlexContentGroup($group): void
+	private function addNewFlexContentGroup($fc): void
 	{
 		// Get Config
-		$yml = $this->getYamlParser();
-		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['acf-flexible-content'];
-		$layouts = $config[$group]['layouts'];
-		$fieldName = $config[$group]['field-name'];
-		$location = $config[$group]['location'];
-		$hideOnScreen = $config[$group]['hide-on-screen'];
+		$layouts = $fc['layouts'];
+		$fieldName = $fc['field-name'];
+		$location = $fc['location'];
+		$hideOnScreen = $fc['hide-on-screen'];
 		$mapped_layouts = [];
 
 		foreach ($layouts as $layout) {

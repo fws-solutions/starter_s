@@ -143,6 +143,12 @@ class Render
 
 	/**
 	 * Default page Header
+	 *
+	 * @param string $title
+	 * @param string $subtitle
+	 * @param bool   $isScreenReader
+	 *
+	 * @return void
 	 */
 	public function pageDefaultHeader(string $title, string $subtitle = '', bool $isScreenReader = false): void
 	{
@@ -152,6 +158,20 @@ class Render
 			echo '<div class="archive-description">' . $subtitle . '</div>';
 		}
 		echo '</header><!-- .page-header -->';
+	}
+
+	/**
+	 * var_dump function with <pre> tag
+	 *
+	 * @param $value
+	 *
+	 * @return void
+	 */
+	public function varDump($value): void
+	{
+		echo '<pre style="position: relative; z-index: 100001; background-color: #999;">';
+		var_dump($value);
+		echo '</pre>';
 	}
 }
 
