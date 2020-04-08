@@ -26,7 +26,7 @@ Install [Advanced Custom Fields](https://www.advancedcustomfields.com/) WordPres
 
 Use `.fwsconfig.yml` file to configure top level theme options.
 
-### Global Options
+### Global Config
 
 - `theme-name` - set theme full name
 - `virtual-host` - set local env url
@@ -295,9 +295,9 @@ To run W3 Validator, execute `fws w3-local` command.
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/) API.
 
-This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `gulpfile.js` file in the variable `const localURL = 'http://somedomain.local/';`.
+This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `.fwsconfig.yml` file in the property `virtual-host: 'http://somedomain.local/';`.
 
-**This is a must**, your virtual host URL must be **exactly the same** as `localURL` variable.
+**This is a must**, your virtual host URL must be **exactly the same** as `virtual-host` property.
 
 Furthermore, W3 Validator has the **only** command that **can be run outside** of the Starter Theme's root directory.
 
