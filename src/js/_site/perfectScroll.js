@@ -15,23 +15,25 @@ const PSB = {
 		PSB.perfectScrollBarStyleguide();
 	},
 
+	/**
+	 * @description Stylequide scrollbar
+	 */
 	perfectScrollBarStyleguide: () => {
-		const container = document.querySelector(PSB.selectorStyleguideNav);
-		const ps = new PerfectScrollbar(container, {
-			wheelSpeed: 1,
-			suppressScrollX: true,
-			minScrollbarLength: 100
-		});
+		$(PSB.selectorStyleguideNav).each((i, el)=> {
+			const selector = $(el)[0];
 
-		container.addEventListener('ps-scroll-y', (e) => {
-			const _self = $(e.currentTarget);
-			const reach = ps.reach.y;
+			const ps = new PerfectScrollbar(selector, {
+				wheelSpeed: 1,
+				suppressScrollX: true,
+				minScrollbarLength: 100
+			});
 
-			if (reach === 'end') {
-				_self.parent().addClass(PSB.classHide);
-			} else {
-				_self.parent().removeClass(PSB.classHide);
-			}
+			selector.addEventListener('ps-scroll-y', (e) => {
+				const _self = $(e.currentTarget);
+				const reach = ps.reach.y;
+
+				reach === 'end' ? _self.parent().addClass(PSB.classHide) : _self.parent().removeClass(PSB.classHide);
+			});
 		});
 	}
 };
