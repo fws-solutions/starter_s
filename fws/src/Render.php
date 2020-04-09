@@ -20,11 +20,10 @@ class Render
 	 *
 	 * @param array   $view_vals
 	 * @param string  $view_name
-	 * @param boolean $is_partial
+	 * @param string  $view_type
 	 */
-	public function templateView( $view_vals, string $view_name, bool $is_partial = false ): void
+	public function templateView( $view_vals, string $view_name, string $view_type = 'blocks' ): void
 	{
-		$view_type = ! $is_partial ? 'components' : 'partials';
 		$view_var_name = 'content-' . $view_type;
 		$view_dir = 'template-views/' . $view_type . '/' . $view_name . '/' . $view_name;
 
@@ -69,9 +68,16 @@ class Render
 	public function inlineSVG( string $svg_name, string $classes = '' ): string
 	{
 		$svg_classes = $classes ? $classes . ' ' : '';
-		$svg = file_get_contents( get_template_directory_uri() . '/src/assets/svg/' . $svg_name . '.svg' );
+		$svg_path = '/src/assets/svg/' . $svg_name . '.svg';
 
-		return '<span class="' . $svg_classes . 'svg-icon">' . $svg . '</span>';
+		if (file_exists('./wp-content/themes/' . get_template() . $svg_path)) {
+			$svg = file_get_contents( get_template_directory_uri() . $svg_path );
+			$svg = '<span class="' . $svg_classes . 'svg-icon">' . $svg . '</span>';
+		} else {
+			$svg = '<span style="display: block; color: white; font-weight: bold; background-color: red; padding: 10px; text-align: center;">No SVG file found:<br><span style="font-weight: normal">' . $svg_path . '</span></span>';
+		}
+
+		return $svg;
 	}
 
 	/**
@@ -81,7 +87,7 @@ class Render
 	 *
 	 * @return string
 	 */
-	public function postedOn( string $format = '' ): string
+	public function getPostedOn( string $format = '' ): string
 	{
 		$date = get_the_date( $format );
 		$link = get_the_permalink();
@@ -126,20 +132,46 @@ class Render
 			'current' => $paged,
 			'mid_size' => 3,
 			'add_args' => array_map( 'urlencode', $query_args ),
-			'prev_text' => __( 'Prev', 'starter_s' ),
-			'next_text' => __( 'Next', 'starter_s' ),
+			'prev_text' => __( 'Prev', 'fws_starter_s' ),
+			'next_text' => __( 'Next', 'fws_starter_s' ),
 		] );
 
-		if ( $links ) :
+		if ( $links ) {
+			$this->templateView($links, 'page-nav', 'parts');
+		}
+	}
 
-			?>
-			<nav class="navigation paging-navigation" role="navigation">
-				<div class="pagination loop-pagination">
-					<?php echo $links; ?>
-				</div><!-- .pagination -->
-			</nav><!-- .navigation -->
-		<?php
-		endif;
+	/**
+	 * Default page Header
+	 *
+	 * @param string $title
+	 * @param string $subtitle
+	 * @param bool   $isScreenReader
+	 *
+	 * @return void
+	 */
+	public function pageDefaultHeader(string $title, string $subtitle = '', bool $isScreenReader = false): void
+	{
+		echo '<header class="page-header">';
+		echo '<h1 class="page-title' . ($isScreenReader ? ' screen-reader-text">' : '">') . $title . '</h1>';
+		if ($subtitle) {
+			echo '<div class="archive-description">' . $subtitle . '</div>';
+		}
+		echo '</header><!-- .page-header -->';
+	}
+
+	/**
+	 * var_dump function with <pre> tag
+	 *
+	 * @param $value
+	 *
+	 * @return void
+	 */
+	public function varDump($value): void
+	{
+		echo '<pre style="position: relative; z-index: 100001; background-color: #999;">';
+		var_dump($value);
+		echo '</pre>';
 	}
 }
 

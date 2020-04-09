@@ -6,7 +6,10 @@
 
 <script>
     import startcase from 'lodash.startcase';
-    import ChevronDown from '../../../../assets/svg/ico-chevron-down.svg';
+    import ArrowDown from '../../../../assets/svg/ico-arrow-down.svg';
+    import ArrowLeft from '../../../../assets/svg/ico-arrow-left.svg';
+    import ArrowRight from '../../../../assets/svg/ico-arrow-right.svg';
+    import ArrowUp from '../../../../assets/svg/ico-arrow-up.svg';
     import Dog from '../../../../assets/svg/ico-dog.svg';
     import Happy from '../../../../assets/svg/ico-happy.svg';
     import Lock from '../../../../assets/svg/ico-lock.svg';
@@ -21,7 +24,10 @@
             }
         },
         components: {
-            ChevronDown,
+            ArrowDown,
+            ArrowLeft,
+            ArrowRight,
+            ArrowUp,
             Dog,
             Happy,
             Lock,

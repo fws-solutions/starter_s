@@ -4,6 +4,7 @@ declare( strict_types=1 );
 namespace FWS;
 
 use WP_Error;
+use Symfony\Component\Yaml\Parser;
 
 /**
  * Theme Hooks. No methods are available for direct calls.
@@ -17,14 +18,23 @@ class ThemeHooks
 	use Main;
 
 	/**
+	 * Get ymal parser
+	 */
+	private function getYamlParser() {
+		return new Parser();
+	}
+
+	/**
 	 * Drop your hooks here.
 	 */
 	private function hooks(): void
 	{
 		add_action( 'admin_init', [ $this, 'preventPluginUpdate' ] );
 		add_action( 'wp_head', [ $this, 'pingbackHeader' ] );
-		add_action( 'starter_s_before_main_content', [ $this, 'pageWrapperBefore' ] );
-		add_action( 'starter_s_after_main_content', [ $this, 'pageWrapperAfter' ] );
+		add_action( 'fws_starter_s_before_main_content', [ $this, 'pageWrapperBefore' ] );
+		add_action( 'fws_starter_s_after_main_content', [ $this, 'pageWrapperAfter' ] );
+		add_action( 'fws_starter_s_before_archive_listing', [ $this, 'archiveWrapperBefore' ] );
+		add_action( 'fws_starter_s_after_archive_listing', [ $this, 'archiveWrapperAfter' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
@@ -75,14 +85,20 @@ class ThemeHooks
 	}
 
 	/**
-	 * Only users logged in with email 'forwardslashny.com' are allowed to add/update/remove plugins
+	 * Only users logged in with declared email domain are allowed to add/update/remove plugins
 	 */
 	public function preventPluginUpdate(): void
 	{
-		$user = get_currentuserinfo();
+		// Get Config
+		$yml = $this->getYamlParser();
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
 
-		if ( ! $user->user_email || strpos( $user->user_email, 'forwardslashny.com' ) === false ) {
-			add_filter( 'file_mod_allowed', '__return_false' );
+		if (array_key_exists('prevent-plugin-update', $config) && $config['prevent-plugin-update']['enable']) {
+			$user = wp_get_current_user();
+
+			if ( ! $user->user_email || strpos( $user->user_email, $config['prevent-plugin-update']['domain'] ) === false ) {
+				add_filter( 'file_mod_allowed', '__return_false' );
+			}
 		}
 	}
 
@@ -101,10 +117,8 @@ class ThemeHooks
 	 */
 	public function pageWrapperBefore(): void
 	{
-		?>
-		<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-		<?php
+		echo '<div id="primary" class="content-area">';
+		echo '<main id="main" class="site-main" role="main">';
 	}
 
 	/**
@@ -112,10 +126,26 @@ class ThemeHooks
 	 */
 	public function pageWrapperAfter(): void
 	{
-		?>
-		</main><!-- #main -->
-		</div><!-- #primary -->
-		<?php
+		echo '</main><!-- #main -->';
+		echo '</div><!-- #primary -->';
+	}
+
+	/**
+	 * Archive page wrapper BEFORE
+	 */
+	public function archiveWrapperBefore(): void
+	{
+		echo '<div class="posts-archive">';
+		echo '<div class="posts-archive__container container">';
+	}
+
+	/**
+	 * Archive page wrapper AFTER
+	 */
+	public function archiveWrapperAfter(): void
+	{
+		echo '</div>';
+		echo '</div>';
 	}
 
 	/**
@@ -123,8 +153,8 @@ class ThemeHooks
 	 */
 	public function addAdminStyles(): void
 	{
-		wp_enqueue_style( 'starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css' );
-		wp_enqueue_script( 'starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
+		wp_enqueue_style( 'fws_starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css' );
+		wp_enqueue_script( 'fws_starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
 	}
 
 	/**
@@ -132,7 +162,7 @@ class ThemeHooks
 	 */
 	public function addLoginTitle(): void
 	{
-		echo '<span class="login-title">starter_s login</span>';
+		echo '<span class="login-title">fws_starter_s login</span>';
 	}
 
 	/**
@@ -141,7 +171,7 @@ class ThemeHooks
 	public function dependenciesNotice(): void
 	{
 		if ( ! function_exists( 'get_field' ) ) {
-			echo '<div class="error"><p>' . __( 'Warning: The theme needs ACF Pro plugin to function', 'starter_s' ) . '</p></div>';
+			echo '<div class="error"><p>' . __( 'Warning: The theme needs ACF Pro plugin to function', 'fws_starter_s' ) . '</p></div>';
 		}
 	}
 
@@ -185,11 +215,13 @@ class ThemeHooks
 	 */
 	public function recoveryModeEmail( array $data ): array
 	{
-		$data['to'] = [
-			'hello@forwardslashny.com',
-			'nick@forwardslashny.com',
-			'boris@forwardslashny.com',
-		];
+		// Get Config
+		$yml = $this->getYamlParser();
+		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
+
+		if (array_key_exists('recovery-mode-emails', $config)) {
+			$data['to'] = $config['recovery-mode-emails'];
+		}
 
 		return $data;
 	}

@@ -2,6 +2,10 @@
 // Set colors
 $colors = [
 	'black',
+	'grey-light',
+	'grey-mid',
+	'grey',
+	'grey-dark',
 	'white',
 	'red',
 	'green',

@@ -1,0 +1,148 @@
+/*--------------------------------------------------------------
+## Post Article
+--------------------------------------------------------------*/
+.post-article {
+	padding: 30px;
+	margin-bottom: 15px;
+	background-color: $grey-light;
+
+	&:last-of-type {
+		margin: 0;
+	}
+}
+
+.posts-archive {
+	margin: 50px 0;
+}
+
+/*--------------------------------------------------------------
+## Post Comments
+--------------------------------------------------------------*/
+.comments-area {
+	clear: both;
+
+	label {
+		color: $grey-dark;
+		display: block;
+		font-weight: 800;
+		margin-bottom: 8px;
+	}
+
+	p {
+		margin-bottom: 20px;
+	}
+}
+
+.comments-title {
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+
+.comment-reply-title {
+	font-size: 17px;
+	margin: 30px 0 15px;
+}
+
+.comment-list,
+.comment-list .children {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.comment-list li::before {
+	display: none;
+}
+
+.comment-body {
+	color: $grey-dark;
+	font-size: 14px;
+	margin: 0 4em 0 65px;
+}
+
+.comment-author {
+	margin-bottom: 10px;
+	position: relative;
+	z-index: 2;
+}
+
+.comment-author .avatar {
+	height: 50px;
+	left: -65px;
+	position: absolute;
+	width: 50px;
+}
+
+.comment-author .says {
+	display: none;
+}
+
+.comment-meta {
+	margin-bottom: 1.5em;
+}
+
+.comment-metadata {
+	color: $grey-light;
+	font-size: 10px;
+	font-weight: 800;
+	letter-spacing: 0.1818em;
+	text-transform: uppercase;
+}
+
+.comment-metadata a {
+	color: $grey;
+}
+
+.comment-metadata a.comment-edit-link {
+	color: $grey-dark;
+	margin-left: 15px;
+}
+
+.comment-reply-link {
+	font-weight: 800;
+	position: relative;
+}
+
+.comment-reply-link .icon {
+	color: $grey-dark;
+	left: -2em;
+	height: 1em;
+	position: absolute;
+	top: 0;
+	width: 1em;
+}
+
+.children .comment-author .avatar {
+	height: 30px;
+	left: -45px;
+	width: 30px;
+}
+
+.bypostauthor > .comment-body > .comment-meta > .comment-author .avatar {
+	border: 1px solid $grey-dark;
+	padding: 2px;
+}
+
+.no-comments,
+.comment-awaiting-moderation {
+	color: $grey;
+	font-size: 14px;
+	font-style: italic;
+}
+
+.comments-pagination {
+	margin: 2em 0 3em;
+}
+
+.form-submit {
+	text-align: right;
+}
+
+.comment-form #wp-comment-cookies-consent {
+	margin: 0 10px 0 0;
+}
+
+.comment-form .comment-form-cookies-consent label {
+	display: inline;
+	font-weight: normal;
+}

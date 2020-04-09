@@ -1,19 +1,19 @@
 /*!
-Theme Name: FWS Starter_S
+Theme Name: FWS Starter _S
 Theme URI: https://www.forwardslashny.com/
 Author: Forwardslash NY
 Author URI: https://www.forwardslashny.com/
 Description: Custom WordPress theme. The theme is based on _s (underscores) framework and includes a wide variety of functionalities that can serve for your content management without having to have programming skills.
-Version: 3.0.5
+Version: 3.1.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
-Text Domain: starter_s
+Text Domain: fws_starter_s
 Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
 
 This theme, like WordPress, is licensed under the GPL.
 Use it to make something cool, have fun, and share what you've learned with others.
 
-starter_s is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
+fws_starter_s is based on Underscores http://underscores.me/, (C) 2012-2016 Automattic, Inc.
 Underscores is distributed under the terms of the GNU GPL v2 or later.
 */
 
@@ -77,6 +77,8 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 @import 'partials/media';
 @import 'partials/popup';
 @import 'partials/select2';
+@import 'partials/hamburger';
+@import 'partials/posts';
 
 /*--------------------------------------------------------------
 # Main
@@ -92,4 +94,5 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 --------------------------------------------------------------*/
 @import 'layout/parts';
 @import 'layout/blocks';
+@import 'layout/listings';
 

@@ -9,50 +9,44 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
+// get header
 get_header();
-?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main">
+// open main content wrappers
+do_action( 'fws_starter_s_before_main_content' );
+do_action( 'fws_starter_s_before_archive_listing' );
 
-			<?php
-			if ( have_posts() ) :
+// start the Loop
+if ( have_posts() ) {
 
-				if ( is_home() && ! is_front_page() ) :
-					?>
-					<header>
-						<h1 class="page-title screen-reader-text"><?php single_post_title(); ?></h1>
-					</header>
-					<?php
-				endif;
+	if ( is_home() && ! is_front_page() ) {
+		$title = single_post_title();
+		fws()->render->pageDefaultHeader( $title, '', true );
+	}
 
-				/* Start the Loop */
-				while ( have_posts() ) :
-					the_post();
+	while ( have_posts() ) {
+		the_post();
 
-					/*
-					 * Include the Post-Type-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-					 */
-					get_template_part( 'template-views/shared/content' );
+		/*
+		 * Include the Post-Type-specific template for the content.
+		 * If you want to override this in a child theme, then include a file
+		 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
+		 */
+		get_template_part( 'template-views/shared/content' );
+	}
 
-				endwhile;
+	fws()->render->pagingNav();
+} else {
+	get_template_part( 'template-views/shared/content', 'none' );
+}
 
-				the_posts_navigation();
+// close main content wrappers
+do_action( 'fws_starter_s_after_archive_listing' );
+do_action( 'fws_starter_s_after_main_content' );
 
-			else :
-
-				get_template_part( 'template-views/shared/content', 'none' );
-
-			endif;
-			?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
-
-<?php
+// get footer
 get_footer();
+

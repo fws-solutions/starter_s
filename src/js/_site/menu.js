@@ -8,43 +8,62 @@ const Menu = {
 	 * @type {object}
 	 */
 	$domMenuBtn: $('.js-menu-btn'),
-	$domMenuNav: $('.js-main-nav'),
-	$domMenuHasSub: $('.menu-item-has-children'),
-	classOpen: 'open',
-	classOpenMenu: 'menu-open',
+	$domMenuOuter: $('.js-nav-outer'),
+	$domMenuInner: $('.js-nav-inner'),
+	$domMenuIcon: $('.js-nav-icon'),
+	$domMenuSub: $('.sub-menu'),
+	slMenuIcon: '.js-nav-icon',
+	slMenuSub: '.sub-menu',
+	classActive: 'is-active',
+	timeout: null,
 
 	/** @description Initialize */
 	init: function() {
-		/** @description functions */
-		function closeNav() {
-			Menu.$domMenuBtn.removeClass(Menu.classOpen);
-			Menu.$domMenuNav.removeClass(Menu.classOpen);
-			Global.$domBody.removeClass(Menu.classOpenMenu);
+		this.bindEvents();
+	},
+
+	/** @description Bind Events */
+	bindEvents: function() {
+		this.$domMenuBtn.on('click', this.toggleMenu.bind(this));
+		this.$domMenuIcon.on('click', this.toggleSubMenu.bind(this));
+		Global.escKey(this.closeMenu.bind(this));
+		Global.clickOutsideContainer(Global.$domBody, this.$domMenuInner, this.$domMenuBtn, this.closeMenu.bind(this));
+	},
+
+	toggleMenu: function() {
+		if (!this.$domMenuBtn.hasClass(this.classActive)) {
+			this.$domMenuBtn.addClass(this.classActive);
+			this.$domMenuOuter.addClass(this.classActive);
+		} else {
+			this.closeMenu();
 		}
+	},
 
-		if (Global.varsWindowWidth < 768) {
-			this.$domMenuHasSub.each(function(i, el) {
-				$(el).append('<span class="sub-icon font-plus-circle" data-open-sub></span>');
-			});
+	toggleSubMenu(e) {
+		const icon = $(e.target.closest(this.slMenuIcon));
+		const ul = icon.siblings(this.slMenuSub);
+
+		if (!icon.hasClass(this.classActive)) {
+			icon.addClass(this.classActive);
+			ul.slideDown();
+		} else {
+			icon.removeClass(this.classActive);
+			icon.parent().find(this.slMenuIcon).removeClass(this.classActive);
+			ul.slideUp();
+			ul.find(this.slMenuSub).slideUp();
 		}
+	},
 
-		/** @description bind events */
-		this.$domMenuBtn.on('click', function(e) {
-			e.preventDefault();
-			Menu.$domMenuBtn.toggleClass(Menu.classOpen);
-			Menu.$domMenuNav.toggleClass(Menu.classOpen);
-			Global.$domBody.toggleClass(Menu.classOpenMenu);
-		});
+	closeMenu: function() {
+		this.$domMenuBtn.removeClass(this.classActive);
+		this.$domMenuOuter.removeClass(this.classActive);
 
-		this.$domMenuNav.on('click', '[data-open-sub]', function() {
-			if (Global.varsWindowWidth < 768) {
-				$(this).siblings('.sub-menu').slideToggle();
-			}
-		});
-
-		Global.functions.clickOutsideContainer(this.$domMenuNav, this.$domMenuNav.children('ul'), this.$domMenuBtn, closeNav);
-
-		Global.functions.escKey(closeNav);
+		// timeout should match the selectors CSS transition duration property
+		clearTimeout(this.timeout);
+		this.timeout = setTimeout(() => {
+			this.$domMenuIcon.removeClass(this.classActive);
+			this.$domMenuSub.slideUp();
+		}, 300);
 	}
 };
 

@@ -14,6 +14,15 @@ class Images
 
 	use Main;
 
+	/**
+	 * Drop your hooks here.
+	 */
+	private function hooks(): void
+	{
+		add_image_size('max-width', 2300, 9999, false);
+		add_image_size('post-thumb', 400, 280, ['center', 'center']);
+	}
+
 	/** Render image src from src/assets/images or __demo directory.
 	 *
 	 * @param string $image_file

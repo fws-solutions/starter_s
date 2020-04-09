@@ -1,5 +1,5 @@
-# FWS Starter_S
-*Version: 3.0.4*
+# FWS Starter _S
+*Version: 3.1.0*
 
 > It Only Does Everything.
 
@@ -12,15 +12,55 @@ Although, keep in mind for most recent version of it: [forwardslash-cli](https:/
 
     npm i forwardslash-cli -g
 
-Install dependencies by running Node.js package manager.
+Install JS dependencies by running [Node.js](https://nodejs.org/en/) package manager.
 
     npm install
 
-## Local Virtual Host
+Install PHP dependencies by running [Composer](https://getcomposer.org/doc/00-intro.md) dependency manager.
 
-Local enviorment and virtual host **must** be named exactly the same as it is defiend in `gulpfile.js` file in the variable `localURL`.
+    composer install
 
-    const localURL = 'http://somedomain.local/';
+Install [Advanced Custom Fields](https://www.advancedcustomfields.com/) WordPress plugin as the Starter Theme depends on it. Works better with PRO version.
+
+## Starter Config
+
+Use `.fwsconfig.yml` file to configure top level theme options.
+
+### Global Config
+
+- `theme-name` - set theme full name
+- `virtual-host` - set local env url
+- `recovery-mode-emails` - set the fatal error handler email address from admin's to our internal
+- `prevent-plugin-update` - enable only logged in users with declared email domain to add/update/remove plugins
+`acf-only-local-editing` - enable acf to edit and manage only on local enviorment
+
+
+    global:
+        theme-name: 'FWS Starter _S'
+        virtual-host: 'http://starter.local/'
+        recovery-mode-emails:
+            - 'nick@forwardslashny.com'
+            - 'boris@forwardslashny.com'
+            - 'petar@forwardslashny.com'
+        prevent-plugin-update:
+            enable: true
+            domain: forwardslashny.com
+        acf-only-local-editing:
+            enable: true
+            allowed-hosts:
+                - '.local'
+                - 'localhost/'
+                - '.lndo.site'
+
+#### Local Virtual Host
+
+Local enviorment and virtual host **must** be named exactly the same as it is defiend in `.fwsconfig.yml` file in the variable `virtual-host`.
+
+    virtual-host: 'http://somedomain.local/'
+
+### ACF Fields Config
+
+More details about `acf-options-page` and `acf-flexible-content` in the **Using Components** section, **Managing Options pages** sub section.
 
 ## CLI
 For the full list of all commands, execute `fws --help`.
@@ -46,27 +86,107 @@ To start *watch mode* and *local server*, execute `fws dev` task.
 
     fws dev
 
-### Creating PHP Template Views
+## Working with Common Template Files
 
-To create a new view, execute `fws create-file` command and pass `--block` or `--part` with an argument.
+Below is a list of some basic theme templates and files found in the Starter Theme:
+
+- **index.php**
+    - The main template file. It is required in all themes.
+    - Any page that does not have template file created for it will default to this one.
+- **home.php**
+    - The home page template is the front page by default. If you do not set WordPress to use a static front page, this template is used to show latest **Blog** posts.
+- **single.php**
+    - The single post template is used when a visitor requests **any** single post, in case a post type doesn't have spacific template file for it.
+    - For example, if a custom post type Books doesn't find a template file named **single-book.php**, it will default to this one.
+    - In general, templates for single posts **should always** be created for **specific post type** as in the Book example above.
+    - Alternatevly, it can use this universal **single.php** file, but with conditional rendering handeled within.
+    - The example below shows conditional loading of template view for single **Blog** post:
+        - `if ( get_post_type() == 'post' ) { get_template_part( 'template-views/blocks/blog-single/blog-single' ); }`
+    	- `else { get_template_part( 'template-views/shared/content', get_post_type() ); }`
+- **page.php**
+    - The page template is used when visitors request individual pages, which are a built-in template.
+    - The Starter Theme uses this template **exclusively for ACF Flexible Content**.
+- **category.php**
+    - The category template is used when visitors request **Blog** posts by category.
+- **archive.php**
+    - Uses much of the same logic and rules as the **single.php** template file.
+    - The archive template is used when visitors request posts by taxnomy term, author, or date.
+    - Just like with **single.php**, this template will be overridden if more specific templates are present like **category.php**, **author.php**, **date.php**, etc.
+    - This rule obviously exapnds to a post type specific templates, for example, a cutom post type Books will use **archive.php** if it can't find **archive-book.php**.
+    - Same as before mentioned file, archive templates **should always** be created for **specific post type** as in the Book example above, unless a conditional rendering logic is written in the base template it self.
+- **taxonomy.php**
+    - Uses exactly the same logic and rules as the **archive.php** template file, but is specific for a custom taxonomies.
+    - In other words, this is the taxonomy term template that is used when a visitor requests a term in a custom taxonomy, where no specific template file is provided.
+    - For example, if a custom taxonomy Book Categories doesn't find a template named **taxonomy-book-category.php** it will default to this one.
+    - Furthermore, if **taxonomy.php** template file is also not present in the theme, it will default to **archive.php**.
+    - This is why it is **important to always** provide specific template files or implement conditional rendering in universal ones.
+
+To learn more about common WP template files, see the links bellow:
+- https://developer.wordpress.org/themes/basics/template-files/
+- https://developer.wordpress.org/themes/basics/template-hierarchy/
+
+Considering all of the above and the fact that WP for given situation:
+- will look for **taxonomy-book-category.php**
+- and if not found, will look for **taxonomy.php**
+- and if not found, will look for **archive.php**
+- and if not found, will look for **index.php**,
+
+it is clear why the suggested **workflow for specific template files is important** when working on complex projects that include **multiple custom post types and taxonomies with different designs and layout**.
+
+To promote these guidelines even more, **another** workflow **rule should always** be followed.
+
+**ALL Common Template Files should NOT contain ANY HTML and should always be written exclusivly with PHP.**
+
+    Example: archive-book.php
+
+    <?php
+    get_header();
+    do_action( 'fws_starter_s_before_main_content' );
+
+    $book = [
+        'title'    => get_the_archive_title(),
+        'subtitle' => get_the_archive_description()
+    ];
+    fws()->render->templateView( $book, 'book-listing', 'listings' );
+
+    do_action( 'fws_starter_s_after_main_content' );
+    get_footer();
+
+## Working with Components Template Files
+
+### Working with PHP Template Views
+
+#### Creating Template Views
+
+There are four types of template views:
+- Blocks
+- Listings
+- Parts
+- Shared
+
+To create a new view, execute `fws create-file` command and pass `--block`, `--listing` or `--part` with an argument.
 
     fws create-file component-name --block
+    fws create-file listing-name --listing
     fws create-file part-name --part
 
 Alternatively, it is possible and **recommended** to use short aliases.
 
     fws cf component-name -b
+    fws cf listing-name -l
     fws cf part-name -p
 
 Note that in this case the option argument is passed with one '-' instead of two '--'.
 
-This command will create new module files in appropriate directory `template-views/blocks` or `template-views/parts`:
+This command will create new module files in appropriate directory `template-views/blocks`, `template-views/listings` or `template-views/parts`:
 * .php
 * .scss
 
-It will also update appropriate scss file `_blocks.scss` or `_parts.scss` in `src/scss/layout` directory.
+It will also update appropriate scss file `_blocks.scss`, `_listings.scss` or `_parts.scss` in `src/scss/layout` directory.
 
-### Deleting PHP Frontend Template Views
+**Note:** There are no CLI commends for creating Shared type template views.
+
+#### Deleting PHP Frontend Template Views
 
 Once done with FE development phase, it is required to delete all FE components from `template-views` directory.
 
@@ -80,7 +200,9 @@ Alternatively, it is possible and **recommended** to use short aliases.
 
 This command will delete all `.php` files in appropriate directory `template-views/blocks` or `template-views/parts` with `_fe-` prefix.
 
-### Creating Vue Compontents
+### Working with Vue Compontents
+
+#### Creating Vue Components
 
 To create a new Vue component, execute `fws creates files` command and pass `--block-vue` or `--part-vue` with an argument.
 
@@ -96,6 +218,8 @@ Note that in this case the option argument is passed with one '-' instead of two
 
 This command will create new module file in appropriate directory `src/vue/components/blocks` or `src/vue/components/parts`:
 * .vue
+
+#### Naming Conventions
 
 Naming convention for Vue files should be as follows:
 - each component should be named using PascalCase format,
@@ -171,9 +295,9 @@ To run W3 Validator, execute `fws w3-local` command.
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/) API.
 
-This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `gulpfile.js` file in the variable `const localURL = 'http://somedomain.local/';`.
+This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `.fwsconfig.yml` file in the property `virtual-host: 'http://somedomain.local/';`.
 
-**This is a must**, your virtual host URL must be **exactly the same** as `localURL` variable.
+**This is a must**, your virtual host URL must be **exactly the same** as `virtual-host` property.
 
 Furthermore, W3 Validator has the **only** command that **can be run outside** of the Starter Theme's root directory.
 
@@ -184,6 +308,20 @@ The command for checking any **online/live** URL is:
 Note that you need to pass an actuall domain URL as an argument.
 
 The domain URL **needs to be very strictly formated**. It needs to start with `http` or `https` and needs to end with `/`.
+
+## Media
+
+All images (except logos and icons) should be rendered using declared image size in order to fit the dimensions of a section.
+
+Any media files that are used in frontend phase should be placed in **__demo** folder with **subfolders** for each page.
+
+Any media files that will be static should be placed in **src/assets/images** folder.
+
+Any image should not be larger then 2300px in width, unless there’s a special need for it. Starter Theme comes with predefined image size 'max-width', which **should always** be used for this purpose.
+
+    add_image_size('max-width', 2300, 9999, false);
+
+All image sizes **should** be delared in **fws/src/Images.php** file.
 
 ## SCSS
 All Template Views styles should be written in corresponding directory.
@@ -205,8 +343,8 @@ The file `site.js` should contain all load methods, and serve for invoking site 
     import Sliders from './_site/sliders';
 
     jQuery(function() {
-    	Menu.init();
-    	Sliders.init();
+        Menu.init();
+        Sliders.init();
     });
 
 All other files should be organized following this folder structure:
@@ -228,7 +366,7 @@ Each component has three files:
 * .php *(comopnent template)*
 * .scss *(component styles)*
 
-*(_fe).php file:*
+#### _fe PHP files
 
 File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP variables, methods or any other logic should be written here *(except helper functions for rendering images)*.
 
@@ -242,7 +380,24 @@ File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP v
 </div><!-- .banner -->
 ```
 
-*.php file:*
+- **(fe) template-views**
+    - Used for writing HTML for each component.
+    - Each component should be named with prefix "_fe-" and the rest of the name should be name of the component.
+    - When creating a variation of existing component or part use similar naming convention as BEM CSS class naming, for example:
+        - default: _fe-banner.php,
+        - variation-1: _fe-banner--big.php,
+        - variation-2: _fe-banner--about-page.php.
+    - The idea is to always use full name of component "_fe-something", use "--" for chaining and last part of file is arbitrarily.
+- **fe-templates**
+    - Used for combining frontend components into a single page.
+    - Each page should be named with prefix "fe-" and the rest of the name should be name of the page, for example: fe-homepage.php.
+    - Each page should never contain anything but a call to a template view.
+
+#### Blocks and Parts
+
+**Blocks** and **Parts** view types **should always be coded as 'dump' components**, meaning they should **never contain** any functional logic and should **only** be used as **templates** that are **receiving** proper values to render.
+
+These views should also be implemented **as a single file** per each component, meaning that even thought some views will have multiple **_fe** files due to variations, when it comes to BE it should all be written in **one php file** with proper **conditional rendering logic**.
 
 PHP template view file is relying on globally set variables that should be accessed using get_query_var() function.
 
@@ -256,7 +411,7 @@ The idea is to always pass all values using an array.
  * @var string $subtitle
  * @var array $image
  */
-extract( (array) get_query_var( 'content-components' ) );
+extract( (array) get_query_var( 'content-blocks' ) );
 ?>
 
 <div class="banner" style="background-image: url(<?php echo $image['sizes']['max-width']; ?>);">
@@ -268,10 +423,50 @@ extract( (array) get_query_var( 'content-components' ) );
 </div><!-- .banner -->
 ```
 
+#### Listings
+
+**Listings** view type, on the other hand, **can and should** contain some logic, but **only** limited to WP's Loop functionality.
+
+In fact, any Post type **should** have and use **Listings** view type to loop over it's posts.
+
+    Example:
+
+    <?php
+    /**
+     * @var string $title
+     */
+    extract( (array) get_query_var( 'content-listings' ) );
+    ?>
+
+    <div class="blog-listing">
+        <h1 class="blog-listing__title section-title"><?php echo $title ?></h1>
+
+        <?php
+        if ( have_posts() ) {
+            while ( have_posts() ) {
+                the_post();
+
+                $blog_article = [
+                    'permalink' => get_the_permalink(),
+                    'title' => get_the_title()
+                ];
+                fws()->render->templateView( $blog_article, 'blog-article', 'parts' );
+            }
+        } else {
+            get_template_part( 'template-views/shared/content', 'none' );
+        }
+        ?>
+    </div>
+
+#### Shared
+
+**Shared** view type is a helper type that servers for default content and other helper wrappers such as `flex-content`. This view type is handeled exclusively manually.
+
+### Quality control
+
 HTML quality is checked with [htmllint](http://htmllint.github.io/).
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/).
-
 
 ### Rendering components
 
@@ -294,15 +489,15 @@ fws()->render->templateView( $basic_block, 'banner' );
 
 With modular template views it is essential that ACF Flexible Content is organized and implemented in a defined manner.
 
-Moving away from default Flexible Content implementation...
+**Moving away from default Flexible Content implementation...**
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-old.png)
 
-... and make full use of Clone field.
+**... and make full use of Clone field.**
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-new.png)
 
-Each Flexible Content block will use Clone field to copy **all** fields from certain field group.
+**Each Flexible Content block will use Clone field to copy ALL fields from certain field group.**
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-groups.png)
 
@@ -326,9 +521,9 @@ foreach ( get_field( 'content' ) as $fc ) {
 }
 ```
 
-In the example above, it is important to note that variable that is being passed to *templateView()* function is not mapped out as an array like in the previous example, but rather simply passed the current item from the loop.
+In the example above, it is **important to note** that variable that is being passed to *templateView()* function **is not mapped out** as an array like in the previous example, but rather simply passed the current item from the loop.
 
-The reason this is possible is because of the way ACF fields are named in their field groups. Meaning, it is absolutely required to name the fields as variables in the template views.
+The reason this is possible is because of **the way ACF fields are named** in their field groups. Meaning, it is **absolutely required** to name the fields **as variables** in the template views.
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-mapping.png)
 
@@ -338,9 +533,9 @@ Naming the fields same names as variables in the template views will make sure t
 
 The idea behind this approach of modular ACF fields is to take full advantage of ACF [Local JSON](https://www.advancedcustomfields.com/resources/local-json/).
 
-Inspiration for this workflow was drawn from this [post](https://www.awesomeacf.com/how-to-avoid-conflicts-when-using-the-acf-local-json-feature/). Although it has nice ideas it still doesn't resolve the issue when two developers are working on same field groups, in such a scenario a conflict of JSON files is inevitable.
+Inspiration for this workflow was drawn from this [post](https://www.awesomeacf.com/how-to-avoid-conflicts-when-using-the-acf-local-json-feature/). Although it has nice ideas it still doesn't resolve the issue when two developers are working on same field groups, in such a scenario **a conflict of JSON files is inevitable**.
 
-Main goal is to allow multiple developers to work on field groups simultaneously on local enviroment, with lowest possible risk of having conflicts in generated JSON files.
+Main goal is to **allow multiple developers** to work on field groups simultaneously on local enviroment, with **lowest possible risk** of having conflicts in generated JSON files.
 
 By splitting each Flexible Content block to a separate field group, the workflow is optimized to allow more developers to work in parallel. There is still a risk of creating a conflict if two developers are editing same field group, but in this workflow chances for that are slim.
 
@@ -349,19 +544,19 @@ Another thing to keep in mind, since these fields are being used exclusively for
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-inactive2.png)
 
-In order to optimize the workflow even further, this Starter Theme comes with hook function that will automatically sync any changes in field groups registered by new JSON files.
+In order to optimize the workflow even further, this Starter Theme comes with hook function **that will automatically sync any changes** in field groups registered by new JSON files.
 
 For example:
 - Developer A makes changes in field group Banners.
 - Developer B pulls changes into his local enviroment. On first dashboard load, the ACF field groups will get synced and updated as the internal script will detect changes in JSON files.
 
-Lastly, it is necessary to avoid any conflicts coming from any changes made directly on development or live server. To resolve this, Starter Theme actually comes with another hook which disables any field group editing on any other enviroment, forcing developers to make all changes exclusively on local enviroment.
+Lastly, it is necessary to **avoid any conflicts** coming from any changes **made directly on development or live server**. To resolve this, Starter Theme actually comes with another hook **which disables** any field group editing on any other enviroment, **forcing developers** to make all changes exclusively on **local enviroment**.
 
 ### Naming conventions and categorizing
 
-The workflow above resolves a lot of problems but it does have a small drawback, creating each block's fields as a separate field group will result in too meny groups in the dashboard.
+The workflow above resolves a lot of problems but it does have a **small drawback**, creating each block's fields as a separate field group **will result in too meny groups** in the dashboard.
 
-Furthermore, it is highly recommended to also create helper groups of fields that can be cloned in other block's fields.
+Furthermore, it is highly recommended to also create **helper groups** of fields that can be cloned in other block's fields.
 
 For example, the Section Title field...
 
@@ -371,14 +566,14 @@ For example, the Section Title field...
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/fc-acf.png)
 
-Considering helper group fields together with block group fields, the number of groups in the dashboard will tend to get very long and unorganized.
+Considering **helper group** fields together with **block group** fields, the number of groups in the dashboard will tend to get **very long and unorganized**.
 
-To resolve this issue, this theme comes with a Custom Taxonomy "Categories" for ACF plugin, which should be used in order to group the field groups together.
+To resolve this issue, this theme comes with a Custom Taxonomy **"Categories"** for ACF plugin, which **should** be used in order to group the field groups together.
 
-Aside from using field group categories it is also required to follow defined naming convention.
+Aside from using field group categories it is also **required to follow defined naming convention**.
 
-Every field group for blocks should be named with a prefix 'FC'.
-Every field group for reusable elements should be named with a prefix 'RE'.
+Every field group for **blocks** should be named with a **prefix 'FC'**.
+Every field group for **reusable elements** should be named with a **prefix 'RE'**.
 
 ![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-categories.png)
 
@@ -386,64 +581,150 @@ With these two conventions, it is visually optimised to distinguish which fields
 
 ### Managing Flexible Content field
 
-With everything above fully implemented, tha last thing to tackle is Flexible Content field and potential conflicts which are still not covered by the defined workflow.
+With everything above fully implemented, tha **last thing** to tackle is **Flexible Content** field and potential conflicts which are still **not covered** by the defined workflow.
 
-Cloning separate field groups into Flexible Content blocks resolves avoiding JSON conflicts when multiple developers are working on a separate components (field groups), but it is still necessary for each developer to edit same field group for Flexible Content and make changes simultaneously and therefore create an inevitable JSON conflict.
+Cloning separate field groups into Flexible Content blocks **resolves avoiding JSON conflicts** when multiple developers are working **on a separate components (field groups)**, but it is still **necessary** for each developer **to edit same field group for Flexible Content** and make changes simultaneously and therefore create an inevitable JSON conflict.
 
-Final step in this workflow is to actually avoid creating/editing any Flexible Content group fields from the dashboard and make those changes only through PHP.
+**Final step** in this workflow is to actually **avoid creating/editing** any **Flexible Content** group fields from the dashboard and make those changes through `.fwsconfig.yml` file.
 
-Starter Theme comes with more helper functions to enable just that, in fact, it will automatically do few things:
-  - generate field group as Third Party under the name 'Content' and set it's location to Page Template: Default Template,
-  - create one Flexible Content field in this group,
-  - loop through all field groups that have Flexible Content category assigned,
-  - and create Flexible Content layout for each field group with assigned category and clone all fields from that group to the created layout as sub fields.
+Starter Theme comes with more helper functions to enable just that, but it is **important to follow the proper formating** of `.fwsconfig.yml` file.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/acf-flex-reg.png)
+All values must be written under `acf-flexible-content` with defined **group name** as property name that includes the following sub properties.
 
-In other words, as soon as the category Flexible Content is assigned to certain field group it will get appended to auto generated Flexible Content field.
+**The Starter Theme will automatically load any defined group names, unless the `autoload` property is disabled.**
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/acf-flex-autogen.png)
+- `autoload`
+    - Set whether or not to autoload this flexible content group.
+    - If set to `false`, you'll need to use function directly in code somewhere in order to enable the field group.
+    - The function in question is `addNewFlexContentGroup($fc);` that is located in **fws/src/ACF.php**.
+- `field-name`
+    - Filed name that will show on page.
+    - See image **Field Name** bellow.
+- `location`
+    - `param` Set to what type this field group will be for.
+    - `value` Set to what type this field group will equal to.
+    - Set location where this field group will load.
+    - See image **Field Location** bellow.
+    - Some of the possible values:
+        - "post_type": "post"
+        - "page_template": "default"
+        - "taxonomy": "category"
+        - "options_page": "fws_starter_s-settings"
+    - For more information on avalible values, pleaase refer to [ACF Docs](https://www.advancedcustomfields.com/resources/)
+    - **Important Note**: Currently, the conditional logic for `param` and `value` is set to equal (`"operator": "=="`). This is hardcoded withing the theme, in order to expand this option and flexibility of `.fwsconfig.yml`, please reffer to `addNewFlexContentGroup` and `registerFlexContent` methods in *fws/src/ACF.php*.
+- `hide-on-screen`
+    - Set rules for default meta fields that should be hidden on a page.
+    - See image **Field Hidden Stuff** bellow.
+    - All possible values:
+        - permalink
+        - the_content
+        - excerpt
+        - discussion
+        - comments
+        - revisions
+        - slug
+        - author
+        - format
+        - page_attributes
+        - featured_image
+        - categories
+        - tags
+        - send-trackbacks
+- `layouts` set flex content layouts/blocks that will show for this group
+    - `title` This is the name that will show in flex content dropdown, it can be set arbitrarily.
+    - `group_id` This must be set to field group id/key value.
+    - See images **Field Layout Title** and **Field Layout Group ID** bellow.
 
-Few things to keep in mind, when auto generating Flexible Content layouts from assigned field groups, the script that is working under the hood will clean up Label and Name for each field group in the following manner.
+***Field Name***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-title.png)
 
-Field Group: FC Basic Block will translate into Flexible Content layout:
-Label: Basic Block
-Name: basic_block
+***Field Location***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-location.png)
 
-When needed to create more Flexible Content field groups with specific number of options, use registerFlexContent() function with required configuration.
+***Field Hidden Stuff***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-hide.png)
 
-Example:
-```
-$fieldName = 'New Flex Group';
+***Field Layout Title***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-name.png)
 
-$location = [
-    'param' => 'page_template',
-    'value' => 'default'
-];
+***Field Layout Group ID***
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/filed-group-id.png)
 
-$layouts = [
-    [
-        'label' => 'New Flex Block',
-        'name' => 'new_flex_block',
-        'clone_group_key' => 'group_5d70e7dfa2562' // key of the cloning group
-    ],
-    [
-        'label' => 'Another Flex Block',
-        'name' => 'another_flex_block',
-        'clone_group_key' => 'group_5d70e7ea08bce'
-    ]
-];
+**Example of .fwsconfig.yml**:
 
-$hideOnScreen = [
-    'the_content'
-];
+    acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTENT GROUPS AND FIELDS
+        default-page-template:                          # define flexible content for default page template
+            autoload: true                              # set whether or not to autoload this flexible content group
+            field-name: 'Content'                       # filed name that will show on page
+            location:                                   # set location where this field group will load
+                param: 'page_template'
+                value: 'default'
+            hide-on-screen: [ 'the_content' ]           # set rules for default meta fields that should be hidden on a page
+            layouts:                                    # set flex content layouts/blocks that will show for this group
+                -
+                    title: 'Banner'
+                    group_id: 'group_5d70e7dfa2562'
+                -
+                    title: 'Basic Block'
+                    group_id: 'group_5d70e7ea08bce'
+                -
+                    title: 'Slider'
+                    group_id: 'group_5d70e7f775076'
+                -
+                    title: 'Vue Block'
+                    group_id: 'group_5dcd6b37b67a4'
 
-fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
-```
+To sum up, all Flexible Content group fields must be defined as **arrays of an array**.
 
-## FWS framework
+In the example above, Flexible Content group `default-page-template` is an array value of `acf-flexible-content`.
 
-FWS framework is a default part of this Starter Theme to which **the starter relies on heavily**.
+To register more then one Flexible Content group, it is neccessary to simply add another array into `acf-flexible-content`.
+
+**Example of .fwsconfig.yml** that is showing three Flexible Content groups for different post types:
+
+    acf-flexible-content:
+        default-page-template:
+            autoload: ...
+            field-name: ...
+            location: ...
+            hide-on-screen: ...
+            layouts: ...
+        blog-page-template:
+            autoload: ...
+            ...
+        product-page-template:
+            autoload: ...
+            ...
+
+### Managing Options pages
+
+Having in mind the workflow we have for Flexible Content, it is safe to assume that very similar apporach is used for ACF Options pages, so just like in the examples above it is **important to follow the proper formating** of `.fwsconfig.yml` file.
+
+All values must be written under `acf-options-page`:
+
+- `enable`
+    - Set to `true` or `false` in order to enable ACF Options Main page.
+    - The name of the Menu Item in the Dashboard will be the of the theme set in `global` property, `theme-name` sub property.
+- `subpages`
+    - Takes on array of strings, which will be used to create sub pages of ACF Options.
+    - See image **Sub pages** bellow.
+    - Leave empty array if no sub pages are needed - `subpages: []`.
+
+***Sub pages***
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/acf-options.png)
+
+**Example of .fwsconfig.yml**
+
+    acf-options-page:
+        enable: true
+        subpages:
+            - 'Mega Menu'
+            - 'Shared Sections'
+
+## FWS Engine
+
+FWS Engine is a default part of this Starter Theme to which **the starter relies on heavily**.
 
 See `fws` and `fws/src` for it's structure and features.
 
@@ -461,7 +742,7 @@ The `woocommerce` root directory should **only contain** files that are being ov
 
 ### Custom Post Types and Taxonomies
 
-Registrating custom post types and taxonomies must always be done using FWS framework.
+Registrating custom post types and taxonomies must always be done using FWS Engine.
 
 Each custom post type with it's taxonomies must be placed in a single file inside `fws/src` directory.
 
@@ -530,10 +811,8 @@ List of all helper functions from this Starter Theme:
     - `pagingNav()` - *Outputs the paging navigation based on the global query.*
 - Images.php
     - `assets_src()` - *Render image src from 'src/assets/images' or `__demo` directory.*
-- ACF.php
-    - `registerFlexContent()` - *Register new flexible content field group.*
 
-All helper functions are defined as methods in defined classes that are all loading from *fws/FWS.php* file.
+All helper functions are defined as methods in defined classes that are all loading from **fws/FWS.php** file.
 
 Each method is available through instance of FWS class and instances of other classes located in *fws/src* directory.
 

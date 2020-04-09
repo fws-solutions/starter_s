@@ -2,7 +2,7 @@
 /**
  * @var array $slides
  */
-extract( (array) get_query_var( 'content-components' ) );
+extract( (array) get_query_var( 'content-blocks' ) );
 ?>
 
 <?php if ( $slides ) : ?>

@@ -4,47 +4,40 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package starter_s
+ * @package fws_starter_s
  */
 
-get_header(); ?>
+// get header
+get_header();
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main">
+// open main content wrappers
+do_action( 'fws_starter_s_before_main_content' );
+do_action( 'fws_starter_s_before_archive_listing' );
 
-		<?php
-		if ( have_posts() ) : ?>
+// start the Loop
+if ( have_posts() ) {
+	$title = esc_html__( 'Search Results for: %s', 'fws_starter_s' ) . '<span>' . get_search_query() . '</span>';
+	fws()->render->pageDefaultHeader( $title );
 
-			<header class="page-header">
-				<h1 class="page-title"><?php
-					/* translators: %s: search query. */
-					printf( esc_html__( 'Search Results for: %s', 'starter_s' ), '<span>' . get_search_query() . '</span>' );
-				?></h1>
-			</header><!-- .page-header -->
+	while ( have_posts() ) {
+		the_post();
 
-			<?php
-			/* Start the Loop */
-			while ( have_posts() ) : the_post();
+		/**
+		 * Run the loop for the search to output the results.
+		 * If you want to overload this in a child theme then include a file
+		 * called content-search.php and that will be used instead.
+		 */
+		get_template_part( 'template-views/shared/content-search' );
+	}
 
-				/**
-				 * Run the loop for the search to output the results.
-				 * If you want to overload this in a child theme then include a file
-				 * called content-search.php and that will be used instead.
-				 */
-				get_template_part( 'template-views/shared/content', 'search' );
+	fws()->render->pagingNav();
+} else {
+	get_template_part( 'template-views/shared/content', 'none' );
+}
 
-			endwhile;
+// close main content wrappers
+do_action( 'fws_starter_s_after_archive_listing' );
+do_action( 'fws_starter_s_after_main_content' );
 
-			the_posts_navigation();
-
-		else :
-
-			get_template_part( 'template-views/shared/content', 'none' );
-
-		endif; ?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
-
-<?php
+// get footer
 get_footer();

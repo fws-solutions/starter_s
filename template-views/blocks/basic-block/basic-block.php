@@ -5,7 +5,7 @@
  * @var string $content
  * @var array $check_list
  */
-extract( (array) get_query_var( 'content-components' ) );
+extract( (array) get_query_var( 'content-blocks' ) );
 ?>
 
 <div class="basic-block"<?php echo $section_id ? ' id="' . $section_id .'"' : ''; ?>>
@@ -16,6 +16,6 @@ extract( (array) get_query_var( 'content-components' ) );
 			<?php echo $content; ?>
 		</div>
 
-		<?php fws()->render->templateView( $check_list, 'check-list', true ); ?>
+		<?php fws()->render->templateView( $check_list, 'check-list', 'parts' ); ?>
 	</div>
 </div><!-- .basic-block -->
