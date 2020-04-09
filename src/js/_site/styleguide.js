@@ -1,5 +1,5 @@
 const $ = jQuery.noConflict();
-// import Global from './global';
+import Global from './global';
 
 'use strict';
 const Styleguide = {
@@ -38,9 +38,9 @@ const Styleguide = {
 				$(Styleguide.selectorStyleNavLink).first().addClass(Styleguide.classActive);
 				Styleguide.$domStyleSection.first().addClass(Styleguide.classActive);
 
-				// Global.$domBody.scrollspy({target: Styleguide.selectorStyleNav});
+				Global.$domBody.scrollspy({target: Styleguide.selectorStyleNav});
 
-				// Styleguide.scrollTo('.list-group-item');
+				Styleguide.scrollTo('.list-group-item');
 			});
 		}
 	},

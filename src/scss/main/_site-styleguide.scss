@@ -24,16 +24,68 @@
 	will-change: scroll-position;
 	border-left: 2px solid $red;
 	border-right: 2px solid $red;
+	padding-bottom: 20px;
 
 	&.is-hidden {
 		transform: translateX(-100%);
 	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 10px;
+		left: 0;
+		width: 100%;
+		height: 50px;
+		background: linear-gradient(to bottom, rgba(226, 64, 28, 0.1) 4%, rgba(226, 64, 28, 0.25) 27% , rgba(226, 64, 28, 0.32) 42%, rgba(226, 64, 28, 0.7) 70%, rgba(226, 64, 28, 95) 100%);
+		z-index: 1;
+		pointer-events: none;
+		transition: $dur $ease;
+	}
+
+	&.hideFade {
+		&::after {
+			opacity: 0;
+		}
+	}
+}
+
+.styleguide-nav-list-holder {
+	position: relative;
+	height: calc(100vh - 195px);
+	overflow: hidden;
+
+	.ps__rail-y {
+		width: 5px;
+		border-radius: 1px;
+		background-color: $white;
+		opacity: 0.2;
+	}
+
+	.ps__thumb-y {
+		width: 3px;
+		right: 1px;
+		background-color: $red;
+	}
+
+	.ps__rail-y.ps--clicking .ps__thumb-y,
+	.ps__rail-y:focus>.ps__thumb-y,
+	.ps__rail-y:hover>.ps__thumb-y {
+		width: 3px;
+		background-color: $red;
+	}
+
+	.ps .ps__rail-x.ps--clicking,
+	.ps .ps__rail-x:focus,
+	.ps .ps__rail-x:hover,
+	.ps .ps__rail-y.ps--clicking,
+	.ps .ps__rail-y:focus,
+	.ps .ps__rail-y:hover {
+		background-color: $white;
+	}
 }
 
 .styleguide__scrollspy-nav-list {
-	max-height: calc(100vh - 180px);
-	overflow-y: auto;
-	
 	.list-group-item {
 		display: flex;
 		align-items: center;

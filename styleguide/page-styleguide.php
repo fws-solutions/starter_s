@@ -17,8 +17,10 @@ get_header(); ?>
 					<div class="styleguide-filter-input-wrap">
 						<input type="text" class="styleguide-filter-input js-styleguide-filter-input" placeholder="Search...">
 					</div>
-					<ul class="styleguide__scrollspy-nav-list js-styleguide-nav">
-					</ul>
+					<div class="styleguide-nav-list-holder js-styleguide-nav-list-holder">
+						<ul class="styleguide__scrollspy-nav-list js-styleguide-nav">
+						</ul>
+					</div>
 					<a href="javascript:;" class="styleguide__scrollspy-nav-open js-styleguide-open"><?php echo fws()->render->inlineSVG('ico-arrow-right', 'styleguide-open-icon'); ?></a>
 				</div>
 

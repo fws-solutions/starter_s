@@ -5,6 +5,7 @@ import Styleguide from './_site/styleguide';
 import Fancybox from './_site/fancybox';
 import Select2 from './_site/select2';
 import FormHelpers from './_site/formHelpers';
+import PerfectScroll from './_site/perfectScroll';
 
 jQuery(function() {
 	Styleguide.init();
@@ -14,4 +15,5 @@ jQuery(function() {
 	Fancybox.init();
 	Select2.init();
 	FormHelpers.init();
+	PerfectScroll.init();
 });
