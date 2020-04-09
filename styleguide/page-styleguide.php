@@ -29,16 +29,16 @@ get_header(); ?>
 				</div>
 
 				<?php
-				// Base
-				get_template_part('styleguide/config/sg', 'pages-list');
-				get_template_part('styleguide/config/sg', 'fonts');
-				get_template_part('styleguide/config/sg', 'colors');
-				get_template_part('styleguide/config/sg', 'icons');
-				get_template_part('styleguide/config/sg', 'typography');
-				get_template_part('styleguide/config/sg', 'buttons');
+					// Base
+					get_template_part('styleguide/config/sg', 'pages-list');
+					get_template_part('styleguide/config/sg', 'fonts');
+					get_template_part('styleguide/config/sg', 'colors');
+					get_template_part('styleguide/config/sg', 'icons');
+					get_template_part('styleguide/config/sg', 'typography');
+					get_template_part('styleguide/config/sg', 'buttons');
 
-				// Sections & Components
-				get_template_part('styleguide/config/sg', 'sections');
+					// Sections & Components
+					get_template_part('styleguide/config/sg', 'sections');
 				?>
 			</div>
 		</main><!-- #main -->
