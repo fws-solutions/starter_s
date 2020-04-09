@@ -26,21 +26,41 @@ Install [Advanced Custom Fields](https://www.advancedcustomfields.com/) WordPres
 
 Use `.fwsconfig.yml` file to configure top level theme options.
 
+### Global Config
+
+- `theme-name` - set theme full name
+- `virtual-host` - set local env url
+- `recovery-mode-emails` - set the fatal error handler email address from admin's to our internal
+- `prevent-plugin-update` - enable only logged in users with declared email domain to add/update/remove plugins
+`acf-only-local-editing` - enable acf to edit and manage only on local enviorment
+
+
     global:
         theme-name: 'FWS Starter _S'
         virtual-host: 'http://starter.local/'
         recovery-mode-emails:
             - 'nick@forwardslashny.com'
             - 'boris@forwardslashny.com'
+            - 'petar@forwardslashny.com'
         prevent-plugin-update:
             enable: true
             domain: forwardslashny.com
+        acf-only-local-editing:
+            enable: true
+            allowed-hosts:
+                - '.local'
+                - 'localhost/'
+                - '.lndo.site'
 
-### Local Virtual Host
+#### Local Virtual Host
 
 Local enviorment and virtual host **must** be named exactly the same as it is defiend in `.fwsconfig.yml` file in the variable `virtual-host`.
 
     virtual-host: 'http://somedomain.local/'
+
+### ACF Fields Config
+
+More details about `acf-options-page` and `acf-flexible-content` in the **Using Components** section, **Managing Options pages** sub section.
 
 ## CLI
 For the full list of all commands, execute `fws --help`.
@@ -275,9 +295,9 @@ To run W3 Validator, execute `fws w3-local` command.
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/) API.
 
-This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `gulpfile.js` file in the variable `const localURL = 'http://somedomain.local/';`.
+This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `.fwsconfig.yml` file in the property `virtual-host: 'http://somedomain.local/';`.
 
-**This is a must**, your virtual host URL must be **exactly the same** as `localURL` variable.
+**This is a must**, your virtual host URL must be **exactly the same** as `virtual-host` property.
 
 Furthermore, W3 Validator has the **only** command that **can be run outside** of the Starter Theme's root directory.
 
@@ -346,7 +366,7 @@ Each component has three files:
 * .php *(comopnent template)*
 * .scss *(component styles)*
 
-*(\_fe).php file:*
+#### _fe PHP files
 
 File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP variables, methods or any other logic should be written here *(except helper functions for rendering images)*.
 
@@ -360,9 +380,24 @@ File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP v
 </div><!-- .banner -->
 ```
 
-##### Blocks and Parts
+- **(fe) template-views**
+    - Used for writing HTML for each component.
+    - Each component should be named with prefix "_fe-" and the rest of the name should be name of the component.
+    - When creating a variation of existing component or part use similar naming convention as BEM CSS class naming, for example:
+        - default: _fe-banner.php,
+        - variation-1: _fe-banner--big.php,
+        - variation-2: _fe-banner--about-page.php.
+    - The idea is to always use full name of component "_fe-something", use "--" for chaining and last part of file is arbitrarily.
+- **fe-templates**
+    - Used for combining frontend components into a single page.
+    - Each page should be named with prefix "fe-" and the rest of the name should be name of the page, for example: fe-homepage.php.
+    - Each page should never contain anything but a call to a template view.
 
-**Blocks** and **Parts** view types **should always be coded as 'dump' components**, meaning they should never contain any functional logic and should only be used as templates that are receiving proper vaules to render.
+#### Blocks and Parts
+
+**Blocks** and **Parts** view types **should always be coded as 'dump' components**, meaning they should **never contain** any functional logic and should **only** be used as **templates** that are **receiving** proper values to render.
+
+These views should also be implemented **as a single file** per each component, meaning that even thought some views will have multiple **_fe** files due to variations, when it comes to BE it should all be written in **one php file** with proper **conditional rendering logic**.
 
 PHP template view file is relying on globally set variables that should be accessed using get_query_var() function.
 
@@ -388,7 +423,7 @@ extract( (array) get_query_var( 'content-blocks' ) );
 </div><!-- .banner -->
 ```
 
-##### Listings
+#### Listings
 
 **Listings** view type, on the other hand, **can and should** contain some logic, but **only** limited to WP's Loop functionality.
 
@@ -423,7 +458,7 @@ In fact, any Post type **should** have and use **Listings** view type to loop ov
         ?>
     </div>
 
-##### Shared
+#### Shared
 
 **Shared** view type is a helper type that servers for default content and other helper wrappers such as `flex-content`. This view type is handeled exclusively manually.
 
@@ -552,10 +587,16 @@ Cloning separate field groups into Flexible Content blocks **resolves avoiding J
 
 **Final step** in this workflow is to actually **avoid creating/editing** any **Flexible Content** group fields from the dashboard and make those changes through `.fwsconfig.yml` file.
 
-Starter Theme comes with more helper functions to enable just that, bu it is **important to follow the proper formating** of `.fwsconfig.yml` file.
+Starter Theme comes with more helper functions to enable just that, but it is **important to follow the proper formating** of `.fwsconfig.yml` file.
 
-All values must be written under `acf-flexible-content` with defined **group name** as property name that includes the following sub properties:
+All values must be written under `acf-flexible-content` with defined **group name** as property name that includes the following sub properties.
 
+**The Starter Theme will automatically load any defined group names, unless the `autoload` property is disabled.**
+
+- `autoload`
+    - Set whether or not to autoload this flexible content group.
+    - If set to `false`, you'll need to use function directly in code somewhere in order to enable the field group.
+    - The function in question is `addNewFlexContentGroup($fc);` that is located in **fws/src/ACF.php**.
 - `field-name`
     - Filed name that will show on page.
     - See image **Field Name** bellow.
@@ -609,10 +650,11 @@ All values must be written under `acf-flexible-content` with defined **group nam
 ***Field Layout Group ID***
 ![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/filed-group-id.png)
 
-**Example of .fwsconfig.yml**
+**Example of .fwsconfig.yml**:
 
-    acf-flexible-content:
+    acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTENT GROUPS AND FIELDS
         default-page-template:                          # define flexible content for default page template
+            autoload: true                              # set whether or not to autoload this flexible content group
             field-name: 'Content'                       # filed name that will show on page
             location:                                   # set location where this field group will load
                 param: 'page_template'
@@ -632,9 +674,53 @@ All values must be written under `acf-flexible-content` with defined **group nam
                     title: 'Vue Block'
                     group_id: 'group_5dcd6b37b67a4'
 
-Finaly, with all of the above setup, a function `addNewFlexContentGroup` must be called inside `acfInit` method that is located in **fws/src/ACF.php** class.
+To sum up, all Flexible Content group fields must be defined as **arrays of an array**.
 
-    $this->addNewFlexContentGroup('default-page-template');
+In the example above, Flexible Content group `default-page-template` is an array value of `acf-flexible-content`.
+
+To register more then one Flexible Content group, it is neccessary to simply add another array into `acf-flexible-content`.
+
+**Example of .fwsconfig.yml** that is showing three Flexible Content groups for different post types:
+
+    acf-flexible-content:
+        default-page-template:
+            autoload: ...
+            field-name: ...
+            location: ...
+            hide-on-screen: ...
+            layouts: ...
+        blog-page-template:
+            autoload: ...
+            ...
+        product-page-template:
+            autoload: ...
+            ...
+
+### Managing Options pages
+
+Having in mind the workflow we have for Flexible Content, it is safe to assume that very similar apporach is used for ACF Options pages, so just like in the examples above it is **important to follow the proper formating** of `.fwsconfig.yml` file.
+
+All values must be written under `acf-options-page`:
+
+- `enable`
+    - Set to `true` or `false` in order to enable ACF Options Main page.
+    - The name of the Menu Item in the Dashboard will be the of the theme set in `global` property, `theme-name` sub property.
+- `subpages`
+    - Takes on array of strings, which will be used to create sub pages of ACF Options.
+    - See image **Sub pages** bellow.
+    - Leave empty array if no sub pages are needed - `subpages: []`.
+
+***Sub pages***
+
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/acf-options.png)
+
+**Example of .fwsconfig.yml**
+
+    acf-options-page:
+        enable: true
+        subpages:
+            - 'Mega Menu'
+            - 'Shared Sections'
 
 ## FWS Engine
 

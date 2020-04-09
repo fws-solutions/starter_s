@@ -20,7 +20,7 @@ class ThemeHooks
 	/**
 	 * Get ymal parser
 	 */
-	private function getYmalParser() {
+	private function getYamlParser() {
 		return new Parser();
 	}
 
@@ -89,7 +89,8 @@ class ThemeHooks
 	 */
 	public function preventPluginUpdate(): void
 	{
-		$yml = $this->getYmalParser();
+		// Get Config
+		$yml = $this->getYamlParser();
 		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
 
 		if (array_key_exists('prevent-plugin-update', $config) && $config['prevent-plugin-update']['enable']) {
@@ -214,7 +215,8 @@ class ThemeHooks
 	 */
 	public function recoveryModeEmail( array $data ): array
 	{
-		$yml = $this->getYmalParser();
+		// Get Config
+		$yml = $this->getYamlParser();
 		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
 
 		if (array_key_exists('recovery-mode-emails', $config)) {
