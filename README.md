@@ -366,7 +366,7 @@ Each component has three files:
 * .php *(comopnent template)*
 * .scss *(component styles)*
 
-*(\_fe).php file:*
+#### _fe PHP files
 
 File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP variables, methods or any other logic should be written here *(except helper functions for rendering images)*.
 
@@ -380,9 +380,24 @@ File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP v
 </div><!-- .banner -->
 ```
 
-##### Blocks and Parts
+- **(fe) template-views**
+    - Used for writing HTML for each component.
+    - Each component should be named with prefix "_fe-" and the rest of the name should be name of the component.
+    - When creating a variation of existing component or part use similar naming convention as BEM CSS class naming, for example:
+        - default: _fe-banner.php,
+        - variation-1: _fe-banner--big.php,
+        - variation-2: _fe-banner--about-page.php.
+    - The idea is to always use full name of component "_fe-something", use "--" for chaining and last part of file is arbitrarily.
+- **fe-templates**
+    - Used for combining frontend components into a single page.
+    - Each page should be named with prefix "fe-" and the rest of the name should be name of the page, for example: fe-homepage.php.
+    - Each page should never contain anything but a call to a template view.
 
-**Blocks** and **Parts** view types **should always be coded as 'dump' components**, meaning they should never contain any functional logic and should only be used as templates that are receiving proper vaules to render.
+#### Blocks and Parts
+
+**Blocks** and **Parts** view types **should always be coded as 'dump' components**, meaning they should **never contain** any functional logic and should **only** be used as **templates** that are **receiving** proper values to render.
+
+These views should also be implemented **as a single file** per each component, meaning that even thought some views will have multiple **_fe** files due to variations, when it comes to BE it should all be written in **one php file** with proper **conditional rendering logic**.
 
 PHP template view file is relying on globally set variables that should be accessed using get_query_var() function.
 
@@ -408,7 +423,7 @@ extract( (array) get_query_var( 'content-blocks' ) );
 </div><!-- .banner -->
 ```
 
-##### Listings
+#### Listings
 
 **Listings** view type, on the other hand, **can and should** contain some logic, but **only** limited to WP's Loop functionality.
 
@@ -443,7 +458,7 @@ In fact, any Post type **should** have and use **Listings** view type to loop ov
         ?>
     </div>
 
-##### Shared
+#### Shared
 
 **Shared** view type is a helper type that servers for default content and other helper wrappers such as `flex-content`. This view type is handeled exclusively manually.
 
