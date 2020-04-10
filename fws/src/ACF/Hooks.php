@@ -1,90 +1,36 @@
 <?php
-declare( strict_types=1 );
+declare( strict_types = 1 );
 
-namespace FWS;
+namespace FWS\ACF;
 
+use FWS\SingletonHook;
 use WP_Term;
-use Symfony\Component\Yaml\Parser;
 
 /**
- * Singleton Class ACF. No methods are available for direct calls.
+ * Class Hooks
  *
- * @package FWS
- * @author  Boris Djemrovski <boris@forwardslashny.com>
+ * @package FWS\ACF
+ * @author Boris Djemrovski <boris@forwardslashny.com>
  */
-class ACF
+class Hooks extends SingletonHook
 {
 
-	use Main;
-
-	/**
-	 * Get ymal parser
-	 */
-	private function getYamlParser() {
-		return new Parser();
-	}
-
-	/** @var int */
-	private $flexContentCounter = 0;
-
-	/**
-	 * Main constructor.
-	 */
-	private function __construct()
-	{
-		// Bail if ACF plugin isn't activated
-		if ( ! function_exists( 'acf' ) ) {
-			return;
-		}
-
-		$this->hooks();
-	}
-
-	/**
-	 * Drop your hooks here.
-	 */
-	private function hooks(): void
-	{
-		// Actions
-		add_action( 'init', [ $this, 'acfInit' ] );
-		add_action( 'admin_menu', [ $this, 'fieldGroupCategorySubmenu' ] );
-		add_action( 'acf/import_field_group', [ $this, 'loadGroupCategoryJson' ] );
-		add_action( 'manage_acf-field-group_posts_custom_column', [ $this, 'fieldGroupCategoryColumnHtml' ], 10, 2 );
-
-		add_action( 'admin_init', [ $this, 'automaticJsonSync' ] );
-		add_action( 'pre_post_update', [ $this, 'preventEditingGroups' ], 10, 2 );
-		add_action( 'admin_notices', [ $this, 'editNotAllowedNotice' ] );
-
-		// Filters
-		add_filter( 'acf/fields/flexible_content/layout_title', [ $this, 'flexibleContentLayoutTitle' ], 10, 1 );
-		add_filter( 'acf/prepare_field_group_for_export', [ $this, 'saveGroupCategoryJson' ] );
-		add_filter( 'parent_file', [ $this, 'fieldGroupCategorySubmenuHighlight' ] );
-		add_filter( 'manage_edit-acf-field-group_columns', [ $this, 'fieldGroupCategoryColumn' ], 11 );
-		add_filter( 'views_edit-acf-field-group', [ $this, 'fieldGroupCategoryViews' ], 9 );
-		add_filter( 'acf/get_taxonomies', [ $this, 'fieldGroupCategoryExclude' ], 10, 1 );
-	}
+	/** @var self */
+	protected static $instance;
 
 	/**
 	 * Init stuff
 	 */
 	public function acfInit(): void
 	{
-		// Get Config
-		$yml = $this->getYamlParser();
-		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) );
-		$options_page = $config['acf-options-page']['enable'];
-		$options_sub_pages = $config['acf-options-page']['subpages'];
-		$theme_name = $config['global']['theme-name'];
-		$flexible_content = $config['acf-flexible-content'];
-
 		// Register Custom Taxonomy Categories for ACF
 		$this->register_acf_category_taxonomy();
 
 		// Register Options Main Page
-		$this->registerOptionsPages($options_page, $options_sub_pages, $theme_name);
+		$this->registerOptionsPages();
 
 		// Add Flexible Content Groups
-		$this->checkForFlexContentGroups($flexible_content);
+		$this->checkForFlexContentGroups();
 	}
 
 	/**
@@ -119,6 +65,77 @@ class ACF
 			] );
 	}
 
+	/**
+	 * Register Options Pages
+	 */
+	private function registerOptionsPages(): void
+	{
+		$options_page = fws()->config()->acfOptionsPage();
+		$options_sub_pages = fws()->config()->acfOptionsSubpages();
+		$theme_name = fws()->config()->themeName();
+
+		// Register Options Main Page
+		if ( $options_page ) {
+			$this->registerAcfOptionsPage( $theme_name . ' Settings', $theme_name . ' Settings' );
+
+			// Register Options Sub Pages
+			foreach ( $options_sub_pages as $sub_page ) {
+				$this->registerAcfOptionsSubpage( $sub_page, $sub_page );
+			}
+		}
+	}
+
+	/**
+	 * Register ACF Options page
+	 *
+	 * @param string $page_title
+	 * @param string $menu_title
+	 */
+	private function registerAcfOptionsPage( $page_title, $menu_title )
+	{
+		acf_add_options_page( [
+			'page_title' => $page_title,
+			'menu_title' => $menu_title,
+			'menu_slug' => 'fws_starter_s-settings',
+			'capability' => 'edit_posts',
+			'redirect' => false,
+		] );
+	}
+
+	/**
+	 * Register ACF Options sub page
+	 *
+	 * @param string $page_title
+	 * @param string $menu_title
+	 */
+	private function registerAcfOptionsSubpage( $page_title, $menu_title )
+	{
+		acf_add_options_sub_page( [
+			'page_title' => $page_title,
+			'menu_title' => $menu_title,
+			'parent_slug' => 'fws_starter_s-settings',
+		] );
+	}
+
+	/**
+	 * Check config file for Flexible Content groups
+	 */
+	private function checkForFlexContentGroups(): void
+	{
+		$flexContents = fws()->config()->acfFlexibleContent();
+
+		foreach ( $flexContents as $slug => $flexContent ) {
+			if ( $flexContent->isAutoload() ) {
+				$flexContent->register( $slug );
+			}
+		}
+	}
+
+	/**
+	 * @param $taxonomies
+	 *
+	 * @return mixed
+	 */
 	public function fieldGroupCategoryExclude( $taxonomies )
 	{
 		if ( empty( $taxonomies ) ) {
@@ -138,6 +155,11 @@ class ACF
 		return $taxonomies;
 	}
 
+	/**
+	 * @param $views
+	 *
+	 * @return array
+	 */
 	public function fieldGroupCategoryViews( $views ): array
 	{
 		if ( ! $terms = get_terms( 'acf-field-group-category', [ 'hide_empty' => false ] ) ) {
@@ -175,10 +197,14 @@ class ACF
 		return $views;
 	}
 
-	public function fieldGroupCategoryColumnHtml( $column, $post_id ): void
+	/**
+	 * @param $column
+	 * @param $postID
+	 */
+	public function fieldGroupCategoryColumnHtml( $column, $postID ): void
 	{
 		if ( $column === 'acf-field-group-category' ) {
-			if ( ! $terms = get_the_terms( $post_id, 'acf-field-group-category' ) ) {
+			if ( ! $terms = get_the_terms( $postID, 'acf-field-group-category' ) ) {
 				echo '—';
 
 				return;
@@ -191,25 +217,35 @@ class ACF
 
 			echo implode( ' ', $categories );
 		} elseif ( $column === 'acf-group-id' ) {
-			echo  get_post_field( 'post_name', $post_id );
+			echo get_post_field( 'post_name', $postID );
 		}
 	}
 
+	/**
+	 * @param array $columns
+	 *
+	 * @return array
+	 */
 	public function fieldGroupCategoryColumn( array $columns ): array
 	{
-		$new_columns = [];
+		$newColumns = [];
 		foreach ( $columns as $key => $value ) {
 			if ( $key === 'acf-fg-status' ) {
-				$new_columns['acf-field-group-category'] = __( 'Categories' );
-				$new_columns['acf-group-id'] = __( 'Group ID' );
+				$newColumns['acf-field-group-category'] = __( 'Categories' );
+				$newColumns['acf-group-id'] = __( 'Group ID' );
 			}
 
-			$new_columns[ $key ] = $value;
+			$newColumns[ $key ] = $value;
 		}
 
-		return $new_columns;
+		return $newColumns;
 	}
 
+	/**
+	 * @param string $parentFile
+	 *
+	 * @return string
+	 */
 	public function fieldGroupCategorySubmenuHighlight( string $parentFile ): string
 	{
 		global $current_screen, $pagenow;
@@ -221,6 +257,9 @@ class ACF
 		return $parentFile;
 	}
 
+	/**
+	 * Add submenu for field group categories
+	 */
 	public function fieldGroupCategorySubmenu(): void
 	{
 		if ( ! acf_get_setting( 'show_admin' ) ) {
@@ -235,224 +274,6 @@ class ACF
 			'edit-tags.php?taxonomy=acf-field-group-category'
 		);
 
-	}
-
-	/**
-	 * Register ACF Options page
-	 *
-	 * @param string $page_title
-	 * @param string $menu_title
-	 */
-	private function register_acf_options_page($page_title, $menu_title)
-	{
-		acf_add_options_page( [
-			'page_title' => $page_title,
-			'menu_title' => $menu_title,
-			'menu_slug' => 'fws_starter_s-settings',
-			'capability' => 'edit_posts',
-			'redirect' => false,
-		] );
-	}
-
-	/**
-	 * Register ACF Options sub page
-	 *
-	 * @param string $page_title
-	 * @param string $menu_title
-	 */
-	private function register_acf_options_subpage($page_title, $menu_title)
-	{
-		acf_add_options_sub_page( [
-			'page_title' => $page_title,
-			'menu_title' => $menu_title,
-			'parent_slug' => 'fws_starter_s-settings',
-		] );
-	}
-
-	/**
-	 * Register new flexible content field group.
-	 *
-	 * @param string $fieldName
-	 * @param array  $location
-	 * @param array  $layouts
-	 * @param array  $hideOnScreen
-	 */
-	public function registerFlexContent( string $fieldName, array $location, array $layouts, array $hideOnScreen = [] ): void
-	{
-		$key = 'flexible_content_' . $this->flexContentCounter ++;
-
-		$args = [
-			'key' => $key,
-			'title' => $fieldName,
-			'fields' => [
-				[
-					'key' => "field_$key",
-					'label' => '',
-					'name' => str_replace( '-', '_', sanitize_title( $fieldName ) ),
-					'type' => 'flexible_content',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => [
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					],
-					'layouts' => [],
-					'button_label' => 'Add Section',
-					'min' => '',
-					'max' => '',
-				],
-			],
-			'location' => [
-				[
-					[
-						'param' => $location['param'],
-						'operator' => '==',
-						'value' => $location['value'],
-					],
-				],
-			],
-			'menu_order' => 0,
-			'position' => 'normal',
-			'style' => 'default',
-			'label_placement' => 'top',
-			'instruction_placement' => 'label',
-			'hide_on_screen' => $hideOnScreen,
-			'active' => true,
-			'description' => '',
-			'modified' => 1567782198,
-		];
-
-		foreach ( $layouts as $layout ) {
-			$label = $layout['label'];
-			$name = $layout['name'];
-			$key = $layout['clone_group_key'];
-
-			$args['fields'][0]['layouts']["layout_$key"] = [
-				'key' => "layout_$key",
-				'name' => $name,
-				'label' => $label,
-				'display' => 'block',
-				'sub_fields' => [
-					[
-						'key' => "layout_field_$key",
-						'label' => '',
-						'name' => $name,
-						'type' => 'clone',
-						'instructions' => '',
-						'required' => 0,
-						'conditional_logic' => 0,
-						'wrapper' => [
-							'width' => '',
-							'class' => '',
-							'id' => '',
-						],
-						'acfe_permissions' => '',
-						'clone' => [
-							0 => $layout['clone_group_key'],
-						],
-						'display' => 'seamless',
-						'layout' => 'block',
-						'prefix_label' => 0,
-						'prefix_name' => 0,
-					],
-				],
-				'min' => '',
-				'max' => '',
-			];
-		}
-
-		acf_add_local_field_group( $args );
-	}
-
-	/**
-	 * Register Options Pages
-	 *
-	 * @param array $fc
-	 */
-	private function registerOptionsPages($options_page, $options_sub_pages, $theme_name): void
-	{
-		// Register Options Main Page
-		if ($options_page) {
-			$this->register_acf_options_page($theme_name . ' Settings', $theme_name . ' Settings');
-		}
-
-		// Register Options Sub Pages
-		if ($options_page && count($options_sub_pages) > 0) {
-			foreach($options_sub_pages as $sub_page ) {
-				$this->register_acf_options_subpage($sub_page, $sub_page);
-			}
-		}
-	}
-
-	/**
-	 * Check config file for Flexible Content groups
-	 *
-	 * @param array $fc
-	 */
-	private function checkForFlexContentGroups($flexible_content): void
-	{
-		if (count($flexible_content) > 0) {
-			foreach ($flexible_content as $fc) {
-				if ($fc['autoload']) {
-					$this->addNewFlexContentGroup($fc);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Add Flexible content group from all Flexible Content groups
-	 *
-	 * @param array $fc
-	 */
-	private function addNewFlexContentGroup($fc): void
-	{
-		// Get Config
-		$layouts = $fc['layouts'];
-		$fieldName = $fc['field-name'];
-		$location = $fc['location'];
-		$hideOnScreen = $fc['hide-on-screen'];
-		$mapped_layouts = [];
-
-		foreach ($layouts as $layout) {
-			$label = $layout['title'];
-			$name = str_replace( '-', '_', sanitize_title( $label ) );
-
-			$mapped_layouts[$layout['group_id']] = [
-				'label' => $label,
-				'name' => $name,
-				'clone_group_key' => $layout['group_id'],
-			];
-		}
-
-		$this->registerFlexContent(
-			$fieldName,
-			$location,
-			$mapped_layouts,
-			$hideOnScreen
-		);
-	}
-
-	/**
-	 * @param array $group
-	 *
-	 * @return bool
-	 */
-	private function filterACFGroupsFlexContent( array $group ): bool
-	{
-		if ( ! isset( $group['acf-field-group-category'] ) || ! is_array( $group['acf-field-group-category'] ) ) {
-			return false;
-		}
-
-		foreach ( $group['acf-field-group-category'] as $category ) {
-			if ( $category['slug'] === 'flexible-content' ) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 	/**
@@ -471,42 +292,13 @@ class ACF
 	}
 
 	/**
-	 * Check ACF is configured to only be possible to edit and manage on local env
-	 *
-	 * @return boolean
-	 */
-	private function isAcfOnlyLocal(): bool
-	{
-		$yml = $this->getYamlParser();
-		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
-		return $config['acf-only-local-editing']['enable'];
-	}
-
-	/**
-	 * Check ACF is configured to only be possible to edit and manage on local env
-	 *
-	 * @return array
-	 */
-	private function getAllowedHosts(): array
-	{
-		$yml = $this->getYamlParser();
-		$config = $yml->parse( file_get_contents( get_template_directory() . '/.fwsconfig.yml' ) )['global'];
-		return $config['acf-only-local-editing']['allowed-hosts'];
-	}
-
-	/**
 	 * Automatic ACF group sync on admin page open
 	 */
 	public function automaticJsonSync(): void
 	{
-		// Bail if disabled in .fwsconfig.yml
-		if ( !$this->isAcfOnlyLocal() ) {
-			return;
-		}
-
 		// Bail if not on the right admin page
 		if ( acf_maybe_get_GET( 'post_type' ) !== 'acf-field-group'
-		     && get_post_type( acf_maybe_get_GET( 'post' ) ) !== 'acf-field-group' ) {
+			&& get_post_type( acf_maybe_get_GET( 'post' ) ) !== 'acf-field-group' ) {
 			return;
 		}
 
@@ -593,7 +385,7 @@ class ACF
 		global $current_screen;
 
 		// Bail if disabled in .fwsconfig.yml
-		if ( !$this->isAcfOnlyLocal() ) {
+		if ( ! fws()->config()->acfOnlyLocalEditing() ) {
 			return;
 		}
 
@@ -602,17 +394,15 @@ class ACF
 			return;
 		}
 
-		$allowedHosts = $this->getAllowedHosts();
-
-		// Bail if in localhost server
-		foreach ( $allowedHosts as $host ) {
+		// Bail if current host is allowed
+		foreach ( fws()->config()->acfOnlyLocalEditingAllowedHosts() as $host ) {
 			if ( strpos( home_url(), $host ) !== false ) {
 				return;
 			}
 		} ?>
 
 		<div class="notice notice-error">
-			<p><strong>You are not allowed to edit ACF fields on any server but local!</strong></p>
+			<p><strong>You are not allowed to edit ACF fields on this server!</strong></p>
 			<p>Your local changes will be synced with this server through GIT/theme deployment.</p>
 		</div>
 		<?php
@@ -621,20 +411,18 @@ class ACF
 	/**
 	 * Prevent editing ACF groups on any server byt local
 	 *
-	 * @param int   $post_ID
+	 * @param int   $postID
 	 * @param array $data
 	 */
-	public function preventEditingGroups( int $post_ID, array $data ): void
+	public function preventEditingGroups( int $postID, array $data ): void
 	{
 		// Bail if disabled in .fwsconfig.yml
-		if ( !$this->isAcfOnlyLocal() ) {
+		if ( ! fws()->config()->acfOnlyLocalEditing() ) {
 			return;
 		}
 
-		$allowedHosts = $this->getAllowedHosts();
-
-		// Bail if in localhost server
-		foreach ( $allowedHosts as $host ) {
+		// Bail if current host is allowed
+		foreach ( fws()->config()->acfOnlyLocalEditingAllowedHosts() as $host ) {
 			if ( strpos( home_url(), $host ) !== false ) {
 				return;
 			}
@@ -649,7 +437,7 @@ class ACF
 		wp_redirect( admin_url( 'edit.php?post_type=acf-field-group' ) );
 
 		// Die, just in case
-		die( 'Obey the rules or risk finding yourself in a deep, dark place.' );
+		die( 'You are not allowed to edit ACF fields on this server!' );
 	}
 
 	/**
@@ -731,6 +519,28 @@ class ACF
 			wp_add_object_terms( $post_ids[0], $term_id, 'acf-field-group-category' );
 		}
 	}
-}
 
-return ACF::getInstance();
+	/**
+	 * Drop your hooks here.
+	 */
+	protected function hooks()
+	{
+		// Actions
+		add_action( 'init', [ $this, 'acfInit' ] );
+		add_action( 'admin_menu', [ $this, 'fieldGroupCategorySubmenu' ] );
+		add_action( 'acf/import_field_group', [ $this, 'loadGroupCategoryJson' ] );
+		add_action( 'manage_acf-field-group_posts_custom_column', [ $this, 'fieldGroupCategoryColumnHtml' ], 10, 2 );
+
+		add_action( 'admin_init', [ $this, 'automaticJsonSync' ] );
+		add_action( 'pre_post_update', [ $this, 'preventEditingGroups' ], 10, 2 );
+		add_action( 'admin_notices', [ $this, 'editNotAllowedNotice' ] );
+
+		// Filters
+		add_filter( 'acf/fields/flexible_content/layout_title', [ $this, 'flexibleContentLayoutTitle' ], 10, 1 );
+		add_filter( 'acf/prepare_field_group_for_export', [ $this, 'saveGroupCategoryJson' ] );
+		add_filter( 'parent_file', [ $this, 'fieldGroupCategorySubmenuHighlight' ] );
+		add_filter( 'manage_edit-acf-field-group_columns', [ $this, 'fieldGroupCategoryColumn' ], 11 );
+		add_filter( 'views_edit-acf-field-group', [ $this, 'fieldGroupCategoryViews' ], 9 );
+		add_filter( 'acf/get_taxonomies', [ $this, 'fieldGroupCategoryExclude' ], 10, 1 );
+	}
+}
