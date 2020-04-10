@@ -1,5 +1,14 @@
 {
+	"autoload": {
+		"psr-4": {
+			"": "fws/",
+			"FWS\\": "fws/src/"
+		}
+	},
     "require": {
         "symfony/yaml": "^5.0"
-    }
+    },
+	"require-dev": {
+		"symfony/var-dumper": "^5.0"
+	}
 }

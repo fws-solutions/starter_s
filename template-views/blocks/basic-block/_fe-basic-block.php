@@ -37,7 +37,7 @@
 
 		<div class="js-cf7-holder cf7-holder">
 			<div class="cf7-holder__inner">
-				<?php echo do_shortcode('[contact-form-7 id="17" title="Contact form 1"]'); ?>
+				<?php echo do_shortcode( '[contact-form-7 id="17" title="Contact form 1"]' ); ?>
 			</div>
 			<div class="cf7-holder__popup">
 				<div class="cf7-holder__popup-img">
@@ -47,7 +47,7 @@
 			</div>
 		</div>
 
-		<?php get_template_part('template-views/partials/check-list/_fe-check-list'); ?>
-		<?php get_template_part('template-views/partials/select-field/_fe-select-field'); ?>
+		<?php get_template_part( 'template-views/partials/check-list/_fe-check-list' ); ?>
+		<?php get_template_part( 'template-views/partials/select-field/_fe-select-field' ); ?>
 	</div>
 </div><!-- .basic-block -->

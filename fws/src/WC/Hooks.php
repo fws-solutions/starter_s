@@ -1,66 +1,21 @@
 <?php
-declare( strict_types=1 );
+declare( strict_types = 1 );
 
-namespace FWS;
+namespace FWS\WC;
+
+use FWS\SingletonHook;
 
 /**
  * WC Class for hooks. No methods are available for direct calls.
  *
- * @package FWS
+ * @package FWS\WC
  * @author  Boris Djemrovski <boris@forwardslashny.com>
  */
-class WCHooks
+class Hooks extends SingletonHook
 {
 
-	use Main;
-
-	/**
-	 * Main constructor.
-	 */
-	private function __construct()
-	{
-		// Bail if WooCommerce plugin isn't activated
-		if ( ! function_exists( 'WC' ) ) {
-			return;
-		}
-
-		$this->hooks();
-	}
-
-	/**
-	 * Drop your hooks here.
-	 */
-	private function hooks(): void
-	{
-		add_action( 'after_setup_theme', [ $this, 'setup' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
-
-		add_action( 'woocommerce_before_shop_loop', [ $this, 'productColumnsWrapper' ], 40 );
-		add_action( 'woocommerce_after_shop_loop', [ $this, 'productColumnsWrapperClose' ], 40 );
-
-		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
-		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
-
-		add_action( 'woocommerce_before_main_content',
-			function () {
-				do_action( 'fws_starter_s_before_main_content' );
-			},
-			40 );
-		add_action( 'woocommerce_after_main_content',
-			function () {
-				do_action( 'fws_starter_s_after_main_content' );
-			},
-			40 );
-
-		// Disable the default WC stylesheet
-		// @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
-		add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
-		add_filter( 'body_class', [ $this, 'wcActiveBodyClass' ] );
-		add_filter( 'loop_shop_per_page', [ $this, 'productsPerPage' ] );
-		add_filter( 'woocommerce_product_thumbnails_columns', [ $this, 'thumbnailColumns' ] );
-		add_filter( 'woocommerce_output_related_products_args', [ $this, 'relatedProductsArgs' ] );
-		add_filter( 'woocommerce_add_to_cart_fragments', [ $this, 'cartLinkFragment' ] );
-	}
+	/** @var self */
+	protected static $instance;
 
 	/**
 	 * WooCommerce setup function.
@@ -180,11 +135,44 @@ class WCHooks
 	public function cartLinkFragment( array $fragments ): array
 	{
 		ob_start();
-		fws()->wc->cartLink();
+		fws()->wc()->cartLink();
 		$fragments['a.cart-contents'] = ob_get_clean();
 
 		return $fragments;
 	}
-}
 
-return WCHooks::getInstance();
+	/**
+	 * Drop your hooks here.
+	 */
+	protected function hooks(): void
+	{
+		add_action( 'after_setup_theme', [ $this, 'setup' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
+
+		add_action( 'woocommerce_before_shop_loop', [ $this, 'productColumnsWrapper' ], 40 );
+		add_action( 'woocommerce_after_shop_loop', [ $this, 'productColumnsWrapperClose' ], 40 );
+
+		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
+		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+
+		add_action( 'woocommerce_before_main_content',
+			function () {
+				do_action( 'fws_starter_s_before_main_content' );
+			},
+			40 );
+		add_action( 'woocommerce_after_main_content',
+			function () {
+				do_action( 'fws_starter_s_after_main_content' );
+			},
+			40 );
+
+		// Disable the default WC stylesheet
+		// @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
+		add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+		add_filter( 'body_class', [ $this, 'wcActiveBodyClass' ] );
+		add_filter( 'loop_shop_per_page', [ $this, 'productsPerPage' ] );
+		add_filter( 'woocommerce_product_thumbnails_columns', [ $this, 'thumbnailColumns' ] );
+		add_filter( 'woocommerce_output_related_products_args', [ $this, 'relatedProductsArgs' ] );
+		add_filter( 'woocommerce_add_to_cart_fragments', [ $this, 'cartLinkFragment' ] );
+	}
+}

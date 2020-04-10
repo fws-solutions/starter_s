@@ -24,7 +24,7 @@ if ( have_posts() ) {
 
 	if ( is_home() && ! is_front_page() ) {
 		$title = single_post_title();
-		fws()->render->pageDefaultHeader( $title, '', true );
+		fws()->render()->pageDefaultHeader( $title, '', true );
 	}
 
 	while ( have_posts() ) {
@@ -38,7 +38,7 @@ if ( have_posts() ) {
 		get_template_part( 'template-views/shared/content' );
 	}
 
-	fws()->render->pagingNav();
+	fws()->render()->pagingNav();
 } else {
 	get_template_part( 'template-views/shared/content', 'none' );
 }

@@ -1,11 +1,11 @@
 <?php
 /**
- * @var string $id
- * @var array $post_class
- * @var string $permalink
- * @var string $title
+ * @var string  $id
+ * @var array   $post_class
+ * @var string  $permalink
+ * @var string  $title
  * @var boolean $has_post_thumb
- * @var string $post_thumb
+ * @var string  $post_thumb
  */
 extract( (array) get_query_var( 'content-parts' ) );
 ?>
@@ -15,7 +15,7 @@ extract( (array) get_query_var( 'content-parts' ) );
 		<?php if ( $has_post_thumb ) : ?>
 			<?php echo $post_thumb; ?>
 		<?php else: ?>
-			<img src="<?php echo fws()->images->assets_src( 'post-thumb.jpg' ); ?>" alt="">
+			<img src="<?php echo fws()->images()->assetsSrc( 'post-thumb.jpg' ); ?>" alt="">
 		<?php endif; ?>
 	</a>
 
@@ -25,7 +25,7 @@ extract( (array) get_query_var( 'content-parts' ) );
 		</h2>
 
 		<div class="blog-article__meta entry-meta">
-			<?php echo fws()->render->getPostedOn(); ?>
+			<?php echo fws()->render()->getPostedOn(); ?>
 		</div><!-- .entry-meta -->
 	</div><!-- .entry-header -->
 </article><!-- #post-<?php echo $id; ?> -->

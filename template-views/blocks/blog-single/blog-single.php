@@ -20,7 +20,7 @@
 		<h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
 
 		<div class="blog-single__meta entry-meta">
-			<?php echo fws()->render->getPostedOn(); ?>
+			<?php echo fws()->render()->getPostedOn(); ?>
 		</div><!-- .entry-meta -->
 	</header><!-- .entry-header -->
 

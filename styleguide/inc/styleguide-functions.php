@@ -150,7 +150,7 @@ function styleguide_get_icons( $icons ) {
 	<ul class="styleguide__icons">
 		<?php foreach ( $icons as $icon ) { ?>
 			<li class="styleguide__icons-item">
-				<?php echo fws()->render->inlineSVG($icon, 'styleguide__icons-icon'); ?>
+				<?php echo fws()->render()->inlineSVG($icon, 'styleguide__icons-icon'); ?>
 				<span class="styleguide__icons-name"><?php echo $icon; ?></span>
 			</li>
 		<?php } ?>

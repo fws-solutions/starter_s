@@ -16,9 +16,9 @@ do_action( 'fws_starter_s_before_archive_listing' );
 
 // start the Loop
 if ( have_posts() ) {
-	$title    = get_the_archive_title();
+	$title = get_the_archive_title();
 	$subtitle = get_the_archive_description();
-	fws()->render->pageDefaultHeader( $title, $subtitle );
+	fws()->render()->pageDefaultHeader( $title, $subtitle );
 
 	while ( have_posts() ) {
 		the_post();
@@ -31,7 +31,7 @@ if ( have_posts() ) {
 		get_template_part( 'template-views/shared/content' );
 	}
 
-	fws()->render->pagingNav();
+	fws()->render()->pagingNav();
 } else {
 	get_template_part( 'template-views/shared/content', 'none' );
 }

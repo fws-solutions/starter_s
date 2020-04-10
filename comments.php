@@ -54,9 +54,9 @@ if ( post_password_required() ) {
 			wp_list_comments(
 				array(
 					'avatar_size' => 100,
-					'style'       => 'ol',
-					'short_ping'  => true,
-					'reply_text'  => __( 'Reply', 'fws_starter_s' ),
+					'style' => 'ol',
+					'short_ping' => true,
+					'reply_text' => __( 'Reply', 'fws_starter_s' ),
 				)
 			);
 			?>

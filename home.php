@@ -15,10 +15,10 @@ do_action( 'fws_starter_s_before_main_content' );
 
 // listing blog posts
 $blog = [
-	'title'    => __( 'Blog', 'fws_starter_s' ),
+	'title' => __( 'Blog', 'fws_starter_s' ),
 	'subtitle' => ''
 ];
-fws()->render->templateView( $blog, 'blog-listing', 'listings' );
+fws()->render()->templateView( $blog, 'blog-listing', 'listings' );
 
 do_action( 'fws_starter_s_after_main_content' );
 

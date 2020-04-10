@@ -15,10 +15,10 @@ do_action( 'fws_starter_s_before_main_content' );
 
 // listing blog posts
 $blog = [
-	'title'    => get_the_archive_title(),
+	'title' => get_the_archive_title(),
 	'subtitle' => get_the_archive_description()
 ];
-fws()->render->templateView( $blog, 'blog-listing', 'listings' );
+fws()->render()->templateView( $blog, 'blog-listing', 'listings' );
 
 do_action( 'fws_starter_s_after_main_content' );
 

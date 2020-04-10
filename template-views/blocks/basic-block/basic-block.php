@@ -3,12 +3,12 @@
  * @var string $section_id
  * @var string $section_title
  * @var string $content
- * @var array $check_list
+ * @var array  $check_list
  */
 extract( (array) get_query_var( 'content-blocks' ) );
 ?>
 
-<div class="basic-block"<?php echo $section_id ? ' id="' . $section_id .'"' : ''; ?>>
+<div class="basic-block"<?php echo $section_id ? ' id="' . $section_id . '"' : ''; ?>>
 	<div class="container">
 		<h2 class="section-title"><?php echo $section_title; ?></h2>
 
@@ -16,6 +16,6 @@ extract( (array) get_query_var( 'content-blocks' ) );
 			<?php echo $content; ?>
 		</div>
 
-		<?php fws()->render->templateView( $check_list, 'check-list', 'parts' ); ?>
+		<?php fws()->render()->templateView( $check_list, 'check-list', 'parts' ); ?>
 	</div>
 </div><!-- .basic-block -->

@@ -17,7 +17,7 @@ do_action( 'fws_starter_s_before_archive_listing' );
 // start the Loop
 if ( have_posts() ) {
 	$title = esc_html__( 'Search Results for: %s', 'fws_starter_s' ) . '<span>' . get_search_query() . '</span>';
-	fws()->render->pageDefaultHeader( $title );
+	fws()->render()->pageDefaultHeader( $title );
 
 	while ( have_posts() ) {
 		the_post();
@@ -30,7 +30,7 @@ if ( have_posts() ) {
 		get_template_part( 'template-views/shared/content-search' );
 	}
 
-	fws()->render->pagingNav();
+	fws()->render()->pagingNav();
 } else {
 	get_template_part( 'template-views/shared/content', 'none' );
 }

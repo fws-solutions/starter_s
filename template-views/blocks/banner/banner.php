@@ -2,10 +2,10 @@
 /**
  * @var string $title
  * @var string $subtitle
- * @var array $button
- * @var array $desktop_image
- * @var array $tablet_image
- * @var array $mobile_image
+ * @var array  $button
+ * @var array  $desktop_image
+ * @var array  $tablet_image
+ * @var array  $mobile_image
  */
 extract( (array) get_query_var( 'content-blocks' ) );
 ?>
@@ -27,9 +27,9 @@ extract( (array) get_query_var( 'content-blocks' ) );
 	<?php endif; ?>
 
 	<div class="banner__caption">
-		<?php echo fws()->render->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
+		<?php echo fws()->render()->inlineSVG( 'ico-happy', 'banner__caption-icon' ); ?>
 		<h1 class="banner__caption-title js-scroll-link" data-scroll-to="slider"><?php echo $title; ?></h1>
 		<p class="banner__caption-text"><?php echo $subtitle; ?></p>
-		<?php echo fws()->render->acfLinkField($button, 'banner__btn btn'); ?>
+		<?php echo fws()->acf()->linkField( $button, 'banner__btn btn' ); ?>
 	</div>
 </div><!-- .banner -->

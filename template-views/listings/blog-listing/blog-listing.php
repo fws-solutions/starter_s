@@ -22,19 +22,19 @@ extract( (array) get_query_var( 'content-listings' ) );
 					$post_id = get_the_ID();
 
 					$blog_article = [
-						'id'             => $post_id,
-						'post_class'     => get_post_class(),
-						'permalink'      => get_the_permalink(),
-						'title'          => get_the_title(),
+						'id' => $post_id,
+						'post_class' => get_post_class(),
+						'permalink' => get_the_permalink(),
+						'title' => get_the_title(),
 						'has_post_thumb' => has_post_thumbnail(),
-						'post_thumb'     => get_the_post_thumbnail( $post_id, 'post-thumb' )
+						'post_thumb' => get_the_post_thumbnail( $post_id, 'post-thumb' )
 
 					];
-					fws()->render->templateView( $blog_article, 'blog-article', 'parts' );
+					fws()->render()->templateView( $blog_article, 'blog-article', 'parts' );
 				}
 				?>
 				<div class="col-sm-12">
-					<?php fws()->render->pagingNav(); ?>
+					<?php fws()->render()->pagingNav(); ?>
 				</div>
 				<?php
 			} else {
