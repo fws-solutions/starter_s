@@ -220,6 +220,7 @@ body {
 		position: absolute;
 		bottom: 138px;
 		right: 26px;
+		z-index: 1;
 
 		a {
 			color: $login-text;
