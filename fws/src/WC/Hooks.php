@@ -155,16 +155,8 @@ class Hooks extends SingletonHook
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
 
-		add_action( 'woocommerce_before_main_content',
-			function () {
-				do_action( 'fws_starter_s_before_main_content' );
-			},
-			40 );
-		add_action( 'woocommerce_after_main_content',
-			function () {
-				do_action( 'fws_starter_s_after_main_content' );
-			},
-			40 );
+		add_action( 'woocommerce_before_main_content', function () { do_action( 'fws_starter_s_before_main_content' ); }, 40 );
+		add_action( 'woocommerce_after_main_content', function () { do_action( 'fws_starter_s_after_main_content' ); }, 40 );
 
 		// Disable the default WC stylesheet
 		// @link https://docs.woocommerce.com/document/disable-the-default-stylesheet/
