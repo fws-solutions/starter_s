@@ -41,7 +41,7 @@ class FWS extends Singleton
 	 * This will automatically include and create a singleton
 	 * instance for all class files in the ./src directory
 	 */
-	private function __construct()
+	protected function __construct()
 	{
 		// Yaml Config
 		$this->config = Config::init();
