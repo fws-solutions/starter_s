@@ -21,7 +21,7 @@ get_header(); ?>
 						<ul class="styleguide__scrollspy-nav-list js-styleguide-nav">
 						</ul>
 					</div>
-					<a href="javascript:;" class="styleguide__scrollspy-nav-open js-styleguide-open"><?php echo fws()->render->inlineSVG('ico-arrow-right', 'styleguide-open-icon'); ?></a>
+					<a href="javascript:;" class="styleguide__scrollspy-nav-open js-styleguide-open"><?php echo fws()->render()->inlineSVG('ico-arrow-right', 'styleguide-open-icon'); ?></a>
 				</div>
 
 				<div class="container">
