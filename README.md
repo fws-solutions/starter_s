@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.1.0*
+*Version: 3.2.0*
 
 > It Only Does Everything.
 
@@ -32,7 +32,7 @@ Use `.fwsconfig.yml` file to configure top level theme options.
 - `virtual-host` - set local env url
 - `recovery-mode-emails` - set the fatal error handler email address from admin's to our internal
 - `prevent-plugin-update` - enable only logged in users with declared email domain to add/update/remove plugins
-`acf-only-local-editing` - enable acf to edit and manage only on local enviorment
+- `acf-only-local-editing` - enable acf to edit and manage only on local enviorment
 
 
     global:
@@ -61,6 +61,48 @@ Local enviorment and virtual host **must** be named exactly the same as it is de
 ### ACF Fields Config
 
 More details about `acf-options-page` and `acf-flexible-content` in the **Using Components** section, **Managing Options pages** sub section.
+
+### Styleguide Config
+
+- `pages` - set list of all pages defining
+- `colors` set list of all colors, matching
+- `icons` - set list of all svg icons
+- `fonts` - set list of all fonts, matching variables in scss file
+- `titles` - set list of all special titles defining their classes and dummy text
+- `buttons` - set list of all buttons defining their classes and dummy text
+
+
+    styleguide:
+        pages:
+            -
+                title: 'FE Homepage'
+                url: '/fe-homepage/'
+        colors:
+            - 'black'
+            - 'white'
+        icons:
+            - 'ico-arrow-up'
+            - 'ico-arrow-down'
+        fonts:
+            -
+                name: 'Open Sans'
+                class: 'font-main'
+        titles:
+            -
+                text: 'This is Page Title'
+                class: 'page-title'
+        buttons:
+            -
+                text: 'Normal'
+                class: 'btn'
+
+Styleguide page **will automatically load** any `_fe-` prefix files.
+
+**This is why it is important to name any variation files using `--` extension to file name.**
+
+For example:
+- default file name: `_fe-banner.php`
+- varitation file name: `_fe-banner--alt.php`
 
 ## CLI
 For the full list of all commands, execute `fws --help`.
@@ -147,7 +189,7 @@ To promote these guidelines even more, **another** workflow **rule should always
         'title'    => get_the_archive_title(),
         'subtitle' => get_the_archive_description()
     ];
-    fws()->render->templateView( $book, 'book-listing', 'listings' );
+    fws()->render()->templateView( $book, 'book-listing', 'listings' );
 
     do_action( 'fws_starter_s_after_main_content' );
     get_footer();
@@ -253,14 +295,14 @@ Use `inlineSVG` render function to import a SVG file as an inline element in any
 
 Use the function as shown in this example:
 
- `fws()->render->inlineSVG('ico-happy', 'banner__caption-icon')`.
+ `fws()->render()->inlineSVG('ico-happy', 'banner__caption-icon')`.
 
 The first argument is the name of the file.
 
 The second argument is additional classes.
 
     Example:
-    <?php echo fws()->render->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
+    <?php echo fws()->render()->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
 
     Will render:
     <span class="banner__caption-icon svg-icon">
@@ -371,7 +413,7 @@ Each component has three files:
 File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP variables, methods or any other logic should be written here *(except helper functions for rendering images)*.
 
 ```
-<div class="banner" style="background-image: url(<?php echo fws()->images->assets_src('banner.jpg', true); ?>);">
+<div class="banner" style="background-image: url(<?php echo fws()->images()->assets_src('banner.jpg', true); ?>);">
     <div class="banner__caption">
         <span style="color: white;" class="banner-example__caption-icon font-ico-happy"></span>
         <h1 class="banner__caption-title">Banner Title</h1>
@@ -450,7 +492,7 @@ In fact, any Post type **should** have and use **Listings** view type to loop ov
                     'permalink' => get_the_permalink(),
                     'title' => get_the_title()
                 ];
-                fws()->render->templateView( $blog_article, 'blog-article', 'parts' );
+                fws()->render()->templateView( $blog_article, 'blog-article', 'parts' );
             }
         } else {
             get_template_part( 'template-views/shared/content', 'none' );
@@ -480,7 +522,7 @@ $basic_block = [
   'image' => get_field( 'image' )
 ];
 
-fws()->render->templateView( $basic_block, 'banner' );
+fws()->render()->templateView( $basic_block, 'banner' );
 ```
 
 ## Using ACF with Starter Theme
@@ -510,13 +552,13 @@ Insted of using ACF basic loop, it is required to use standard PHP switch method
 foreach ( get_field( 'content' ) as $fc ) {
   switch ( $fc['acf_fc_layout'] ) {
     case 'banner':
-      fws()->render->templateView( $fc, 'banner' );
+      fws()->render()->templateView( $fc, 'banner' );
       break;
     case 'slider':
-      fws()->render->templateView( $fc, 'slider' );
+      fws()->render()->templateView( $fc, 'slider' );
       break;
     default:
-      fws()->render->templateView( $fc, 'basic-block' );
+      fws()->render()->templateView( $fc, 'basic-block' );
   }
 }
 ```
@@ -803,14 +845,12 @@ When in need for a taxonomy that is shared accross multiple post types, create a
 
 List of all helper functions from this Starter Theme:
 
-- Render.php
-    - `templateView()` - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
-    - `acfLinkField()` - *Renders ACF link field with all field params.*
-    - `inlineSVG()` - *Renders an inline SVG into any template.*
-    - `postedOn()` - *Prints HTML with meta information for the current post-date/time and author.*
-    - `pagingNav()` - *Outputs the paging navigation based on the global query.*
-- Images.php
-    - `assets_src()` - *Render image src from 'src/assets/images' or `__demo` directory.*
+- `templateView()` - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
+- `acfLinkField()` - *Renders ACF link field with all field params.*
+- `inlineSVG()` - *Renders an inline SVG into any template.*
+- `postedOn()` - *Prints HTML with meta information for the current post-date/time and author.*
+- `pagingNav()` - *Outputs the paging navigation based on the global query.*
+- `assets_src()` - *Render image src from 'src/assets/images' or `__demo` directory.*
 
 All helper functions are defined as methods in defined classes that are all loading from **fws/FWS.php** file.
 
@@ -818,9 +858,9 @@ Each method is available through instance of FWS class and instances of other cl
 
 Example:
 ```
-fws()->render->templateView( $view_vals, $view_name, $is_partial );
-fws()->images->assets_src( $image_file, $is_demo );
-fws()->acf->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
+fws()->render()->templateView( $view_vals, $view_name, $is_partial );
+fws()->images()->assets_src( $image_file, $is_demo );
+fws()->acf()->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
 ```
 
 For full description of each method, see appropriate files and examples in the theme.

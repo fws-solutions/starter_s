@@ -30,15 +30,7 @@ get_header(); ?>
 
 				<?php
 					// Base
-					get_template_part('styleguide/config/sg', 'pages-list');
-					get_template_part('styleguide/config/sg', 'fonts');
-					get_template_part('styleguide/config/sg', 'colors');
-					get_template_part('styleguide/config/sg', 'icons');
-					get_template_part('styleguide/config/sg', 'typography');
-					get_template_part('styleguide/config/sg', 'buttons');
-
-					// Sections & Components
-					get_template_part('styleguide/config/sg', 'sections');
+					fws()->styleguide()->styleguide_init();
 				?>
 			</div>
 		</main><!-- #main -->

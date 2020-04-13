@@ -8,6 +8,7 @@
 		linear-gradient(225deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px)0 64px;
 	background-color: $sg-grey;
 	background-size: 64px 128px;
+	background-attachment: fixed;
 }
 
 .styleguide__scrollspy-nav {
@@ -202,13 +203,7 @@
 }
 
 .styleguide__section {
-	// margin-bottom: 100px;
-	// min-height: calc(100vh - 100px);
-	// display: none;
-
-	// &.active {
-	// 	display: block;
-	// }
+	margin-bottom: 70px;
 }
 
 .styleguide__head {
@@ -311,10 +306,11 @@
 .styleguide__icons {
 	display: flex;
 	flex-wrap: wrap;
+	margin: 0 -10px;
 }
 
 .styleguide__icons-item {
-	margin-right: 15px;
+	padding: 0 10px;
 }
 
 .styleguide__icons-name {
@@ -326,8 +322,8 @@
 
 .styleguide__icons-icon {
 	font-size: 35px;
-	width: 110px;
-	height: 110px;
+	width: 105px;
+	height: 105px;
 	display: flex;
 	align-items: center;
 	justify-content: center;

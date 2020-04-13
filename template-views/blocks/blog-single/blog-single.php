@@ -6,7 +6,6 @@
  *
  * @package fws_starter_s
  */
-
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'blog-single' ); ?>>

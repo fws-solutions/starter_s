@@ -8,6 +8,7 @@ use FWS\Singleton;
 use FWS\Theme\Hooks as ThemeHooks;
 use FWS\Theme\Images as ThemeImages;
 use FWS\Theme\Render as ThemeRender;
+use FWS\Theme\Styleguide as ThemeStyleguide;
 use FWS\WC\Hooks as WCHooks;
 use FWS\WC\Render as WCRender;
 
@@ -34,6 +35,9 @@ class FWS extends Singleton
 	/** @var ThemeImages */
 	private $images;
 
+	/** @var ThemeStyleguide */
+	private $styleguide;
+
 	/** @var Config */
 	private $config;
 
@@ -49,6 +53,7 @@ class FWS extends Singleton
 		// Theme stuff
 		$this->render = ThemeRender::init();
 		$this->images = ThemeImages::init();
+		$this->styleguide = ThemeStyleguide::init();
 
 		// Theme hooks
 		ThemeHooks::init();
@@ -114,6 +119,14 @@ class FWS extends Singleton
 	public function images(): ThemeImages
 	{
 		return $this->images;
+	}
+
+	/**
+	 * @return ThemeStyleguide
+	 */
+	public function styleguide(): ThemeStyleguide
+	{
+		return $this->styleguide;
 	}
 
 	/**

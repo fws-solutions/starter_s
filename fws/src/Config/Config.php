@@ -38,7 +38,10 @@ class Config extends Singleton
 	{
 		$this->parser = new Parser;
 
-		$configFilePath = get_template_directory() . DIRECTORY_SEPARATOR . $this->filename;
+		$filePath = get_template_directory() . DIRECTORY_SEPARATOR;
+
+		// Load theme settings '.fwsconfig.yml' file
+		$configFilePath = $filePath . $this->filename;
 
 		if ( file_exists( $configFilePath ) ) {
 			$this->config = $this->parser->parse( file_get_contents( $configFilePath ) );
@@ -133,6 +136,16 @@ class Config extends Singleton
 	public function acfOptionsSubpages(): array
 	{
 		return (array) $this->config['acf-options-page']['subpages'] ?? [];
+	}
+
+	/**
+	 * Styleguide Options
+	 *
+	 * @return array
+	 */
+	public function styleguideConfig(): array
+	{
+		return (array) $this->config['styleguide'] ?? [];
 	}
 
 	/**

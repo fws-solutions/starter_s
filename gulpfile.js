@@ -1,9 +1,5 @@
 const gulp = require('gulp');
 const clean = require('gulp-clean');
-const tap = require('gulp-tap');
-const fs = require('fs');
-const path = require('path');
-const colors = require('ansi-colors');
 const globalVars = require('./src/config/gulp/_global-vars');
 
 /*----------------------------------------------------------------------------------------------

@@ -144,7 +144,7 @@ function fws_starter_s_scripts()
 add_action( 'wp_enqueue_scripts', 'fws_starter_s_scripts' );
 
 /**
- * Load Composer and FWS framework
+ * Load Composer and FWS Engine
  */
 if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 	require_once get_template_directory() . '/vendor/autoload.php';
@@ -161,8 +161,3 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 } else {
 	wp_die( 'Composer is not installed. Please run `composer install` in the theme root folder.' );
 }
-
-/**
- * Styleguide helper functions.
- */
-require get_template_directory() . '/styleguide/inc/styleguide-functions.php';

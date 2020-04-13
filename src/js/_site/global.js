@@ -58,7 +58,23 @@ const Global = {
 		});
 
 		elm.height(x + 1);
-	}
+	},
+
+	scrollTo: (selector)=> {
+		$(selector).on('click', (e)=> {
+			e.preventDefault();
+			const target = $(e.currentTarget.hash);
+
+			console.log(target);
+
+			if (target.length) {
+				$('html,body').animate({
+					scrollTop: target.offset().top
+				}, 1000);
+				return false;
+			}
+		});
+	},
 };
 
 export default Global;
