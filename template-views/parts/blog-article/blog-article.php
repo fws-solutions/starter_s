@@ -1,16 +1,15 @@
 <?php
-/**
- * @var string  $id
- * @var array   $post_class
- * @var string  $permalink
- * @var string  $title
- * @var boolean $has_post_thumb
- * @var string  $post_thumb
- */
-extract( (array) get_query_var( 'content-parts' ) );
+$content = get_query_var( 'content-parts', [] );
+
+$id = (int) $content['id'] ?? 0;
+$post_class = esc_attr( implode( ' ', $content['post_class'] ?? [] ) );
+$permalink = esc_url( $content['permalink'] ) ?? '';
+$title = esc_textarea( $content['title'] ) ?? '';
+$has_post_thumb = (bool) $content['has_post_thumb'] ?? false;
+$post_thumb = $content['post_thumb'] ?? '';
 ?>
 
-<article id="post-<?php echo $id; ?>" class="blog-article col-lg-4 <?php echo implode( ' ', $post_class ); ?>">
+<article id="post-<?php echo $id; ?>" class="blog-article col-lg-4 <?php echo $post_class; ?>">
 	<a class="blog-article__thumb" href="<?php echo $permalink; ?>">
 		<?php if ( $has_post_thumb ) : ?>
 			<?php echo $post_thumb; ?>

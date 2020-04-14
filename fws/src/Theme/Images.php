@@ -26,6 +26,6 @@ class Images extends Singleton
 	 */
 	public function assetsSrc( string $imageFile, bool $isDemo = false ): string
 	{
-		return get_template_directory_uri() . ( $isDemo ? '/__demo/' : '/src/assets/images/' ) . $imageFile;
+		return esc_url( get_template_directory_uri() . ( $isDemo ? '/__demo/' : '/src/assets/images/' ) . $imageFile );
 	}
 }
