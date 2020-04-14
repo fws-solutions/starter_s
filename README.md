@@ -542,6 +542,10 @@ Some of the functions that can be used for **escaping**:
 
 Furthermore, using `(int)`, `(bool)` or `(array)` and **declaring prop types in front** of the returned value will make sure no unvanted conversion will happen.
 
+**Only fields that are suppose to render HTML directly should NOT be declared with prop type or escaped.**
+
+**This includes, for example, WYSIWYG field or get_post_thumbnail() function.**
+
 Lastly, it is **neccessary** to handle default value fallback in case no value is passed.
 
 Some examples would suggest using this approach `$smth = isset( $smth ) ? $smth : [];`, but our workflow **favors coalescing operator** which would translate the aforementioned
