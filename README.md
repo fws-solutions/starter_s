@@ -864,10 +864,3 @@ fws()->acf()->registerFlexContent( $fieldName, $location, $layouts, $hideOnScree
 ```
 
 For full description of each method, see appropriate files and examples in the theme.
-
-For creating a new class file inside `fws/src` directory, reference `Example.php` file located in `__wp-snippets` directory.
-
-To make methods available for direct calls, add on the top of the `FWS.php` a `@property` comment.
-
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/03/fws-inc-example.png
-)
