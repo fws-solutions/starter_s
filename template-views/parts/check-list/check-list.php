@@ -1,4 +1,15 @@
-<?php $check_list = get_query_var( 'content-parts' ); ?>
+<?php
+/**
+ * Template View for displaying Parts
+ *
+ * @link https://internal.forwardslashny.com/starter-theme/#blocks-and-parts
+ *
+ * @package fws_starter_s
+ */
+
+// get template view values
+$check_list = get_query_var( 'content-parts', [] );
+?>
 
 <div class="check-list">
 	<?php if ( $check_list ) : ?>

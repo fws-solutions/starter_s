@@ -110,7 +110,7 @@ class Render extends Singleton
 	 * @param string $name View name (file/dir name without extension)
 	 * @param string $type Type of the view (view parent directory): 'blocks' (default), 'parts'...
 	 */
-	public function templateView( $args, string $name, string $type = 'blocks' ): void
+	public function templateView( array $args, string $name, string $type = 'blocks' ): void
 	{
 		$viewVarName = 'content-' . $type;
 		$viewPath = 'template-views/' . $type . '/' . $name . '/' . $name;

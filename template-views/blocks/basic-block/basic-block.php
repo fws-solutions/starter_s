@@ -1,11 +1,20 @@
 <?php
 /**
- * @var string $section_id
- * @var string $section_title
- * @var string $content
- * @var array  $check_list
+ * Template View for displaying Blocks
+ *
+ * @link https://internal.forwardslashny.com/starter-theme/#blocks-and-parts
+ *
+ * @package fws_starter_s
  */
-extract( (array) get_query_var( 'content-blocks' ) );
+
+// get template view values
+$query_var = get_query_var( 'content-blocks', [] );
+
+// set and escape template view values
+$section_id = esc_textarea( $query_var['section_id'] ) ?? '';
+$section_title = esc_textarea( $query_var['section_title'] ) ?? '';
+$content = $query_var['content'] ?? '';
+$check_list = (array) $query_var['check_list'] ?? [];
 ?>
 
 <div class="basic-block"<?php echo $section_id ? ' id="' . $section_id . '"' : ''; ?>>

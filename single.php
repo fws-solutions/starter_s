@@ -19,6 +19,21 @@ while ( have_posts() ) {
 	the_post();
 
 	if ( get_post_type() == 'post' ) {
+		$post_id = get_the_ID();
+
+		$blog_single = [
+			'id' => $post_id,
+			'post_class' => get_post_class(),
+			'permalink' => get_the_permalink(),
+			'title' => get_the_title(),
+			'has_post_thumb' => has_post_thumbnail(),
+			'post_thumb' => get_the_post_thumbnail( $post_id, 'post-thumb' ),
+			'content' => get_the_content()
+
+		];
+
+		fws()->render()->templateView($blog_single, 'blog-single');
+
 		get_template_part( 'template-views/blocks/blog-single/blog-single' );
 	} else {
 		get_template_part( 'template-views/shared/content', get_post_type() );

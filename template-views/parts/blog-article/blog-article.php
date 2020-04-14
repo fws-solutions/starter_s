@@ -1,12 +1,22 @@
 <?php
-$content = get_query_var( 'content-parts', [] );
+/**
+ * Template View for displaying Parts
+ *
+ * @link https://internal.forwardslashny.com/starter-theme/#blocks-and-parts
+ *
+ * @package fws_starter_s
+ */
 
-$id = (int) $content['id'] ?? 0;
-$post_class = esc_attr( implode( ' ', $content['post_class'] ?? [] ) );
-$permalink = esc_url( $content['permalink'] ) ?? '';
-$title = esc_textarea( $content['title'] ) ?? '';
-$has_post_thumb = (bool) $content['has_post_thumb'] ?? false;
-$post_thumb = $content['post_thumb'] ?? '';
+// get template view values
+$query_var = get_query_var( 'content-parts', [] );
+
+// set and escape template view values
+$id = (int) $query_var['id'] ?? 0;
+$post_class = esc_attr( implode( ' ', $query_var['post_class'] ?? [] ) );
+$permalink = esc_url( $query_var['permalink'] ) ?? '';
+$title = esc_textarea( $query_var['title'] ) ?? '';
+$has_post_thumb = (bool) $query_var['has_post_thumb'] ?? false;
+$post_thumb = $query_var['post_thumb'] ?? '';
 ?>
 
 <article id="post-<?php echo $id; ?>" class="blog-article col-lg-4 <?php echo $post_class; ?>">

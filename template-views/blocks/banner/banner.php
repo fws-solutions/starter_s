@@ -1,13 +1,22 @@
 <?php
 /**
- * @var string $title
- * @var string $subtitle
- * @var array  $button
- * @var array  $desktop_image
- * @var array  $tablet_image
- * @var array  $mobile_image
+ * Template View for displaying Blocks
+ *
+ * @link https://internal.forwardslashny.com/starter-theme/#blocks-and-parts
+ *
+ * @package fws_starter_s
  */
-extract( (array) get_query_var( 'content-blocks' ) );
+
+// get template view values
+$query_var = get_query_var( 'content-blocks', [] );
+
+// set and escape template view values
+$title = esc_textarea( $query_var['title'] ) ?? '';
+$subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
+$button = (array) $query_var['button'] ?? [];
+$desktop_image = (array) $query_var['desktop_image'] ?? [];
+$tablet_image = (array) $query_var['tablet_image'] ?? [];
+$mobile_image = (array) $query_var['mobile_image'] ?? [];
 ?>
 
 <div class="banner">

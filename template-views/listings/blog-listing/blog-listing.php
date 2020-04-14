@@ -1,10 +1,20 @@
 <?php
 /**
- * @var string $title
- * @var string $subtitle
+ * Template View for displaying Listings
+ *
+ * @link https://internal.forwardslashny.com/starter-theme/#listings
+ *
+ * @package fws_starter_s
  */
-extract( (array) get_query_var( 'content-listings' ) );
+
+// get template view values
+$query_var = get_query_var( 'content-listings', [] );
+
+// set and escape template view values
+$title = esc_textarea( $query_var['title'] ) ?? '';
+$subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
 ?>
+
 <div class="blog-listing">
 	<div class="container">
 		<div class="blog-listing__head">

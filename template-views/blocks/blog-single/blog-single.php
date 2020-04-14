@@ -1,22 +1,34 @@
 <?php
 /**
- * Template part for displaying posts
+ * Template View for displaying Blocks
  *
- * @link    https://codex.wordpress.org/Template_Hierarchy
+ * @link https://internal.forwardslashny.com/starter-theme/#blocks-and-parts
  *
  * @package fws_starter_s
  */
+
+// get template view values
+$query_var = get_query_var( 'content-blocks', [] );
+
+// set and escape template view values
+$id = (int) $query_var['id'] ?? 0;
+$post_class = esc_attr( implode( ' ', $query_var['post_class'] ?? [] ) );
+$permalink = esc_url( $query_var['permalink'] ) ?? '';
+$title = esc_textarea( $query_var['title'] ) ?? '';
+$has_post_thumb = (bool) $query_var['has_post_thumb'] ?? false;
+$post_thumb = $query_var['post_thumb'] ?? '';
+$content = $query_var['content'] ?? '';
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class( 'blog-single' ); ?>>
-	<?php if ( has_post_thumbnail() ) : ?>
+<article id="post-<?php echo $id; ?>" class="blog-single <?php echo $post_class; ?>">
+	<?php if ( $has_post_thumb ) : ?>
 		<div class="blog-single__featured-image">
-			<?php the_post_thumbnail(); ?>
+			<?php echo $post_thumb; ?>
 		</div>
 	<?php endif; ?>
 
 	<header class="blog-single__header entry-header">
-		<h1 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h1>
+		<h1 class="entry-title"><a href="<?php echo $permalink; ?>"><?php echo $title; ?></a></h1>
 
 		<div class="blog-single__meta entry-meta">
 			<?php echo fws()->render()->getPostedOn(); ?>
@@ -25,8 +37,8 @@
 
 	<div class="blog-single__content">
 		<div class="entry-content">
-			<?php the_content(); ?>
+			<?php echo $content; ?>
 		</div><!-- .entry-content -->
 	</div>
 
-</article><!-- #post-<?php the_ID(); ?> -->
+</article><!-- #post-<?php echo $id; ?> -->

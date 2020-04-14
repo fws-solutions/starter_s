@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.2.0*
+*Version: 3.3.0*
 
 > It Only Does Everything.
 
@@ -399,7 +399,7 @@ JS code quality is checked with [ESLint](https://eslint.org/).
 
 ## Using Components
 
-### Components file structure
+### Components File Structure
 
 All components will be created in template-views directory.
 
@@ -443,17 +443,17 @@ These views should also be implemented **as a single file** per each component, 
 
 PHP template view file is relying on globally set variables that should be accessed using get_query_var() function.
 
-Template view should also use extract() function in order to break an array to separate variables.
+Template view should **always** map out all `$query_var` values in order to break an array to separate variables.
 
-The idea is to always pass all values using an array.
 ```
 <?php
-/**
- * @var string $title
- * @var string $subtitle
- * @var array $image
- */
-extract( (array) get_query_var( 'content-blocks' ) );
+// get template view values
+$query_var = get_query_var( 'content-blocks', [] );
+
+// set and escape template view values
+$title = esc_textarea( $query_var['title'] ) ?? '';
+$subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
+$image = (array) $query_var['mobile_image'] ?? [];
 ?>
 
 <div class="banner" style="background-image: url(<?php echo $image['sizes']['max-width']; ?>);">
@@ -465,6 +465,8 @@ extract( (array) get_query_var( 'content-blocks' ) );
 </div><!-- .banner -->
 ```
 
+More details about **prop types** and **escaping** in the **this** section, **Rendering Components** sub section below.
+
 #### Listings
 
 **Listings** view type, on the other hand, **can and should** contain some logic, but **only** limited to WP's Loop functionality.
@@ -474,10 +476,11 @@ In fact, any Post type **should** have and use **Listings** view type to loop ov
     Example:
 
     <?php
-    /**
-     * @var string $title
-     */
-    extract( (array) get_query_var( 'content-listings' ) );
+    // get template view values
+    $query_var = get_query_var( 'content-listings', [] );
+
+    // set and escape template view values
+    $title = esc_textarea( $query_var['title'] ) ?? '';
     ?>
 
     <div class="blog-listing">
@@ -510,10 +513,9 @@ HTML quality is checked with [htmllint](http://htmllint.github.io/).
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/).
 
-### Rendering components
+### Rendering Components
 
-Use FWS function *templateView(**array or string** $view_vals, **string** $view_name, **bool** $is_partial)* with configured *array* variable to map out components variables.
-
+Use FWS function *templateView(**array** $view_vals, **string** $view_name, **bool** $is_partial)* with configured *array* variable to map out components variables.
 
 ```
 $basic_block = [
@@ -524,6 +526,46 @@ $basic_block = [
 
 fws()->render()->templateView( $basic_block, 'banner' );
 ```
+
+#### Prop Types and Escaping
+
+Once a **configured array** variable is passed to template view file, it should **always** map out all it's values in order to break an array to separate variables. As noted in the section, **Components File Structure**, above.
+
+During array mappping to seperate variables, it is **very important** to declare prop types or handle value escaping where needed.
+
+Some of the functions that can be used for **escaping**:
+- `esc_attr` - used to escape any HTML attributes (id, class, data-attr, etc.),
+- `esc_url` - used to escape any HTML URLs (src, srcset, href, ...),
+- `esc_textarea`
+    - used to excape any text content that will not contain any HTML elements except <br> tags,
+    - these can be used, for example, for ACF text or textarea fields,
+
+Furthermore, using `(int)`, `(bool)` or `(array)` and **declaring prop types in front** of the returned value will make sure no unvanted conversion will happen.
+
+Lastly, it is **neccessary** to handle default value fallback in case no value is passed.
+
+Some examples would suggest using this approach `$smth = isset( $smth ) ? $smth : [];`, but our workflow **favors coalescing operator** which would translate the aforementioned
+approach to this `$smth ?? [];`;
+
+    Example 1: $smth = isset( $smth ) ? $smth : [];
+    Example 2: $smth ?? [];
+
+Both examples do the same thing, but obviously, much shorter code is the reason why *Example 2* is enforced in our workflow.
+
+    See full example of template view block:
+
+    // get template view values
+    $query_var = get_query_var( 'content-parts', [] );
+
+    // set and escape template view values
+    $id = (int) $query_var['id'] ?? 0;
+    $post_class = esc_attr( implode( ' ', $query_var['post_class'] ?? [] ) );
+    $permalink = esc_url( $query_var['permalink'] ) ?? '';
+    $title = esc_textarea( $query_var['title'] ) ?? '';
+    $has_post_thumb = (bool) $query_var['has_post_thumb'] ?? false;
+    $post_thumb = $query_var['post_thumb'] ?? '';
+
+
 
 ## Using ACF with Starter Theme
 
@@ -563,11 +605,11 @@ foreach ( get_field( 'content' ) as $fc ) {
 }
 ```
 
-In the example above, it is **important to note** that variable that is being passed to *templateView()* function **is not mapped out** as an array like in the previous example, but rather simply passed the current item from the loop.
+In the example above, it is **important to note** that variable that is being passed to *templateView()* function **is not set** as an array like in the previous example, but rather simply passed the current item from the loop.
 
-The reason this is possible is because of **the way ACF fields are named** in their field groups. Meaning, it is **absolutely required** to name the fields **as variables** in the template views.
+The reason this is possible is because of **the way ACF values are natively returned**. Meaning, ACF fields are **always stored and returned as an array**.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-mapping.png)
+![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/fws-acf-setup-new.png)
 
 Naming the fields same names as variables in the template views will make sure that each component gets properly formated array values which it needs for rendering properly.
 
