@@ -7,6 +7,9 @@
  * @package fws_starter_s
  */
 
+use FWS\Custom\FWS as CustomFWS;
+use FWS\Framework\FWS as FrameworkFWS;
+
 /**
  * Sets up theme defaults and registers support for various WordPress features.
  *
@@ -150,11 +153,11 @@ if ( file_exists( get_template_directory() . '/vendor/autoload.php' ) ) {
 	require_once get_template_directory() . '/vendor/autoload.php';
 
 	/**
-	 * @return FWS
+	 * @return FrameworkFWS
 	 */
-	function fws(): FWS
+	function fws(): FrameworkFWS
 	{
-		return FWS::init();
+		return CustomFWS::init();
 	}
 
 	fws();
