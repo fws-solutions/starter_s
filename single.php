@@ -33,8 +33,6 @@ while ( have_posts() ) {
 		];
 
 		fws()->render()->templateView($blog_single, 'blog-single');
-
-		get_template_part( 'template-views/blocks/blog-single/blog-single' );
 	} else {
 		get_template_part( 'template-views/shared/content', get_post_type() );
 	}
