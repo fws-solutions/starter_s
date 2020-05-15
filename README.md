@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.3.0*
+*Version: 3.3.1*
 
 > It Only Does Everything.
 
@@ -208,13 +208,13 @@ There are four types of template views:
 
 To create a new view, execute `fws create-file` command and pass `--block`, `--listing` or `--part` with an argument.
 
-    fws create-file component-name --block
+    fws create-file block-name --block
     fws create-file listing-name --listing
     fws create-file part-name --part
 
 Alternatively, it is possible and **recommended** to use short aliases.
 
-    fws cf component-name -b
+    fws cf block-name -b
     fws cf listing-name -l
     fws cf part-name -p
 
@@ -248,12 +248,12 @@ This command will delete all `.php` files in appropriate directory `template-vie
 
 To create a new Vue component, execute `fws creates files` command and pass `--block-vue` or `--part-vue` with an argument.
 
-    fws create-file component-name --block-vue
+    fws create-file block-name --block-vue
     fws create-file part-name --part-vue
 
 Alternatively, it is possible and **recommended** to use short aliases.
 
-    fws cf component-name -B
+    fws cf block-name -B
     fws cf part-name -P
 
 Note that in this case the option argument is passed with one '-' instead of two '--'.
@@ -408,14 +408,14 @@ Each component has three files:
 * .php *(comopnent template)*
 * .scss *(component styles)*
 
-#### _fe PHP files
+#### Frontend (_fe) PHP files
 
 File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP variables, methods or any other logic should be written here *(except helper functions for rendering images)*.
 
 ```
 <div class="banner" style="background-image: url(<?php echo fws()->images()->assets_src('banner.jpg', true); ?>);">
     <div class="banner__caption">
-        <span style="color: white;" class="banner-example__caption-icon font-ico-happy"></span>
+        <span style="color: white;" class="banner__caption-icon font-ico-happy"></span>
         <h1 class="banner__caption-title">Banner Title</h1>
         <p class="banner__caption-text">Here goes description paragraph</p>
     </div>
@@ -425,15 +425,100 @@ File with a '_fe' prefix is used only for pure frontend HTML structure, no PHP v
 - **(fe) template-views**
     - Used for writing HTML for each component.
     - Each component should be named with prefix "_fe-" and the rest of the name should be name of the component.
-    - When creating a variation of existing component or part use similar naming convention as BEM CSS class naming, for example:
-        - default: _fe-banner.php,
-        - variation-1: _fe-banner--big.php,
-        - variation-2: _fe-banner--about-page.php.
-    - The idea is to always use full name of component "_fe-something", use "--" for chaining and last part of file is arbitrarily.
+    - When creating a variation of existing block or part use similar naming convention as BEM CSS class naming. More on this in the section bellow - **Frontend Component Variation**.
 - **fe-templates**
     - Used for combining frontend components into a single page.
     - Each page should be named with prefix "fe-" and the rest of the name should be name of the page, for example: fe-homepage.php.
     - Each page should never contain anything but a call to a template view.
+
+#### Frontend Component Variation
+
+Creating a variation of existing block or part should use similar naming convention as BEM CSS class naming, for example:
+
+- default: _fe-banner.php,
+- variation-1: _fe-banner--big.php,
+- variation-2: _fe-banner--about-page.php.
+
+The idea is to always use full name of component "_fe-something", use "--" for chaining and last part of file is arbitrarily.
+
+Furthermore, any *\_fe* component needs to be properly structured and commented in order to achieve most flexible and clean backend integration.
+
+**See examples bellow:**
+
+**Default Component**
+```
+<div class="box">
+    <div class="box__container container">
+    	<div class="box__content">
+            <h2 class="box__title section-title">Some Title</h2>
+
+            <p class="box__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            <a class="box__button btn" href="...">Some button</a>
+    	</div>
+
+    	<div class="box__media">
+            <img class="box__img" src="..."/>
+    	</div>
+    </div>
+</div>
+```
+
+**Variation Component - Bad Example**
+
+```
+<div class="box">
+    <div class="box__container container">
+    	<div class="box__media box__media--reverse">
+    	    <img class="box__img" src="..."/>
+    	</div>
+
+        <div class="box__content box__content--reverse">
+            <h2 class="box__title box__title--reverse section-title">Some Title</h2>
+
+            <p class="box__text box__text--reverse">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+    	</div>
+    </div>
+</div>
+```
+
+What is wrong with this example? A lot of things:
+
+- HTML structure is changed, we have box media showing before box content, this will require backend to write unneccessary rendering logic and code duplication,
+- too many BEM--modifier classes,
+- button is missing and there is nothing to note that,
+- no TODO comments what so ever.
+
+In this example, we can see how a lot of stuff can be very difficult for backend implementation, and without any TODO comments, it is very easy to miss little details that are essential.
+
+**Variation Component - Good Example**
+
+```
+// TODO - add 'box--reverse' class
+<div class="box box--reverse">
+    <div class="box__container container">
+    	<div class="box__content">
+            <h2 class="box__title section-title">Some Title</h2>
+
+            <p class="box__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+
+            // TODO - 'box__button' removed
+    	</div>
+
+    	<div class="box__media">
+            <img class="box__img" src="..."/>
+    	</div>
+    </div>
+</div>
+```
+
+The *good example* illustrates much more cleaner and backend friendly component variation structure:
+
+- HTML code is almost identical,
+- only one BEM--modifier class is placed at the top level element, this not only makes is easier for backend implementation but also for CSS styling,
+- TODO comment is placed for anything that this variation differs from default component.
+
+**General Note:** FE developer should always tend to follow this example and make sure each variation is as similar as possible to the Default Component structure and commented out with TODO comments fully.
 
 #### Blocks and Parts
 
