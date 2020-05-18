@@ -3,6 +3,7 @@ declare( strict_types = 1 );
 
 namespace FWS\Theme;
 
+use DOMDocument;
 use FWS\Singleton;
 
 /**
@@ -27,12 +28,22 @@ class Render extends Singleton
 	 */
 	public function inlineSVG( string $svgFileName, string $classes = '' ): string
 	{
-		$svgFilePath = get_template_directory_uri() . '/src/assets/svg/' . $svgFileName . '.svg';
+		$svgFilePath = get_template_directory() . '/src/assets/svg/' . $svgFileName . '.svg';
+
+		if ( ! file_exists( $svgFilePath ) ) {
+			return $this->svgErrorHtml( 'SVG file does not exist', $svgFilePath );
+		}
 
 		$svg = file_get_contents( $svgFilePath );
 
 		if ( ! $svg ) {
-			return '<span style="display: block; color: white; font-weight: bold; background-color: red; padding: 10px; text-align: center;">No SVG file found:<br><span style="font-weight: normal">' . $svgFilePath . '</span></span>';
+			return $this->svgErrorHtml( 'SVG file is empty', $svgFilePath );
+		}
+
+		$insecure = $this->isSvgInsecure( $svg );
+
+		if ( $insecure ) {
+			return $this->svgErrorHtml( 'SVG file contains insecure tag <' . $insecure . '>, output prevented', $svgFilePath );
 		}
 
 		// This will remove all id="" attributes from the svg
@@ -159,5 +170,38 @@ class Render extends Singleton
 		echo '<pre style="position: relative; z-index: 100001; background-color: #999;">';
 		var_dump( $value );
 		echo '</pre>';
+	}
+
+	/**
+	 * @param string $svgContent
+	 *
+	 * @return null|string
+	 */
+	private function isSvgInsecure( string $svgContent ): ?string
+	{
+		$dom = new DOMDocument();
+		libxml_use_internal_errors( true );
+		$dom->loadHTML( $svgContent );
+
+		$insecureTags = [ 'script', 'style', 'iframe', 'link', 'a' ];
+
+		foreach ( $insecureTags as $tag ) {
+			if ( $dom->getElementsByTagName( $tag )->length ) {
+				return $tag;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * @param string $message
+	 * @param string $path
+	 *
+	 * @return string
+	 */
+	private function svgErrorHtml( string $message, string $path ): string
+	{
+		return '<span style="display: block; color: white; font-weight: bold; background-color: red; padding: 10px; text-align: center;">' . esc_html( $message ) . ':<br><span style="font-weight: normal">' . esc_html( $path ) . '</span></span>';
 	}
 }
