@@ -15,7 +15,7 @@
 
 	<footer id="colophon" class="site-footer">
 		<div class="copyright">
-			<p>&copy; 2017 Sarter Theme</p>
+			<p>&copy; <?php echo date( 'Y' ); ?> Starter Theme</p>
 		</div><!-- .copyright -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

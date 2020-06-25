@@ -1,16 +1,19 @@
 <?php
 declare( strict_types=1 );
 
-namespace FWS;
+namespace FWS\CPT;
+
+use FWS\SingletonHook;
 
 /**
  * Singleton Class CPTName
  *
  * @package FWS
  */
-class CPTName {
+class CPTName extends SingletonHook {
 
-	use Main;
+	/** @var self */
+	protected static $instance;
 
 	/**
 	 * Set CPT params and config here.
@@ -21,14 +24,6 @@ class CPTName {
 		'taxSingularName'  => 'Custom Post Category',
 		'taxPluralName'    => 'Custom Post Categories',
 	];
-
-	/**
-	 * Main constructor.
-	 */
-	private function __construct()
-	{
-		$this->hooks();
-	}
 
 	/**
 	 * Drop your hooks here.
@@ -131,5 +126,3 @@ class CPTName {
 		return $prefix . $slug;
 	}
 }
-
-return CPTName::getInstance();
