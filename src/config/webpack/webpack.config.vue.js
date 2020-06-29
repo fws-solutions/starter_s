@@ -6,7 +6,7 @@ module.exports = {
 	entry: './src/vue/app.js',
 	output: {
 		path: join(__dirname, './dist/'),
-		filename: 'build.js'
+		filename: 'vue.min.js'
 	},
 	module: {
 		rules: [

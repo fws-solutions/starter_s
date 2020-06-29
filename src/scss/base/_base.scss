@@ -18,7 +18,7 @@ body {
 	}
 
 	@include mq($xl + 1, min) {
-		overscroll-behavior-y: none;
+		overscroll-behavior-y: none; //sass-lint:disable-line no-misspelled-properties
 	}
 }
 

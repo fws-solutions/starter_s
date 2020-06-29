@@ -2,5 +2,12 @@
 ## slider
 --------------------------------------------------------------*/
 .slider {
+	.slick-slide {
+		outline: 0;
 
+		img {
+			width: 100%;
+			display: block;
+		}
+	}
 }

@@ -387,8 +387,8 @@ class Styleguide extends Singleton
 				<h3>Image</h3>
 
 				<figure class="wp-caption alignnone">
-					<a href="<?php echo fws()->images()->assetsSrc('girl.jpg', true) ?>">
-						<img class="wp-image-1 size-full" src="<?php echo fws()->images()->assetsSrc('girl-md.jpg', true) ?>" alt="">
+					<a href="<?php echo fws()->images()->assetsSrc('dog-office.jpg', true) ?>">
+						<img class="wp-image-1 size-full" src="<?php echo fws()->images()->assetsSrc('dog-office-md.jpg', true) ?>" alt="">
 					</a>
 
 					<figcaption class="wp-caption-text">Greatness Awaits!</figcaption>

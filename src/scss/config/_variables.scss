@@ -13,25 +13,11 @@ $site-fonts: (
 
 // Colors
 $white: #fff;
-$grey-light: #eee;
-$grey-mid: #999;
-$grey: #656565;
-$grey-dark: #333;
 $black: #000;
-$red: #e2401c;
-$green: #4fc08d;
-$blue: #3d9cd2;
 
 $site-colors: (
 	'white': $white,
-	'grey-light': $grey-light,
-	'grey-mid': $grey-mid,
-	'grey': $grey,
-	'grey-dark': $grey-dark,
-	'black': $black,
-	'red': $red,
-	'green': $green,
-	'blue': $blue
+	'black': $black
 ) !default;
 
 // 404 - Set this color to follow site style
@@ -45,21 +31,24 @@ $sg-orange: #e95626;
 $sg-blue: #71999e;
 $sg-grey: #fafafa;
 
-// Dashboard colors
-$login-text: $black;
-$login-btn: #cfb283;
-$login-bkg: #f0f0f0;
-
-
 // Transitions
 $dur: 350ms;
 $ease: ease;
+
+// Breakpoints
+$phone: 640;
+$tablet: 991;
+$tablet-l: 1199;
+$lap-small: 1250;
+$lap-large: 1400;
+
 
 /*--------------------------------------------------------------
 ## Bootstrap Variables
 --------------------------------------------------------------*/
 $enable-grid-classes: true !default;
 
+// Media queries breakpoints - Grid breakpoint
 $grid-breakpoints: (
 	xs: 0,
 	sm: 576px,
@@ -76,6 +65,10 @@ $container-max-widths: (
 	xl: 1140px
 ) !default;
 
+// Grid columns
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+
 /*
 	Breakpoints for max-width.
 
@@ -91,33 +84,3 @@ $lg: map-get($grid-breakpoints, lg) - 1;
 $xl: map-get($grid-breakpoints, xl) - 1;
 $lap-small: 1250px;
 $lap-large: 1400px;
-
-// Grid columns
-$grid-columns: 12 !default;
-$grid-gutter-width: 30px !default;
-
-
-/*--------------------------------------------------------------
-## Woocommerce Variables
---------------------------------------------------------------*/
-$woo-color-error: $red;
-$woo-color-success: $green;
-$woo-color-info: $blue;
-
-$columns: (
-	1: 100%,
-	2: 50%,
-	3: 33.33%,
-	4: 25%,
-	5: 20%,
-	6: 16.66%,
-	7: 14.28%,
-	8: 12.5%,
-	9: 11.11%
-);
-$columns-margin: 3.8%;
-
-// Column width with margin
-@mixin column-width($number-columns: 3) {
-	width: map-get($columns, $number-columns) - (($columns-margin * ($number-columns - 1)) / $number-columns);
-}

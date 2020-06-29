@@ -45,9 +45,9 @@ function siteJS() {
 // task: build vue
 gulp.task('vue-js', vueJS);
 
-webpackVue.mode = globalVars.productionBuild ? 'production' : 'development';
-
 function vueJS() {
+	webpackVue.mode = globalVars.productionBuild ? 'production' : 'development';
+
 	return gulp.src('src/vue/app.js')
 		.pipe(plumber())
 		.pipe(webpack(webpackVue))
@@ -79,8 +79,7 @@ gulp.task('merge-js', mergeJS);
 function mergeJS() {
 	return gulp.src([
 		destDir + '/plugins.js',
-		destDir + '/site.js',
-		destDir + '/build.js'
+		destDir + '/site.js'
 	])
 		.pipe(plumber(globalVars.msgERROR))
 		.pipe(sourcemaps.init())
@@ -95,8 +94,7 @@ gulp.task('clean-js', cleanJS);
 function cleanJS() {
 	return gulp.src([
 		destDir + '/plugins.js',
-		destDir + '/site.js',
-		destDir + '/build.js'], {read: false})
+		destDir + '/site.js'], {read: false})
 		.pipe(clean());
 }
 

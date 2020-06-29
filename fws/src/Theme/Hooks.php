@@ -167,6 +167,23 @@ class Hooks extends SingletonHook
 		return '';
 	}
 
+
+	/**
+	 * Add defer attribute to enqueued scripts
+	 */
+	public function addDeferToScript($tag, $handle) {
+		$handles = [
+			'fws_starter_s-site-js',
+			'fws_starter_s-vue-js'
+		];
+
+		if (in_array($handle, $handles) && !stripos($tag, 'defer') && stripos($tag, 'defer') !== 0) {
+			$tag = str_replace('<script ', '<script defer ', $tag);
+		}
+
+		return $tag;
+	}
+
 	/**
 	 * Drop your hooks here.
 	 */
@@ -182,6 +199,9 @@ class Hooks extends SingletonHook
 		add_action( 'login_enqueue_scripts', [ $this, 'addAdminStyles' ] );
 		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
 		add_action( 'admin_notices', [ $this, 'dependenciesNotice' ] );
+
+		// Add defer and async to scripts
+		add_filter('script_loader_tag', [ $this, 'addDeferToScript' ], 10, 2);
 
 		// Remove RSS Feed from WP head
 		remove_action( 'wp_head', 'feed_links_extra', 3 );
