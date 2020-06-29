@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.3.2*
+*Version: 3.3.3*
 
 > It Only Does Everything.
 
@@ -915,13 +915,18 @@ The `woocommerce` root directory should **only contain** files that are being ov
 
 ### Custom Post Types and Taxonomies
 
-Registrating custom post types and taxonomies must always be done using FWS Engine.
+Registering custom post types and taxonomies must always be done using FWS Engine.
 
-Each custom post type with it's taxonomies must be placed in a single file inside `fws/src` directory.
+Each custom post type with belonging taxonomies must be placed in a single file inside 
+`fws/src/CPT` directory. If custom post type is a part of a broader business logic, than it would 
+make more sense to put it into its own namespace which better describes that feature or component.
+If you are using different folder structure, make sure that the namespace reflects that.
 
-Always use `CTPName.php` example file located in `__wp_snippets` directory.
+Always use `CTPName.php` example file located in `__wp_snippets` directory. Copy the file to
+`fws/src/CPT` folder and make sure you rename both the file and the Class. Both should be exactly
+the same.
 
-Use `$private` array variable to configure names of custom post type and taxonomies.
+Use `$params` array variable to configure names of custom post type and taxonomies.
 
 Example:
 
@@ -932,9 +937,11 @@ Example:
         'taxPluralName'    => 'Custom Post Categories',
     ];
 
-Methods within the CPT class will handle `$params` varibale to pull appropriate names, labels and generate a slug.
+Methods within the CPT class will handle `$params` variable to pull appropriate names, 
+labels and generate a slug.
 
-Slug and Nice Name are being based on singular name of a custom post type or taxonomy. FWS will replace any space characters for `_` or `-` character and add appropriate prefix when needed.
+Slug and Nice Name are based on the singular name of a custom post type or taxonomy. 
+FWS will replace any space characters for `_` or `-` character and add appropriate prefix when needed.
 
 Slug is used for registrating custom post type or taxonomy under this name, it will use `_` character and a prefix.
 
