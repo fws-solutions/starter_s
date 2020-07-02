@@ -1,5 +1,5 @@
 const $ = jQuery.noConflict();
-import PerfectScrollbar from './../_plugins/perfect-scrollbar';
+import PerfectScrollbar from 'perfect-scrollbar';
 
 'use strict';
 const PSB = {

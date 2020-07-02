@@ -1,3 +1,13 @@
+/**
+ * Import NPM scripts
+ */
+import '@fancyapps/fancybox';
+import 'select2';
+import 'slick-carousel';
+
+/**
+ * Import site scripts
+ */
 import Menu from './_site/menu';
 import Sliders from './_site/sliders';
 import ScrollTo from './_site/scrollTo';
@@ -7,6 +17,9 @@ import Select2 from './_site/select2';
 import FormHelpers from './_site/formHelpers';
 import PerfectScroll from './_site/perfectScroll';
 
+/**
+ * Init site scripts
+ */
 jQuery(function() {
 	Styleguide.init();
 	Menu.init();
