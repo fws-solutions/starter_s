@@ -41,8 +41,7 @@ gulp.task('build', gulp.series(
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
-	),
-	gtHtmlLint.htmlw3
+	)
 ));
 
 // build all files for development
@@ -62,8 +61,7 @@ gulp.task('build-dev', gulp.series(
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
-	),
-	gtHtmlLint.htmlw3
+	)
 ));
 
 // remove dist folder
@@ -92,6 +90,5 @@ gulp.task('watch', gulp.series(
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
 	),
-	gtHtmlLint.htmlw3,
 	gtWatch.watchFiles
 ));

@@ -20,3 +20,4 @@ index.sublime-workspace
 # ignore node_modules
 node_modules
 vendor
+.env

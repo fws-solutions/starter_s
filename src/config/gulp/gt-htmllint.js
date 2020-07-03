@@ -2,35 +2,6 @@ const gulp = require('gulp');
 const htmllint = require('gulp-htmllint');
 const fancyLog = require('fancy-log');
 const colors = require('ansi-colors');
-const yaml = require('js-yaml');
-const fs = require('fs');
-const w3 = require('forwardslash-cli').w3;
-const exec = require('child_process').exec;
-
-/*----------------------------------------------------------------------------------------------
-	W3 Validator
- ----------------------------------------------------------------------------------------------*/
-gulp.task('html-w3', htmlw3);
-
-function htmlw3(done) {
-	const localURL = yaml.safeLoad(fs.readFileSync('.fwsconfig.yml', 'utf8'))['global']['virtual-host'];
-	//w3(localURL, done);
-
-	exec('fws w3 https://asllighting.com/', function (err, stdout, stderr) {
-		console.log(stdout);
-		console.log(stderr);
-		console.log(err);
-		done();
-	});
-}
-
-// gulp.task('task', function (cb) {
-// 	exec('ping localhost', function (err, stdout, stderr) {
-// 		console.log(stdout);
-// 		console.log(stderr);
-// 		cb(err);
-// 	});
-// })
 
 /*----------------------------------------------------------------------------------------------
 	HTML Lint
@@ -87,6 +58,5 @@ function htmllintReporter(filepath, issues) {
 
 // export tasks
 module.exports = {
-	htmlw3: htmlw3,
 	htmlLint: htmlLint
 };

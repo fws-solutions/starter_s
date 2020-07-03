@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.3.3*
+*Version: 3.4.0*
 
 > It Only Does Everything.
 
@@ -29,7 +29,6 @@ Use `.fwsconfig.yml` file to configure top level theme options.
 ### Global Config
 
 - `theme-name` - set theme full name
-- `virtual-host` - set local env url
 - `recovery-mode-emails` - set the fatal error handler email address from admin's to our internal
 - `prevent-plugin-update` - enable only logged in users with declared email domain to add/update/remove plugins
 - `acf-only-local-editing` - enable acf to edit and manage only on local enviorment
@@ -37,7 +36,6 @@ Use `.fwsconfig.yml` file to configure top level theme options.
 
     global:
         theme-name: 'FWS Starter _S'
-        virtual-host: 'http://starter.local/'
         recovery-mode-emails:
             - 'nick@forwardslashny.com'
             - 'boris@forwardslashny.com'
@@ -54,9 +52,13 @@ Use `.fwsconfig.yml` file to configure top level theme options.
 
 #### Local Virtual Host
 
-Local enviorment and virtual host **must** be named exactly the same as it is defiend in `.fwsconfig.yml` file in the variable `virtual-host`.
+Local enviorment **needs** to be declared in an `.env` file in order for project to work properly.
 
-    virtual-host: 'http://somedomain.local/'
+`.env` file is on git ignore list, but there's also an `.env.example` file that should be cloned and renamed to `.env`.
+
+With this in mind, every team member can be free to name their virual hosts whatever they want to.
+
+    VIRTUAL_HOST_URL=http://project-name.local/
 
 ### ACF Fields Config
 
@@ -331,15 +333,15 @@ Additionally you can set any other standard HTML attributes, like `class`.
 
 ### W3 Validator
 
-To run W3 Validator, execute `fws w3-local` command.
+To run W3 Validator locally, execute `fws w3 local` command.
 
-    fws w3-local
+    fws w3 local
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/) API.
 
-This command will only work if local enviorment and virtual host is named exactly the same as it is defiend in `.fwsconfig.yml` file in the property `virtual-host: 'http://somedomain.local/';`.
+This command will only work if local enviorment and virtual host is declared in `.env` file in the property `VIRTUAL_HOST_URL=http://project-name.local/`.
 
-**This is a must**, your virtual host URL must be **exactly the same** as `virtual-host` property.
+**This is a must**, your virtual host URL **must be** declared in this manner in order for W3 to work.
 
 Furthermore, W3 Validator has the **only** command that **can be run outside** of the Starter Theme's root directory.
 
@@ -917,8 +919,8 @@ The `woocommerce` root directory should **only contain** files that are being ov
 
 Registering custom post types and taxonomies must always be done using FWS Engine.
 
-Each custom post type with belonging taxonomies must be placed in a single file inside 
-`fws/src/CPT` directory. If custom post type is a part of a broader business logic, than it would 
+Each custom post type with belonging taxonomies must be placed in a single file inside
+`fws/src/CPT` directory. If custom post type is a part of a broader business logic, than it would
 make more sense to put it into its own namespace which better describes that feature or component.
 If you are using different folder structure, make sure that the namespace reflects that.
 
@@ -937,10 +939,10 @@ Example:
         'taxPluralName'    => 'Custom Post Categories',
     ];
 
-Methods within the CPT class will handle `$params` variable to pull appropriate names, 
+Methods within the CPT class will handle `$params` variable to pull appropriate names,
 labels and generate a slug.
 
-Slug and Nice Name are based on the singular name of a custom post type or taxonomy. 
+Slug and Nice Name are based on the singular name of a custom post type or taxonomy.
 FWS will replace any space characters for `_` or `-` character and add appropriate prefix when needed.
 
 Slug is used for registrating custom post type or taxonomy under this name, it will use `_` character and a prefix.
