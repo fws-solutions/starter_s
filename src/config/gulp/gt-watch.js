@@ -18,7 +18,6 @@ function watchFiles(done) {
 
 	// watch .php files
 	gulp.watch(['template-views/**/*.php'], gulp.series(['html-lint-be']));
-	gulp.watch(['./*.php', 'templates/*.php', 'template-views/**/*.php', 'woocommerce/**/*.php'], gulp.series(['html-w3']));
 	done();
 }
 
