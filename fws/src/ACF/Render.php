@@ -32,10 +32,11 @@ class Render extends Singleton
 		}
 
 		return sprintf(
-			'<a %s href="%s" target="%s">%s</a>',
+			'<a %s href="%s" %s %s>%s</a>',
 			$linkClasses ? 'class="' . $linkClasses . '"' : '',
 			esc_url( $linkField['url'] ),
-			esc_attr( $linkField['target'] ?: '_self' ),
+			esc_attr( $linkField['target'] === '_blank' ? 'target=_blank' : '' ),
+			esc_attr($linkField['target'] === '_blank' ? 'rel=noopener' : ''),
 			esc_html( $linkField['title'] )
 		);
 	}

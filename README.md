@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.4.1*
+*Version: 3.5.0*
 
 > It Only Does Everything.
 
@@ -540,7 +540,7 @@ $query_var = get_query_var( 'content-blocks', [] );
 // set and escape template view values
 $title = esc_textarea( $query_var['title'] ) ?? '';
 $subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
-$image = (array) $query_var['mobile_image'] ?? [];
+$image = $query_var['mobile_image'] ?? [];
 ?>
 
 <div class="banner" style="background-image: url(<?php echo $image['sizes']['max-width']; ?>);">
@@ -626,8 +626,6 @@ Some of the functions that can be used for **escaping**:
 - `esc_textarea`
     - used to excape any text content that will not contain any HTML elements except <br> tags,
     - these can be used, for example, for ACF text or textarea fields,
-
-Furthermore, using `(int)`, `(bool)` or `(array)` and **declaring prop types in front** of the returned value will make sure no unvanted conversion will happen.
 
 **Only fields that are suppose to render HTML directly should NOT be declared with prop type or escaped.**
 
@@ -924,22 +922,32 @@ Each custom post type with belonging taxonomies must be placed in a single file 
 make more sense to put it into its own namespace which better describes that feature or component.
 If you are using different folder structure, make sure that the namespace reflects that.
 
-Always use `CTPName.php` example file located in `__wp_snippets` directory. Copy the file to
+Always use `CPTName.php` example file located in `__wp_snippets` directory. Copy the file to
 `fws/src/CPT` folder and make sure you rename both the file and the Class. Both should be exactly
 the same.
 
-Use `$params` array variable to configure names of custom post type and taxonomies.
+Use `$postConfig` and `$taxConfig` array variable to configure names of custom post type and taxonomies.
 
 Example:
 
-    private $params = [
-        'postSingularName' => 'Custom Post',
-        'postPluralName'   => 'Custom Posts',
-        'taxSingularName'  => 'Custom Post Category',
-        'taxPluralName'    => 'Custom Post Categories',
+    private $postConfig = [
+        'singularName' => 'Custom Post',
+        'pluralName'   => 'Custom Posts',
+        'dashIcon' => 'dashicons-admin-post'
     ];
 
-Methods within the CPT class will handle `$params` variable to pull appropriate names,
+    private $taxConfig = [
+        [
+            'singularName'  => 'Custom Post Category',
+            'pluralName'    => 'Custom Post Categories',
+        ],
+        [
+            'singularName'  => 'Custom Post Attribute',
+            'pluralName'    => 'Custom Post Attributes',
+        ]
+    ];
+
+Methods within the CPT class will handle `$postConfig` and `$taxConfig` variable to pull appropriate names,
 labels and generate a slug.
 
 Slug and Nice Name are based on the singular name of a custom post type or taxonomy.
@@ -955,11 +963,16 @@ Prefixes are defined as follows:
 
 Example:
 
-    private $params = [
+    private $postConfig = [
         'postSingularName' => 'Book',
-        'postPluralName'   => 'Books',
-        'taxSingularName'  => 'Book Category',
-        'taxPluralName'    => 'Books Categories',
+        'postPluralName'   => 'Books'
+    ];
+
+    private $taxConfig = [
+        [
+            'singularName'  => 'Book Category',
+            'pluralName'    => 'Books Categories',
+        ]
     ];
 
 This will result in custom post type and taxonomy being registrated under the slugs:
@@ -981,16 +994,40 @@ Always make a new function for additional taxonomies for a custom post type.
 
 When in need for a taxonomy that is shared accross multiple post types, create a seperate class file.
 
+To init CPT class, it must be inlcuded and initiliaized in `FWS.php` file.
+
+
+**In `FWS.php` file:**
+
+    <?php
+    declare( strict_types = 1 );
+
+    ...
+    use FWS\CPT\CPTBooks as CPTBooks;
+
+    protected function __construct()
+    {
+        ...
+
+        // Theme CPTs
+        CPTBooks::init();
+
+        ...
+    }
+
+
+
 ### Utilities
 
 List of all helper functions from this Starter Theme:
 
 - `templateView()` - *Renders template component or part with configured array variable that maps out template view's variables. The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.*
-- `acfLinkField()` - *Renders ACF link field with all field params.*
+- `linkField()` - *Renders ACF link field with all field params.*
 - `inlineSVG()` - *Renders an inline SVG into any template.*
 - `postedOn()` - *Prints HTML with meta information for the current post-date/time and author.*
 - `pagingNav()` - *Outputs the paging navigation based on the global query.*
-- `assets_src()` - *Render image src from 'src/assets/images' or `__demo` directory.*
+- `assetsSrc()` - *Render image src from 'src/assets/images' or `__demo` directory.*
+- `varDump()` - *A better way to `var_dump()` stuff.*
 
 All helper functions are defined as methods in defined classes that are all loading from **fws/FWS.php** file.
 
@@ -998,9 +1035,10 @@ Each method is available through instance of FWS class and instances of other cl
 
 Example:
 ```
-fws()->render()->templateView( $view_vals, $view_name, $is_partial );
-fws()->images()->assets_src( $image_file, $is_demo );
-fws()->acf()->registerFlexContent( $fieldName, $location, $layouts, $hideOnScreen );
+fws()->render()->templateView( $data, 'banner' );
+echo fws()->images()->assetsSrc( 'dog-md.jpg', true );
+echo fws()->acf()->linkField( $button, 'banner__btn btn' )
+
 ```
 
 For full description of each method, see appropriate files and examples in the theme.

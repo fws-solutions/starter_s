@@ -117,11 +117,11 @@ class Render extends Singleton
 	 * Renders template component or part with configured *array* variable that maps out template view's variables.
 	 * The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.
 	 *
-	 * @param array  $args Args to pass to the view
+	 * @param $args
 	 * @param string $name View name (file/dir name without extension)
 	 * @param string $type Type of the view (view parent directory): 'blocks' (default), 'parts'...
 	 */
-	public function templateView( array $args, string $name, string $type = 'blocks' ): void
+	public function templateView( $args, string $name, string $type = 'blocks' ): void
 	{
 		$viewVarName = 'content-' . $type;
 		$viewPath = 'template-views/' . $type . '/' . $name . '/' . $name;

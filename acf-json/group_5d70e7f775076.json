@@ -50,11 +50,13 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
+    "show_in_graphql": 0,
+    "graphql_field_name": "fcSlider",
     "acf-field-group-category": [
         {
             "slug": "flexible-content",
             "name": "Flexible Content"
         }
     ],
-    "modified": 1582897526
+    "modified": 1594393327
 }

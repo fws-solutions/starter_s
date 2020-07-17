@@ -30,7 +30,7 @@
 			<div class="site-header__container">
 				<div class="site-header__branding">
 					<a class="site-header__logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-						<img class="site-header__logo-img" src="<?php echo get_template_directory_uri(); ?>/src/assets/images/logo-white.png" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
+						<img class="site-header__logo-img" src="<?php echo fws()->images()->assetsSrc('logo-white.png'); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
 					</a>
 				</div>
 

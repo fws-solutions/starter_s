@@ -15,7 +15,10 @@ $check_list = get_query_var( 'content-parts', [] );
 	<?php if ( $check_list ) : ?>
 		<ul class="check-list__items">
 			<?php foreach ( $check_list as $item ) : ?>
-				<li class="check-list__item"><span class="font-ico-plus-circle"></span><?php echo $item['item']; ?></li>
+				<li class="check-list__item">
+					<?php echo fws()->render()->inlineSVG('ico-dog', 'check-list__icon'); ?>
+					<span class="check-list__text"><?php echo $item['item']; ?></span>
+				</li>
 			<?php endforeach; ?>
 		</ul>
 	<?php endif; ?>

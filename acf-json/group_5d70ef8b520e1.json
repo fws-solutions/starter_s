@@ -1,28 +1,23 @@
 {
     "key": "group_5d70ef8b520e1",
-    "title": "RE Section Background",
+    "title": "RE Background Image",
     "fields": [
         {
-            "key": "field_5d70efe2eb988",
-            "label": "Image Type",
-            "name": "image_type",
-            "type": "true_false",
+            "key": "field_5f1013f96335d",
+            "label": "",
+            "name": "",
+            "type": "message",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "message": "",
-            "default_value": 0,
-            "ui": 1,
-            "ui_on_text": "Responsive Image",
-            "ui_off_text": "Single Image",
-            "acfe_validate": "",
-            "acfe_update": ""
+            "message": "<b>Background Image<\/b>\r\nSet background image and text color. Make sure to upload all three image sizes for best page performance on mobile devices.",
+            "new_lines": "wpautop",
+            "esc_html": 0
         },
         {
             "key": "field_5d70efe5eb989",
@@ -33,77 +28,31 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "16",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
+            "show_in_graphql": 1,
             "message": "",
             "default_value": 0,
             "ui": 1,
             "ui_on_text": "White Text",
-            "ui_off_text": "Black Text",
-            "acfe_validate": "",
-            "acfe_update": ""
-        },
-        {
-            "key": "field_5d70efe7eb98a",
-            "label": "Single Image",
-            "name": "single_image",
-            "type": "image",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5d70efe2eb988",
-                        "operator": "!=",
-                        "value": "1"
-                    }
-                ]
-            ],
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
+            "ui_off_text": "Black Text"
         },
         {
             "key": "field_5d70efe9eb98b",
             "label": "Desktop Image",
             "name": "desktop_image",
             "type": "image",
-            "instructions": "",
+            "instructions": "Recommended image width should be no more then 2000px.",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5d70efe2eb988",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "28",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
+            "show_in_graphql": 1,
             "return_format": "array",
             "preview_size": "thumbnail",
             "library": "all",
@@ -113,33 +62,22 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
+            "mime_types": ""
         },
         {
             "key": "field_5d70efebeb98c",
             "label": "Tablet Image",
             "name": "tablet_image",
             "type": "image",
-            "instructions": "",
+            "instructions": "Recommended image width should be no more then 1024px.",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5d70efe2eb988",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "28",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
+            "show_in_graphql": 1,
             "return_format": "array",
             "preview_size": "thumbnail",
             "library": "all",
@@ -149,33 +87,22 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
+            "mime_types": ""
         },
         {
             "key": "field_5d70efedeb98d",
             "label": "Mobile Image",
             "name": "mobile_image",
             "type": "image",
-            "instructions": "",
+            "instructions": "Recommended image width should be no more then 640px.",
             "required": 0,
-            "conditional_logic": [
-                [
-                    {
-                        "field": "field_5d70efe2eb988",
-                        "operator": "==",
-                        "value": "1"
-                    }
-                ]
-            ],
+            "conditional_logic": 0,
             "wrapper": {
-                "width": "33",
+                "width": "28",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
+            "show_in_graphql": 1,
             "return_format": "array",
             "preview_size": "thumbnail",
             "library": "all",
@@ -185,10 +112,7 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
+            "mime_types": ""
         }
     ],
     "location": [
@@ -208,11 +132,13 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
+    "show_in_graphql": 0,
+    "graphql_field_name": "reSectionBackground",
     "acf-field-group-category": [
         {
             "slug": "reusable-elements",
             "name": "Reusable Elements"
         }
     ],
-    "modified": 1582897529
+    "modified": 1594889333
 }

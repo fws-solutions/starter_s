@@ -47,7 +47,7 @@
 			</div>
 		</div>
 
-		<?php get_template_part( 'template-views/partials/check-list/_fe-check-list' ); ?>
-		<?php get_template_part( 'template-views/partials/select-field/_fe-select-field' ); ?>
+		<?php get_template_part( 'template-views/parts/check-list/_fe-check-list' ); ?>
+		<?php get_template_part( 'template-views/parts/select-field/_fe-select-field' ); ?>
 	</div>
 </div><!-- .basic-block -->

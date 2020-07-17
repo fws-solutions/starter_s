@@ -11,11 +11,11 @@
 $query_var = get_query_var( 'content-blocks', [] );
 
 // set and escape template view values
-$id = (int) $query_var['id'] ?? 0;
+$id = $query_var['id'] ?? 0;
 $post_class = esc_attr( implode( ' ', $query_var['post_class'] ?? [] ) );
 $permalink = esc_url( $query_var['permalink'] ) ?? '';
 $title = esc_textarea( $query_var['title'] ) ?? '';
-$has_post_thumb = (bool) $query_var['has_post_thumb'] ?? false;
+$has_post_thumb = $query_var['has_post_thumb'] ?? false;
 $post_thumb = $query_var['post_thumb'] ?? '';
 $content = $query_var['content'] ?? '';
 ?>

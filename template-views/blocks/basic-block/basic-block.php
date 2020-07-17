@@ -14,7 +14,7 @@ $query_var = get_query_var( 'content-blocks', [] );
 $section_id = esc_textarea( $query_var['section_id'] ) ?? '';
 $section_title = esc_textarea( $query_var['section_title'] ) ?? '';
 $content = $query_var['content'] ?? '';
-$check_list = (array) $query_var['check_list'] ?? [];
+$check_list = $query_var['check_list'] ?? [];
 ?>
 
 <div class="basic-block"<?php echo $section_id ? ' id="' . $section_id . '"' : ''; ?>>

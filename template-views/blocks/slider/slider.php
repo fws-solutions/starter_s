@@ -11,7 +11,7 @@
 $query_var = get_query_var( 'content-blocks', [] );
 
 // set and escape template view values
-$slides = (array) $query_var['slides'] ?? [];
+$slides = $query_var['slides'] ?? [];
 ?>
 
 <?php if ( $slides ) : ?>

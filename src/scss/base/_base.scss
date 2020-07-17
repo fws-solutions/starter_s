@@ -16,10 +16,6 @@ body {
 	@include mq($xl) {
 		margin-top: 60px;
 	}
-
-	@include mq($xl + 1, min) {
-		overscroll-behavior-y: none; //sass-lint:disable-line no-misspelled-properties
-	}
 }
 
 .site-main {

@@ -11,18 +11,16 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
+            "show_in_graphql": 1,
             "default_value": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": "",
-            "acfe_validate": "",
-            "acfe_update": ""
+            "maxlength": ""
         },
         {
             "key": "field_5d70eb5e09ca6",
@@ -33,18 +31,16 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
+            "show_in_graphql": 1,
             "default_value": "",
             "placeholder": "",
             "prepend": "",
             "append": "",
-            "maxlength": "",
-            "acfe_validate": "",
-            "acfe_update": ""
+            "maxlength": ""
         },
         {
             "key": "field_5d726b1802d42",
@@ -55,20 +51,38 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "",
+                "width": "50",
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "acfe_validate": "",
-            "acfe_update": ""
+            "show_in_graphql": 1,
+            "return_format": "array"
         },
         {
-            "key": "field_5d72497863ba1",
-            "label": "Desk",
-            "name": "",
-            "type": "tab",
+            "key": "field_5f08827a2744f",
+            "label": "Scroll To",
+            "name": "scroll_to",
+            "type": "text",
+            "instructions": "Add section ID. Example: #some-id-name",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f1012c9e9239",
+            "label": "Background Image",
+            "name": "background_image",
+            "type": "clone",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -77,127 +91,13 @@
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5d70eb6209ca7",
-            "label": "Desktop Image",
-            "name": "desktop_image",
-            "type": "image",
-            "instructions": "Recommended image width should be no more then 2000px.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
-        },
-        {
-            "key": "field_5d72498463ba2",
-            "label": "Tab",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5d7249bc63ba6",
-            "label": "Tablet Image",
-            "name": "tablet_image",
-            "type": "image",
-            "instructions": "Recommended image width should be no more then 1024px.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
-        },
-        {
-            "key": "field_5d72498963ba3",
-            "label": "Mob",
-            "name": "",
-            "type": "tab",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "placement": "top",
-            "endpoint": 0
-        },
-        {
-            "key": "field_5d7249c563ba7",
-            "label": "Mobile Image",
-            "name": "mobile_image",
-            "type": "image",
-            "instructions": "Recommended image width should be no more then 640px.",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "return_format": "array",
-            "preview_size": "medium",
-            "library": "all",
-            "min_width": "",
-            "min_height": "",
-            "min_size": "",
-            "max_width": "",
-            "max_height": "",
-            "max_size": "",
-            "mime_types": "",
-            "acfe_thumbnail": 0,
-            "acfe_validate": "",
-            "acfe_update": ""
+            "clone": [
+                "group_5d70ef8b520e1"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
         }
     ],
     "location": [
@@ -217,11 +117,13 @@
     "hide_on_screen": "",
     "active": 0,
     "description": "",
+    "show_in_graphql": 0,
+    "graphql_field_name": "fcBanner",
     "acf-field-group-category": [
         {
             "slug": "flexible-content",
             "name": "Flexible Content"
         }
     ],
-    "modified": 1582897504
+    "modified": 1594889376
 }
