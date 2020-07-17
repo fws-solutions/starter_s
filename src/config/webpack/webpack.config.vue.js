@@ -42,7 +42,7 @@ module.exports = {
 					{
 						loader: 'sass-loader',
 						options: {
-							prependData: `
+							additionalData: `
 								@import "./src/scss/config/_variables.scss";
 								@import "./src/scss/helpers/_mixins.scss";
 							`
