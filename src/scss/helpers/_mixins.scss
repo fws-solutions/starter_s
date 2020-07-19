@@ -30,6 +30,19 @@
 	-------------------------------------------------------------------------------------------------
  */
 
+// Insert SVG icon dataUri as background
+@mixin svg-icon-data($icon, $color, $insert: before) {
+	&::#{$insert} {
+		content: '';
+		display: inline-block;
+		font-size: 1em;
+		width: 1em;
+		height: 1em;
+		background: svg-load(svgPath($icon), fill=$color) no-repeat center;
+		background-size: contain;
+	}
+}
+
 // Vertical / Horizontal center
 @mixin center($direction: xy, $position: absolute) {
 	position: $position;
@@ -99,7 +112,7 @@
 	}
 }
 
-//Style element, based on how many siblings it has.
+// Style element, based on how many siblings it has.
 @mixin with-count($n) {
 	@if $n == 1 {
 		&:first-child:nth-last-child(1) {

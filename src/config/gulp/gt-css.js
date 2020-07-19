@@ -5,7 +5,8 @@ const concatCss = require('gulp-concat-css');
 const cleanCss = require('gulp-clean-css');
 const sass = require('gulp-sass');
 const sassLint = require('gulp-sass-lint');
-const flexBugsFix = require('postcss-flexbugs-fixes');
+const postCssFlexBugsFix = require('postcss-flexbugs-fixes');
+const postCssInlineSvg = require('postcss-inline-svg');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('autoprefixer');
 const rename = require('gulp-rename');
@@ -19,7 +20,8 @@ const adminSassSRC = ['src/config/admin/scss/admin.scss'];
 
 const processors = [
 	autoprefixer({overrideBrowserslist: ['last 2 versions', 'ios >= 8']}),
-	flexBugsFix
+	postCssFlexBugsFix,
+	postCssInlineSvg
 ];
 
 // compile scss files
