@@ -39,15 +39,6 @@ class ExampleCPT extends SingletonHook {
 	];
 
 	/**
-	 * Drop your hooks here.
-	 */
-	protected function hooks(): void {
-		// Actions
-		add_action( 'init', [ $this, 'cptInit' ] );
-		add_action( 'init', [ $this, 'cptInitTax' ] );
-	}
-
-	/**
 	 * Registers a custom post type.
 	 */
 	public function cptInit(): void
@@ -211,5 +202,14 @@ class ExampleCPT extends SingletonHook {
 		$slug = str_replace( ' ', $replaceWidth, strtolower( $name ) );
 
 		return $prefix . $slug;
+	}
+
+	/**
+	 * Drop your hooks here.
+	 */
+	protected function hooks() {
+		// Actions
+		add_action( 'init', [ $this, 'cptInit' ] );
+		add_action( 'init', [ $this, 'cptInitTax' ] );
 	}
 }

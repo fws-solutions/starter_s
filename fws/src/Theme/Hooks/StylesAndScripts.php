@@ -55,8 +55,12 @@ class StylesAndScripts extends SingletonHook
 
 	/**
 	 * Add defer attribute to enqueued scripts
+	 * @param string $tag
+	 * @param string $handle
+	 *
+	 * @return string
 	 */
-	public function addDeferToScript($tag, $handle) {
+	public function addDeferToScript(string $tag, string $handle): string {
 		$handles = [
 			'fws_starter_s-site-js',
 			'fws_starter_s-vue-js'
