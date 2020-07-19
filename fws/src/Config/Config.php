@@ -59,16 +59,6 @@ class Config extends Singleton
 	}
 
 	/**
-	 * local env url
-	 *
-	 * @return string
-	 */
-	public function virtualHost(): string
-	{
-		return (string) $this->config['global']['virtual-host'] ?? '';
-	}
-
-	/**
 	 * the fatal error handler email addresses
 	 *
 	 * @return array

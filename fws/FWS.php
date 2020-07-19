@@ -5,7 +5,12 @@ use FWS\ACF\Hooks as ACFHooks;
 use FWS\ACF\Render as ACFRender;
 use FWS\Config\Config;
 use FWS\Singleton;
-use FWS\Theme\Hooks as ThemeHooks;
+use FWS\Theme\Hooks\BasicSetup as ThemeBasicSetup;
+use FWS\Theme\Hooks\CustomSetup as ThemeCustomSetup;
+use FWS\Theme\Hooks\HeadRemovals as ThemeHeadRemovals;
+use FWS\Theme\Hooks\StylesAndScripts as ThemeStylesAndScripts;
+use FWS\Theme\Hooks\SectionWrappers as ThemeSectionWrappers;
+use FWS\Theme\Hooks\WPLogin as ThemeWPLogin;
 use FWS\Theme\Images as ThemeImages;
 use FWS\Theme\Render as ThemeRender;
 use FWS\Theme\Styleguide as ThemeStyleguide;
@@ -19,7 +24,6 @@ use FWS\WC\Render as WCRender;
  */
 class FWS extends Singleton
 {
-
 	/** @var FWS */
 	protected static $instance;
 
@@ -50,13 +54,19 @@ class FWS extends Singleton
 		// Yaml Config
 		$this->config = Config::init();
 
-		// Theme stuff
+		// Theme Hooks
+		// Theme Basic Setup, Styles and Scripts
+		ThemeBasicSetup::init();
+		ThemeStylesAndScripts::init();
+		ThemeCustomSetup::init();
+		ThemeHeadRemovals::init();
+		ThemeSectionWrappers::init();
+		ThemeWPLogin::init();
+
+		// Theme Stuff
 		$this->render = ThemeRender::init();
 		$this->images = ThemeImages::init();
 		$this->styleguide = ThemeStyleguide::init();
-
-		// Theme hooks
-		ThemeHooks::init();
 
 		// WC
 		if ( function_exists( 'WC' ) ) {
