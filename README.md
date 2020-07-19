@@ -899,17 +899,17 @@ All values must be written under `acf-options-page`:
 
 FWS Engine is a default part of this Starter Theme to which **the starter relies on heavily**.
 
-See `fws` and `fws/src` for it's structure and features.
+See `fws` and `fws/src` for its structure and features.
 
 ### WooCommerce support
 
-All WooCommerce functionality overrides should be written in `fws/src/WC.php` and `fws/src/WCHooks.php` files.
+All WooCommerce functionality overrides should be written in `fws/src/WC/Render.php` and `fws/src/WC/Hooks.php` files.
 
 All WooCommerce template overrides should be written in `woocommerce` directory.
 
 Before implementing any template overrides, all templates of the **current plugin version** should be **backed up** in `woocommerce/__templates-backup` directory.
 
-**This is important to do because if WooCommerce plugin is updated, you will loose original templates and will not be able to compare any overrides that need updating as well.**
+**This is important to do because if WooCommerce plugin is updated, you will lose original templates and will not be able to compare any overrides that need updating as well.**
 
 The `woocommerce` root directory should **only contain** files that are being overriden. **By all means, do NOT ever copy entire template structure to this folder**.
 
@@ -922,9 +922,13 @@ Each custom post type with belonging taxonomies must be placed in a single file 
 make more sense to put it into its own namespace which better describes that feature or component.
 If you are using different folder structure, make sure that the namespace reflects that.
 
-Always use `CPTName.php` example file located in `__wp_snippets` directory. Copy the file to
+Always use `ExampleCPT.php` example file located in `__examples-and-snippets` directory. Copy the file to
 `fws/src/CPT` folder and make sure you rename both the file and the Class. Both should be exactly
 the same.
+
+Naming format of these files should be followed like this - `CPTBooks.php`, so essentially the `fws` directory should have this path:
+
+    fws/src/CPT/CPTBooks.php
 
 Use `$postConfig` and `$taxConfig` array variable to configure names of custom post type and taxonomies.
 
@@ -958,8 +962,8 @@ Slug is used for registrating custom post type or taxonomy under this name, it w
 Nice Name is used for URL structure, it will use `-` character and will not include a prefix.
 
 Prefixes are defined as follows:
-- for post type: `cpt_`
-- for taxonomy: `ctax_`
+- for a post type: `cpt_`
+- for a taxonomy: `ctax_`
 
 Example:
 
@@ -1014,7 +1018,6 @@ To init CPT class, it must be inlcuded and initiliaized in `FWS.php` file.
 
         ...
     }
-
 
 
 ### Utilities

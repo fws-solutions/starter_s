@@ -6,11 +6,11 @@ namespace FWS\CPT;
 use FWS\SingletonHook;
 
 /**
- * Singleton Class CPTName
+ * Singleton Class ExampleCPT
  *
  * @package FWS
  */
-class CPTName extends SingletonHook {
+class ExampleCPT extends SingletonHook {
 
 	/** @var self */
 	protected static $instance;

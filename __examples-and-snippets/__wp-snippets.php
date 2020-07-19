@@ -1,8 +1,4 @@
-<?php
-/*------------------------------------------------------------------------------------------
-# WP Query
-------------------------------------------------------------------------------------------*/
-?>
+<!--WP Query-->
 <?php
 $args = array(
     'parameter' => 'value'
@@ -20,3 +16,6 @@ $query = new WP_Query( $args );
 <?php endif; ?>
 
 <?php wp_reset_query(); ?>
+
+<!-- String translate -->
+<?php _e('Some text that can be translated.', 'fws_starter_s'); ?>
