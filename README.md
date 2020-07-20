@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.5.0*
+*Version: 3.5.1*
 
 > It Only Does Everything.
 
@@ -391,7 +391,7 @@ Any image should not be larger then 2300px in width, unless there’s a special 
 
     add_image_size('max-width', 2300, 9999, false);
 
-All image sizes **should** be delared in **fws/src/Images.php** file.
+All image sizes **should** be declared in **`fws/src/Theme/Hooks/BasicSetup.php`** file.
 
 ## SCSS
 All Template Views styles should be written in corresponding directory.
