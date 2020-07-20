@@ -24,7 +24,7 @@ class Hooks extends SingletonHook
 	public function acfInit(): void
 	{
 		// Register Custom Taxonomy Categories for ACF
-		$this->register_acf_category_taxonomy();
+		$this->registerAcfCategoryTaxonomy();
 
 		// Register Options Main Page
 		$this->registerOptionsPages();
@@ -36,7 +36,7 @@ class Hooks extends SingletonHook
 	/**
 	 * Register Custom Taxonomy Category for ACF
 	 */
-	private function register_acf_category_taxonomy()
+	private function registerAcfCategoryTaxonomy()
 	{
 		register_taxonomy( 'acf-field-group-category',
 			[ 'acf-field-group' ],

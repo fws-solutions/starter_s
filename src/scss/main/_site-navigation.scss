@@ -41,10 +41,6 @@ a {
 
 			&.menu-item-has-children {
 				padding-right: 20px;
-
-				> a {
-					@include svg-icon-data(ico-arrow-down, $white);
-				}
 			}
 		}
 
@@ -187,10 +183,6 @@ a {
 
 			&.menu-item-has-children {
 				padding-right: 20px;
-
-				> a {
-					@include svg-icon-data(ico-arrow-down, $white);
-				}
 			}
 		}
 

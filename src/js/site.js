@@ -2,7 +2,7 @@
  * Import NPM scripts
  */
 import '@fancyapps/fancybox';
-import 'select2';
+import 'select2/dist/js/select2.full.min';
 import 'slick-carousel';
 
 /**

@@ -299,9 +299,11 @@ Use the function as shown in this example:
 
  `fws()->render()->inlineSVG('ico-happy', 'banner__caption-icon')`.
 
-The first argument is the name of the file.
+The function takes two arguments:
 
-The second argument is additional classes.
+- First argument is a name of a file.
+- Second argument are additional classes.
+
 
     Example:
     <?php echo fws()->render()->inlineSVG('ico-happy', 'banner__caption-icon'); ?>
@@ -310,6 +312,30 @@ The second argument is additional classes.
     <span class="banner__caption-icon svg-icon">
         <svg>...</svg>
     </span>
+
+#### SCSS Usage
+Use `svg-icon-data($icon, $color, $insert: before)` mixin to create **pseudo** element, converte an SVG file to **Base64 encoding** and set it as a **background image**.
+
+The mixing takes three arguments:
+
+- First argument is a name of a file.
+- Second argument is a color of an icon.
+- Third argument is whether psuedo element should be `::before` or `::after`. The default value is `::before`.
+
+
+    Example:
+    @include svg-icon-data(ico-happy, $red);
+
+    Will render:
+    ::before {
+        content: '';
+        display: inline-block;
+        font-size: 1em;
+        width: 1em;
+        height: 1em;
+        background: url("data:image/svg+xml...") no-repeat center
+        background-size: contain;
+    }
 
 #### Vue Usage
 
@@ -897,13 +923,34 @@ All values must be written under `acf-options-page`:
 
 ## FWS Engine
 
-FWS Engine is a default part of this Starter Theme to which **the starter relies on heavily**.
+FWS Engine is a default part of this Starter Theme to which **the Starter relies on heavily**.
 
 See `fws` and `fws/src` for its structure and features.
 
-### WooCommerce support
+List of Starter **default features** and **classes**:
 
-All WooCommerce functionality overrides should be written in `fws/src/WC/Render.php` and `fws/src/WC/Hooks.php` files.
+- `Config\Config` - parse `.fwsconfig.yml` and expose values.
+- `Theme\Hooks\BasicSetup` - add basic theme setup and theme supports.
+- `Theme\Hooks\CustomSetup` - handle Starter custom features.
+- `Theme\Hooks\HeadRemovals` - remove any unnecessary data from `head`.
+- `Theme\Hooks\Menus` - register and customize Menus.
+- `Theme\Hooks\StylesAndScripts` - enqueue styles and scripts.
+- `Theme\Hooks\SectionWrappers` - add wrapper actions.
+- `Theme\Hooks\WPLogin` - customize WP login page.
+- `Theme\Images` - various public methods for handeling images.
+- `Theme\Render` - various public methods rendering views.
+- `Theme\Styleguide` - various public methods for handeling images.
+- `ACF\Hooks` - customize ACF plugin.
+- `ACF\Render` - various public helper methods for rendering ACF fields.
+- `ACF\FlexContent` - define flexible content field configuration.
+- `WC\Hooks` - configure WooCommerce settings.
+- `WC\Render` - various public methods for rendering WooCommerce parts.
+
+### WooCommerce Support
+
+All WooCommerce functionality overrides should be written in
+ - `fws/src/WC/Render.php` and
+ - `fws/src/WC/Hooks.php` files.
 
 All WooCommerce template overrides should be written in `woocommerce` directory.
 

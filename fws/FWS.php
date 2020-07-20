@@ -8,6 +8,7 @@ use FWS\Singleton;
 use FWS\Theme\Hooks\BasicSetup as ThemeBasicSetup;
 use FWS\Theme\Hooks\CustomSetup as ThemeCustomSetup;
 use FWS\Theme\Hooks\HeadRemovals as ThemeHeadRemovals;
+use FWS\Theme\Hooks\Menus as ThemeMenus;
 use FWS\Theme\Hooks\StylesAndScripts as ThemeStylesAndScripts;
 use FWS\Theme\Hooks\SectionWrappers as ThemeSectionWrappers;
 use FWS\Theme\Hooks\WPLogin as ThemeWPLogin;
@@ -55,11 +56,11 @@ class FWS extends Singleton
 		$this->config = Config::init();
 
 		// Theme Hooks
-		// Theme Basic Setup, Styles and Scripts
 		ThemeBasicSetup::init();
 		ThemeStylesAndScripts::init();
 		ThemeCustomSetup::init();
 		ThemeHeadRemovals::init();
+		ThemeMenus::init();
 		ThemeSectionWrappers::init();
 		ThemeWPLogin::init();
 

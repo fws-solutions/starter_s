@@ -62,6 +62,7 @@
 
 								<li class="menu-item menu-item-has-children">
 									<a href="#">Menu Item 2</a>
+									<?php echo fws()->render()->inlineSVG( 'ico-arrow-down', 'site-nav__icon js-nav-icon' ); ?>
 									<ul class="sub-menu">
 										<li class="menu-item">
 											<a href="#">Submenu Item</a>
@@ -69,6 +70,7 @@
 
 										<li class="menu-item menu-item-has-children">
 											<a href="#">Submenu Item 2</a>
+											<?php echo fws()->render()->inlineSVG( 'ico-arrow-right', 'site-nav__icon js-nav-icon' ); ?>
 											<ul class="sub-menu">
 												<li class="menu-item">
 													<a href="#">Third Level Item</a>

@@ -2,35 +2,28 @@
 ## Mixins
 --------------------------------------------------------------*/
 
-// Media Query
+/*
+Media Query
+Example:
+
+@include mq($sm) 			 		Will render: @media screen and (max-width: 575px)
+@include mq(991px) 			 	 	Will render: @media screen and (max-width: 991px)
+@include mq($sm + 1, min) 	 		Will render: @media screen and (min-width: 576px)
+@include mq(992px, min) 			Will render: @media screen and (min-width: 992px)
+@include mq(400, min, height) 	 	Will render: @media screen and (min-height: 400px)
+@include mq(992px) {				Will render: @media screen and (max-width: 992px) and (min-width: 767px)
+	@include mq(767px, min) {
+
+	}
+}
+ */
 @mixin mq($value, $constraint: max, $feature: width) {
 	@media screen and (#{$constraint}-#{$feature}: $value) {
 		@content;
 	}
 }
 
-/*
-	Example:
-	-------------------------------------------------------------------------------------------------
-	@include mq($sm) 			 	@media screen and (max-width: 575px)
-	-------------------------------------------------------------------------------------------------
-	@include mq(991px) 			 	 	@media screen and (max-width: 991px)
-	-------------------------------------------------------------------------------------------------
-	@include mq($sm + 1, min) 	 	@media screen and (min-width: 576px)
-	-------------------------------------------------------------------------------------------------
-	@include mq(992px, min) 			 	@media screen and (min-width: 992px)
-	-------------------------------------------------------------------------------------------------
-	@include mq(400, min, height) 	 	@media screen and (min-height: 400px)
-	-------------------------------------------------------------------------------------------------
-	@include mq(992px) {				 	@media screen and (max-width: 992px) and (min-width: 767px)
-		@include mq(767px, min) {
-
-		}
-	}
-	-------------------------------------------------------------------------------------------------
- */
-
-// Insert SVG icon dataUri as background
+// Insert SVG Icon DataUri as Background
 @mixin svg-icon-data($icon, $color, $insert: before) {
 	&::#{$insert} {
 		content: '';
@@ -118,8 +111,7 @@
 		&:first-child:nth-last-child(1) {
 			@content;
 		}
-	}
-	@else {
+	} @else {
 		&:first-child:nth-last-child(#{$n}),
 		&:first-child:nth-last-child(#{$n}) ~ & {
 			@content;

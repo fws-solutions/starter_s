@@ -83,20 +83,6 @@ class BasicSetup extends SingletonHook
 	}
 
 	/**
-	 * Register Nav Menus
-	 * This theme uses wp_nav_menu() in one location.
-	 *
-	 * @link https://developer.wordpress.org/reference/functions/wp_nav_menu/
-	 */
-	public function registerMenus() :void
-	{
-		register_nav_menus( array(
-			'menu-1' => esc_html__( 'Primary', 'fws_starter_s' ),
-			'menu-2' => esc_html__( 'Secundary', 'fws_starter_s' ),
-		) );
-	}
-
-	/**
 	 * Register Image Sizes
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/add_image_size/
@@ -173,7 +159,6 @@ class BasicSetup extends SingletonHook
 		// Add Theme Supports
 		add_action( 'after_setup_theme', [$this, 'addThemeSupport'] );
 		add_action( 'after_setup_theme', [$this, 'addImageSizes'] );
-		add_action( 'after_setup_theme', [$this, 'registerMenus'] );
 		add_action( 'after_setup_theme', [$this, 'contentWidth'], 0 );
 
 		// Register Widgets
