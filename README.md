@@ -4,13 +4,13 @@
 > It Only Does Everything.
 
 ## Installation Instructions
-Install Forwardslash CLI globaly.
+Install FWS CLI globaly.
 
 This only needs to be done once per machine, so if you installed it previously, skip this step.
 
-Although, keep in mind for most recent version of it: [forwardslash-cli](https://www.npmjs.com/package/forwardslash-cli).
+Although, keep in mind for most recent version of it: [@fws/cli](https://www.npmjs.com/package/@fws/cli).
 
-    npm i forwardslash-cli -g
+    npm i @fws/cli -g
 
 Install JS dependencies by running [Node.js](https://nodejs.org/en/) package manager.
 
