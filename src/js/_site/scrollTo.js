@@ -23,7 +23,9 @@ const ScrollTo = {
 		const _this = this;
 
 		_this.$domScrollLink.on('click', function(e) {
-			e.preventDefault();
+			if (!e.target.classList.contains('js-allow-click')) {
+				e.preventDefault();
+			}
 			const target = $(e.currentTarget.hash);
 
 			console.log(target);
