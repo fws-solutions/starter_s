@@ -1,58 +1,40 @@
-const {join} = require('path');
-const {VueLoaderPlugin} = require('vue-loader');
+const path = require('path');
 
 module.exports = {
-	// mode set in gulpfile
-	entry: './src/vue/app.js',
-	output: {
-		path: join(__dirname, './dist/'),
-		filename: 'vue.min.js'
+	outputDir: path.resolve(__dirname, '../../../dist/vue-build'),
+	filenameHashing: false,
+	chainWebpack: config => {
+		config.plugins.delete('html');
+		config.plugins.delete('preload');
+		config.plugins.delete('prefetch');
+
+		config.module
+			.rule('scss')
+			.test(/\.scss$/)
+			.use('vue-style-loader')
+			.loader('vue-style-loader')
+			.end();
+
+		const svgRule = config.module.rule('svg');
+
+		svgRule.uses.clear();
+
+		svgRule
+			.use('babel-loader')
+			.loader('babel-loader')
+			.end()
+			.use('vue-svg-loader')
+			.loader('vue-svg-loader');
 	},
-	module: {
-		rules: [
-			{
-				enforce: 'pre',
-				test: /\.(js|vue)$/,
-				loader: 'eslint-loader',
-				exclude: /node_modules/
-			},
-			{
-				test: /\.svg$/,
-				use: [
-					'babel-loader',
-					'vue-svg-loader',
-				],
-			},
-			{
-				test: /\.js$/,
-				loader: 'babel-loader',
-				options: {
-					presets: ['@babel/preset-env']
-				}
-			},
-			{
-				test: /\.vue$/,
-				loader: 'vue-loader'
-			},
-			{
-				test: /\.scss$/,
-				use: [
-					'vue-style-loader',
-					'css-loader',
-					{
-						loader: 'sass-loader',
-						options: {
-							additionalData: `
-								@import "./src/scss/config/_variables.scss";
-								@import "./src/scss/helpers/_mixins.scss";
-							`
-						}
-					}
-				]
+	css: {
+		extract: false,
+		loaderOptions: {
+			sass: {
+				additionalData: `
+                    @import "./src/scss/config/_variables.scss";
+                    @import "./src/scss/helpers/_mixins.scss";
+                `
 			}
-		]
-	},
-	plugins: [
-		new VueLoaderPlugin()
-	]
+		}
+	}
 };

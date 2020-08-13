@@ -21,9 +21,6 @@ class StylesAndScripts extends SingletonHook
 	 */
 	public function setThemeStylesAndScripts(): void
 	{
-		// Set Theme Plugins CSS
-		wp_enqueue_style( 'fws_starter_s-plugins-css', get_template_directory_uri() . '/dist/plugins.min.css' );
-
 		// Set Theme Site CSS
 		wp_enqueue_style( 'fws_starter_s-style', get_stylesheet_uri() );
 
@@ -31,7 +28,9 @@ class StylesAndScripts extends SingletonHook
 		wp_enqueue_script( 'fws_starter_s-site-js', get_template_directory_uri() . '/dist/site.min.js', ['jquery'], '', false );
 
 		// Set Theme VueJS
-		wp_enqueue_script( 'fws_starter_s-vue-js', get_template_directory_uri() . '/dist/vue.min.js', [], '', false );
+		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], '', false );
+
+		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], '', false );
 
 		// Set WP Script for Comments
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -63,7 +62,8 @@ class StylesAndScripts extends SingletonHook
 	public function addDeferToScript(string $tag, string $handle): string {
 		$handles = [
 			'fws_starter_s-site-js',
-			'fws_starter_s-vue-js'
+			'fws_starter_s-vuevendors-js',
+			'fws_starter_s-vueapp-js'
 		];
 
 		if (in_array($handle, $handles) && !stripos($tag, 'defer') && stripos($tag, 'defer') !== 0) {

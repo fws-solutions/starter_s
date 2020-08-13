@@ -1,8 +1,6 @@
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
-const concatCss = require('gulp-concat-css');
-const cleanCss = require('gulp-clean-css');
 const sass = require('gulp-sass');
 const sassLint = require('gulp-sass-lint');
 const postCssFlexBugsFix = require('postcss-flexbugs-fixes');
@@ -25,7 +23,6 @@ const processors = [
 ];
 
 // compile scss files
-gulp.task('plugins-css', pluginsCss);
 gulp.task('css', css.bind(null, sassSRC, 'style.css', './'));
 gulp.task('css-admin', css.bind(null, adminSassSRC, 'admin.css', 'dist'));
 gulp.task('sass-lint', sasslint);
@@ -41,13 +38,6 @@ function css(src, name, dest) {
 		.pipe(gulp.dest(dest));
 }
 
-function pluginsCss() {
-	return gulp.src(['src/css/*.css'])
-		.pipe(concatCss('plugins.min.css'))
-		.pipe(cleanCss())
-		.pipe(gulp.dest('dist'));
-}
-
 function sasslint() {
 	return gulp.src(sassSRC)
 		.pipe(sassLint({
@@ -59,6 +49,5 @@ function sasslint() {
 // export tasks
 module.exports = {
 	css: css,
-	pluginsCss: pluginsCss,
 	sasslint: sasslint
 };

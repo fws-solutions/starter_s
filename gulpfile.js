@@ -12,6 +12,7 @@ const gtHtmlLint = require('./src/config/gulp/gt-htmllint');
 const gtCss = require('./src/config/gulp/gt-css');
 const gtJs = require('./src/config/gulp/gt-js');
 const gtWatch = require('./src/config/gulp/gt-watch');
+const gtClean = require('./src/config/gulp/gt-clean');
 
 // prepare for build
 function prodBuild(done) {
@@ -29,19 +30,19 @@ gulp.task('build', gulp.series(
 	globalVars.createDistFolder,
 	prodBuild,
 	gulp.parallel(
-		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css', './'),
 		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
 		gulp.series(
 			gtJs.lintJS,
-			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS),
-			gtJs.mergeJS,
-			gtJs.cleanJS
+			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.adminJS),
+			gtJs.mergeJS
 		),
+		gtJs.vueJS,
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
-	)
+	),
+	gtClean.cleanBuildFiles
 ));
 
 // build all files for development
@@ -49,19 +50,19 @@ gulp.task('build-dev', gulp.series(
 	globalVars.createDistFolder,
 	devBuild,
 	gulp.parallel(
-		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css', './'),
 		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
 		gulp.series(
 			gtJs.lintJS,
-			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS),
-			gtJs.mergeJS,
-			gtJs.cleanJS
+			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.adminJS),
+			gtJs.mergeJS
 		),
+		gtJs.vueJS,
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
-	)
+	),
+	gtClean.cleanBuildFiles
 ));
 
 // remove dist folder
@@ -77,18 +78,18 @@ gulp.task('watch', gulp.series(
 	globalVars.createDistFolder,
 	devBuild,
 	gulp.parallel(
-		gtCss.pluginsCss,
 		gtCss.css.bind(null, sassSRC, 'style.css', './'),
 		gtCss.css.bind(null, adminSassSRC, 'admin.css', 'dist'),
 		gulp.series(
 			gtJs.lintJS,
-			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.vueJS, gtJs.adminJS),
-			gtJs.mergeJS,
-			gtJs.cleanJS
+			gulp.parallel(gtJs.siteJS, gtJs.pluginsJS, gtJs.adminJS),
+			gtJs.mergeJS
 		),
+		gtJs.vueJS,
 		gtCss.sasslint,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
 	),
+	gtClean.cleanBuildFiles,
 	gtWatch.watchFiles
 ));

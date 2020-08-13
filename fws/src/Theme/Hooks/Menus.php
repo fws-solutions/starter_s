@@ -31,25 +31,6 @@ class Menus extends SingletonHook
 	}
 
 	/**
-	 * Add SVG Icons to Menu Items
-	 *
-	 * @param $args
-	 * @param $item
-	 * @param int $depth
-	 */
-	public function addSvgIcon($args, $item, int $depth)
-	{
-		if ( $args->theme_location == 'menu-1' && in_array('menu-item-has-children', $item->classes)) {
-			$icon = $depth > 0 ? 'ico-arrow-right' : 'ico-arrow-down';
-			$args->after = fws()->render()->inlineSVG( $icon, 'site-nav__icon js-nav-icon' );
-		} else {
-			$args->after = '';
-		}
-
-		return $args;
-	}
-
-	/**
 	 * Customize Menu Item Arguments
 	 *
 	 * @param $args
@@ -58,6 +39,25 @@ class Menus extends SingletonHook
 	 */
 	public function customizeMenuItemArguments( $args, $item, int $depth ) {
 		$args = $this->addSvgIcon($args, $item, $depth);
+
+		return $args;
+	}
+
+	/**
+	 * Add SVG Icons to Menu Items
+	 *
+	 * @param $args
+	 * @param $item
+	 * @param int $depth
+	 */
+	private function addSvgIcon($args, $item, int $depth)
+	{
+		if ( $args->theme_location == 'menu-1' && in_array('menu-item-has-children', $item->classes)) {
+			$icon = $depth > 0 ? 'ico-arrow-right' : 'ico-arrow-down';
+			$args->after = fws()->render()->inlineSVG( $icon, 'site-nav__icon js-nav-icon' );
+		} else {
+			$args->after = '';
+		}
 
 		return $args;
 	}

@@ -1,22 +1,21 @@
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
-const clean = require('gulp-clean');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify-es').default;
 const eslint = require('gulp-eslint');
 const webpack = require('webpack-stream');
 const webpackConfig = require('../webpack/webpack.config.js');
-const webpackVue = require('../webpack/webpack.config.vue.js');
 const webpackAdmin = require('../webpack/webpack.config.admin.js');
 const gulpif = require('gulp-if');
+const run = require('gulp-run');
 const globalVars = require('./_global-vars');
 const destDir = 'dist';
 
 /*----------------------------------------------------------------------------------------------
 	JS
  ----------------------------------------------------------------------------------------------*/
-gulp.task('js', gulp.series(gulp.parallel(siteJS, pluginsJS, vueJS, adminJS), mergeJS, cleanJS));
+gulp.task('js', gulp.series(gulp.parallel(siteJS, pluginsJS, vueJS, adminJS), mergeJS));
 
 // task: build admin javascript
 gulp.task('admin-js', adminJS);
@@ -45,13 +44,10 @@ function siteJS() {
 // task: build vue
 gulp.task('vue-js', vueJS);
 
-function vueJS() {
-	webpackVue.mode = globalVars.productionBuild ? 'production' : 'development';
-
-	return gulp.src('src/vue/app.js')
-		.pipe(plumber())
-		.pipe(webpack(webpackVue))
-		.pipe(gulp.dest(destDir));
+function vueJS(done) {
+	run('npm run vuejs').exec(false, function() {
+		done();
+	});
 }
 
 // task: validate javascript source files
@@ -89,15 +85,6 @@ function mergeJS() {
 		.pipe(gulp.dest(destDir));
 }
 
-gulp.task('clean-js', cleanJS);
-
-function cleanJS() {
-	return gulp.src([
-		destDir + '/plugins.js',
-		destDir + '/site.js'], {read: false})
-		.pipe(clean());
-}
-
 // export tasks
 module.exports = {
 	adminJS: adminJS,
@@ -105,6 +92,5 @@ module.exports = {
 	pluginsJS: pluginsJS,
 	vueJS: vueJS,
 	mergeJS: mergeJS,
-	cleanJS: cleanJS,
 	lintJS: lintJS
 };
