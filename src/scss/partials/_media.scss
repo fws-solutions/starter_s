@@ -1,16 +1,4 @@
 /*--------------------------------------------------------------
-## SVG Icons
---------------------------------------------------------------*/
-.svg-icon {
-	display: inline-flex;
-	line-height: 1;
-
-	svg {
-		width: 1em;
-	}
-}
-
-/*--------------------------------------------------------------
 ## Wrapper and Ratios
 --------------------------------------------------------------*/
 .media-wrap {
@@ -24,14 +12,32 @@
 	}
 }
 
-// size modifiers
+// modifier size classes
+// formula for calculating padding percentage:
+// (height / width * 100) = padding-top: %;
 .media-wrap--square::before {
 	padding-top: 100%;
+}
+
+.media-wrap--400x280::before {
+	padding-top: 70%;
 }
 
 // item
 .media-item {
 	display: block;
+}
+
+/*--------------------------------------------------------------
+## SVG Icons
+--------------------------------------------------------------*/
+.svg-icon {
+	display: inline-flex;
+	line-height: 1;
+
+	svg {
+		width: 1em;
+	}
 }
 
 /*--------------------------------------------------------------

@@ -26,25 +26,39 @@ class Images extends Singleton
 	 * @param string $size
 	 * @param string $classes
 	 * @param string $alt
-	 * @param bool   $isAssetsSrc
-	 * @param bool   $isDemo
+	 *
 	 * @return string
 	 */
-	public function mediaItem( string $src, string $size, string $classes = '', string $alt = '', bool $isAssetsSrc = false, bool $isDemo = false): string
+	public function mediaItem( string $src, string $size, string $classes = '', string $alt = ''): string
 	{
 		if ( !$size || !$src ) {
 			return '';
 		}
 
-		return sprintf(
-			'<div class="%smedia-wrap media-wrap--%s">
-				<img class="media-item cover-img" src="%s" alt="%s">
-			</div>',
-			$classes ? $classes . ' ' : '',
-			$size,
-			$isAssetsSrc ? $this->assetsSrc($src, $isDemo) : $src,
-			$alt
-		);
+		return $this->mediaItemHTML($src, $size, $classes, $alt);
+	}
+
+	/** Render hardcoded image media item.
+	 *
+	 * Same as 'mediaItem' method, but for hardcoded images.
+	 * Render image src from src/assets/images or __demo directory.
+	 *
+	 * @param string $src
+	 * @param string $size
+	 * @param string $classes
+	 * @param bool   $isDemo
+	 *
+	 * @return string
+	 */
+	public function mediaItemStatic( string $src, string $size, string $classes = '', bool $isDemo = false): string
+	{
+		if ( !$size || !$src ) {
+			return '';
+		}
+
+		$hardCodedSrc = $this->assetsSrc($src, $isDemo);
+
+		return $this->mediaItemHTML($hardCodedSrc, $size, $classes, '');
 	}
 
 	/** Render image src from src/assets/images or __demo directory.
@@ -57,5 +71,27 @@ class Images extends Singleton
 	public function assetsSrc( string $imageFile, bool $isDemo = false ): string
 	{
 		return esc_url( get_template_directory_uri() . ( $isDemo ? '/__demo/' : '/src/assets/images/' ) . $imageFile );
+	}
+
+	/** Pring image media HTML.
+	 *
+	 * @param string $src
+	 * @param string $size
+	 * @param string $classes
+	 * @param string $alt
+	 *
+	 * @return string
+	 */
+	private function mediaItemHTML( string $src, string $size, string $classes = '', string $alt = ''): string
+	{
+		return sprintf(
+			'<div class="%smedia-wrap media-wrap--%s">
+				<img class="media-item cover-img" src="%s" alt="%s">
+			</div>',
+			$classes ? $classes . ' ' : '',
+			$size,
+			$src,
+			$alt
+		);
 	}
 }

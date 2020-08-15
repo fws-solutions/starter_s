@@ -16,10 +16,10 @@ $slides = $query_var['slides'] ?? [];
 
 <?php if ( $slides ) : ?>
 	<div class="slider js-slider">
-		<?php foreach ( $slides as $item ) : ?>
-			<figure>
-				<img src="<?php echo $item['url']; ?>" alt="">
-			</figure>
-		<?php endforeach; ?>
+		<?php
+		foreach ( $slides as $item ) {
+			echo fws()->images()->mediaItem( $item['url'], 'square', 'slider__item' );
+		}
+		?>
 	</div><!-- .slider -->
 <?php endif; ?>

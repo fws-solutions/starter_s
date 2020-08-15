@@ -5,20 +5,16 @@
 	margin-bottom: 30px;
 }
 
-.blog-article__thumb {
+.blog-article__thumb-wrap {
 	display: block;
 	overflow: hidden;
+}
 
-	img {
-		display: block;
-		width: 100%;
-		transition: $dur $ease;
-	}
+.blog-article__thumb {
+	transition: $dur $ease;
 
 	@include hover {
-		img {
-			transform: scale(1.1);
-		}
+		transform: scale(1.1);
 	}
 }
 

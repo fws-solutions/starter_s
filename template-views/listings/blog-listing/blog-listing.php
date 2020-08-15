@@ -37,7 +37,7 @@ $subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
 						'permalink' => get_the_permalink(),
 						'title' => get_the_title(),
 						'has_post_thumb' => has_post_thumbnail(),
-						'post_thumb' => get_the_post_thumbnail( $post_id, 'post-thumb' )
+						'post_thumb' => get_the_post_thumbnail( $post_id, 'post-thumb', ['class' => 'media-item cover-img'] )
 
 					];
 					fws()->render()->templateView( $blog_article, 'blog-article', 'parts' );
