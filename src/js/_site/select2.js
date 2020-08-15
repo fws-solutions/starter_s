@@ -1,4 +1,5 @@
 const $ = jQuery.noConflict();
+import 'select2/dist/js/select2.full.min';
 
 'use strict';
 const Select2 = {

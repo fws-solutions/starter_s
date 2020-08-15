@@ -1,4 +1,5 @@
 const $ = jQuery.noConflict();
+import 'slick-carousel';
 
 'use strict';
 

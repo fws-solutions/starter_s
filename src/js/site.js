@@ -1,11 +1,4 @@
 /**
- * Import NPM scripts
- */
-import '@fancyapps/fancybox';
-import 'select2/dist/js/select2.full.min';
-import 'slick-carousel';
-
-/**
  * Import site scripts
  */
 import Menu from './_site/menu';
@@ -16,6 +9,7 @@ import Fancybox from './_site/fancybox';
 import Select2 from './_site/select2';
 import FormHelpers from './_site/formHelpers';
 import PerfectScroll from './_site/perfectScroll';
+import LazyLoad from './_site/lazyLoad';
 
 /**
  * Init site scripts
@@ -29,4 +23,5 @@ jQuery(function() {
 	Select2.init();
 	FormHelpers.init();
 	PerfectScroll.init();
+	LazyLoad.init();
 });

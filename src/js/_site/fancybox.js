@@ -1,4 +1,5 @@
 const $ = jQuery.noConflict();
+import '@fancyapps/fancybox';
 
 'use strict';
 const Fancybox = {

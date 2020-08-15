@@ -19,6 +19,7 @@
 		"@fancyapps/fancybox": "^3.5.7",
 		"axios": "^0.19.2",
 		"core-js": "^3.6.5",
+		"lazyload": "^2.0.0-rc.2",
 		"lodash.startcase": "^4.4.0",
 		"perfect-scrollbar": "^1.5.0",
 		"select2": "^4.0.13",
