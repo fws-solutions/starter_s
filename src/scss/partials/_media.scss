@@ -24,15 +24,14 @@
 	}
 }
 
-.media-wrap-square::before {
+// size modifiers
+.media-wrap--square::before {
 	padding-top: 100%;
 }
 
 // item
 .media-item {
 	display: block;
-	width: 100%;
-	@include center;
 }
 
 /*--------------------------------------------------------------

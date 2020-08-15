@@ -21,6 +21,7 @@ const Sliders = {
 			slidesToScroll: 1,
 			speed: 1000,
 			arrows: false,
+			rows: 0,
 			responsive: [
 				{
 					breakpoint: 991,
