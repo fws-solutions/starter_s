@@ -15,7 +15,7 @@ const destDir = 'dist';
 /*----------------------------------------------------------------------------------------------
 	JS
  ----------------------------------------------------------------------------------------------*/
-gulp.task('js', gulp.series(gulp.parallel(siteJS, pluginsJS, vueJS, adminJS), mergeJS));
+gulp.task('js', gulp.series(gulp.parallel(siteJS, pluginsJS), mergeJS));
 
 // task: build admin javascript
 gulp.task('admin-js', adminJS);

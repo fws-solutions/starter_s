@@ -18,7 +18,10 @@ $slides = $query_var['slides'] ?? [];
 	<div class="slider js-slider">
 		<?php
 		foreach ( $slides as $item ) {
-			echo fws()->images()->mediaItem( $item['url'], 'square', 'slider__item' );
+			// resize image
+			$src = fws()->resizer()->newImageSize($item['url'], 460, 460);
+			// render image with lazy loading
+			echo fws()->images()->mediaItemLazy( $src, 'square', 'slider__item' );
 		}
 		?>
 	</div><!-- .slider -->

@@ -23,9 +23,50 @@
 	padding-top: 70%;
 }
 
+// modifier for lazy loading
+.media-wrap--lazy {
+	background: $grey-light;
+
+	&::after {
+		content: '';
+		display: block;
+		width: 20px;
+		height: 20px;
+		margin-top: -20px;
+		animation: lazyPreloading 800ms ease infinite;
+		transition: $dur / 2 $ease;
+		@include center;
+	}
+
+	&.is-hidden::after {
+		visibility: hidden;
+		opacity: 0;
+	}
+}
+
 // item
 .media-item {
 	display: block;
+}
+
+// lazy preloading animation
+$l-light: rgba($white, .6);
+$l-dark: rgba($grey-mid, .2);
+$l-bkg: $grey-light;
+
+@keyframes lazyPreloading {
+	0%, 100% {
+		box-shadow: -13px 20px $l-dark, 13px 20px 0 $l-light, 13px 46px 0 $l-light, -13px 46px 0 $l-light, 0 0 0 1000em $l-bkg;
+	}
+	25% {
+		box-shadow: -13px 20px 0 $l-light, 13px 20px $l-dark, 13px 46px 0 $l-light, -13px 46px 0 $l-light, 0 0 0 1000em $l-bkg;
+	}
+	50% {
+		box-shadow: -13px 20px 0 $l-light, 13px 20px 0 $l-light, 13px 46px $l-dark, -13px 46px 0 $l-light, 0 0 0 1000em $l-bkg;
+	}
+	75% {
+		box-shadow: -13px 20px 0 $l-light, 13px 20px 0 $l-light, 13px 46px 0 $l-light, -13px 46px $l-dark, 0 0 0 1000em $l-bkg;
+	}
 }
 
 /*--------------------------------------------------------------
@@ -96,7 +137,7 @@ object {
 	// Loops to enumerate the classes for gallery columns.
 	@for $i from 2 through 9 {
 		.gallery-columns-#{$i} & {
-			max-width: ( 100% / $i );
+			max-width: (100% / $i);
 		}
 	}
 }

@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.5.4*
+*Version: 3.6.0*
 
 > It Only Does Everything.
 
@@ -327,7 +327,7 @@ The mixing takes three arguments:
     @include svg-icon-data(ico-happy, $red);
 
     Will render:
-    ::before {
+    &::before {
         content: '';
         display: inline-block;
         font-size: 1em;

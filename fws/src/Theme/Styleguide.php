@@ -9,7 +9,6 @@ use FWS\Singleton;
  * Singleton Class Styleguide
  *
  * @package FWS\Theme
- * @author Nikola Topalovic <nick@forwardslashny.com>
  */
 class Styleguide extends Singleton
 {

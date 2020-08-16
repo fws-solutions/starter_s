@@ -10,7 +10,6 @@ use FWS\Singleton;
  * Singleton Class Render
  *
  * @package FWS\Theme
- * @author  Nikola Topalovic <nick@forwardslashny.com>
  */
 class Render extends Singleton
 {

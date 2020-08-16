@@ -12,7 +12,8 @@ use FWS\Theme\Hooks\Menus as ThemeMenus;
 use FWS\Theme\Hooks\StylesAndScripts as ThemeStylesAndScripts;
 use FWS\Theme\Hooks\SectionWrappers as ThemeSectionWrappers;
 use FWS\Theme\Hooks\WPLogin as ThemeWPLogin;
-use FWS\Theme\Images as ThemeImages;
+use FWS\Theme\Media\Images as ThemeImages;
+use FWS\Theme\Media\Resizer as ThemeResizer;
 use FWS\Theme\Render as ThemeRender;
 use FWS\Theme\Styleguide as ThemeStyleguide;
 use FWS\WC\Hooks as WCHooks;
@@ -39,6 +40,9 @@ class FWS extends Singleton
 
 	/** @var ThemeImages */
 	private $images;
+
+	/** @var ThemeResizer */
+	private $resizer;
 
 	/** @var ThemeStyleguide */
 	private $styleguide;
@@ -67,6 +71,7 @@ class FWS extends Singleton
 		// Theme Stuff
 		$this->render = ThemeRender::init();
 		$this->images = ThemeImages::init();
+		$this->resizer = ThemeResizer::init();
 		$this->styleguide = ThemeStyleguide::init();
 
 		// WC
@@ -130,6 +135,14 @@ class FWS extends Singleton
 	public function images(): ThemeImages
 	{
 		return $this->images;
+	}
+
+	/**
+	 * @return ThemeResizer
+	 */
+	public function resizer(): ThemeResizer
+	{
+		return $this->resizer;
 	}
 
 	/**

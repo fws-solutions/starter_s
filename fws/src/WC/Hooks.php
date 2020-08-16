@@ -9,7 +9,6 @@ use FWS\SingletonHook;
  * WC Class for hooks. No methods are available for direct calls.
  *
  * @package FWS\WC
- * @author  Boris Djemrovski <boris@forwardslashny.com>
  */
 class Hooks extends SingletonHook
 {

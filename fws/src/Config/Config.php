@@ -11,7 +11,6 @@ use Symfony\Component\Yaml\Parser;
  * Class Config
  *
  * @package FWS\Config
- * @author Boris Djemrovski <boris@forwardslashny.com>
  */
 class Config extends Singleton
 {

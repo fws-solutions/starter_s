@@ -1,20 +1,36 @@
 const $ = jQuery.noConflict();
-import 'lazyload';
+import LazyLoad from 'vanilla-lazyload';
 
 'use strict';
-const LazyLoad = {
+const LazyLoading = {
 	/**
 	 * @description Cache dom and strings
 	 * @type {object}
 	 */
-	$domLazyLoad: $('.lazyload'),
+	lazyload: null,
+	$domLazyLoad: $('.lazy'),
+	classHidden: 'is-hidden',
 
 	/** @description Initialize */
 	init: function() {
 		if (this.$domLazyLoad.length > 0) {
-			lazyload(); // eslint-disable-line no-undef
+
+			this.lazyload = new LazyLoad({
+				// Avoid executing the function multiple times
+				unobserve_entered: true, // eslint-disable-line camelcase
+				callback_loaded: LazyLoading.mediaLoaded // eslint-disable-line camelcase
+			});
 		}
+	},
+
+	mediaLoaded: (el) => {
+		// hide preloader
+		$(el).parent().addClass(LazyLoading.classHidden);
 	}
 };
 
-export default LazyLoad;
+export default LazyLoading;
+
+
+
+

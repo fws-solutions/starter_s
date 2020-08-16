@@ -10,7 +10,6 @@ use WP_Term;
  * Class Hooks
  *
  * @package FWS\ACF
- * @author Boris Djemrovski <boris@forwardslashny.com>
  */
 class Hooks extends SingletonHook
 {

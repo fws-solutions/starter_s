@@ -7,7 +7,6 @@ namespace FWS\ACF;
  * Class FlexContent
  *
  * @package FWS\ACF
- * @author Boris Djemrovski <boris@forwardslashny.com>
  */
 class FlexContent
 {

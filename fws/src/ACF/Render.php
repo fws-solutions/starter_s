@@ -9,7 +9,6 @@ use FWS\Singleton;
  * Class Hooks
  *
  * @package FWS\ACF
- * @author Boris Djemrovski <boris@forwardslashny.com>
  */
 class Render extends Singleton
 {

@@ -9,7 +9,6 @@ use FWS\Singleton;
  * WC Class. No methods are available for direct calls.
  *
  * @package FWS\WC
- * @author  Boris Djemrovski <boris@forwardslashny.com>
  */
 class Render extends Singleton
 {

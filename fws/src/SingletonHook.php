@@ -7,7 +7,6 @@ namespace FWS;
  * Class Singleton
  *
  * @package FWS
- * @author Boris Djemrovski <boris@forwardslashny.com>
  */
 abstract class SingletonHook
 {

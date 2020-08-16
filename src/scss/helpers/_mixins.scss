@@ -23,7 +23,26 @@ Example:
 	}
 }
 
-// Insert SVG Icon DataUri as Background
+/*
+Insert SVG Icon DataUri as Background
+The mixing takes three arguments:
+
+First argument is a name of a file.
+Second argument is a color of an icon.
+Third argument is whether psuedo element should be `::before` or `::after`. The default value is `::before`.
+
+Example:
+
+@include svg-icon-data(ico-happy, $red, after);
+
+
+Will render:
+&::after {
+	...
+	background: url("data:image/svg+xml...") no-repeat center
+	...
+}
+ */
 @mixin svg-icon-data($icon, $color, $insert: before) {
 	&::#{$insert} {
 		content: '';
@@ -35,6 +54,7 @@ Example:
 		background-size: contain;
 	}
 }
+
 
 // Vertical / Horizontal center
 @mixin center($direction: xy, $position: absolute) {

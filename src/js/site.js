@@ -9,7 +9,7 @@ import Fancybox from './_site/fancybox';
 import Select2 from './_site/select2';
 import FormHelpers from './_site/formHelpers';
 import PerfectScroll from './_site/perfectScroll';
-import LazyLoad from './_site/lazyLoad';
+import LazyLoading from './_site/lazyLoad';
 
 /**
  * Init site scripts
@@ -23,5 +23,5 @@ jQuery(function() {
 	Select2.init();
 	FormHelpers.init();
 	PerfectScroll.init();
-	LazyLoad.init();
+	LazyLoading.init();
 });
