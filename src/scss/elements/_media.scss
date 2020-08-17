@@ -24,7 +24,7 @@
 }
 
 // modifier for lazy loading
-.media-wrap--lazy {
+.media-wrap--lazy-loader {
 	background: $grey-light;
 
 	&::after {
@@ -32,6 +32,7 @@
 		display: block;
 		width: 20px;
 		height: 20px;
+		background: $grey-light;
 		margin-top: -20px;
 		animation: lazyPreloading 800ms ease infinite;
 		transition: $dur / 2 $ease;

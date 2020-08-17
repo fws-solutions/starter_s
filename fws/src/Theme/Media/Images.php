@@ -21,10 +21,10 @@ class Images extends Singleton
 	 * This will render image media wrapper div as well as image.
 	 * It will auto-format div dimensions and place image as a cover image using helper class.
 	 *
-	 * @param string $src
-	 * @param string $size
-	 * @param string $classes
-	 * @param string $alt
+	 * @param string $src - pass image URL
+	 * @param string $size - pass size from __media.scss, example '400x280', 'square'
+	 * @param string $classes - pass additional classes
+	 * @param string $alt - pass image alt text
 	 *
 	 * @return string
 	 */
@@ -37,38 +37,45 @@ class Images extends Singleton
 		return $this->mediaItemHTML($src, $size, $classes, $alt);
 	}
 
-	/** Render hardcoded image media item.
+	/** Render image media item with lazy load plugin.
 	 *
-	 * Same as 'mediaItem' method, but for hardcoded images.
-	 * Render image src from src/assets/images or __demo directory.
+	 * Same as 'mediaItemRegular' method, but with lazy loading.
 	 *
-	 * @param string $src
-	 * @param string $size
-	 * @param string $classes
-	 * @param bool   $isDemo
+	 * If $preloadThumb is not set, it will default to 'null', and this will set lazyloading with a CSS preloader.
+	 *
+	 * If $preloadThumb is set, it must be done so as an array with only two values (int width, int height),
+	 * this will set lazyloading with a small thumb based on passed values in the array.
+	 * This option will pass $preloadThumb array into Resizer method and create new image size for preloading.
+	 *
+	 * @param string $src - pass image URL
+	 * @param string $size - pass size from __media.scss, example '400x280', 'square'
+	 * @param string $classes - pass additional classes
+	 * @param string $alt - pass image alt text
+	 * @param array $preloadThumb - pass crop dimensions as an array[width, height]
 	 *
 	 * @return string
 	 */
-	public function mediaItemLazy( string $src, string $size, string $classes = '', string $alt = ''): string
+	public function mediaItemLazy( string $src, string $size, string $classes = '', string $alt = '', array $preloadThumb = null): string
 	{
 		if ( !$size || !$src ) {
 			return '';
 		}
 
-		$classes = $classes ? $classes . ' media-wrap--lazy' : 'media-wrap--lazy';
+		$lazyClass = $preloadThumb ? 'media-wrap--lazy-thumb' : 'media-wrap--lazy-loader';
+		$classes = $classes ? $classes . ' ' . $lazyClass : $lazyClass;
 
-		return $this->mediaItemHTML($src, $size, $classes, $alt);
+		return $this->mediaItemHTML($src, $size, $classes, $alt, $preloadThumb);
 	}
 
 	/** Render hardcoded image media item.
 	 *
-	 * Same as 'mediaItem' method, but for hardcoded images.
+	 * Same as 'mediaItemRegular' method, but for hardcoded images.
 	 * Render image src from src/assets/images or __demo directory.
 	 *
-	 * @param string $src
-	 * @param string $size
-	 * @param string $classes
-	 * @param bool   $isDemo
+	 * @param string $src - pass image URL
+	 * @param string $size - pass size from __media.scss, example '400x280', 'square'
+	 * @param string $classes - pass additional classes
+	 * @param bool   $isDemo - set whether to load image from src/assets/images or __demo directory.
 	 *
 	 * @return string
 	 */
@@ -99,19 +106,28 @@ class Images extends Singleton
 	 * @param string $size
 	 * @param string $classes
 	 * @param string $alt
+	 * @param array $preloadThumb
 	 *
 	 * @return string
 	 */
-	private function mediaItemHTML( string $src, string $size, string $classes = '', string $alt = ''): string
+	private function mediaItemHTML( string $src, string $size, string $classes = '', string $alt = '', array $preloadThumb = null): string
 	{
 		$lazyClass = '';
 		$srcAttr = 'src="' . $src . '"';
 
+		// lazy loading
 		if (strpos ( $classes, '--lazy' ) > 0) {
 			$lazyClass = ' lazy';
-			$srcAttr = 'src="\'\'" data-src="' . $src . '"';
+			$truSrc = '';
+
+			if (strpos ( $classes, '--lazy-thumb' ) > 0) {
+				$truSrc = fws()->resizer()->newImageSize($src, $preloadThumb[0], $preloadThumb[1]);
+			}
+
+			$srcAttr = 'src="' . $truSrc . '" data-src="' . $src . '"';
 		}
 
+		// print html
 		return sprintf(
 			'<div class="%smedia-wrap media-wrap--%s">
 				<img class="media-item cover-img%s" %s alt="%s">

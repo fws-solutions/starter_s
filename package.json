@@ -25,6 +25,7 @@
 		"slick-carousel": "^1.8.1",
 		"vanilla-lazyload": "^17.1.0",
 		"vue": "^2.6.11",
+		"vue-slick-carousel": "^1.0.6",
 		"vuex": "^3.5.1"
 	},
 	"devDependencies": {

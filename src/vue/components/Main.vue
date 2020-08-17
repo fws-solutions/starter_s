@@ -3,6 +3,7 @@
 		<div class="vue-example__container container">
 			<BlockCount :title="title" :count="count" :inc="inc"/>
 			<BlockList :title="subtitle" :pages="pages"/>
+			<BlockGallery :slides="slides"/>
 		</div>
 	</div>
 </template>
@@ -10,6 +11,7 @@
 <script>
 	import BlockCount from './blocks/BlockCount.vue';
 	import BlockList from './blocks/BlockList.vue';
+	import BlockGallery from './blocks/BlockGallery';
 
 	export default {
 		beforeMount() {
@@ -18,13 +20,22 @@
 
 		data() {
 			return {
-				subtitle: 'This is subtitle'
+				subtitle: 'This is subtitle',
+				slides: [
+					'https://images.unsplash.com/photo-1548199973-03cce0bbc87b',
+					'https://images.unsplash.com/photo-1582068955580-dcc6c0812b21',
+					'https://images.unsplash.com/photo-1444212477490-ca407925329e',
+					'https://images.unsplash.com/photo-1532353949707-2e77707ee8a7',
+					'https://images.unsplash.com/photo-1573394342377-09c9da05a3f8'
+
+				]
 			};
 		},
 
 		components: {
 			BlockCount,
-			BlockList
+			BlockList,
+			BlockGallery
 		},
 
 		computed: {

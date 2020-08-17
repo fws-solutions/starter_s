@@ -1,3 +1,4 @@
+const fs = require('fs');
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
 const sourcemaps = require('gulp-sourcemaps');
@@ -45,9 +46,14 @@ function siteJS() {
 gulp.task('vue-js', vueJS);
 
 function vueJS(done) {
-	run('npm run vuejs').exec(false, function() {
+	if (!fs.existsSync('src/vue')) {
+		console.log('There is no VueJS in this project.');
 		done();
-	});
+	} else {
+		run('npm run vuejs').exec(false, function() {
+			done();
+		});
+	}
 }
 
 // task: validate javascript source files

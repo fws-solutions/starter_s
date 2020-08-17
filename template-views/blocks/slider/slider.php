@@ -21,7 +21,7 @@ $slides = $query_var['slides'] ?? [];
 			// resize image
 			$src = fws()->resizer()->newImageSize($item['url'], 460, 460);
 			// render image with lazy loading
-			echo fws()->images()->mediaItemLazy( $src, 'square', 'slider__item' );
+			echo fws()->images()->mediaItemLazy( $src, 'square', 'slider__item', '', [20, 20] );
 		}
 		?>
 	</div><!-- .slider -->
