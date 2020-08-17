@@ -1,4 +1,19 @@
 /*--------------------------------------------------------------
+## Cover Image
+--------------------------------------------------------------*/
+// For cover image, parent element must have position rule and overflow set to hidden
+.cover-img {
+	min-width: 1000%;
+	min-height: 1000%;
+	max-width: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scale(0.1001);
+	transition: $dur $ease;
+}
+
+/*--------------------------------------------------------------
 ## Wrapper and Ratios
 --------------------------------------------------------------*/
 .media-wrap {

@@ -387,11 +387,113 @@ Any media files that are used in frontend phase should be placed in **__demo** f
 
 Any media files that will be static should be placed in **src/assets/images** folder.
 
-Any image should not be larger then 2300px in width, unless there’s a special need for it. Starter Theme comes with predefined image size 'max-width', which **should always** be used for this purpose.
+Any image should not be larger than 2300px in width, unless there’s a special need for it. Starter Theme comes with predefined image size 'max-width', which **should always** be used for this purpose.
 
     add_image_size('max-width', 2300, 9999, false);
 
-All image sizes **should** be declared in **`fws/src/Theme/Hooks/BasicSetup.php`** file.
+All **global** image sizes **should** be declared in **`fws/src/Theme/Hooks/BasicSetup.php`** file.
+
+### Cover Image
+
+In order to emulate, using `img` tag, a **background image** with the `cover` size option, and avoid using `object-fit` doing so, refer to `.cover-img` helper CSS class which will do a **pure CSS hack**.
+
+For cover image, parent element **must have `position` rule and `overflow` set to `hidden`**.
+
+`.cover-img` is defined in `_media.scss` file.
+
+    .cover-img {
+        min-width: 1000%;
+        min-height: 1000%;
+        max-width: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.1001);
+        transition: $dur $ease;
+    }
+
+### Image Sizes
+
+Use `add_image_size` **only** when it makes sense for the project.
+
+**Avoid** creating new image size if particular image appears only once or twice in a project.
+
+For all image sizes that do not need to be declared globally using `add_image_size`, use **FWS's Resizer** feature, that is `newImageSize` function.
+
+Use `newImageSize` function crop an image 'on fly', meaning it will crop passed URL to an approprite image size using WP's default function and upload it to `wp-content/uploads` directory.
+
+Use the function as shown in this example:
+
+    fws()->resizer()->newImageSize($item['url'], 460, 460);
+
+The function takes FIVE arguments:
+
+- `$url` (required) - pass image URL,
+- `$width` (required) - pass new width,
+- `$height` (required) - pass new height,
+- `$crop` (optional) - pass cropping options, defaults to soft crop,
+- `$single` (optional) returns an array if false,
+- `$upscale` optional) resizes smaller images.
+
+
+    Example:
+    // $url = '/wp-content/uploads/2020/02/some-image.jpg'
+
+    <?php fws()->resizer()->newImageSize($url, 400, 200); ?>
+
+    Will return:
+    '/wp-content/uploads/2020/02/some-image-400x200.jpg.jpg'
+
+### Wrappers and Lazy Loading
+
+Working with any media should be done using helper HTML `<div>` wrappers and CSS `.media-wrap`, `.media-wrap--modifer`, `.media-item` and `cover-img` classes.
+
+All the above mentioned classes are defined in `_media.scss` file.
+
+The proper HTML structure should look like this:
+
+    <div class="media-wrap media-wrap--200x200">
+        <img class="media-item cover-img" src=".../some-image-200x200.jpg" alt="">
+    </div>
+
+Followed by CSS like this:
+
+    // wrapper class
+    .media-wrap {
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            display: block;
+            width: 100%;
+        }
+    }
+
+    // wrapper modifers class
+    .media-wrap--square::before {
+        padding-top: 100%;
+    }
+
+    .media-wrap--400x280::before {
+        padding-top: 70%;
+    }
+
+    // image class
+    .media-item {
+        display: block;
+    }
+
+
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/08/media-item.jpg)
+
+**What is actually happening here?**
+
+- `.cover-img` class will apply CSS **cover image hack** which positions an image as `absolute`,
+- while `.media-item` simply makes sure an `img` tag is a `block` element.
+- `.media-wrap` class serves as a positioned `relative` parent element with `overflow: hidden` property.
+- `.media-wrap` **adds pseudo `::before`** element which will handle **this wrapper's** height.
 
 ## SCSS
 All Template Views styles should be written in corresponding directory.
@@ -690,15 +792,15 @@ With modular template views it is essential that ACF Flexible Content is organiz
 
 **Moving away from default Flexible Content implementation...**
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-old.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2019/09/flex-content-old.png)
 
 **... and make full use of Clone field.**
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-new.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2019/09/flex-content-new.png)
 
 **Each Flexible Content block will use Clone field to copy ALL fields from certain field group.**
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/flex-content-groups.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2019/09/flex-content-groups.png)
 
 Making those fields a direct sub fields in a Flexible Content layouts.
 
@@ -724,7 +826,7 @@ In the example above, it is **important to note** that variable that is being pa
 
 The reason this is possible is because of **the way ACF values are natively returned**. Meaning, ACF fields are **always stored and returned as an array**.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/fws-acf-setup-new.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/04/fws-acf-setup-new.png)
 
 Naming the fields same names as variables in the template views will make sure that each component gets properly formated array values which it needs for rendering properly.
 
@@ -741,7 +843,7 @@ By splitting each Flexible Content block to a separate field group, the workflow
 It is essential to have JSON generating enabled, which is an option set by default.
 Another thing to keep in mind, since these fields are being used exclusively for cloning purposes, it is important to set them as **inactive**.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-inactive2.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/02/acf-inactive2.png)
 
 In order to optimize the workflow even further, this Starter Theme comes with hook function **that will automatically sync any changes** in field groups registered by new JSON files.
 
@@ -759,11 +861,11 @@ Furthermore, it is highly recommended to also create **helper groups** of fields
 
 For example, the Section Title field...
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/re-acf.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2019/09/re-acf.png)
 
 ... can be reusable across many different field groups.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2019/09/fc-acf.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2019/09/fc-acf.png)
 
 Considering **helper group** fields together with **block group** fields, the number of groups in the dashboard will tend to get **very long and unorganized**.
 
@@ -774,7 +876,7 @@ Aside from using field group categories it is also **required to follow defined 
 Every field group for **blocks** should be named with a **prefix 'FC'**.
 Every field group for **reusable elements** should be named with a **prefix 'RE'**.
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/02/acf-categories.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/02/acf-categories.png)
 
 With these two conventions, it is visually optimised to distinguish which fields are blocks and which helpers, and it is user friendly to use categories to filter out desired groups.
 
@@ -835,19 +937,19 @@ All values must be written under `acf-flexible-content` with defined **group nam
     - See images **Field Layout Title** and **Field Layout Group ID** bellow.
 
 ***Field Name***
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-title.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/04/field-group-title.png)
 
 ***Field Location***
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-location.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/04/field-group-location.png)
 
 ***Field Hidden Stuff***
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-hide.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/04/field-group-hide.png)
 
 ***Field Layout Title***
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/field-group-name.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/04/field-group-name.png)
 
 ***Field Layout Group ID***
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/filed-group-id.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/04/filed-group-id.png)
 
 **Example of .fwsconfig.yml**:
 
@@ -911,7 +1013,7 @@ All values must be written under `acf-options-page`:
 
 ***Sub pages***
 
-![](http://internal.forwardslashny.com/wp-content/uploads/2020/04/acf-options.png)
+![](https://fwsinternaladm.wpengine.com/wp-content/uploads/2020/04/acf-options.png)
 
 **Example of .fwsconfig.yml**
 
