@@ -50,7 +50,7 @@ function vueJS(done) {
 		console.log('There is no VueJS in this project.');
 		done();
 	} else {
-		run('npm run vuejs').exec(false, function() {
+		run('npm run vuejs', {silent: false, verbosity: 2}).exec('', function() {
 			done();
 		});
 	}
