@@ -10,6 +10,7 @@ dashboard.css
 dashboard.css.map
 login.css
 login.css.map
+.fwsenqueue.yml
 
 # ignore Editor files
 .idea

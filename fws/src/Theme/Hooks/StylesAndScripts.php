@@ -21,16 +21,18 @@ class StylesAndScripts extends SingletonHook
 	 */
 	public function setThemeStylesAndScripts(): void
 	{
+		$version = fws()->config()->enqueueVersion();
+
 		// Set Theme Site CSS
-		wp_enqueue_style( 'fws_starter_s-style', get_stylesheet_uri() );
+		wp_enqueue_style( 'fws_starter_s-style', get_stylesheet_uri(), [], $version );
 
 		// Set Theme Site JS
-		wp_enqueue_script( 'fws_starter_s-site-js', get_template_directory_uri() . '/dist/site.min.js', ['jquery'], '', false );
+		wp_enqueue_script( 'fws_starter_s-site-js', get_template_directory_uri() . '/dist/site.min.js', ['jquery'], $version, false );
 
 		// Set Theme VueJS
-		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], '', false );
+		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], $version, false );
 
-		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], '', false );
+		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], $version, false );
 
 		// Set WP Script for Comments
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

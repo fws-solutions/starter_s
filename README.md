@@ -106,6 +106,14 @@ For example:
 - default file name: `_fe-banner.php`
 - varitation file name: `_fe-banner--alt.php`
 
+### Styles and Scripts Version
+
+Note that after `fws build` the `.fwsenqueue.yml` file is generated.
+
+This file is on `.gitignore` list and is generating a timestamp after each **build**.
+
+This **timestamp** is used as a version control for compiled files, that is, for styles and scripts that are enqueued in the theme.
+
 ## CLI
 For the full list of all commands, execute `fws --help`.
 

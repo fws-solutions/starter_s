@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const clean = require('gulp-clean');
 const globalVars = require('./src/config/gulp/_global-vars');
+const fs = require('fs');
 
 /*----------------------------------------------------------------------------------------------
 	Prepare and Run all Gulp Tasks
@@ -25,8 +26,27 @@ function devBuild(done) {
 	done();
 }
 
+function generateEnqueueYml(done) {
+	const getMonth = function(date) {
+		const month = date.getMonth() + 1;
+		return month < 10 ? '0' + month : month;
+	};
+	const date = new Date();
+	const version = [
+		date.getFullYear(),
+		getMonth(date),
+		date.getDate(),
+		date.getHours(),
+		date.getMinutes()
+	];
+	fs.writeFileSync('.fwsenqueue.yml', 'enqueue-version: ' + version.join('.'));
+
+	done();
+}
+
 // build all files for production
 gulp.task('build', gulp.series(
+	generateEnqueueYml,
 	globalVars.createDistFolder,
 	prodBuild,
 	gulp.parallel(

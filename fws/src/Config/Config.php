@@ -19,13 +19,19 @@ class Config extends Singleton
 	protected static $instance;
 
 	/** @var string */
-	private $filename = '.fwsconfig.yml';
+	private $configFileName = '.fwsconfig.yml';
+
+	/** @var string */
+	private $enqFileName = '.fwsenqueue.yml';
 
 	/** @var Parser */
 	private $parser;
 
 	/** @var array */
 	private $config = [];
+
+	/** @var array */
+	private $enqVersion = [];
 
 	/** @var FlexContent[] */
 	private $flexContent = [];
@@ -40,11 +46,12 @@ class Config extends Singleton
 		$filePath = get_template_directory() . DIRECTORY_SEPARATOR;
 
 		// Load theme settings '.fwsconfig.yml' file
-		$configFilePath = $filePath . $this->filename;
+		$configFilePath = $filePath . $this->configFileName;
+		$this->loadYmlFile($configFilePath, 'config');
 
-		if ( file_exists( $configFilePath ) ) {
-			$this->config = $this->parser->parse( file_get_contents( $configFilePath ) );
-		}
+		// Load theme enq version '.fwsenqueue.yml' file
+		$enqFilePath = $filePath . $this->enqFileName;
+		$this->loadYmlFile($enqFilePath, 'enqVersion');
 	}
 
 	/**
@@ -138,6 +145,16 @@ class Config extends Singleton
 	}
 
 	/**
+	 * Enqueue Version
+	 *
+	 * @return string
+	 */
+	public function enqueueVersion(): string
+	{
+		return (string) $this->enqVersion['enqueue-version'] ?? '';
+	}
+
+	/**
 	 * @return FlexContent[]
 	 */
 	public function acfFlexibleContent(): array
@@ -157,5 +174,19 @@ class Config extends Singleton
 	private function mapFlexContent( array $args )
 	{
 		return new FlexContent( $args );
+	}
+
+	/**
+	 * Load YML File
+	 *
+	 * @param string $enqFilePath
+	 *
+	 * @return void
+	 */
+	private function loadYmlFile( string $filePath, string $property ): void
+	{
+		if ( file_exists( $filePath ) ) {
+			$this->$property = $this->parser->parse( file_get_contents( $filePath ) );
+		}
 	}
 }
