@@ -141,6 +141,31 @@ class Hooks extends SingletonHook
 	}
 
 	/**
+	 * Change Woocommerce Checkout Markup
+	 *
+	 * @param $field
+	 * @param $key
+	 * @param $args
+	 * @param $value
+	 *
+	 * @return string|string[]
+	 */
+	public function changeCheckoutMarkup( $field, $key, $args, $value )
+	{
+
+		$field = '<div class="woo-checkout-parent" data-priority="' . $args['priority'] .
+		         '">' . $field . '</div>';
+
+		if ( $key === 'billing_first_name' ) {
+			$field = '<div class="child-div">' . $field;
+		} elseif ( $key === 'billing_phone' ) {
+			$field = $field . '</div>';
+		}
+
+		return $field;
+	}
+
+	/**
 	 * Drop your hooks here.
 	 */
 	protected function hooks(): void
@@ -153,6 +178,8 @@ class Hooks extends SingletonHook
 
 		remove_action( 'woocommerce_before_main_content', 'woocommerce_output_content_wrapper', 10 );
 		remove_action( 'woocommerce_after_main_content', 'woocommerce_output_content_wrapper_end', 10 );
+
+		add_action( 'woocommerce_form_field',[$this,'changeCheckoutMarkup' ], 10, 4 );
 
 		add_action( 'woocommerce_before_main_content', function () { do_action( 'fws_starter_s_before_main_content' ); }, 40 );
 		add_action( 'woocommerce_after_main_content', function () { do_action( 'fws_starter_s_after_main_content' ); }, 40 );

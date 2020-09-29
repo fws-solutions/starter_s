@@ -18,7 +18,7 @@ $loader_image = fws()->resizer()->newImageSize($desktop_image['url'], 20, 7);
 ?>
 
 <?php if ( $desktop_image ) : ?>
-<picture class="background-image media-wrap">
+<picture class="background-image">
 	<source media="(min-width: 1200px)" srcset="<?php echo $loader_image ?>" data-srcset="<?php echo $desktop_image['url']; ?>">
 
 	<?php if ( $tablet_image ) : ?>
@@ -29,6 +29,6 @@ $loader_image = fws()->resizer()->newImageSize($desktop_image['url'], 20, 7);
 		<source media="(min-width: 320px)" srcset="<?php echo $loader_image ?>" data-srcset="<?php echo $mobile_image['sizes']['medium']; ?>">
 	<?php endif; ?>
 
-	<img class="media-item cover-img lazy" src="<?php echo $loader_image ?>" data-src="<?php echo $desktop_image['url']; ?>" alt="">
+	<img class="cover-img lazy" src="<?php echo $loader_image ?>" data-src="<?php echo $desktop_image['url']; ?>" alt="">
 </picture><!-- .background-image -->
 <?php endif; ?>

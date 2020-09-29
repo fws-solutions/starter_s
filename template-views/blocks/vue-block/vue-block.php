@@ -1,1 +1,1 @@
-<div id="app"></div>
+<div id="vue-example-block"></div>

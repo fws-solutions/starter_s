@@ -40,7 +40,7 @@ const Menu = {
 	},
 
 	toggleSubMenu(e) {
-		const icon = $(e.target.closest(this.slMenuIcon));
+		const icon = $(e.target).closest(this.slMenuIcon);
 		const ul = icon.siblings(this.slMenuSub);
 
 		if (!icon.hasClass(this.classActive)) {

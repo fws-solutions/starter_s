@@ -2,10 +2,15 @@ import Vue from 'vue';
 import store from './store';
 import Main from './components/Main.vue';
 
-if (document.getElementById('app')) {
-	new Vue({ // eslint-disable-line no-new
-		el: '#app',
-		render: (createEl) => createEl(Main),
-		store
-	});
+const createNewVueInstance = function(id, component, store) {
+	if (document.getElementById(id)) {
+		new Vue({ // eslint-disable-line no-new
+			el: `#${id}`,
+			render: (createEl) => createEl(component),
+			store
+		});
+	}
 }
+
+// create an example block
+createNewVueInstance('vue-example-block', Main, store);
