@@ -1,14 +1,15 @@
 {
 	"name": "fws_starter_s",
 	"author": "Forwardslash NY",
-	"version": "3.6.1",
+	"version": "3.6.2",
 	"main": "gulpfile.js",
 	"scripts": {
 		"build-dev": "gulp build-dev",
 		"build": "gulp build",
 		"css": "gulp css",
 		"js": "gulp js",
-		"vuejs": "./node_modules/.bin/vue-cli-service build ./src/vue/app.js",
+		"vue-prod": "./node_modules/.bin/vue-cli-service build ./src/vue/app.js",
+		"vue": "./node_modules/.bin/vue-cli-service build --mode development ./src/vue/app.js",
 		"dev": "gulp watch",
 		"lint-html": "gulp html-lint-fe",
 		"lint-css": "gulp sass-lint",

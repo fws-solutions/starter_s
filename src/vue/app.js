@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import store from './store';
-import Main from './components/Main.vue';
+import WidgetExample from './widgets/WidgetExample.vue';
 
 const createNewVueInstance = function(id, component, store) {
 	if (document.getElementById(id)) {
@@ -10,7 +10,7 @@ const createNewVueInstance = function(id, component, store) {
 			store
 		});
 	}
-}
+};
 
 // create an example block
-createNewVueInstance('vue-example-block', Main, store);
+createNewVueInstance('vue-example-block', WidgetExample, store);

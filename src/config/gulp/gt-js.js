@@ -50,7 +50,13 @@ function vueJS(done) {
 		console.log('There is no VueJS in this project.');
 		done();
 	} else {
-		run('npm run vuejs', {silent: false, verbosity: 2}).exec('', function() {
+		const task = globalVars.productionBuild ? 'vue-prod' : 'vue';
+		const config = {
+			silent: false,
+			verbosity: 2
+		};
+
+		run('npm run ' + task, config).exec('', function() {
 			done();
 		});
 	}

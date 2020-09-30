@@ -9,9 +9,9 @@
 </template>
 
 <script>
-	import BlockCount from './blocks/BlockCount.vue';
-	import BlockList from './blocks/BlockList.vue';
-	import BlockGallery from './blocks/BlockGallery';
+	import BlockCount from '../components/blocks/BlockCount.vue';
+	import BlockList from '../components/blocks/BlockList.vue';
+	import BlockGallery from '../components/blocks/BlockGallery';
 
 	export default {
 		beforeMount() {
