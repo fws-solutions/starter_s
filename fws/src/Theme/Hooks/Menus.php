@@ -26,7 +26,7 @@ class Menus extends SingletonHook
 	{
 		register_nav_menus( array(
 			'menu-1' => esc_html__( 'Primary', 'fws_starter_s' ),
-			'menu-2' => esc_html__( 'Secundary', 'fws_starter_s' ),
+			'menu-2' => esc_html__( 'Secondary', 'fws_starter_s' ),
 		) );
 	}
 
