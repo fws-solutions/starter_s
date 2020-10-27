@@ -3,7 +3,8 @@
 		class="media-wrap"
 		:class="`${lazyloading ? 'media-wrap--lazy-loader ' : ''}media-wrap--${size}`"
 	>
-		<img class="media-item cover-img"
+		<img
+			class="media-item cover-img"
 			:class="lazyloading ? 'lazy' : ''"
 			:src="lazyloading ? '' : src"
 			:data-src="lazyloading ? src : undefined"
