@@ -55,6 +55,10 @@ class FlexContent
 		$mappedLayouts = [];
 
 		foreach ( $layouts as $layout ) {
+			if ( !acf_get_field_group( $layout['group_id'] ) ) {
+				continue;
+			}
+
 			$label = $layout['title'] ?? '';
 			$name = str_replace( '-', '_', sanitize_title( $label ) );
 			$groupID = $layout['group_id'] ?? '';
