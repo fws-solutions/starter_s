@@ -9,7 +9,6 @@ const webpack = require('webpack-stream');
 const webpackConfig = require('../webpack/webpack.config.js');
 const webpackAdmin = require('../webpack/webpack.config.admin.js');
 const gulpif = require('gulp-if');
-const run = require('gulp-run');
 const globalVars = require('./_global-vars');
 const destDir = 'dist';
 
@@ -40,26 +39,6 @@ function siteJS() {
 		.pipe(webpack(webpackConfig))
 		.pipe(gulpif(globalVars.productionBuild, uglify()))
 		.pipe(gulp.dest(destDir));
-}
-
-// task: build vue
-gulp.task('vue-js', vueJS);
-
-function vueJS(done) {
-	if (!fs.existsSync('src/vue')) {
-		console.log('There is no VueJS in this project.');
-		done();
-	} else {
-		const task = globalVars.productionBuild ? 'vue-prod' : 'vue';
-		const config = {
-			silent: false,
-			verbosity: 2
-		};
-
-		run('npm run ' + task, config).exec('', function() {
-			done();
-		});
-	}
 }
 
 // task: validate javascript source files
@@ -102,7 +81,6 @@ module.exports = {
 	adminJS: adminJS,
 	siteJS: siteJS,
 	pluginsJS: pluginsJS,
-	vueJS: vueJS,
 	mergeJS: mergeJS,
 	lintJS: lintJS
 };

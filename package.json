@@ -1,11 +1,11 @@
 {
 	"name": "fws_starter_s",
 	"author": "Forwardslash NY",
-	"version": "3.6.2",
+	"version": "3.6.3",
 	"main": "gulpfile.js",
 	"scripts": {
-		"build-dev": "gulp build-dev",
-		"build": "gulp build",
+		"build-dev": "gulp build-dev && npm run vue",
+		"build": "gulp build && npm run vue-prod",
 		"css": "gulp css",
 		"js": "gulp js",
 		"vue-prod": "./node_modules/.bin/vue-cli-service build ./src/vue/app.js",
@@ -57,7 +57,6 @@
 		"gulp-plumber": "^1.2.1",
 		"gulp-postcss": "^8.0.0",
 		"gulp-rename": "^2.0.0",
-		"gulp-run": "^1.7.1",
 		"gulp-sass": "^4.1.0",
 		"gulp-sass-lint": "^1.4.0",
 		"gulp-sourcemaps": "^2.6.5",
