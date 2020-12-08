@@ -33,6 +33,11 @@
 	text-align: center;
 }
 
+.is-disabled {
+	pointer-events: none;
+	opacity: .7;
+}
+
 // Theming and colors/fonts iterator
 @each $colors-name in $site-colors {
 	$name: nth($colors-name, 1);

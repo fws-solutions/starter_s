@@ -18,6 +18,7 @@ use FWS\Theme\Render as ThemeRender;
 use FWS\Theme\Styleguide as ThemeStyleguide;
 use FWS\WC\Hooks as WCHooks;
 use FWS\WC\Render as WCRender;
+use FWS\CF7\Hooks as CF7Hooks;
 
 /**
  * Singleton Class FWS
@@ -84,6 +85,11 @@ class FWS extends Singleton
 		if ( function_exists( 'acf_add_options_sub_page' ) ) {
 			$this->acf = ACFRender::init();
 			ACFHooks::init();
+		}
+
+		// CF7
+		if ( function_exists( 'wpcf7_add_shortcode' ) ) {
+			CF7Hooks::init();
 		}
 	}
 

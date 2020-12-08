@@ -1,7 +1,7 @@
 {
 	"name": "fws_starter_s",
 	"author": "Forwardslash NY",
-	"version": "3.6.4",
+	"version": "3.7.0",
 	"main": "gulpfile.js",
 	"scripts": {
 		"build-dev": "gulp build-dev && npm run vue",
@@ -53,6 +53,7 @@
 		"gulp-eslint": "^6.0.0",
 		"gulp-htmllint": "0.0.19",
 		"gulp-if": "^3.0.0",
+		"gulp-mjml": "^4.0.2",
 		"gulp-notify": "^3.2.0",
 		"gulp-plumber": "^1.2.1",
 		"gulp-postcss": "^8.0.0",
