@@ -1242,6 +1242,7 @@ List of Starter **default features** and **classes**:
 - `ACF\FlexContent` - define flexible content field configuration.
 - `WC\Hooks` - configure WooCommerce settings.
 - `WC\Render` - various public methods for rendering WooCommerce parts.
+- `CF7\Hooks` - hooks for enabaling Contact Form 7 custom html templates.
 
 ### WooCommerce Support
 
@@ -1256,6 +1257,72 @@ Before implementing any template overrides, all templates of the **current plugi
 **This is important to do because if WooCommerce plugin is updated, you will lose original templates and will not be able to compare any overrides that need updating as well.**
 
 The `woocommerce` root directory should **only contain** files that are being overriden. **By all means, do NOT ever copy entire template structure to this folder**.
+
+### Contact Form 7 Support
+
+Contact Form 7 FWS extension enables usage of HTML and [MJML](https://mjml.io/) files for creating form and email templates.
+
+All CF7 functionality overrides should be written in
+ - `fws/src/CF7/Hooks`file.
+
+For admin dashboard:
+ - `src/config/admin/js/admin/cf7.js` and
+ - `src/config/admin/scss/_cf7.scss` files.
+
+**The drawback of CF7 plugin is that all HTML needs to be written inside the dashboard.**
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-form.png)
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-email.png)
+
+This creates obvious issues when it comes to version control, there is no way to keep this HTML structure on a Git repository and there's an unnecessary risk that database gets lost along with whole written HTML and CSS for forms and emails.
+
+To resolve this problem, Starter comes with a feature which enables writting custom HTML file for creating CF7 form and usage of MJML templating engine for creating emails.
+
+With this in mind, the following workflow should be implemented:
+ - All HTML for CF7 form should be written using `.html` format in `src/emails/cf7` directory.
+ - All HTML for CF7 emails should be written using `.mjml` format in `src/emails/cf7` directory.
+
+**Note that all `.html` files will be copied over to `dist/cf7` directory, and all `.mjml` files will be compiled into HTML to the same `dist/cf7` directory.**
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-src.png)
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-dist.png)
+
+After everything is configured and created inside a project's theme, a new options for CF7 will be avalible.
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-enabled.png)
+
+As seen in the screenshot, all fields for creating forms and emails are **locked** and a new tab `FWS CF7 Templates` is avalible.
+
+There, we can choose which templates we want to use for an approprite dashboard field.
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-temokates.png)
+
+Once selected, entire HTML content will be copied over to appropriet fields.
+
+**Make sure the form is saved before leaving the page** as this feature only prepopulates the content and not actually saves it.
+
+**Another important thing to note**, before the HTML is appended to proper fields in CF7 dashboard, the entire HTML is run through `lodash.template` compiler in order to cover any dynamic content such as **theme root path** and **site url**.
+
+The avalible **variables** are:
+ - `themeRoot` - will return theme's root path,
+ - `siteUrl` - will return site's url.
+
+Syntax for placing these variables is `<%= siteUrl %>`.
+
+    Example:
+
+    <mj-button href="<%= siteUrl %>">Go To Website</mj-button>
+    <mj-image src="<%= themeRoot %>/src/assets/images/fws-logo-red.png"/>
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-var.png)
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/cf7-compiled.png)
+
+As seen in the examples above, these variables will compile to proper values pulled from WP database.
+
+Lastly, the enitre feature can be disabled by simply changing `.fwsconfig.yml` option `cf7-custom-templates` to `false`.
 
 ### Custom Post Types and Taxonomies
 

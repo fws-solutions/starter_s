@@ -1,4 +1,5 @@
 const $ = jQuery.noConflict();
+const _template = require('lodash.template');
 
 'use strict';
 const CF7 = {
@@ -60,14 +61,18 @@ const CF7 = {
 	loadFormContent: function($select, $preview, $dest) {
 		const _this = this;
 
-		console.log($select, $preview, $dest);
-
 		$.ajax({
 			method: 'GET',
 			url: _this.localized.themeRoot + _this.templateDirs + $select.val(),
 			success: function(data) {
-				$dest.val(data);
-				$preview.val(data);
+				const compiledFileContentTemp = _template(data);
+				const html  = compiledFileContentTemp({
+					themeRoot: _this.localized.themeRoot,
+					siteUrl: _this.localized.siteUrl
+				});
+
+				$dest.val(html);
+				$preview.val(html);
 			}
 		})
 	}
