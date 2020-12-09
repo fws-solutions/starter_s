@@ -58,7 +58,7 @@ Local enviorment **needs** to be declared in an `.env` file in order for project
 
 With this in mind, every team member can be free to name their virual hosts whatever they want to.
 
-    VIRTUAL_HOST_URL=http://project-name.local/
+    VIRTUAL_HOST_URL=http://project-name.lndo.local/
 
 ### ACF Fields Config
 
@@ -373,7 +373,7 @@ To run W3 Validator locally, execute `fws w3 local` command.
 
 HTML validity is checked with [W3 Validator](https://validator.w3.org/nu/) API.
 
-This command will only work if local enviorment and virtual host is declared in `.env` file in the property `VIRTUAL_HOST_URL=http://project-name.local/`.
+This command will only work if local enviorment and virtual host is declared in `.env` file in the property `VIRTUAL_HOST_URL=http://project-name.lndo.local/`.
 
 **This is a must**, your virtual host URL **must be** declared in this manner in order for W3 to work.
 

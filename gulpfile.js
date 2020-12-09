@@ -9,6 +9,7 @@ const fs = require('fs');
 const sassSRC = ['src/scss/**/*.scss', 'template-views/**/**/*.scss'];
 const adminSassSRC = ['src/config/admin/scss/admin.scss'];
 
+const gtMjml = require('./src/config/gulp/gt-mjml');
 const gtHtmlLint = require('./src/config/gulp/gt-htmllint');
 const gtCss = require('./src/config/gulp/gt-css');
 const gtJs = require('./src/config/gulp/gt-js');
@@ -58,6 +59,8 @@ gulp.task('build', gulp.series(
 			gtJs.mergeJS
 		),
 		gtCss.sasslint,
+		gtMjml.copyHtmlFiles,
+		gtMjml.compileMjml,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
 	),
@@ -77,6 +80,8 @@ gulp.task('build-dev', gulp.series(
 			gtJs.mergeJS
 		),
 		gtCss.sasslint,
+		gtMjml.copyHtmlFiles,
+		gtMjml.compileMjml,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
 	),
@@ -104,6 +109,8 @@ gulp.task('watch', gulp.series(
 			gtJs.mergeJS
 		),
 		gtCss.sasslint,
+		gtMjml.copyHtmlFiles,
+		gtMjml.compileMjml,
 		gtHtmlLint.htmlLint.bind(null, false),
 		gtHtmlLint.htmlLint.bind(null, true)
 	),

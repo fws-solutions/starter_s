@@ -1,0 +1,41 @@
+<mjml>
+	<mj-head>
+		<mj-font name="OpenSans" href="https://fonts.googleapis.com/css2?family=Open+Sans"/>
+		<mj-style>
+			.basic-text a { color: #f7ab42 !important; text-decoration: underline !important; }
+
+			.basic-text strong { color: #045d63 !important; }
+		</mj-style>
+	</mj-head>
+	<mj-body>
+		<mj-section background-color="#fff" padding="54px 4% 50px 4%">
+			<mj-column>
+                <mj-image width="100px" src="https://www.forwardslashny.com/wp-content/uploads/2019/04/logo_mid.svg"/>
+			</mj-column>
+		</mj-section>
+		<mj-section background-color="#fff" padding="0 40px 0 40px">
+			<mj-column>
+				<mj-text font-size="30px" color="#3e2636" font-weight="700" font-family="OpenSans, Arial" align="center" padding-bottom="25px">
+					Thank You for reaching out.
+				</mj-text>
+				<mj-button background-color="#00" href="https://www.forwardslashny.com/">Go To Website</mj-button>
+			</mj-column>
+		</mj-section>
+		<mj-section background-color="#fff" padding-left="5%" padding-right="5%" padding-bottom="70px">
+			<mj-column>
+				<mj-text font-size="16px" color="#3e2636" font-weight="400" font-family="OpenSans, Arial" align="center" line-height="28px" css-class="basic-text">
+					Your message has been recevied. <br/> Our team will get back to you ASAP!
+				</mj-text>
+			</mj-column>
+		</mj-section>
+		<mj-section background-color="#000" padding="10px">
+			<mj-column>
+				<!-- {{ asset('img/email/email_logo.png') }} -->
+                <mj-image width="45px" src="https://www.forwardslashny.com/wp-content/uploads/2019/04/logo_mid.svg"/>
+				<mj-text font-size="13px" color="#ececec" font-weight="300" font-family="OpenSans, Arial" align="center" line-height="15px">
+					&copy; starter_s
+				</mj-text>
+			</mj-column>
+		</mj-section>
+	</mj-body>
+</mjml>

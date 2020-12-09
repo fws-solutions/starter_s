@@ -17,6 +17,9 @@ function watchFiles(done) {
 	// watch vue folder
 	// gulp.watch('src/vue/**', gulp.series('vue-js'));
 
+	// watch cf7 folder
+	gulp.watch(['./src/emails/cf7/**/*.html', './src/emails/cf7/**/*.mjml'], gulp.series('cf7'));
+
 	// watch .php files
 	gulp.watch(['template-views/**/*.php'], gulp.series(['html-lint-be']));
 	done();

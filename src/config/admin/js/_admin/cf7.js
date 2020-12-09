@@ -3,25 +3,41 @@ const $ = jQuery.noConflict();
 'use strict';
 const CF7 = {
 	$domForm: $('#wpcf7-admin-form-element'),
-	$domPanel: $('#wpcf7-form'),
-	$domSelect: $('#wpcf7-html-temp'),
 	$domTempTab: $('#html-template-tab > a'),
-	$domTempPreview: $('.js-html-temp-preview'),
+	$domInputForm: $('#wpcf7-form'),
+	$domInputEmailAdmin: $('#wpcf7-mail-body'),
+	$domInputEmailUser: $('#wpcf7-mail-2-body'),
+	$domSelectForm: $('#cf7-form-temp'),
+	$domSelectEmailAdmin: $('#cf7-email-admin-temp'),
+	$domSelectEmailUser: $('#cf7-email-user-temp'),
+	$domPreviewForm: $('#cf7-form-temp-preview'),
+	$domPreviewEmailAdmin: $('#cf7-email-admin-temp-preview'),
+	$domPreviewEmailUser: $('#cf7-email-user-temp-preview'),
 	classDisabled: 'is-disabled',
+	templateDirs: '/dist/cf7/',
 	localized: window.starter_s_localized,
 
 	init: function() {
 		if (this.$domForm.length > 0) {
+			this.disableForms();
 			this.addMessage();
-			this.loadFormContent();
+			this.loadFormContent(this.$domSelectForm, this.$domPreviewForm, this.$domInputForm);
+			this.loadFormContent(this.$domSelectEmailAdmin, this.$domPreviewEmailAdmin, this.$domInputEmailAdmin);
+			this.loadFormContent(this.$domSelectEmailUser, this.$domPreviewEmailUser, this.$domInputEmailUser);
 			this.bindEvents();
 		}
 	},
 
+	disableForms: function() {
+		this.$domInputForm.addClass(this.classDisabled);
+		this.$domInputEmailAdmin.addClass(this.classDisabled);
+		this.$domInputEmailUser.addClass(this.classDisabled);
+	},
+
 	bindEvents: function() {
-		this.$domSelect.on('change', () => {
-			this.loadFormContent();
-		});
+		this.$domSelectForm.on('change', this.loadFormContent.bind(this, this.$domSelectForm, this.$domPreviewForm, this.$domInputForm));
+		this.$domSelectEmailAdmin.on('change', this.loadFormContent.bind(this, this.$domSelectEmailAdmin, this.$domPreviewEmailAdmin, this.$domInputEmailAdmin));
+		this.$domSelectEmailUser.on('change', this.loadFormContent.bind(this, this.$domSelectEmailUser, this.$domPreviewEmailUser, this.$domInputEmailUser));
 	},
 
 	addMessage: function() {
@@ -29,7 +45,9 @@ const CF7 = {
 			<p class="cf7-html-temp-msg">Editing Form template is disabled from the dashboard. Please choose one of the avalible templates from <a class="js-html-temp" href="javascript:;">HTML Template</a> tab.</p>
 		`;
 
-		this.$domPanel.before(beforeHTML);
+		this.$domInputForm.before(beforeHTML);
+		this.$domInputEmailAdmin.before(beforeHTML);
+		this.$domInputEmailUser.before(beforeHTML);
 
 		$('.js-html-temp').on('click', (e) => {
 			e.preventDefault;
@@ -37,16 +55,17 @@ const CF7 = {
 		});
 	},
 
-	loadFormContent: function() {
+	loadFormContent: function($select, $preview, $dest) {
 		const _this = this;
+
+		console.log($select, $preview, $dest);
 
 		$.ajax({
 			method: 'GET',
-			url: `${_this.localized.themeRoot}/src/forms/${_this.$domSelect.val()}`,
+			url: _this.localized.themeRoot + _this.templateDirs + $select.val(),
 			success: function(data) {
-				_this.$domPanel.addClass(_this.classDisabled);
-				_this.$domPanel.val(data);
-				_this.$domTempPreview.val(data);
+				$dest.val(data);
+				$preview.val(data);
 			}
 		})
 	}

@@ -16,7 +16,12 @@ class Hooks extends SingletonHook
 	/** @var self */
 	protected static $instance;
 
-	private $htmlTempFiles = '/src/forms/*.html';
+	private $htmlTempFiles = '/dist/cf7/*.html';
+	private $templateIDs = [
+		'form_id' => 'cf7-form-temp',
+		'email_admin_id' => 'cf7-email-admin-temp',
+		'email_user_id' => 'cf7-email-user-temp'
+	];
 
 	/**
 	 * Register CF7 custom panel
@@ -24,7 +29,7 @@ class Hooks extends SingletonHook
 	public function customPanel($panels)
 	{
 		$panels['html-template'] = array(
-			'title' => 'HTML Template',
+			'title' => 'FWS CF7 Templates',
 			'callback' => [ $this, 'panelMarkdown' ],
 		);
 
@@ -41,32 +46,81 @@ class Hooks extends SingletonHook
 	public function panelMarkdown ($post): void
 	{
 		$templates = $this->getHtmlTemplates();
-		$selected = get_post_meta($post->id(), 'cf7_html_temp', true);
+		$IDs = $this->templateIDs;
 
+		$form_selected = get_post_meta($post->id(), $IDs['form_id'], true);
+		$email_admin_selected = get_post_meta($post->id(), $IDs['email_admin_id'], true);
+		$email_user_selected = get_post_meta($post->id(), $IDs['email_user_id'], true);
 		?>
-		<h2><?php echo esc_html( __( 'HTML Template', 'contact-form-7' ) ); ?></h2>
 
-		<div class="cf7-html-wrap container-fluid">
+		<div id="cf7-html-wrap" class="cf7-html-wrap container-fluid">
+			<div class="cf7-html-title">
+				<img class="cf7-html-logo" src="<?php echo fws()->images()->assetsSrc('fws-logo-red.png'); ?>" alt="">
+				<h2 class="cf7-html-title-texts"><?php echo esc_html( __( 'CF7 Templates', 'contact-form-7' ) ); ?></h2>
+			</div>
+
 			<div class="row">
-				<div class="col-md-4">
-					<fieldset>
-						<label for="wpcf7-html-temp"><b><?php echo esc_html( __( 'Choose HTML Template:', 'contact-form-7' ) ); ?></b></label>
-
-						<select name="html-templates" id="wpcf7-html-temp">
-							<?php foreach ($templates as $temp) : ?>
-								<option value="<?php echo $temp; ?>" <?php $this->markSelected($selected, $temp); ?>><?php echo $temp; ?></option>
-							<?php endforeach; ?>
-						</select>
-					</fieldset>
+				<div class="col-md-3">
+					<?php $this->getSelectField($IDs['form_id'], 'Form:', $templates, $form_selected); ?>
+					<?php $this->getSelectField($IDs['email_admin_id'], 'Email Admin:', $templates, $email_admin_selected); ?>
+					<?php $this->getSelectField($IDs['email_user_id'], 'Email User:', $templates, $email_user_selected); ?>
 				</div>
 
-				<div class="col-md-8">
-					<div class="cf7-html-temp-preview-wrap">
-						<label for="cf7-html-temp-preview">Preview HTML:</label>
-						<textarea id="cf7-html-temp-preview" class="cf7-html-temp-preview js-html-temp-preview" disabled rows="24"></textarea>
-					</div>
+				<div class="col-md-3">
+					<?php $this->getPreviewField($IDs['form_id'], 'Form HTML Preview:'); ?>
+				</div>
+
+				<div class="col-md-3">
+					<?php $this->getPreviewField($IDs['email_admin_id'], 'Email Admin HTML Preview:'); ?>
+				</div>
+
+				<div class="col-md-3">
+					<?php $this->getPreviewField($IDs['email_user_id'], 'Email User HTML Preview:'); ?>
 				</div>
 			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Get Select Field
+	 *
+	 * @param string $id
+	 * @param string $title
+	 * @param array $templates
+	 * @param string $selected
+	 *
+	 * @return void
+	 */
+	private function getSelectField($id, $title, $templates, $selected): void
+	{
+		?>
+		<fieldset class="cf7-select-templates-wrap">
+			<label class="cf7-select-templates-label" for="<?php echo $id; ?>"><b><?php echo $title; ?></b></label>
+
+			<select name="<?php echo $id; ?>-selected" id="<?php echo $id; ?>">
+				<?php foreach ($templates as $temp) : ?>
+					<option value="<?php echo $temp; ?>" <?php $this->markSelected($selected, $temp); ?>><?php echo $temp; ?></option>
+				<?php endforeach; ?>
+			</select>
+		</fieldset>
+		<?php
+	}
+
+	/**
+	 * Get Preview Field
+	 *
+	 * @param string $id
+	 * @param string $title
+	 *
+	 * @return void
+	 */
+	private function getPreviewField($id, $title): void
+	{
+		?>
+		<div class="cf7-html-temp-preview-wrap">
+			<label for="<?php echo $id; ?>-preview"><?php echo $title; ?></label>
+			<textarea id="<?php echo $id; ?>-preview" class="cf7-html-temp-preview" disabled></textarea>
 		</div>
 		<?php
 	}
@@ -110,12 +164,14 @@ class Hooks extends SingletonHook
 	 */
 	public function saveTemplateOption($post_id): void
 	{
-		if (array_key_exists('html-templates', $_POST)) {
-			update_post_meta(
-				$post_id,
-				'cf7_html_temp',
-				$_POST['html-templates']
-			);
+		foreach	($this->templateIDs as $id) {
+			if (array_key_exists($id . '-selected', $_POST)) {
+				update_post_meta(
+					$post_id,
+					$id,
+					$_POST[$id . '-selected']
+				);
+			}
 		}
 	}
 
