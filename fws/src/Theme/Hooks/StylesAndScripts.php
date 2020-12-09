@@ -52,6 +52,10 @@ class StylesAndScripts extends SingletonHook
 	{
 		wp_enqueue_style( 'fws_starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css' );
 		wp_enqueue_script( 'fws_starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
+
+		wp_localize_script('fws_starter_s-admin-script', 'starter_s_localized', [
+			'themeRoot' => get_template_directory_uri()
+		]);
 	}
 
 	/**
