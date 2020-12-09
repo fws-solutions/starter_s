@@ -10,6 +10,7 @@ global:                                             # GLOBAL SETTINGS
     prevent-plugin-update:                          # only users logged in with declared email domain are allowed to add/update/remove plugins
         enable: true                                # enable/disable this rule
         domain: forwardslashny.com                  # allowed email domain
+    cf7-custom-templates: true                      # enable/disable custom HTML and MJML templates for cf7 plugin
     acf-only-local-editing:                         # acf only possible to edit and manage on local environment
         enable: true                                # enable/disable this rule
         allowed-hosts:                              # list of allowed hosts

@@ -2,6 +2,7 @@ const $ = jQuery.noConflict();
 
 'use strict';
 const CF7 = {
+	$domBody: $('body'),
 	$domForm: $('#wpcf7-admin-form-element'),
 	$domTempTab: $('#html-template-tab > a'),
 	$domInputForm: $('#wpcf7-form'),
@@ -14,11 +15,12 @@ const CF7 = {
 	$domPreviewEmailAdmin: $('#cf7-email-admin-temp-preview'),
 	$domPreviewEmailUser: $('#cf7-email-user-temp-preview'),
 	classDisabled: 'is-disabled',
+	classInit: 'fws-cf7-init',
 	templateDirs: '/dist/cf7/',
 	localized: window.starter_s_localized,
 
 	init: function() {
-		if (this.$domForm.length > 0) {
+		if (this.$domForm.length > 0 && this.$domBody.hasClass(this.classInit)) {
 			this.disableForms();
 			this.addMessage();
 			this.loadFormContent(this.$domSelectForm, this.$domPreviewForm, this.$domInputForm);

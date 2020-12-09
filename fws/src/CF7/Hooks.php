@@ -176,11 +176,25 @@ class Hooks extends SingletonHook
 	}
 
 	/**
+	 * CF7 Add Body Class
+	 */
+	public function addClassToBody($classes) {
+		$classes = explode(' ', $classes);
+
+		$classes = array_merge($classes, [
+			'fws-cf7-init'
+		]);
+
+		return implode(' ', array_unique($classes));
+	}
+
+	/**
 	 * Drop your hooks here.
 	 */
 	protected function hooks(): void
 	{
 		add_action( 'wpcf7_editor_panels', [ $this, 'customPanel' ] );
 		add_action('save_post', [ $this, 'saveTemplateOption' ]);
+		add_filter('admin_body_class', [ $this, 'addClassToBody' ]);
 	}
 }

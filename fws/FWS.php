@@ -88,7 +88,7 @@ class FWS extends Singleton
 		}
 
 		// CF7
-		if ( function_exists( 'wpcf7_add_shortcode' ) ) {
+		if ( function_exists( 'wpcf7_add_shortcode' ) && $this->config->cf7CustomTemplates() ) {
 			CF7Hooks::init();
 		}
 	}

@@ -33,6 +33,9 @@ class Config extends Singleton
 	/** @var array */
 	private $enqVersion = [];
 
+	/** @var string */
+	private $cf7CustomTemplates = [];
+
 	/** @var FlexContent[] */
 	private $flexContent = [];
 
@@ -152,6 +155,16 @@ class Config extends Singleton
 	public function enqueueVersion(): string
 	{
 		return (string) $this->enqVersion['enqueue-version'] ?? '';
+	}
+
+	/**
+	 * Enqueue Version
+	 *
+	 * @return string
+	 */
+	public function cf7CustomTemplates(): string
+	{
+		return (string) $this->config['global']['cf7-custom-templates'] ?? '';
 	}
 
 	/**
