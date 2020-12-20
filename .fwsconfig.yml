@@ -20,7 +20,7 @@ global:                                             # GLOBAL SETTINGS
 
 acf-options-page:                                   # DEFINE ACF OPTIONS PAGES
     enable: true                                    # enable/disable options top level page
-    subpages: []                                    # list of options sub pages
+    subpages: ['SVG Icons']                         # list of options sub pages
 
 acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTENT GROUPS AND FIELDS
     default-page-template:                          # define flexible content for default page template

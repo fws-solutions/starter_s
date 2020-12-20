@@ -71,11 +71,10 @@ class Hooks extends SingletonHook
 	{
 		$options_page = fws()->config()->acfOptionsPage();
 		$options_sub_pages = fws()->config()->acfOptionsSubpages();
-		$theme_name = fws()->config()->themeName();
 
 		// Register Options Main Page
 		if ( $options_page ) {
-			$this->registerAcfOptionsPage( $theme_name . ' Settings', $theme_name . ' Settings' );
+			$this->registerAcfOptionsPage( 'FWS Settings', 'FWS Settings' );
 
 			// Register Options Sub Pages
 			foreach ( $options_sub_pages as $sub_page ) {
@@ -95,8 +94,9 @@ class Hooks extends SingletonHook
 		acf_add_options_page( [
 			'page_title' => $page_title,
 			'menu_title' => $menu_title,
-			'menu_slug' => 'fws_starter_s-settings',
+			'menu_slug' => 'fws-settings',
 			'capability' => 'edit_posts',
+			'icon_url' => get_template_directory_uri() . '/src/assets/images/fws-icon.png',
 			'redirect' => false,
 		] );
 	}
@@ -112,7 +112,7 @@ class Hooks extends SingletonHook
 		acf_add_options_sub_page( [
 			'page_title' => $page_title,
 			'menu_title' => $menu_title,
-			'parent_slug' => 'fws_starter_s-settings',
+			'parent_slug' => 'fws-settings',
 		] );
 	}
 

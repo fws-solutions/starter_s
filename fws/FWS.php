@@ -3,6 +3,7 @@ declare( strict_types = 1 );
 
 use FWS\ACF\Hooks as ACFHooks;
 use FWS\ACF\Render as ACFRender;
+use FWS\ACF\Icons as ACFIcons;
 use FWS\Config\Config;
 use FWS\Singleton;
 use FWS\Theme\Hooks\BasicSetup as ThemeBasicSetup;
@@ -85,6 +86,7 @@ class FWS extends Singleton
 		if ( function_exists( 'acf_add_options_sub_page' ) ) {
 			$this->acf = ACFRender::init();
 			ACFHooks::init();
+			ACFIcons::init();
 		}
 
 		// CF7

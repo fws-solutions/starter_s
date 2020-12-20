@@ -115,15 +115,13 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 0,
+    "active": false,
     "description": "",
-    "show_in_graphql": 0,
-    "graphql_field_name": "fcBanner",
+    "modified": 1608484299,
     "acf-field-group-category": [
         {
             "slug": "flexible-content",
             "name": "Flexible Content"
         }
-    ],
-    "modified": 1594889376
+    ]
 }
