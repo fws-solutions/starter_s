@@ -115,25 +115,67 @@ class Icons extends SingletonHook
 	public function getSelectedIcons(): void
 	{
 		$selectedIcons = get_field( 'icons_theme', 'options' );
+		$output = '';
 
-		echo '<div class="acf__admin-icons-wrap js-admin-icons-wrap">';
-		echo '<div class="acf__admin-icons">';
-		echo '<span class="acf__admin-icons-close js-admin-icons-close">X</span>';
+		$output .= $this->renderSvgIcon('deselect-icon', false);
 
 		foreach( $selectedIcons as $svg ) {
-			echo '<a href="javascript:;" class="acf__admin-icon-wrap js-admin-icon" data-icon="' . $svg . '">';
-			echo '<div class="acf__admin-icon-inner">';
-			echo '<span class="acf__admin-icon">';
-			echo fws()->render()->inlineSVG($svg);
-			echo '</span>';
-			echo '</div>';
-			echo '</a>';
+			$output .= $this->renderSvgIcon($svg);
 		}
 
-		echo '</div>';
-		echo '</div>';
+		echo $this->renderSvgWrapper($output);
 
 		exit();
+	}
+
+	/**
+	 * Render SVG wrapper.
+	 *
+	 * @param string $content
+	 *
+	 * @return string
+	 */
+	public function renderSvgWrapper(string $content): string
+	{
+		$output = '';
+
+		$output .= '<div class="acf__admin-icons-wrap js-admin-icons-wrap">';
+		$output .= '<div class="acf__admin-icons js-admin-icons-inner">';
+		$output .= '<span class="acf__admin-icons-close js-admin-icons-close">X</span>';
+		$output .= $content;
+		$output .= '</div>';
+		$output .= '</div>';
+
+		return $output;
+	}
+
+	/**
+	 * Render SVG icon.
+	 *
+	 * @param string $svgName
+	 *
+	 * @return string
+	 */
+	public function renderSvgIcon(string $svgName, bool $isSvg = true): string
+	{
+		$output = '';
+
+		$output .= '<a href="javascript:;" class="acf__admin-icon-wrap js-admin-icon" data-icon="' . $svgName . '">';
+		$output .= '<div class="acf__admin-icon-inner">';
+		$output .= '<span class="acf__admin-icon">';
+
+		if ($isSvg) {
+			$output .= fws()->render()->inlineSVG($svgName, 'acf__admin-icon-svg js-icon-svg');
+			$output .= '<span class="acf__admin-icon-text">' . $svgName . '</span>';
+		} else {
+			$output .= '<span class="acf__admin-icon-deselect">Deselect Icon</span>';
+		}
+
+		$output .= '</span>';
+		$output .= '</div>';
+		$output .= '</a>';
+
+		return $output;
 	}
 
 	/**

@@ -66,18 +66,56 @@
 		float: none;
 		border-right-width: 1px;
 		border-radius: 3px;
-		max-width: 200px;
+		width: 100px;
+		height: 100px;
 		text-align: center;
-		min-height: 60px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
+		visibility: hidden;
+		opacity: 0;
+		transition: 200ms ease;
+
+		&.is-active {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		.acf__admin-icon-svg {
+			font-size: 50px;
+		}
 	}
 
 	.acf-input-wrap {
-		display: none;
+		width: 100px;
+		visibility: hidden;
+		opacity: 0;
+		transition: 200ms ease;
+
+		&.is-active {
+			visibility: visible;
+			opacity: 1;
+		}
+
+		input.acf-is-prepended {
+			display: block;
+			padding: 0;
+			line-height: 1;
+			font-size: 12px;
+			text-align: center;
+			width: 100%;
+			pointer-events: none;
+			border: 0;
+			background: none;
+		}
 	}
+}
+
+.acf__admin-icon-deselect {
+	font-size: 14px;
+	border: 1px solid white;
+	padding: 10px;
 }
 
 .acf__admin-icons-wrap {
@@ -106,9 +144,11 @@
 .acf__admin-icons {
 	display: flex;
 	flex-wrap: wrap;
-	max-width: 900px;
-	margin: 100px auto;
-	position: relative;
+	max-width: 1000px;
+	width: 100%;
+	position: absolute;
+	top: 150px;
+	@include center(x);
 }
 
 .acf__admin-icons-close {
@@ -123,12 +163,19 @@
 }
 
 .acf__admin-icon-wrap {
-	width: 10%;
-	padding: 15px;
+	width: 20%;
+	padding: 30px;
 	outline: 0;
 	text-decoration: none;
-	color: #fff;
+	color: $white;
 	transition: 300ms ease;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	font-size: 80px;
+	margin-bottom: 15px;
+	position: relative;
 }
 
 .acf__admin-icon-wrap:focus {
@@ -140,30 +187,24 @@
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-.acf__admin-icon-inner {
-	overflow: hidden;
-	-o-text-overflow: ellipsis;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-}
-
-.acf__admin-icon-wrap span {
-	display: block;
+.acf__admin-icon {
 	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .acf__admin-icon-text {
 	font-size: 12px;
-	color: #fff;
-	margin-top: 5px;
-}
-
-.acf__admin-icon-wrap svg {
-	display: block;
+	color: $white;
+	bottom: 5px;
+	@include center(x);
 }
 
 .acf__admin-icon-wrap svg * {
-	fill: #fff;
+	fill: $white;
 }
 
 .acf__chose-icon .acf-input-prepend {
@@ -199,5 +240,18 @@
 }
 
 .acf__admin-icon__fake-field svg * {
-	fill: #000;
+	fill: $black;
+}
+
+.acf__admin-icon-svg {
+	font-size: 75px;
+}
+
+.svg-icon {
+	display: inline-flex;
+	line-height: 1;
+
+	svg {
+		width: 1em;
+	}
 }

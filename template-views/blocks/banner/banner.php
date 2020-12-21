@@ -11,6 +11,7 @@
 $query_var = get_query_var( 'content-blocks', [] );
 
 // set and escape template view values
+$icon = $query_var['fws_svg_icon'] ?? '';
 $title = esc_textarea( $query_var['title'] ) ?? '';
 $subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
 $button = $query_var['button'] ? $query_var['button'] : [];
@@ -23,7 +24,7 @@ $mobile_image = $query_var['mobile_image'] ?? [];
 	<?php fws()->render()->templateView($query_var, 'background-image', 'parts'); ?>
 
 	<div class="banner__caption">
-		<?php echo fws()->render()->inlineSVG( 'ico-happy', 'banner__caption-icon' ); ?>
+		<?php echo $icon ? fws()->render()->inlineSVG( $icon, 'banner__caption-icon' ) : ''; ?>
 		<h1 class="banner__caption-title js-scroll-link" data-scroll-to="slider"><?php echo $title; ?></h1>
 		<p class="banner__caption-text"><?php echo $subtitle; ?></p>
 		<?php echo fws()->acf()->linkField( $button, 'banner__btn btn' ); ?>
