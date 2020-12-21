@@ -3,6 +3,27 @@
     "title": "FC Banner",
     "fields": [
         {
+            "key": "field_5fe07daa112f1",
+            "label": "SVG Icon",
+            "name": "svg_icon",
+            "type": "clone",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "clone": [
+                "group_5fe0934e57e5a"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
+        },
+        {
             "key": "field_5d70eb5909ca5",
             "label": "Title",
             "name": "title",
@@ -117,7 +138,7 @@
     "hide_on_screen": "",
     "active": false,
     "description": "",
-    "modified": 1608484299,
+    "modified": 1608553379,
     "acf-field-group-category": [
         {
             "slug": "flexible-content",

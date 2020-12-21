@@ -23,10 +23,15 @@ class Icons extends SingletonHook
 	private $checkboxClassField = 'fws-checkbox-icons-list';
 
 	/**
-	 * Append Checkboxes Options
+	 * Append checkboxes options.
+	 *
+	 * @param array $field
+	 *
+	 * @retun array
 	 */
-	public function checkboxesOptions( $field )
+	public function checkboxesOptions( array $field ): array
 	{
+
 		// reset choices
 		$field['choices'] = [];
 		$field['toggle'] = 1;
@@ -69,7 +74,7 @@ class Icons extends SingletonHook
 	}
 
 	/**
-	 * Clean Lable Name
+	 * Clean lable name.
 	 *
 	 * @param string $label
 	 * @param int $limit
@@ -86,7 +91,7 @@ class Icons extends SingletonHook
 	}
 
 	/**
-	 * Limit label to # characters
+	 * Limit label to # characters.
 	 *
 	 * @param string $label
 	 * @param int $limit
@@ -103,10 +108,41 @@ class Icons extends SingletonHook
 	}
 
 	/**
+	 * Get selected icons.
+	 *
+	 * @return void
+	 */
+	public function getSelectedIcons(): void
+	{
+		$selectedIcons = get_field( 'icons_theme', 'options' );
+
+		echo '<div class="acf__admin-icons-wrap js-admin-icons-wrap">';
+		echo '<div class="acf__admin-icons">';
+		echo '<span class="acf__admin-icons-close js-admin-icons-close">X</span>';
+
+		foreach( $selectedIcons as $svg ) {
+			echo '<a href="javascript:;" class="acf__admin-icon-wrap js-admin-icon" data-icon="' . $svg . '">';
+			echo '<div class="acf__admin-icon-inner">';
+			echo '<span class="acf__admin-icon">';
+			echo fws()->render()->inlineSVG($svg);
+			echo '</span>';
+			echo '</div>';
+			echo '</a>';
+		}
+
+		echo '</div>';
+		echo '</div>';
+
+		exit();
+	}
+
+	/**
 	 * Drop your hooks here.
 	 */
 	protected function hooks()
 	{
 		add_filter( 'acf/load_field/name=icons_theme', [ $this, 'checkboxesOptions' ] );
+		add_action( 'wp_ajax_fws_get_svg_icons',  [ $this, 'getSelectedIcons' ] );
+		add_action( 'wp_ajax_nopriv_fws_get_svg_icons',  [ $this, 'getSelectedIcons' ] );
 	}
 }

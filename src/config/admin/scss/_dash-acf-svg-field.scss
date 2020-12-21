@@ -1,0 +1,203 @@
+/*----------------------------------------------------------
+# ACF SVG Field
+----------------------------------------------------------*/
+#toplevel_page_fws-settings {
+	.dashicons-before > img {
+		padding-top: 5px;
+	}
+
+	.current img {
+		opacity: 1;
+	}
+}
+
+.fws-checkbox-icons-list, .fws-radio-icons-list {
+	display: flex;
+	flex-flow: wrap;
+
+	li {
+		width: 33%;
+		display: flex;
+		align-items: center;
+		margin: 3px 0 !important;
+
+		@include mq(1650px) {
+			width: 50%;
+		}
+
+		@include mq(1220px) {
+			width: 100%;
+		}
+
+		label {
+			width: 100%;
+			display: flex !important;
+			align-items: center;
+		}
+	}
+
+	input {
+		position: absolute;
+		left: 0;
+	}
+
+	.acf-checkbox-toggle {
+		position: relative;
+	}
+
+}
+
+.fws-radio-icons-list__icon, .fws-checkbox-icons-list__icon {
+	max-width: 20px;
+	max-height: 20px;
+	display: flex;
+	margin-left: 10px;
+	padding: 3px 0;
+	position: absolute;
+	left: 15px;
+}
+
+.fws-radio-icons-list__name, .fws-checkbox-icons-list__name {
+	transform: translateX(54px);
+}
+
+.fws-svg-icon {
+	.acf-input-prepend {
+		float: none;
+		border-right-width: 1px;
+		border-radius: 3px;
+		max-width: 200px;
+		text-align: center;
+		min-height: 60px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+	}
+
+	.acf-input-wrap {
+		display: none;
+	}
+}
+
+.acf__admin-icons-wrap {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 999999;
+	background-color: rgba(0, 0, 0, 0.9);
+	overflow: auto;
+	visibility: hidden;
+	opacity: 0;
+	transition: 200ms ease;
+}
+
+.acf__admin-icons-wrap.is-active {
+	visibility: visible;
+	opacity: 1;
+}
+
+.acf__admin-icons-wrap * {
+	box-sizing: border-box;
+}
+
+.acf__admin-icons {
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 900px;
+	margin: 100px auto;
+	position: relative;
+}
+
+.acf__admin-icons-close {
+	position: absolute;
+	top: -10px;
+	right: -10px;
+	color: #fff;
+	font-size: 25px;
+	font-weight: bold;
+	transform: translate(100%, -100%);
+	cursor: pointer;
+}
+
+.acf__admin-icon-wrap {
+	width: 10%;
+	padding: 15px;
+	outline: 0;
+	text-decoration: none;
+	color: #fff;
+	transition: 300ms ease;
+}
+
+.acf__admin-icon-wrap:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.acf__admin-icon-wrap:hover {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
+.acf__admin-icon-inner {
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.acf__admin-icon-wrap span {
+	display: block;
+	text-align: center;
+}
+
+.acf__admin-icon-text {
+	font-size: 12px;
+	color: #fff;
+	margin-top: 5px;
+}
+
+.acf__admin-icon-wrap svg {
+	display: block;
+}
+
+.acf__admin-icon-wrap svg * {
+	fill: #fff;
+}
+
+.acf__chose-icon .acf-input-prepend {
+	float: none;
+	border-width: 1px;
+	cursor: pointer;
+	height: 56px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: 300ms ease;
+}
+
+.acf__chose-icon:hover .acf-input-prepend {
+	opacity: .7;
+}
+
+.acf__chose-icon input {
+	pointer-events: none;
+	opacity: .5;
+	text-align: center;
+}
+
+.acf__admin-icon__fake-field {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.acf__admin-icon__fake-field svg {
+	display: block;
+	width: 40px;
+}
+
+.acf__admin-icon__fake-field svg * {
+	fill: #000;
+}

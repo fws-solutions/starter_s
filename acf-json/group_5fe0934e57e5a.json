@@ -1,0 +1,43 @@
+{
+    "key": "group_5fe0934e57e5a",
+    "title": "RE SVG Icons",
+    "fields": [
+        {
+            "key": "field_5fe09354c5d4f",
+            "label": "SVG Icons",
+            "name": "fws_svg_icon",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "fws-svg-icon",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "Click to choose an SVG icon",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1608553347
+}

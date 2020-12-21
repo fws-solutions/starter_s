@@ -55,7 +55,8 @@ class StylesAndScripts extends SingletonHook
 
 		wp_localize_script('fws_starter_s-admin-script', 'starter_s_localized', [
 			'themeRoot' => get_template_directory_uri(),
-			'siteUrl' => esc_url( home_url( '/' ))
+			'siteUrl' => esc_url( home_url( '/' )),
+			'ajaxurl' => admin_url( 'admin-ajax.php' )
 		]);
 	}
 
