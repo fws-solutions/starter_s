@@ -16,23 +16,48 @@ class StylesAndScripts extends SingletonHook
 	/** @var self */
 	protected static $instance;
 
+	/** @var string */
+	private $version;
+
+	/** @var array */
+	private $localizedObject;
+
+	/**
+	 * Override init.
+	 */
+	public static function init(): void
+	{
+		parent::init();
+
+		self::$instance->version = fws()->config()->enqueueVersion();
+		self::$instance->localizedObject = [
+			'themeRoot' => get_template_directory_uri(),
+			'siteUrl' => esc_url( home_url( '/' )),
+			'ajaxurl' => admin_url( 'admin-ajax.php' )
+		];
+	}
+
 	/**
 	 * Add custom stylesheet to login and admin dashboard
 	 */
 	public function setThemeStylesAndScripts(): void
 	{
-		$version = fws()->config()->enqueueVersion();
+
 
 		// Set Theme Site CSS
-		wp_enqueue_style( 'fws_starter_s-style', get_stylesheet_uri(), [], $version );
+		wp_enqueue_style( 'fws_starter_s-style', get_stylesheet_uri(), [], $this->version );
 
 		// Set Theme Site JS
-		wp_enqueue_script( 'fws_starter_s-site-js', get_template_directory_uri() . '/dist/site.min.js', ['jquery'], $version, false );
+		wp_enqueue_script( 'fws_starter_s-site-script', get_template_directory_uri() . '/dist/site.min.js', ['jquery'], $this->version, false );
 
 		// Set Theme VueJS
-		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], $version, false );
+		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], $this->version, false );
 
-		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], $version, false );
+		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], $this->version, false );
+
+		// Localize JS Object
+		wp_localize_script('fws_starter_s-site-script', 'starter_s_localized', $this->localizedObject);
+		wp_localize_script('fws_starter_s-vueapp-js', 'starter_s_localized', $this->localizedObject);
 
 		// Set WP Script for Comments
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -50,14 +75,9 @@ class StylesAndScripts extends SingletonHook
 	 */
 	public function setAdminStylesAndScripts(): void
 	{
-		wp_enqueue_style( 'fws_starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css' );
-		wp_enqueue_script( 'fws_starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], '', true );
-
-		wp_localize_script('fws_starter_s-admin-script', 'starter_s_localized', [
-			'themeRoot' => get_template_directory_uri(),
-			'siteUrl' => esc_url( home_url( '/' )),
-			'ajaxurl' => admin_url( 'admin-ajax.php' )
-		]);
+		wp_enqueue_style( 'fws_starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css', [], $this->version );
+		wp_enqueue_script( 'fws_starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], $this->version, true );
+		wp_localize_script('fws_starter_s-admin-script', 'starter_s_localized', $this->localizedObject);
 	}
 
 	/**
@@ -69,7 +89,7 @@ class StylesAndScripts extends SingletonHook
 	 */
 	public function addDeferToScript(string $tag, string $handle): string {
 		$handles = [
-			'fws_starter_s-site-js',
+			'fws_starter_s-site-script',
 			'fws_starter_s-vuevendors-js',
 			'fws_starter_s-vueapp-js'
 		];

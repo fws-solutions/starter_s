@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const gulpif = require('gulp-if');
 const plumber = require('gulp-plumber');
 const postcss = require('gulp-postcss');
 const sass = require('gulp-sass');
@@ -8,14 +9,11 @@ const postCssInlineSvg = require('postcss-inline-svg');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('autoprefixer');
 const rename = require('gulp-rename');
-const globalVars = require('./_global-vars');
+const config = require('./gulp-config');
 
 /*----------------------------------------------------------------------------------------------
 	SCSS
  ----------------------------------------------------------------------------------------------*/
-const sassSRC = ['src/scss/**/*.scss', 'template-views/**/**/*.scss'];
-const adminSassSRC = ['src/config/admin/scss/admin.scss'];
-
 const processors = [
 	autoprefixer({overrideBrowserslist: ['last 2 versions', 'ios >= 8']}),
 	postCssFlexBugsFix,
@@ -23,23 +21,31 @@ const processors = [
 ];
 
 // compile scss files
-gulp.task('css', css.bind(null, sassSRC, 'style.css', './'));
-gulp.task('css-admin', css.bind(null, adminSassSRC, 'admin.css', 'dist'));
+gulp.task('css', css.bind(null, config.scssSiteSRC, 'site'));
+gulp.task('css-admin', css.bind(null, config.scssAdminSRC, 'admin'));
 gulp.task('sass-lint', sasslint);
 
-function css(src, name, dest) {
+function css(src, type) {
 	return gulp.src(src)
-		.pipe(plumber(globalVars.msgERROR))
+		.pipe(plumber(config.msgERROR))
 		.pipe(sourcemaps.init())
-		.pipe(sass({outputStyle: globalVars.productionBuild ? 'compressed' : 'expanded'}))
+		.pipe(sass({outputStyle: config.productionBuild ? 'compressed' : 'expanded'}))
 		.pipe(postcss(processors))
-		.pipe(rename(name))
+		.pipe(gulpif(
+			type === 'site',
+			rename('style.css'),
+			rename('admin.css')
+		))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulp.dest(dest));
+		.pipe(gulpif(
+			type === 'site',
+			gulp.dest('./'),
+			gulp.dest('dist')
+		));
 }
 
 function sasslint() {
-	return gulp.src(sassSRC)
+	return gulp.src(config.scssAllSRC)
 		.pipe(sassLint({
 			config: '.sass-lint.yml'
 		}))

@@ -9,7 +9,7 @@ const webpack = require('webpack-stream');
 const webpackConfig = require('../webpack/webpack.config.js');
 const webpackAdmin = require('../webpack/webpack.config.admin.js');
 const gulpif = require('gulp-if');
-const globalVars = require('./_global-vars');
+const config = require('./gulp-config');
 const destDir = 'dist';
 
 /*----------------------------------------------------------------------------------------------
@@ -25,7 +25,7 @@ function adminJS() {
 		.pipe(plumber())
 		.pipe(sourcemaps.init())
 		.pipe(webpack(webpackAdmin))
-		.pipe(gulpif(globalVars.productionBuild, uglify()))
+		.pipe(gulpif(config.productionBuild, uglify()))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(destDir));
 }
@@ -37,7 +37,7 @@ function siteJS() {
 	return gulp.src('src/js/**.js')
 		.pipe(plumber())
 		.pipe(webpack(webpackConfig))
-		.pipe(gulpif(globalVars.productionBuild, uglify()))
+		.pipe(gulpif(config.productionBuild, uglify()))
 		.pipe(gulp.dest(destDir));
 }
 
@@ -68,10 +68,10 @@ function mergeJS() {
 		destDir + '/plugins.js',
 		destDir + '/site.js'
 	])
-		.pipe(plumber(globalVars.msgERROR))
+		.pipe(plumber(config.msgERROR))
 		.pipe(sourcemaps.init())
 		.pipe(concat('site.min.js'))
-		.pipe(gulpif(globalVars.productionBuild, uglify()))
+		.pipe(gulpif(config.productionBuild, uglify()))
 		.pipe(sourcemaps.write('.'))
 		.pipe(gulp.dest(destDir));
 }
