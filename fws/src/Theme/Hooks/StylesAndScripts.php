@@ -16,9 +16,6 @@ class StylesAndScripts extends SingletonHook
 	/** @var self */
 	protected static $instance;
 
-	/** @var string */
-	private $version;
-
 	/** @var array */
 	private $localizedObject;
 
@@ -29,12 +26,12 @@ class StylesAndScripts extends SingletonHook
 	{
 		parent::init();
 
-		self::$instance->version = fws()->config()->enqueueVersion();
 		self::$instance->localizedObject = [
 			'themeRoot' => get_template_directory_uri(),
 			'siteUrl' => esc_url( home_url( '/' )),
 			'ajaxurl' => admin_url( 'admin-ajax.php' )
 		];
+
 	}
 
 	/**
@@ -45,15 +42,15 @@ class StylesAndScripts extends SingletonHook
 
 
 		// Set Theme Site CSS
-		wp_enqueue_style( 'fws_starter_s-style', get_stylesheet_uri(), [], $this->version );
+		wp_enqueue_style( 'fws_starter_s-style', get_stylesheet_uri(), [], fws()->config()->enqueueVersion() );
 
 		// Set Theme Site JS
-		wp_enqueue_script( 'fws_starter_s-site-script', get_template_directory_uri() . '/dist/site.min.js', ['jquery'], $this->version, false );
+		wp_enqueue_script( 'fws_starter_s-site-script', get_template_directory_uri() . '/dist/site.min.js', ['jquery'], fws()->config()->enqueueVersion(), false );
 
 		// Set Theme VueJS
-		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], $this->version, false );
+		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], fws()->config()->enqueueVersion(), false );
 
-		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], $this->version, false );
+		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], fws()->config()->enqueueVersion(), false );
 
 		// Localize JS Object
 		wp_localize_script('fws_starter_s-site-script', 'starter_s_localized', $this->localizedObject);
@@ -75,8 +72,8 @@ class StylesAndScripts extends SingletonHook
 	 */
 	public function setAdminStylesAndScripts(): void
 	{
-		wp_enqueue_style( 'fws_starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css', [], $this->version );
-		wp_enqueue_script( 'fws_starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], $this->version, true );
+		wp_enqueue_style( 'fws_starter_s-admin-style', get_template_directory_uri() . '/dist/admin.css', [], fws()->config()->enqueueVersion() );
+		wp_enqueue_script( 'fws_starter_s-admin-script', get_template_directory_uri() . '/dist/admin.js', [ 'jquery' ], fws()->config()->enqueueVersion(), true );
 		wp_localize_script('fws_starter_s-admin-script', 'starter_s_localized', $this->localizedObject);
 	}
 
