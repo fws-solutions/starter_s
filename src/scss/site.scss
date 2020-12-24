@@ -58,10 +58,7 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 /*--------------------------------------------------------------
 # Bootstrap
 --------------------------------------------------------------*/
-@import 'bootstrap/grid-breakpoints';
-@import 'bootstrap/grid-framework';
-@import 'bootstrap/grid';
-@import 'bootstrap/grid-layout';
+@import '../../node_modules/bootstrap/scss/bootstrap-grid';
 
 /*--------------------------------------------------------------
 # WooCommerce

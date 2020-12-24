@@ -2,7 +2,7 @@
 const $ = jQuery.noConflict();
 
 /** @description import Global or some other files only if you need them */
-import Global from './global';
+import Global from '../shared/global';
 
 'use strict';
 const ExampleFile = {

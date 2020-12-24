@@ -2,10 +2,14 @@ const path = require('path');
 
 module.exports = {
 	mode: 'none',
-	entry: './src/js/site.js',
+	devtool: 'source-map',
+	entry: {
+		site: './src/js/site.js',
+		admin: './src/js/admin.js'
+	},
 	output: {
 		path: path.join(__dirname, './dist/'),
-		filename: 'site.js'
+		filename: '[name].min.js'
 	},
 	module: {
 		rules: [
@@ -22,6 +26,6 @@ module.exports = {
 		]
 	},
 	externals: {
-		"jquery": "jQuery"
+		'jquery': 'jQuery'
 	}
 };

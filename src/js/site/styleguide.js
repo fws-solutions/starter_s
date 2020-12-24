@@ -1,5 +1,5 @@
 const $ = jQuery.noConflict();
-import Global from './global';
+import Global from '../shared/global';
 
 'use strict';
 const Styleguide = {

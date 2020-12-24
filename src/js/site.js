@@ -1,20 +1,28 @@
 /**
+ * Import from node_modules
+ */
+import 'bootstrap/js/src/util';
+import 'bootstrap/js/src/scrollspy';
+
+/**
  * Import site scripts
  */
-import Menu from './_site/menu';
-import Sliders from './_site/sliders';
-import ScrollTo from './_site/scrollTo';
-import Styleguide from './_site/styleguide';
-import Fancybox from './_site/fancybox';
-import Select2 from './_site/select2';
-import FormHelpers from './_site/formHelpers';
-import PerfectScroll from './_site/perfectScroll';
-import LazyLoading from './_site/lazyLoad';
+import SkipLinkFocusFix from './site/skip-link-focus-fix';
+import Menu from './site/menu';
+import Sliders from './site/sliders';
+import ScrollTo from './site/scrollTo';
+import Styleguide from './site/styleguide';
+import Fancybox from './site/fancybox';
+import Select2 from './site/select2';
+import FormHelpers from './site/formHelpers';
+import PerfectScroll from './site/perfectScroll';
+import LazyLoading from './site/lazyLoad';
 
 /**
  * Init site scripts
  */
 jQuery(function() {
+	SkipLinkFocusFix.init();
 	Styleguide.init();
 	Menu.init();
 	Sliders.init();

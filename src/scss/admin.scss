@@ -1,11 +1,32 @@
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Variables, Helpers and Mixins
+# Bootstrap
+# Plugins
+# Login
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Variables, Helpers and Mixins
+--------------------------------------------------------------*/
 @import 'config/variables';
 @import 'helpers/mixins';
 @import 'helpers/helpers';
-@import 'bootstrap/grid-breakpoints';
-@import 'bootstrap/grid-framework';
-@import 'bootstrap/grid';
-@import 'bootstrap/grid-layout';
-@import 'admin/dash-acf-flex-content';
-@import 'admin/dash-acf-svg-field';
-@import 'admin/dash-cf7';
+
+/*--------------------------------------------------------------
+# Bootstrap
+--------------------------------------------------------------*/
+@import '../../node_modules/bootstrap/scss/bootstrap-grid';
+
+/*--------------------------------------------------------------
+# Plugins
+--------------------------------------------------------------*/
+@import 'admin/plugin-acf-flex-content';
+@import 'admin/plugin-acf-svg-field';
+@import 'admin/plugin-cf7';
+
+/*--------------------------------------------------------------
+# Login
+--------------------------------------------------------------*/
 @import 'admin/login';

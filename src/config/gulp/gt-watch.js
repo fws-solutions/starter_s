@@ -13,7 +13,6 @@ function watchFiles(done) {
 
 	// watch .js files
 	gulp.watch('src/js/**/*.js', gulp.series('js-lint', 'js'));
-	gulp.watch(['src/config/admin/js/**/*.js'], gulp.parallel(['admin-js']));
 
 	// watch vue folder
 	// gulp.watch('src/vue/**', gulp.series('vue-js'));

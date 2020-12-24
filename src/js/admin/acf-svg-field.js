@@ -1,5 +1,5 @@
 const $ = jQuery.noConflict();
-import Global from '../../../../js/_site/global';
+import Global from '../shared/global';
 
 'use strict';
 const AcfSvgField = {
@@ -91,7 +91,7 @@ const AcfSvgField = {
 
 		$.ajax({
 			method: 'GET',
-			url: _this.localized.ajaxurl,
+			url: _this.localized.ajaxUrl,
 			data: {
 				action: _this.ajaxAction
 			},

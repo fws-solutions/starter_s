@@ -8,7 +8,6 @@ files:
     - 'src/scss/base/_icon-font.scss'
     - 'src/scss/config/_reset.scss'
     - 'src/scss/config/_icons.scss'
-    - 'src/scss/bootstrap/*.scss'
 
 rules:
   attribute-quotes: 2

@@ -18,6 +18,9 @@ module.exports = {
 	],
 	scssAdminSRC: ['src/scss/admin.scss', 'src/scss/admin/*.scss'],
 	scssAllSRC: ['src/scss/**/*.scss', 'template-views/**/**/*.scss'],
+	jsSiteSRC: 'src/js/site.js',
+	jsAdminSRC: 'src/js/admin.js',
+	distSRC: 'dist',
 	msgERROR: {
 		errorHandler: notify.onError({
 			title: 'Please, fix the ERROR below:',
@@ -71,8 +74,7 @@ module.exports = {
 				gulpTasks.gtCss.css.bind(null, _this.scssAdminSRC, 'admin'),
 				gulp.series(
 					gulpTasks.gtJs.lintJS,
-					gulp.parallel(gulpTasks.gtJs.siteJS, gulpTasks.gtJs.pluginsJS, gulpTasks.gtJs.adminJS),
-					gulpTasks.gtJs.mergeJS
+					gulpTasks.gtJs.js.bind(null, [_this.jsSiteSRC, _this.jsAdminSRC])
 				),
 				gulpTasks.gtCss.sasslint,
 				gulpTasks.gtMjml.copyHtmlFiles,
@@ -80,7 +82,7 @@ module.exports = {
 				gulpTasks.gtHtmlLint.htmlLint.bind(null, false),
 				gulpTasks.gtHtmlLint.htmlLint.bind(null, true)
 			),
-			gulpTasks.gtClean.cleanBuildFiles,
+			//gulpTasks.gtClean.cleanBuildFiles,
 			watchMode
 		)(done);
 	},
