@@ -11,7 +11,8 @@
 	}
 }
 
-#poststuff .fws-checkbox-icons-list, .fws-radio-icons-list {
+#poststuff .fws-checkbox-icons-list,
+.fws-radio-icons-list {
 	display: flex;
 	flex-flow: wrap;
 
@@ -47,17 +48,15 @@
 
 }
 
-.fws-radio-icons-list__icon, .fws-checkbox-icons-list__icon {
-	max-width: 20px;
-	max-height: 20px;
-	display: flex;
-	margin-left: 10px;
-	padding: 3px 0;
-	position: absolute;
-	left: 15px;
+.fws-checkbox-icons-list__icon {
+	height: 15px;
+	left: 29px;
+	display: block;
+	@include center(y);
 }
 
-.fws-radio-icons-list__name, .fws-checkbox-icons-list__name {
+.fws-radio-icons-list__name,
+.fws-checkbox-icons-list__name {
 	transform: translateX(54px);
 }
 

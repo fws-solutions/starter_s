@@ -15,7 +15,18 @@
                 "class": "",
                 "id": ""
             },
-            "choices": [],
+            "choices": {
+                "ico-arrow-down": "<span class=\"fws-checkbox-icons-list__name\">Arrow Down<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-arrow-down.svg\" alt=\"\"><\/span>",
+                "ico-arrow-left": "<span class=\"fws-checkbox-icons-list__name\">Arrow Left<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-arrow-left.svg\" alt=\"\"><\/span>",
+                "ico-arrow-right": "<span class=\"fws-checkbox-icons-list__name\">Arrow Right<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-arrow-right.svg\" alt=\"\"><\/span>",
+                "ico-arrow-up": "<span class=\"fws-checkbox-icons-list__name\">Arrow Up<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-arrow-up.svg\" alt=\"\"><\/span>",
+                "ico-bookmark": "<span class=\"fws-checkbox-icons-list__name\">Bookmark<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-bookmark.svg\" alt=\"\"><\/span>",
+                "ico-dog": "<span class=\"fws-checkbox-icons-list__name\">Dog<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-dog.svg\" alt=\"\"><\/span>",
+                "ico-happy": "<span class=\"fws-checkbox-icons-list__name\">Happy<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-happy.svg\" alt=\"\"><\/span>",
+                "ico-lock": "<span class=\"fws-checkbox-icons-list__name\">Lock<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-lock.svg\" alt=\"\"><\/span>",
+                "ico-plus-circle": "<span class=\"fws-checkbox-icons-list__name\">Plus Circle<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-plus-circle.svg\" alt=\"\"><\/span>",
+                "ico-user": "<span class=\"fws-checkbox-icons-list__name\">User<\/span><span class=\"fws-checkbox-icons-list__icon-wrap\"><img class=\"fws-checkbox-icons-list__icon\" src=\"http:\/\/starter.lndo.site\/wp-content\/themes\/starter_s\/src\/assets\/svg\/ico-user.svg\" alt=\"\"><\/span>"
+            },
             "allow_custom": 0,
             "default_value": [],
             "layout": "vertical",
@@ -41,5 +52,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1608484872
+    "modified": 1609001811
 }

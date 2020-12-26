@@ -46,7 +46,7 @@ Underscores is distributed under the terms of the GNU GPL v2 or later.
 @import '../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox';
 @import '../../node_modules/select2/dist/css/select2';
 @import '../../node_modules/perfect-scrollbar/css/perfect-scrollbar';
-@import '../css/slick';
+@import '../../node_modules/slick-carousel/slick/slick.scss'; //sass-lint:disable-line clean-import-paths
 
 /*--------------------------------------------------------------
 # Helpers

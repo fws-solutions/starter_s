@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const config = require('./gulp-config');
+const gulpVars = require('./gulp-variables');
 
 /*----------------------------------------------------------------------------------------------
 	Watch
@@ -8,8 +8,8 @@ gulp.task('watch-files', watchFiles);
 
 function watchFiles(done) {
 	// watch .scss files
-	gulp.watch(config.scssSiteSRC, gulp.parallel(['css', 'sass-lint']));
-	gulp.watch(config.scssAdminSRC, gulp.parallel(['css-admin', 'sass-lint']));
+	gulp.watch(gulpVars.scssSiteSRC, gulp.parallel(['css', 'sass-lint']));
+	gulp.watch(gulpVars.scssAdminSRC, gulp.parallel(['css-admin', 'sass-lint']));
 
 	// watch .js files
 	gulp.watch('src/js/**/*.js', gulp.series('js-lint', 'js'));

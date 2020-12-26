@@ -1,34 +1,12 @@
 const fs = require('fs');
 const gulp = require('gulp');
-const notify = require('gulp-notify');
 const clean = require('gulp-clean');
+const gulpVars = require('./gulp-variables');
 
 /*----------------------------------------------------------------------------------------------
 	Config
  ----------------------------------------------------------------------------------------------*/
 module.exports = {
-	/** Configure global variables. */
-	productionBuild: false,
-	distAssets: [],
-	scssSiteSRC: [
-		'src/scss/**/*.scss',
-		'template-views/**/**/*.scss',
-		'!src/scss/admin.scss',
-		'!src/scss/admin/*.scss'
-	],
-	scssAdminSRC: ['src/scss/admin.scss', 'src/scss/admin/*.scss'],
-	scssAllSRC: ['src/scss/**/*.scss', 'template-views/**/**/*.scss'],
-	jsSiteSRC: 'src/js/site.js',
-	jsAdminSRC: 'src/js/admin.js',
-	distSRC: 'dist',
-	msgERROR: {
-		errorHandler: notify.onError({
-			title: 'Please, fix the ERROR below:',
-			message: '<%= error.message %>',
-			time: 2000
-		})
-	},
-
 	/** Create dist folder.. */
 	createDistFolder: function(done) {
 		if (!fs.existsSync('dist')) {
@@ -45,12 +23,12 @@ module.exports = {
 
 	/** Set for production build. */
 	prodBuild: function(done) {
-		this.productionBuild = true;
+		gulpVars.productionBuild = true;
 		done();
 	},
 	/** Set for development build. */
 	devBuild: function(done) {
-		this.productionBuild = false;
+		gulpVars.productionBuild = false;
 		done();
 	},
 	/** Skip Gulp task. */
@@ -70,11 +48,11 @@ module.exports = {
 			_this.createDistFolder,
 			buildType,
 			gulp.parallel(
-				gulpTasks.gtCss.css.bind(null, _this.scssSiteSRC, 'site'),
-				gulpTasks.gtCss.css.bind(null, _this.scssAdminSRC, 'admin'),
+				gulpTasks.gtCss.css.bind(null, gulpVars.scssSiteSRC, 'site'),
+				gulpTasks.gtCss.css.bind(null, gulpVars.scssAdminSRC, 'admin'),
 				gulp.series(
 					gulpTasks.gtJs.lintJS,
-					gulpTasks.gtJs.js.bind(null, [_this.jsSiteSRC, _this.jsAdminSRC])
+					gulpTasks.gtJs.js.bind(null, [gulpVars.jsSiteSRC, gulpVars.jsAdminSRC])
 				),
 				gulpTasks.gtCss.sasslint,
 				gulpTasks.gtMjml.copyHtmlFiles,
@@ -82,7 +60,6 @@ module.exports = {
 				gulpTasks.gtHtmlLint.htmlLint.bind(null, false),
 				gulpTasks.gtHtmlLint.htmlLint.bind(null, true)
 			),
-			//gulpTasks.gtClean.cleanBuildFiles,
 			watchMode
 		)(done);
 	},

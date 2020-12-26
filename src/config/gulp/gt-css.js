@@ -9,7 +9,7 @@ const postCssInlineSvg = require('postcss-inline-svg');
 const sourcemaps = require('gulp-sourcemaps');
 const autoprefixer = require('autoprefixer');
 const rename = require('gulp-rename');
-const config = require('./gulp-config');
+const gulpVars = require('./gulp-variables');
 
 /*----------------------------------------------------------------------------------------------
 	SCSS
@@ -21,15 +21,15 @@ const processors = [
 ];
 
 // compile scss files
-gulp.task('css', css.bind(null, config.scssSiteSRC, 'site'));
-gulp.task('css-admin', css.bind(null, config.scssAdminSRC, 'admin'));
+gulp.task('css', css.bind(null, gulpVars.scssSiteSRC, 'site'));
+gulp.task('css-admin', css.bind(null, gulpVars.scssAdminSRC, 'admin'));
 gulp.task('sass-lint', sasslint);
 
 function css(src, type) {
 	return gulp.src(src)
-		.pipe(plumber(config.msgERROR))
+		.pipe(plumber(gulpVars.msgERROR))
 		.pipe(sourcemaps.init())
-		.pipe(sass({outputStyle: config.productionBuild ? 'compressed' : 'expanded'}))
+		.pipe(sass({outputStyle: gulpVars.productionBuild ? 'compressed' : 'expanded'}))
 		.pipe(postcss(processors))
 		.pipe(gulpif(
 			type === 'site',
@@ -45,7 +45,7 @@ function css(src, type) {
 }
 
 function sasslint() {
-	return gulp.src(config.scssAllSRC)
+	return gulp.src(gulpVars.scssAllSRC)
 		.pipe(sassLint({
 			config: '.sass-lint.yml'
 		}))

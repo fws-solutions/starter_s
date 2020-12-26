@@ -1,11 +1,9 @@
 const gulp = require('gulp');
 const plumber = require('gulp-plumber');
-const uglify = require('gulp-uglify-es').default;
 const eslint = require('gulp-eslint');
 const webpack = require('webpack-stream');
 const webpackConfig = require('../webpack/webpack.config.js');
-const gulpif = require('gulp-if');
-const config = require('./gulp-config');
+const gulpVars = require('./gulp-variables');
 
 /*----------------------------------------------------------------------------------------------
 	JS
@@ -14,11 +12,12 @@ const config = require('./gulp-config');
 gulp.task('js', js);
 
 function js() {
-	return gulp.src([config.jsSiteSRC, config.jsAdminSRC])
+	webpackConfig.mode = gulpVars.productionBuild ? 'production' : 'development';
+
+	return gulp.src([gulpVars.jsSiteSRC, gulpVars.jsAdminSRC])
 		.pipe(plumber())
 		.pipe(webpack(webpackConfig))
-		.pipe(gulpif(config.productionBuild, uglify()))
-		.pipe(gulp.dest(config.distSRC));
+		.pipe(gulp.dest(gulpVars.distSRC));
 }
 
 // task: validate javascript source files

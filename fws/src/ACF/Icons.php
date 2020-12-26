@@ -18,9 +18,6 @@ class Icons extends SingletonHook
 
 	/** @vars */
 	private $svgDir = '/src/assets/svg/';
-	private $checkboxClassIcon = 'fws-checkbox-icons-list__icon';
-	private $checkboxClassLabel = 'fws-checkbox-icons-list__name';
-	private $checkboxClassField = 'fws-checkbox-icons-list';
 
 	/**
 	 * Append checkboxes options.
@@ -61,12 +58,9 @@ class Icons extends SingletonHook
 				// get clean name
 				$cleanLabelName = $this->checkboxesLabelCleanName($svgWithoutExtLabel, 18);
 
-				// render svg icon
-				$svgFile = fws()->render()->inlineSVG( $svgWithoutExt, $this->checkboxClassIcon );
-
 				// append to choices
-				$field['choices'][ $value ] = '<span class="' . $this->checkboxClassLabel . '">' . $cleanLabelName . '</span>' . ' ' . $svgFile;
-				$field['class'] = $this->checkboxClassField;
+				$field['choices'][ $value ] = $this->renderSvgLabel($svg, $cleanLabelName);
+				$field['class'] = 'fws-checkbox-icons-list';
 			}
 		}
 
@@ -174,6 +168,26 @@ class Icons extends SingletonHook
 		$output .= '</span>';
 		$output .= '</div>';
 		$output .= '</a>';
+
+		return $output;
+	}
+
+	/**
+	 * Render SVG label icon.
+	 *
+	 * @param string $svg
+	 * @param string $label
+	 *
+	 * @return string
+	 */
+	public function renderSvgLabel(string $svg, string $label): string
+	{
+		$output = '';
+
+		$output .= '<span class="fws-checkbox-icons-list__name">' . $label . '</span>';
+		$output .= '<span class="fws-checkbox-icons-list__icon-wrap">';
+		$output .= '<img class="fws-checkbox-icons-list__icon" src="' . get_template_directory_uri() . $this->svgDir . $svg . '" alt="">';
+		$output .= '</span>';
 
 		return $output;
 	}
