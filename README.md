@@ -355,13 +355,64 @@ Use component as shown in this example:
 
 The attribute `iconName` is required, pass the name of the svg file from `src/assets/svg`.
 
-Additionally you can set any other standard HTML attributes, like `class`.
+Additionally, you can set any other standard HTML attributes, like `class`.
 
     Example:
     <SvgIcon class="banner__caption-icon" iconName="ico-dog"/>
 
     Will render:
     <span class="banner__caption-icon svg-icon">
+        <svg>...</svg>
+    </span>
+
+#### ACF Usage
+
+Using SVG files with ACF is made very simple by introducing a custom **FWS ACF SVG field** which is implemented by **already** created and avalible ACF fields and pages:
+ - `SVG Icons` - ACF options sub page located under `FWS Settings` ACF top page.
+ - `Options: SVG Icons` - field group assigend to SVG Icons sub page.
+ - `RE SVG Icons` - field group which can be cloned in your ACF setup. More on this in the section bellow - **Using ACF with Starter Theme**.
+
+**Do not remove any of these fields and pages from this theme.**
+
+Here's a quick summery of how this setup works:
+
+- FWS Settings/SVG Icons page lists all avalible SVG files that are located in `src/assets/svg` direcotry.
+- From this page you can choose which icons to enable for RE SVG Icons field.
+- RE SVG Field is cloned to a desired field group.
+- SVG Icon Field shows up as a button with a popup in which you can choose from enabled icons.
+
+##### Creating SVG Icon Field
+
+When creating a SVG Icon field, simply clone RE SVG Icons reusable field.
+
+See example below:
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/svgAcfClone.png)
+
+In case multiple SVG fields are need in a same group of fields, it can easily be achieved by simply enabling **prefix** cloning option.
+
+See example below:
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/svgAcfCloneDouble.png)
+
+This field will pull all enabled icons from FWS Settings/SVG Icons page.
+
+See the usage flow below:
+
+
+![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/acfSvg.gif)
+
+##### Using in a Code
+
+SVG ACF field will return a *string* value - the svg file name (without file extension) - which can then be passed into `inlineSVG` function as explained above in **PHP Usage** sub section.
+
+    Example:
+    $icon = get_field('fws_svg_icon'); // returns: 'ico-happy'
+
+    <?php echo fws()->render()->inlineSVG($icon); ?>
+
+    Will render:
+    <span class="svg-icon">
         <svg>...</svg>
     </span>
 

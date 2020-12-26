@@ -22,15 +22,20 @@ class Render extends Singleton
 	 *
 	 * @param string $svgFileName
 	 * @param string $classes
+	 * @param bool $fromAcfField
 	 *
 	 * @return string
 	 */
-	public function inlineSVG( string $svgFileName, string $classes = '' ): string
+	public function inlineSVG( string $svgFileName, string $classes = '', bool $fromAcfField = false): string
 	{
 		$svgFilePath = get_template_directory() . '/src/assets/svg/' . $svgFileName . '.svg';
 
-		if ( ! file_exists( $svgFilePath ) ) {
+		if ( ! file_exists( $svgFilePath ) && !$fromAcfField ) {
 			return $this->svgErrorHtml( 'SVG file does not exist', $svgFilePath );
+		}
+
+		if ( ! file_exists( $svgFilePath ) && $fromAcfField ) {
+			return '';
 		}
 
 		$svg = file_get_contents( $svgFilePath );
@@ -48,7 +53,9 @@ class Render extends Singleton
 		// This will remove all id="" attributes from the svg
 		$svg = preg_replace( "/id=(\'|\")[^\'|\"]+(\'|\")/m", '', $svg );
 
-		return '<span class="' . $classes . ' svg-icon">' . $svg . '</span>';
+		$classes = $classes ? $classes . ' svg-icon' : 'svg-icon';
+
+		return '<span class="' . $classes . '">' . $svg . '</span>';
 	}
 
 	/**

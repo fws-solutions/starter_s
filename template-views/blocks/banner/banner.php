@@ -24,7 +24,7 @@ $mobile_image = $query_var['mobile_image'] ?? [];
 	<?php fws()->render()->templateView($query_var, 'background-image', 'parts'); ?>
 
 	<div class="banner__caption">
-		<?php echo $icon ? fws()->render()->inlineSVG( $icon, 'banner__caption-icon' ) : ''; ?>
+		<?php echo fws()->render()->inlineSVG( $icon, 'banner__caption-icon', true ); ?>
 		<h1 class="banner__caption-title js-scroll-link" data-scroll-to="slider"><?php echo $title; ?></h1>
 		<p class="banner__caption-text"><?php echo $subtitle; ?></p>
 		<?php echo fws()->acf()->linkField( $button, 'banner__btn btn' ); ?>

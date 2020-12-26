@@ -24,6 +24,7 @@ class Render extends Singleton
 	 *
 	 * @return string
 	 */
+
 	public function linkField( array $linkField, string $linkClasses = '' ): string
 	{
 		if ( ! $linkField ) {
