@@ -3,6 +3,21 @@
 
 > It Only Does Everything.
 
+## Table of Contents
+
+- Installation Instructions
+- Starter Config
+- CLI
+- Working with Common Template Files
+- Working with Components Template Files
+- SVG Icons
+- Media
+- SCSS
+- JS
+- Using Components
+- Using ACF with Starter Theme
+- FWS Engine
+
 ## Installation Instructions
 Install FWS CLI globaly.
 
@@ -291,7 +306,7 @@ When using `create-file` or `cf` command, these rules will be applied automatica
     Will create:
     src/vue/components/blocks/BlockTeam.vue
 
-### SVG Icons
+## SVG Icons
 
 To generate SVG icons, execute `fws icons` task.
 
@@ -299,7 +314,7 @@ To generate SVG icons, execute `fws icons` task.
 
 This command will optimize all SVG files in `src/assets/svg` directory directory.
 
-#### PHP Usage
+### PHP Usage
 
 Use `inlineSVG` render function to import a SVG file as an inline element in any template.
 
@@ -321,7 +336,7 @@ The function takes two arguments:
         <svg>...</svg>
     </span>
 
-#### SCSS Usage
+### SCSS Usage
 Use `svg-icon-data($icon, $color, $insert: before)` mixin to create **pseudo** element, converte an SVG file to **Base64 encoding** and set it as a **background image**.
 
 The mixing takes three arguments:
@@ -345,7 +360,7 @@ The mixing takes three arguments:
         background-size: contain;
     }
 
-#### Vue Usage
+### Vue Usage
 
 Import SvgIcon.vue file like any other component from `src/vue/components/base/SvgIcon/SvgIcon.vue`.
 
@@ -365,7 +380,7 @@ Additionally, you can set any other standard HTML attributes, like `class`.
         <svg>...</svg>
     </span>
 
-#### ACF Usage
+### ACF Usage
 
 Using SVG files with ACF is made very simple by introducing a custom **FWS ACF SVG field** which is implemented by **already** created and avalible ACF fields and pages:
  - `SVG Icons` - ACF options sub page located under `FWS Settings` ACF top page.
@@ -381,7 +396,7 @@ Here's a quick summery of how this setup works:
 - RE SVG Field is cloned to a desired field group.
 - SVG Icon Field shows up as a button with a popup in which you can choose from enabled icons.
 
-##### Creating SVG Icon Field
+#### Creating SVG Icon Field
 
 When creating a SVG Icon field, simply clone RE SVG Icons reusable field.
 
@@ -402,7 +417,7 @@ See the usage flow below:
 
 ![](http://fwsinternaladm.wpengine.com/wp-content/uploads/2020/12/acfSvg.gif)
 
-##### Using in a Code
+#### Using in a Code
 
 SVG ACF field will return a *string* value - the svg file name (without file extension) - which can then be passed into `inlineSVG` function as explained above in **PHP Usage** sub section.
 
@@ -416,7 +431,7 @@ SVG ACF field will return a *string* value - the svg file name (without file ext
         <svg>...</svg>
     </span>
 
-### W3 Validator
+## W3 Validator
 
 To run W3 Validator locally, execute `fws w3 local` command.
 
