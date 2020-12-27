@@ -16,8 +16,11 @@ class StylesAndScripts extends SingletonHook
 	/** @var self */
 	protected static $instance;
 
+	/** @var string */
+	private $localizedObjectName;
+
 	/** @var array */
-	private $localizedObject;
+	private $localizedObjectValues;
 
 	/**
 	 * Override init.
@@ -26,7 +29,8 @@ class StylesAndScripts extends SingletonHook
 	{
 		parent::init();
 
-		self::$instance->localizedObject = [
+		self::$instance->localizedObjectName = 'fwsLocalized';
+		self::$instance->localizedObjectValues = [
 			'themeRoot' => get_template_directory_uri(),
 			'siteUrl' => esc_url( home_url( '/' )),
 			'ajaxUrl' => admin_url( 'admin-ajax.php' )
@@ -53,8 +57,8 @@ class StylesAndScripts extends SingletonHook
 		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], $version, false );
 
 		// Localize JS Object
-		wp_localize_script('fws_starter_s-site-script', 'starter_s_localized', $this->localizedObject);
-		wp_localize_script('fws_starter_s-vueapp-js', 'starter_s_localized', $this->localizedObject);
+		wp_localize_script('fws_starter_s-site-script', $this->localizedObjectName, $this->localizedObjectValues);
+		wp_localize_script('fws_starter_s-vueapp-js', $this->localizedObjectName, $this->localizedObjectValues);
 
 		// Set WP Script for Comments
 		if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {

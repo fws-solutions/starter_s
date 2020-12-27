@@ -16,7 +16,7 @@ const AcfSvgField = {
 	attrIcon: 'data-icon',
 	ajaxAction: 'fws_get_svg_icons',
 	prependButtonDefaultText: 'Click to choose an SVG icon',
-	localized: window.starter_s_localized,
+	localized: window.fwsLocalized,
 	activeField: null,
 
 	init: function() {

@@ -18,7 +18,7 @@ const CF7 = {
 	classDisabled: 'is-disabled',
 	classInit: 'fws-cf7-init',
 	templateDirs: '/dist/cf7/',
-	localized: window.starter_s_localized,
+	localized: window.fwsLocalized,
 
 	init: function() {
 		if (this.$domForm.length > 0 && this.$domBody.hasClass(this.classInit)) {

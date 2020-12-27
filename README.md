@@ -1,5 +1,5 @@
 # FWS Starter _S
-*Version: 3.8.2*
+*Version: 3.8.3*
 
 > It Only Does Everything.
 
@@ -325,7 +325,8 @@ Use the function as shown in this example:
 The function takes two arguments:
 
 - First argument is a name of a file.
-- Second argument are additional classes.
+- Second argument are additional classes (default: empty string).
+- Third argument is boolean to set whether function is used with SVG Icon ACF field (default: false).
 
 
     Example:
@@ -424,7 +425,7 @@ SVG ACF field will return a *string* value - the svg file name (without file ext
     Example:
     $icon = get_field('fws_svg_icon'); // returns: 'ico-happy'
 
-    <?php echo fws()->render()->inlineSVG($icon); ?>
+    <?php echo fws()->render()->inlineSVG($icon, '', true); ?>
 
     Will render:
     <span class="svg-icon">
@@ -757,11 +758,24 @@ Alternativly, if it is set, the function will render media wrapper set for **laz
     </div>
 
 ## SCSS
+
 All Template Views styles should be written in corresponding directory.
 
 All Vue Components styles should be written in `.vue` files.
 
 All global styles should be written in `src/scss` directories.
+
+- For project's global styles everything should be written in `src/scss/site.scss` file and it's imported files.
+- For dashboard's global styles everything should be written in `src/scss/admin.scss` file and `src/scss/admin` directory.
+
+Any styles for JS plugins should be imported from node_modules. No direct copy/pasting plugin styles should be practiced in the theme.
+
+    Example: site.js
+
+    @import '../../node_modules/@fancyapps/fancybox/dist/jquery.fancybox';
+    @import '../../node_modules/select2/dist/css/select2';
+    @import '../../node_modules/perfect-scrollbar/css/perfect-scrollbar';
+    @import '../../node_modules/slick-carousel/slick/slick.scss'; //sass-lint:disable-line clean-import-paths
 
 CSS code quality is checked with [Sass Lint](https://github.com/sasstools/sass-lint).
 
@@ -769,9 +783,14 @@ CSS code quality is checked with [Sass Lint](https://github.com/sasstools/sass-l
 As this is a WP theme, by default it is relying on jQuery library.
 
 Global JS scripts should be written in `src/js` directories.
-The file `site.js` should contain all load methods, and serve for invoking site script's init methods.
 
-    Example:
+- For project's global scripts everything should be invoked from `src/js/site.js` file.
+- For dashboard's global scripts everything should be invoked from `src/js/admin.js` file.
+
+The file `site.js` and `admin.js` should contain all load methods, and serve for invoking script's init methods.
+
+    Example: src/js/site.js
+
     import Menu from './_site/menu';
     import Sliders from './_site/sliders';
 
@@ -781,10 +800,41 @@ The file `site.js` should contain all load methods, and serve for invoking site 
     });
 
 All other files should be organized following this folder structure:
-- `_site` - contains all custom written scripts
-- `_plugins` - contains all plugins scripts
+- `site` - contains all scripts for a site.
+- `admin` - contains all scripts for WP dashboard.
+- `shared` - contains all scripts that are shared between `site.js` and `admin.js`.
 
 Vue JS scripts and logic should be written in appropriate files in `src/vue` directories.
+
+Any JS plugins should be installed and imported using NPM. No direct copy/pasting plugin scripts should be practiced in the theme.
+
+For general availability, import in `site.js` or `admin.js` file.
+
+    Example: src/js/site.js
+
+    import 'bootstrap/js/src/util';
+    import 'bootstrap/js/src/scrollspy';
+    import Menu from './site/menu';
+    import Sliders from './site/sliders';
+
+    jQuery(function() {
+        Menu.init();
+        Sliders.init();
+    });
+
+Making a note that we can also import just chunks of packages that we need (as seen above with Bootstrap), meaning we might not want to import an entire library if we only need just a piece of it.
+
+For plugins that are needed per script basis, simply import in a proper script file.
+
+    Example: src/js/site/sliders.js
+
+    const $ = jQuery.noConflict();
+    import 'slick-carousel';
+
+    'use strict';
+    const Sliders = {
+        ...
+    }
 
 JS code quality is checked with [ESLint](https://eslint.org/).
 
