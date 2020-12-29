@@ -1,7 +1,7 @@
 {
 	"name": "fws_starter_s",
 	"author": "Forwardslash NY",
-	"version": "3.8.3",
+	"version": "3.8.4",
 	"main": "gulpfile.js",
 	"scripts": {
 		"build-dev": "gulp build-dev && npm run vue",
