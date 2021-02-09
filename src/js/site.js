@@ -1,7 +1,6 @@
 /**
  * Import from node_modules
  */
-import 'bootstrap/js/src/util';
 import 'bootstrap/js/src/scrollspy';
 
 /**
@@ -17,6 +16,7 @@ import Select2 from './site/select2';
 import FormHelpers from './site/formHelpers';
 import PerfectScroll from './site/perfectScroll';
 import LazyLoading from './site/lazyLoad';
+import LoadMoreBlog from './site/loadMoreBlog';
 
 /**
  * Init site scripts
@@ -32,4 +32,5 @@ jQuery(function() {
 	FormHelpers.init();
 	PerfectScroll.init();
 	LazyLoading.init();
+	LoadMoreBlog.init();
 });

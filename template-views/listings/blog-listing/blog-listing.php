@@ -44,7 +44,8 @@ $subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
 				}
 				?>
 				<div class="col-sm-12">
-					<?php fws()->render()->pagingNav(); ?>
+					<?php //fws()->render()->pagingNav(); ?>
+					<a class="btn js-load-more" href="javascript:;"><?php echo __('Load More', 'fws_starter_s'); ?></a>
 				</div>
 				<?php
 			} else {

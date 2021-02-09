@@ -24,7 +24,7 @@ function js() {
 gulp.task('js-lint', lintJS);
 
 function lintJS() {
-	return gulp.src('src/js/_site/*.js')
+	return gulp.src('src/js/**/*.js')
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());

@@ -1,4 +1,5 @@
 const path = require('path');
+const regEx = new RegExp('node_modules\\' + path.sep + '(?!bootstrap).*');
 
 module.exports = {
 	mode: 'none',
@@ -15,7 +16,7 @@ module.exports = {
 		rules: [
 			{
 				test: /\.m?js$/,
-				exclude: /(node_modules|bower_components)/,
+				exclude: regEx,
 				use: {
 					loader: 'babel-loader',
 					options: {

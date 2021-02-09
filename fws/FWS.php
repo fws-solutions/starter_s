@@ -10,9 +10,11 @@ use FWS\Theme\Hooks\BasicSetup as ThemeBasicSetup;
 use FWS\Theme\Hooks\CustomSetup as ThemeCustomSetup;
 use FWS\Theme\Hooks\HeadRemovals as ThemeHeadRemovals;
 use FWS\Theme\Hooks\Menus as ThemeMenus;
-use FWS\Theme\Hooks\StylesAndScripts as ThemeStylesAndScripts;
 use FWS\Theme\Hooks\SectionWrappers as ThemeSectionWrappers;
 use FWS\Theme\Hooks\WPLogin as ThemeWPLogin;
+use FWS\Theme\Assets\SiteAssets as ThemeSiteAssets;
+use FWS\Theme\Assets\DeferAssets as ThemeDeferAssets;
+use FWS\Theme\Assets\PluginAssets as ThemePluginAssets;
 use FWS\Theme\Media\Images as ThemeImages;
 use FWS\Theme\Media\Resizer as ThemeResizer;
 use FWS\Theme\Render as ThemeRender;
@@ -63,7 +65,9 @@ class FWS extends Singleton
 
 		// Theme Hooks
 		ThemeBasicSetup::init();
-		ThemeStylesAndScripts::init();
+		ThemeSiteAssets::init();
+		ThemeDeferAssets::init();
+		ThemePluginAssets::init();
 		ThemeCustomSetup::init();
 		ThemeHeadRemovals::init();
 		ThemeMenus::init();

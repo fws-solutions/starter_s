@@ -33,28 +33,6 @@ class Hooks extends SingletonHook
 	}
 
 	/**
-	 * WooCommerce specific scripts & stylesheets.
-	 *
-	 * @return void
-	 */
-	public function scripts(): void
-	{
-		$font_path = WC()->plugin_url() . '/src/assets/fonts/';
-		$inline_font = '@font-face {
-			font-family: "star";
-			src: url("' . $font_path . 'star.eot");
-			src: url("' . $font_path . 'star.eot?#iefix") format("embedded-opentype"),
-				url("' . $font_path . 'star.woff") format("woff"),
-				url("' . $font_path . 'star.ttf") format("truetype"),
-				url("' . $font_path . 'star.svg#star") format("svg");
-			font-weight: normal;
-			font-style: normal;
-		}';
-
-		wp_add_inline_style( 'fws_starter_s-woocommerce-style', $inline_font );
-	}
-
-	/**
 	 * Product columns wrapper.
 	 */
 	public function productColumnsWrapper(): void
@@ -171,7 +149,6 @@ class Hooks extends SingletonHook
 	protected function hooks(): void
 	{
 		add_action( 'after_setup_theme', [ $this, 'setup' ] );
-		add_action( 'wp_enqueue_scripts', [ $this, 'scripts' ] );
 
 		add_action( 'woocommerce_before_shop_loop', [ $this, 'productColumnsWrapper' ], 40 );
 		add_action( 'woocommerce_after_shop_loop', [ $this, 'productColumnsWrapperClose' ], 40 );

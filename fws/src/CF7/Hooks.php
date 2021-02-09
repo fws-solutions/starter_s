@@ -128,12 +128,12 @@ class Hooks extends SingletonHook
 	/**
 	 * Render selected attribute
 	 *
-	 * @param string $selected
+	 * @param $selected
 	 * @param string $temp
 	 *
 	 * @return void
 	 */
-	private function markSelected(string $selected, string $temp): void
+	private function markSelected($selected, string $temp): void
 	{
 		echo $selected === $temp ? 'selected="selected"' : '';
 	}
