@@ -18,6 +18,11 @@
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 	<link rel="icon" type="image/png" href="<?php echo get_template_directory_uri(); ?>/favicon.png"/>
 
+	<!-- preload fonts-->
+	<!-- TODO: Preload all fonts in this manner that are used in the project. Make sure only .woff2 versions are preloaded. -->
+	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Bold.woff2" as="font" crossorigin />
+	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Regular.woff2" as="font" crossorigin />
+
 	<?php wp_head(); ?>
 </head>
 
