@@ -66,7 +66,7 @@ const CF7 = {
 			url: _this.localized.themeRoot + _this.templateDirs + $select.val(),
 			success: function(data) {
 				const compiledFileContentTemp = _template(data);
-				const html  = compiledFileContentTemp({
+				const html = compiledFileContentTemp({
 					themeRoot: _this.localized.themeRoot,
 					siteUrl: _this.localized.siteUrl
 				});
@@ -74,7 +74,7 @@ const CF7 = {
 				$dest.val(html);
 				$preview.val(html);
 			}
-		})
+		});
 	}
 };
 

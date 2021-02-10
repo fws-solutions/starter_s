@@ -35,7 +35,19 @@ class SiteAssets extends SingletonHook
 			'siteUrl' => esc_url( home_url( '/' )),
 			'ajaxUrl' => admin_url( 'admin-ajax.php' )
 		];
+	}
 
+	/**
+	 * Move all external scripts (plugins and such) from footer to header.
+	 */
+	public function moveAllScriptsToHeader(): void
+	{
+		remove_action('wp_footer', 'wp_print_scripts');
+		remove_action('wp_footer', 'wp_print_head_scripts', 9);
+		remove_action('wp_footer', 'wp_enqueue_scripts', 1);
+		add_action( 'wp_head', 'wp_print_scripts', 5 );
+		add_action( 'wp_head', 'wp_print_head_scripts', 5 );
+		add_action( 'wp_head', 'wp_enqueue_scripts', 5 );
 	}
 
 	/**
@@ -43,19 +55,14 @@ class SiteAssets extends SingletonHook
 	 */
 	public function setupThemeStylesAndScripts(): void
 	{
-
-
 		// Set Theme Site CSS and JS
 		$this->enqueueThemeStylesAndScripts();
 
 		// Set WP Script for Comments
 		$this->enqueueCommentsScript();
 
-		// Localize JS Object
-		$this->localizeThemeScriptObject();
-
 		// Remove Theme Site CSS and JS
-		//$this->dequeueThemeStylesAndScripts();
+		$this->dequeueThemeStylesAndScripts();
 	}
 
 	/**
@@ -101,6 +108,9 @@ class SiteAssets extends SingletonHook
 		// Set Theme VueJS
 		wp_enqueue_script( 'fws_starter_s-vuevendors-js', get_template_directory_uri() . '/dist/vue-build/js/chunk-vendors.js', [], $version, false );
 		wp_enqueue_script( 'fws_starter_s-vueapp-js', get_template_directory_uri() . '/dist/vue-build/js/app.js', [], $version, false );
+
+		// Localize JS Object
+		wp_localize_script('fws_starter_s-site-script', $this->localizedObjectName, $this->localizedObjectValues);
 	}
 
 	/**
@@ -114,15 +124,6 @@ class SiteAssets extends SingletonHook
 
 		// Remove other unneeded scripts
 		wp_deregister_script( 'wp-embed' );
-	}
-
-	/**
-	 * Localize Global JS Object with PHP values.
-	 */
-	private function localizeThemeScriptObject(): void
-	{
-		wp_localize_script('fws_starter_s-site-script', $this->localizedObjectName, $this->localizedObjectValues);
-		wp_localize_script('fws_starter_s-vueapp-js', $this->localizedObjectName, $this->localizedObjectValues);
 	}
 
 	/**
@@ -141,9 +142,10 @@ class SiteAssets extends SingletonHook
 	protected function hooks()
 	{
 		// Set Theme Styles and Scripts
-		add_action( 'wp_enqueue_scripts', [$this, 'setupThemeStylesAndScripts'] );
-		//add_action( 'wp_default_scripts',  [$this, 'removeJqueryMigrate']);
+		add_action( 'wp_enqueue_scripts', [ $this, 'setupThemeStylesAndScripts'] );
+		add_action( 'wp_default_scripts',  [ $this, 'removeJqueryMigrate'] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'setupAdminStylesAndScripts' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'setupAdminStylesAndScripts' ] );
+		add_action( 'after_setup_theme', [ $this, 'moveAllScriptsToHeader' ] );
 	}
 }

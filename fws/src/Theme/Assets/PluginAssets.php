@@ -22,6 +22,7 @@ class PluginAssets extends SingletonHook
 	public function setupPluginsStylesAndScripts(): void
 	{
 		$this->pluginWooCommerce();
+		$this->pluginCF7();
 	}
 
 	/**
@@ -31,7 +32,7 @@ class PluginAssets extends SingletonHook
 	{
 		if ( function_exists( 'WC' ) ) {
 			// Uncomment to get WC Fonts (for Star icon for example)
-			// $this->wooFontStyles();
+			// $this->pluginWooCommerceFonts();
 
 			// Remove WC scripts on all pages except the ones where it's needed.
 			if(! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
@@ -55,7 +56,7 @@ class PluginAssets extends SingletonHook
 	 *
 	 * @return void
 	 */
-	private function wooFontStyles(): void
+	private function pluginWooCommerceFonts(): void
 	{
 		$font_path = WC()->plugin_url() . '/src/assets/fonts/';
 		$inline_font = '@font-face {
@@ -70,6 +71,20 @@ class PluginAssets extends SingletonHook
 		}';
 
 		wp_add_inline_style( 'fws_starter_s-woocommerce-style', $inline_font );
+	}
+
+	/**
+	 * Set CF7 Styles and Scripts
+	 *
+	 * @return void
+	 */
+	private function pluginCF7(): void
+	{
+		// TODO: The 'false' argument should be replaced with the logic to detect only pages that don't have CF7 shortcode on them.
+		if (function_exists('wpcf7_do_enqueue_scripts') && false) {
+			wp_dequeue_style('contact-form-7');
+			wp_deregister_script('contact-form-7');
+		}
 	}
 
 	/**

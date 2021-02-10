@@ -26,12 +26,40 @@ class DeferAssets extends SingletonHook
 	{
 		parent::init();
 
-		self::$instance->deferedScripts = [
+		// defer site scripts
+		$siteScripts = [
+			'jquery-core',
 			'fws_starter_s-site-script',
 			'fws_starter_s-vuevendors-js',
 			'fws_starter_s-vueapp-js'
 		];
 
+		// defer woocommerce scripts
+		$siteScripts = self::$instance->appendScriptNames(
+			$siteScripts,
+			[
+				'js-cookie',
+				'wc-cart-fragments',
+				'woocommerce',
+				'wc-add-to-cart',
+				'jquery-blockui',
+				'wc-country-select',
+				'wc-address-i18n',
+				'wc-cart',
+				'selectWoo',
+				'wc-checkout'
+			],
+			'WC'
+		);
+
+		// defer cf7 scripts
+		$siteScripts = self::$instance->appendScriptNames(
+			$siteScripts,
+			[ 'contact-form-7' ],
+			'wpcf7_do_enqueue_scripts'
+		);
+
+		self::$instance->deferedScripts = $siteScripts;
 	}
 
 	/**
@@ -41,12 +69,30 @@ class DeferAssets extends SingletonHook
 	 *
 	 * @return string
 	 */
-	public function addDeferToScript(string $tag, string $handle): string {
+	public function addDeferToScript(string $tag, string $handle): string
+	{
 		if (in_array($handle, $this->deferedScripts) && !stripos($tag, 'defer') && stripos($tag, 'defer') !== 0) {
 			$tag = str_replace('<script ', '<script defer ', $tag);
 		}
 
 		return $tag;
+	}
+
+	/**
+	 * Add script names for defer handling.
+	 * @param array $siteScripts
+	 * @param array $otherScripts
+	 * @param string $funcExists
+	 *
+	 * @return array
+	 */
+	private function appendScriptNames(array $siteScripts, array $otherScripts, string $funcExists): array
+	{
+		if ( function_exists( $funcExists ) ) {
+			return array_merge($siteScripts, $otherScripts);
+		}
+
+		return [];
 	}
 
 	/**
