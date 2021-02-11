@@ -57,7 +57,7 @@
 							<!--
 							This HTML structure and classes must stay the same as this is how wp_nav_menu() function
 							will render it.
-							You can add new elements in <li> or <a> tags, such as SVGs or <span>s, but you cannot rearrange
+							You can add new elements in <li> or <a> tags, but you cannot rearrange
 							elements, wrap them in additional <div>s or change classes.
 							//-->
 							<ul class="site-nav__list">
@@ -67,7 +67,6 @@
 
 								<li class="menu-item menu-item-has-children">
 									<a href="#">Menu Item 2</a>
-									<?php echo fws()->render()->inlineSVG( 'ico-arrow-down', 'site-nav__icon js-nav-icon' ); ?>
 									<ul class="sub-menu">
 										<li class="menu-item">
 											<a href="#">Submenu Item</a>
@@ -75,7 +74,6 @@
 
 										<li class="menu-item menu-item-has-children">
 											<a href="#">Submenu Item 2</a>
-											<?php echo fws()->render()->inlineSVG( 'ico-arrow-right', 'site-nav__icon js-nav-icon' ); ?>
 											<ul class="sub-menu">
 												<li class="menu-item">
 													<a href="#">Third Level Item</a>

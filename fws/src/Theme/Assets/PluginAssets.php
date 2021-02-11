@@ -80,7 +80,11 @@ class PluginAssets extends SingletonHook
 	 */
 	private function pluginCF7(): void
 	{
-		// TODO: The 'false' argument should be replaced with the logic to detect only pages that don't have CF7 shortcode on them.
+		/**
+		 * TODO: Set conditional logic.
+		 *
+		 * The 'false' argument should be replaced with the logic to detect only pages that don't have CF7 shortcode on them.
+		 */
 		if (function_exists('wpcf7_do_enqueue_scripts') && false) {
 			wp_dequeue_style('contact-form-7');
 			wp_deregister_script('contact-form-7');
