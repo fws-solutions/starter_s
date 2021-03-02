@@ -25,7 +25,6 @@ class DeferAssets extends SingletonHook
 	public static function init(): void
 	{
 		parent::init();
-
 		// defer site scripts
 		$siteScripts = [
 			'jquery-core',
@@ -33,6 +32,19 @@ class DeferAssets extends SingletonHook
 			'fws_starter_s-vuevendors-js',
 			'fws_starter_s-vueapp-js'
 		];
+
+		// defer admin scripts
+		$siteScripts = self::$instance->appendScriptNames(
+			$siteScripts,
+			[
+				'fws_starter_s-admin-script',
+				'password-strength-meter',
+				'underscore',
+				'wp-util',
+				'user-profile',
+			],
+			'get_template_directory'
+		);
 
 		// defer woocommerce scripts
 		$siteScripts = self::$instance->appendScriptNames(

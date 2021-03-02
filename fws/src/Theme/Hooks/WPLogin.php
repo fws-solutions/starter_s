@@ -29,9 +29,13 @@ class WPLogin extends SingletonHook
 	/**
 	 * Add login title
 	 */
-	public function addLoginTitle(): void
+	public function addLoginTitle($message): string
 	{
-		echo '<span class="login-title">' . fws()->config()->themeName() . ' login</span>';
+		if ( empty($message) ){
+			return '<span class="login-title">' . __('Login to your account', 'fws_starter_s') . '</span>';
+		} else {
+			return $message;
+		}
 	}
 
 	/**
@@ -40,7 +44,7 @@ class WPLogin extends SingletonHook
 	protected function hooks()
 	{
 		remove_action( 'login_head', 'wp_shake_js', 12 );
-		add_action( 'login_form', [ $this, 'addLoginTitle' ] );
+		add_filter( 'login_message', [ $this, 'addLoginTitle' ] );
 		add_filter( 'login_headerurl', [ $this, 'loginLogoLink' ] );
 	}
 }
