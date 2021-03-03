@@ -92,7 +92,7 @@ class DeferAssets extends SingletonHook
 			return array_merge($siteScripts, $otherScripts);
 		}
 
-		return [];
+		return $siteScripts;
 	}
 
 	/**
