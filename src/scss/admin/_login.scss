@@ -4,6 +4,10 @@ body {
 
 .container--login {
 	max-width: 1450px;
+
+	@include mq(1450px) {
+		max-width: 1230px;
+	}
 }
 
 .user-pass-wrap,
@@ -20,10 +24,24 @@ body {
 	justify-content: space-between;
 	margin-top: 16px;
 	margin-bottom: 59px;
+	flex-wrap: wrap;
+
+	@include mq($xl) {
+		margin-bottom: 15px;
+	}
+
+	@include mq($sm) {
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
 
 	#nav {
 		margin-top: 0;
 		padding: 0;
+
+		@include mq($xl) {
+			margin-bottom: 15px;
+		}
 	}
 }
 
@@ -32,7 +50,7 @@ body {
 }
 
 .login-sign-up {
-	margin-top: 63px;
+	margin-top: 64px;
 
 	span,
 	a {
@@ -71,6 +89,14 @@ body {
 				background-color: $white;
 			}
 		}
+	}
+
+	@include mq($lg) {
+		margin-top: 34px;
+	}
+
+	@include mq($sm) {
+		margin-top: 15px;
 	}
 }
 
@@ -137,7 +163,8 @@ body {
 .forgetmenot {
 	position: relative;
 	cursor: pointer;
-	user-select: none;
+	padding-left: 47px;
+	margin-right: 20px;
 
 	&::after {
 		content: '';
@@ -153,41 +180,59 @@ body {
 		width: 0;
 	}
 
-	.checkmark {
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: 27px;
-		width: 27px;
-		background-color: $white;
-		border: 1px solid $grey-mild;
-
-		&::after {
-			left: 9px;
-			top: 5px;
-			width: 5px;
-			height: 10px;
-			border-width: 0 3px 3px 0;
-			transform: rotate(45deg);
-		}
-	}
-
 	label {
 		font-family: $font-main;
 		color: $black-smooth;
-		font-size: 18px;
+		font-size: 17px;
 		font-weight: 400;
-		letter-spacing: 0.09px;
 		line-height: 21.6px;
+		transform: translate(-1px, 3px);
+		letter-spacing: 1.3px;
+	}
+
+	@include mq($xl) {
+		margin-bottom: 15px !important;//sass-lint:disable-line no-important
 	}
 }
 
+.checkmark {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 27px;
+	width: 27px;
+	background-color: $white;
+	border: 2px solid $grey-soft;
+	pointer-events: none !important;//sass-lint:disable-line no-important
+	border-radius: 2px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		/* display: none; */
+		opacity: 0;
+		background-color: $white;
+		transition: $dur $ease;
+	}
+}
+
+.forgetmenot .checkmark::after {
+	left: 3px;
+    top: 3px;
+    width: 17px;
+    height: 17px;
+	background-color: $orange;
+	opacity: 0;
+	transition: $dur $ease;
+  }
+
 .forgetmenot input:checked ~ .checkmark {
-	background-color: $red;
+	background-color: $white;
 }
 
 .forgetmenot input:checked ~ .checkmark::after {
-	display: block;
+	opacity: 1;
+	transition: $dur $ease;
 }
 
 .login-title {
@@ -199,6 +244,16 @@ body {
 	line-height: 38.4px;
 	margin-bottom: 43px;
     display: block;
+
+	@include mq($lg) {
+		text-align: center;
+		margin-bottom: 28px;
+	}
+
+	@include mq($sm) {
+		margin-bottom: 15px;
+		font-size: 30px;
+	}
 }
 
 #loginform {
@@ -214,18 +269,64 @@ body {
 		position: absolute;
 		right: -10.5%;
 		top: -29.5%;
+
+		@include mq(1780px) {
+			right: 0;
+			display: flex;
+		}
+
+		@include mq($xl) {
+			top: -16.5%;
+		}
+
+		@include mq($lg) {
+			position: relative;
+			margin-top: 50px;
+		}
+
+		img {
+
+			@include mq(1780px) {
+				width: 80%;
+				margin-left: auto;
+			}
+
+			@include mq($xl) {
+				width: 65%;
+			}
+
+			@include mq($lg) {
+				width: 50%;
+				margin-left: auto;
+				margin: 0 auto;
+			}
+
+			@include mq($md) {
+				width: 80%;
+			}
+		}
+	}
+
+	@include mq($lg) {
+		flex-direction: column;
 	}
 }
 
 #login_error {
 	width: 30.6%;
+
+	@include mq($lg) {
+		margin: 0 auto !important;//sass-lint:disable-line no-important
+		width: 100%;
+		max-width: 560px;
+	}
 }
 
 .login-bottom-content {
 	text-align: right;
 	margin-top: 187px;
     padding-right: 100px;
-	margin-bottom: 60px;
+	padding-bottom: 60px;
 
 	span {
 		font-size: 18px;
@@ -264,6 +365,25 @@ body {
 			}
 		}
 	}
+
+	@include mq(1780px) {
+		margin-top: 110px;
+	}
+
+	@include mq($lg) {
+		margin-top: 50px;
+		margin-bottom: 40px;
+	}
+
+	@include mq($md) {
+		text-align: center;
+		padding-right: 0;
+	}
+
+	@include mq($sm) {
+		margin-bottom: 0;
+		padding-bottom: 30px;
+	}
 }
 
 .login__content-form-wrapp {
@@ -294,6 +414,15 @@ body {
 				color: $orange;
 				transition: $dur $ease;
 			}
+		}
+
+		@include mq($lg) {
+			display: flex;
+			max-width: 420px;
+		}
+
+		@include mq($sm) {
+			min-height: 70px !important;//sass-lint:disable-line no-important
 		}
 	}
 
@@ -329,6 +458,15 @@ body {
 		&:focus {
 			box-shadow: none !important;//sass-lint:disable-line no-important
 		}
+
+		@include mq(782px) {
+			font-size: 20px !important;//sass-lint:disable-line no-important
+		}
+
+		@include mq($sm) {
+			padding: 7px 28px 7px 27px !important;
+			min-height: 70px !important;//sass-lint:disable-line no-important
+		}
 	}
 
 	#user_login,
@@ -363,10 +501,20 @@ body {
 		line-height: 21.6px;
 		opacity: 1;
 	}
+
+	@include mq($lg) {
+		width: 100%;
+		margin: 0 auto;
+		max-width: 560px;
+	}
 }
 
 #user_login {
 	margin-bottom: 30px;
+
+	@include mq($sm) {
+		margin-bottom: 15px;
+	}
 }
 
 .login__logo {
@@ -384,6 +532,19 @@ body {
 		display: flex;
     	align-items: center;
 		margin-bottom: 90px;
+
+		@include mq(1780px) {
+			height: 100px;
+			margin-bottom: 70px;
+		}
+
+		@include mq($lg) {
+			margin-bottom: 30px;
+		}
+
+		@include mq($sm) {
+			margin-bottom: 15px;
+		}
 
 		a {
 			background-image: url('../src/assets/images/logo.png');
@@ -406,6 +567,11 @@ body {
 
 			@include mq($md) {
 				height: 55px;
+				background-position: center;
+			}
+
+			@include mq($sm) {
+				background-size: 90%;
 			}
 		}
 	}
