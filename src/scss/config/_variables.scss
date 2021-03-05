@@ -22,7 +22,15 @@ $red: #e2401c;
 $green: #4fc08d;
 $blue: #3d9cd2;
 
+$orange: #d4461a;
+$black-smooth: #2f3034;
+$grey-soft: #d5d5d5;
+$grey-mild: #b1b1b1;
+$grey-darker: #055d64;
+$grey-thin: #2e2e30;
+
 $site-colors: (
+	'grey-thin': $grey-thin,
 	'white': $white,
 	'grey-light': $grey-light,
 	'grey-mid': $grey-mid,
@@ -31,7 +39,12 @@ $site-colors: (
 	'black': $black,
 	'red': $red,
 	'green': $green,
-	'blue': $blue
+	'blue': $blue,
+	'grey-mild': $grey-mild,
+	'orange': $orange,
+	'grey-soft': $grey-soft,
+	'grey-darker': $grey-darker,
+	'black-smooth': $black-smooth,
 ) !default;
 
 // 404 - Set this color to follow site style
