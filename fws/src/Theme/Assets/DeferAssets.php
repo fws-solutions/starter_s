@@ -83,7 +83,11 @@ class DeferAssets extends SingletonHook
 	 */
 	public function addDeferToScript(string $tag, string $handle): string
 	{
-		if (in_array($handle, $this->deferedScripts) && !stripos($tag, 'defer') && stripos($tag, 'defer') !== 0) {
+		if (in_array($handle, $this->deferedScripts)
+		    && !stripos($tag, 'defer')
+		    && stripos($tag, 'defer') !== 0
+		    && !fws()->render()->isLoginOrRegPage() // exclude from wp-login.php page
+		) {
 			$tag = str_replace('<script ', '<script defer ', $tag);
 		}
 
