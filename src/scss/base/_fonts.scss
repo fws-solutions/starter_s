@@ -2,7 +2,7 @@
 ## Fonts
 --------------------------------------------------------------*/
 @font-face {
-	font-family: 'Open Sans';
+	font-family: 'Open Sans Regular';
 	src: url('src/assets/fonts/OpenSans-Regular.woff2') format('woff2'),
 	url('src/assets/fonts/OpenSans-Regular.woff') format('woff'),
 	url('src/assets/fonts/OpenSans-Regular.ttf') format('truetype');
@@ -11,11 +11,20 @@
 }
 
 @font-face {
-	font-family: 'Open Sans';
+	font-family: 'Open Sans Bold';
 	src: url('src/assets/fonts/OpenSans-Bold.woff2') format('woff2'),
 	url('src/assets/fonts/OpenSans-Bold.woff') format('woff'),
 	url('src/assets/fonts/OpenSans-Bold.ttf') format('truetype');
 	font-weight: bold;
 	font-style: normal;
+}
+
+@font-face {
+    font-family: 'Open Sans Semibold';
+    src: url('OpenSans-Semibold.woff2') format('woff2'),
+        url('OpenSans-Semibold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
 }
 
