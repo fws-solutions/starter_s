@@ -4,6 +4,7 @@ body {
 
 .container--login {
 	max-width: 1450px;
+	position: relative;
 
 	@include mq(1450px) {
 		max-width: 1230px;
@@ -16,6 +17,10 @@ body {
 	label {
 		display: none;
 	}
+}
+
+.login__label {
+	display: none !important;//sass-lint:disable-line no-important
 }
 
 .rem-forget {
@@ -46,6 +51,10 @@ body {
 			margin-left: -4px;
 			letter-spacing: 0.1px;
 			text-decoration: none;
+
+			&:focus {
+				box-shadow: none;
+			}
 	
 			&::after {
 				position: absolute;
@@ -71,6 +80,11 @@ body {
 		@include mq($xl) {
 			margin-bottom: 15px;
 		}
+	}
+
+	@include mq(400px) {
+		align-items: center;
+		justify-content: center;
 	}
 }
 
@@ -99,6 +113,10 @@ body {
 		letter-spacing: 0.1px;
 		text-decoration: none;
 
+		&:focus {
+			box-shadow: none;
+		}
+
 		&::after {
 			position: absolute;
 			content: '';
@@ -120,8 +138,9 @@ body {
 		}
 	}
 
-	@include mq($lg) {
+	@include mq($xl) {
 		margin-top: 34px;
+		text-align: center;
 	}
 
 	@include mq($sm) {
@@ -222,6 +241,10 @@ body {
 	@include mq($xl) {
 		margin-bottom: 15px !important;//sass-lint:disable-line no-important
 	}
+
+	@include mq(400px) {
+		margin-right: 0;
+	}
 }
 
 .checkmark {
@@ -274,7 +297,7 @@ body {
 	margin-bottom: 43px;
     display: block;
 
-	@include mq($lg) {
+	@include mq($xl) {
 		text-align: center;
 		margin-bottom: 28px;
 	}
@@ -297,7 +320,7 @@ body {
 	.login__content-img-wrapp {
 		position: absolute;
 		right: -10.5%;
-		top: -29.5%;
+		top: -44.5%;
 
 		@include mq(1780px) {
 			right: 0;
@@ -308,9 +331,9 @@ body {
 			top: -16.5%;
 		}
 
-		@include mq($lg) {
+		@include mq($xl) {
 			position: relative;
-			margin-top: 50px;
+			margin-top: 100px;
 		}
 
 		img {
@@ -324,7 +347,7 @@ body {
 				width: 65%;
 			}
 
-			@include mq($lg) {
+			@include mq($xl) {
 				width: 60% !important;//sass-lint:disable-line no-important
 				margin-left: auto;
 				margin: 0 auto;
@@ -336,7 +359,7 @@ body {
 		}
 	}
 
-	@include mq($lg) {
+	@include mq($xl) {
 		flex-direction: column;
 	}
 }
@@ -344,7 +367,7 @@ body {
 #login_error {
 	width: 30.6%;
 
-	@include mq($lg) {
+	@include mq($xl) {
 		margin: 0 auto !important;//sass-lint:disable-line no-important
 		width: 100%;
 		max-width: 560px;
@@ -353,9 +376,12 @@ body {
 
 .login-bottom-content {
 	text-align: right;
-	margin-top: 187px;
+	margin-top: 77px;
     padding-right: 100px;
 	padding-bottom: 60px;
+	/* position: absolute;
+	right: 0;
+	bottom: 0; */
 
 	span {
 		font-size: 18px;
@@ -385,6 +411,10 @@ body {
 			transition: $dur $ease;
 		}
 
+		&:focus {
+			box-shadow: none;
+		}
+
 		@include hover {
 	
 			&::after {
@@ -399,8 +429,8 @@ body {
 		margin-top: 110px;
 	}
 
-	@include mq($lg) {
-		margin-top: 50px;
+	@include mq($xl) {
+		margin-top: 120px;
 		margin-bottom: 40px;
 	}
 
@@ -449,9 +479,10 @@ body {
 			}
 		}
 
-		@include mq($lg) {
+		@include mq($xl) {
 			display: flex;
 			max-width: 420px;
+			margin: 0 auto !important;//sass-lint:disable-line no-important
 		}
 
 		@include mq($sm) {
@@ -535,7 +566,7 @@ body {
 		opacity: 1;
 	}
 
-	@include mq($lg) {
+	@include mq($xl) {
 		width: 100%;
 		margin: 0 auto;
 		max-width: 560px;
@@ -561,17 +592,17 @@ body {
 
 	h1 {
 		text-align: initial;
-		height: 186px;
+		height: 146px;
 		display: flex;
     	align-items: center;
 		margin-bottom: 50px;
 
-		@include mq(1780px) {
+		/* @include mq(1780px) {
 			height: 100px;
 			margin-bottom: 70px;
-		}
+		} */
 
-		@include mq($lg) {
+		@include mq($xl) {
 			margin-bottom: 30px;
 		}
 
@@ -586,7 +617,7 @@ body {
 			background-position: 6% 50%;
 			background-repeat: no-repeat;
 			width: 100%;
-			height: auto;
+			height: 58px;
 			transition: $dur $ease;
 			margin: 0;
 
@@ -604,7 +635,7 @@ body {
 			}
 
 			@include mq($sm) {
-				background-size: 90%;
+				background-size: 75%;
 			}
 		}
 	}
@@ -627,7 +658,8 @@ body {
 }
 
 //lostpassword
-#lostpasswordform {
+#lostpasswordform,
+#loginform {
 	border: none !important;//sass-lint:disable-line no-important
 	box-shadow: none !important;//sass-lint:disable-line no-important
 	padding: 0 !important;//sass-lint:disable-line no-important
@@ -689,6 +721,7 @@ body {
 		letter-spacing: 0.1px;
 		text-decoration: none;
 		font-size: 18px;
+		outline: none !important;//sass-lint:disable-line no-important
 
 		&::after {
 			position: absolute;
@@ -699,6 +732,10 @@ body {
 			bottom: 2px;
 			background-color: $orange;
 			transition: $dur $ease;
+		}
+
+		&:focus {
+			box-shadow: none;
 		}
 
 		@include hover {
@@ -721,13 +758,17 @@ body {
 
 	a {
 		margin-left: 0 !important;//sass-lint:disable-line no-important
+
+		&:focus {
+			box-shadow: none;
+		}
 	}
 }
 
 .lost-pass__form-wrapp {
 	width: 30.6%;
 
-	@include mq($lg) {
+	@include mq($xl) {
 		width: 100%;
 		max-width: 315px;
 	}
