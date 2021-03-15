@@ -54,7 +54,7 @@ class WPLogin extends SingletonHook
 		$html = '<div class="fws-login-illustration"><h4>illustration goes here</h4></div>';
 
 		$html .= sprintf(
-			'<div class="fws-footer-author"><span>' . __( 'Powered by ', 'fws_starter_s' ) . '<a href="%s">Forwardslash</a></span></div>',
+			'<div class="fws-footer-author"><span>' . __( 'Powered by ', 'fws_starter_s' ) . '<a href="%s" target="_blank" rel="noopener">Forwardslash</a></span></div>',
 			esc_url( 'http://fws.us/' )
 		);
 
