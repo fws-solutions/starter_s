@@ -87,6 +87,7 @@ class DeferAssets extends SingletonHook
 		    && !stripos($tag, 'defer')
 		    && stripos($tag, 'defer') !== 0
 		    && !fws()->render()->isLoginOrRegPage() // exclude from wp-login.php page
+			&& !is_admin()
 		) {
 			$tag = str_replace('<script ', '<script defer ', $tag);
 		}
