@@ -2,42 +2,291 @@ body {
 	background-color: $white;
 }
 
-.fws-login-wrapper {
-	border: 10px solid $red;
-}
-
 .fws-login-brand {
-	border: 10px solid $blue;
 	display: block;
+	max-width: 315px;
+	margin: 54px 0 76px 5.3%;
+	/* margin: 54px 0 166px 5.3%; */
+
+	&:focus {
+		box-shadow: none;
+	}
 
 	img {
 		display: block;
 		width: 100%;
 	}
+
+	@include mq($sm) {
+		margin: 0 auto;
+		margin-top: 54px;
+		margin-bottom: 34px;
+	}
+
+	@include mq(400px) {
+		max-width: 255px;
+		margin-top: 44px;
+		margin-bottom: 24px;
+	}
+}
+
+.fws-login-wrapper {
+	overflow: hidden;
 }
 
 .fws-login-title {
-	display: block;
+    font-family: $font-main;
+    color: $black-smooth;
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    line-height: 38.4px;
+	margin-bottom: 63px;
+    display: block;
+
+	@include mq($xl) {
+		text-align: center;
+	}
+
+	@include mq(400px) {
+		font-size: 24px;
+		margin-bottom: 23px;
+	}
 }
 
 .fws-login-illustration {
-	border: 10px solid $orange;
+	position: absolute;
+    top: 14.5%;
+    right: 1.5%;
+    width: 61%;
+    max-width: 1172px;
+
+	@include mq($desk-small) {
+		right: 0;
+		display: flex;
+		width: 70%;
+	}
+
+	@include mq($xl) {
+		position: relative;
+		margin: 0 auto;
+		margin-top: 25px;
+		top: auto;
+    	right: auto;
+	}
+
+	@include mq($lg) {
+		width: 90%;
+	}
+
+	@include mq($md) {
+		width: 100%;
+	}
+
+	/* img {
+		width: 100%;
+
+		@include mq($desk-small) {
+			width: 70%;
+			margin-left: auto;
+		}
+
+		@include mq($xl) {
+			width: 50%;
+			margin-left: auto;
+			margin: 0 auto;
+		}
+
+		@include mq($md) {
+			width: 80%;
+		}
+	} */
 }
 
-.fws-footer-author {
-	border: 10px solid $grey-darker;
+#backtoblog {
+	padding-left: 0 !important;//sass-lint:disable-line no-important
+	margin-top: 60px;
+
+	@include mq($xl) {
+		max-width: 540px;
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 20px;
+	}
 }
 
 #login {
 	width: 100%;
-	padding: 0;
-	margin: 0;
-	border: 10px solid $green;
+	max-width: 1450px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 0;
+	position: relative;
+
+	.message {
+		width: 30.6%;
+		border-left: 4px solid $orange;
+
+		@include mq($xl) {
+			width: 100%;
+			max-width: 540px;
+			margin: 0 auto;
+			margin-bottom: 20px;
+		}
+	}
+
+	.button-primary {
+		float: none;
+	}
+
+	.submit {
+        padding: 0 !important;//sass-lint:disable-line no-important
+        margin: 0 !important;//sass-lint:disable-line no-important
+        min-height: 80px !important;//sass-lint:disable-line no-important
+        position: relative;
+		display: flex;
+		width: 100%;
+
+        .btn-icon-login {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+			pointer-events: none;
+
+            svg {
+                color: $white;
+                font-size: 30px;
+                transition: $dur $ease;
+            }
+        }
+
+        @include hover {
+
+            svg {
+                color: $orange;
+                transition: $dur $ease;
+            }
+        }
+
+		@include mq(400px) {
+			min-height: 65px !important;//sass-lint:disable-line no-important
+		}
+    }
+
+    input[type='submit'] {
+        width: 100%;
+        max-width: 434px;
+        border-radius: 6px;
+        background: $orange !important;//sass-lint:disable-line no-important
+        min-height: 80px !important;//sass-lint:disable-line no-important
+        text-align: left;
+        border: 2px solid $orange;
+        border-color: $orange !important;//sass-lint:disable-line no-important
+        color: $white;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: $font-main;
+        line-height: 21.6px;
+        letter-spacing: 0.1px;
+        outline: none;
+        transition: $dur $ease;
+        padding: 17px 28px 13px 27px !important;//sass-lint:disable-line no-important
+
+        @include hover {
+            outline: none;
+            background-color: $white;
+            background: $white !important;//sass-lint:disable-line no-important
+            color: $orange;
+            border: 2px solid $orange;
+            transition: $dur $ease;
+            border-color: $orange !important;//sass-lint:disable-line no-important
+        }
+
+        &:focus {
+            box-shadow: none !important;//sass-lint:disable-line no-important
+        }
+
+		@include mq($xl) {
+			max-width: initial;
+		}
+
+		@include mq(400px) {
+			min-height: 65px !important;//sass-lint:disable-line no-important
+		}
+    }
+
+    #user_login,
+    #user_pass {
+        border: 1px solid $grey-soft !important;//sass-lint:disable-line no-important
+        border-radius: 6px !important;//sass-lint:disable-line no-important
+        min-height: 60px !important;//sass-lint:disable-line no-important
+        width: 100% !important;//sass-lint:disable-line no-important
+        background-color: $white;
+        font-family: $font-main;
+        color: $black-smooth !important;//sass-lint:disable-line no-important
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.6px;
+        line-height: 21.6px;
+        padding: 20px 20px 15px 30px !important;//sass-lint:disable-line no-important
+
+        &:focus {
+            border: 2px solid $orange !important;//sass-lint:disable-line no-important
+            outline: none !important;//sass-lint:disable-line no-important
+            box-shadow: none;
+        }
+    }
+
+    ::-webkit-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
+    :-ms-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
+    ::placeholder {
+        color: $grey-mild;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 0.09px;
+        line-height: 21.6px;
+        opacity: 1;
+    }
 
 	> h1,
 	label[for='user_login'],
 	label[for='user_pass'] {
 		display: none;
+	}
+
+	a {
+		color: $orange;
+		position: relative;
+		font-weight: 700;
+		margin-left: -4px;
+		letter-spacing: 0.1px;
+		text-decoration: none;
+
+		&::after {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 1px;
+			left: 0;
+			bottom: 2px;
+			background-color: $orange;
+			transition: $dur $ease;
+		}
+
+		&:focus {
+			box-shadow: none;
+			color: $orange;
+		}
+
+		@include hover {
+	
+			&::after {
+				width: 0;
+				transition: $dur $ease;
+				background-color: $white;
+			}
+		}
 	}
 
 	form {
@@ -47,4 +296,480 @@ body {
 		border: 0;
 		box-shadow: none;
 	}
+}
+
+.fws-login-footer__link {
+	color: $orange !important;//sass-lint:disable-line no-important
+	position: relative;
+	margin-left: 3px !important;//sass-lint:disable-line no-important
+	font-weight: 700;
+
+	&::after {
+		position: absolute;
+		content: '';
+		width: 100%;
+		height: 1px;
+		left: 0;
+		bottom: 2px;
+		background-color: $orange;
+		transition: $dur $ease;
+	}
+
+	&:focus {
+		box-shadow: none;
+		color: $orange !important;//sass-lint:disable-line no-important
+	}
+
+	@include hover {
+
+		&::after {
+			width: 0;
+			transition: $dur $ease;
+			background-color: $white;
+		}
+	}
+}
+
+.fws-login-footer__text {
+	font-weight: 400;
+	font-family: $font-main-semibold;
+	letter-spacing: 0.4px;
+}
+
+.fws-login-footer__link,
+.fws-login-footer  {
+	font-size: 18px;
+	letter-spacing: 0.1px;
+	text-decoration: none;
+
+	@include mq(400px) {
+		font-size: 16px;
+	}
+}
+
+.login-sign-up {
+    margin-top: 64px;
+
+	@include mq(400px) {
+		margin-top: 24px;
+		text-align: center;
+	}
+
+    span,
+    a {
+        font-family: $font-main-semibold;
+        font-size: 18px;
+        color: $black-smooth;
+        font-weight: 400;
+        line-height: 21.6px;
+        letter-spacing: 0.5px;
+    }
+
+    a {
+        color: $orange;
+        position: relative;
+        font-weight: 700;
+        margin-left: -4px;
+        letter-spacing: 0.1px;
+        text-decoration: none;
+
+        &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 1px;
+            left: 0;
+            bottom: 2px;
+            background-color: $orange;
+            transition: $dur $ease;
+        }
+
+        @include hover {
+    
+            &::after {
+                width: 0;
+                transition: $dur $ease;
+                background-color: $white;
+            }
+        }
+    }
+}
+
+.login__content {
+    position: relative;
+    display: flex;
+	margin-bottom: 128px;
+
+	@include mq($xl) {
+		flex-direction: column;
+	}
+
+	@include mq($sm) {
+		margin-bottom: 68px;
+	}
+}
+
+.login__content-form-wrapp {
+	width: 30.6%;
+
+	@include mq($xl) {
+		width: 100%;
+		max-width: 450px;
+		margin: 0 auto;
+	}
+}
+
+#nav {
+	float: right;
+	margin-top: 0 !important;//sass-lint:disable-line no-important
+	padding: 0 !important;//sass-lint:disable-line no-important
+	margin-bottom: 60px !important;//sass-lint:disable-line no-important
+
+	a {
+		color: $orange !important;//sass-lint:disable-line no-important
+		position: relative;
+		font-weight: 700;
+		margin-left: -4px;
+		letter-spacing: 0.1px;
+		text-decoration: none;
+		font-size: 19px;
+		outline: none !important;//sass-lint:disable-line no-important
+
+		&::after {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 1px;
+			left: 0;
+			bottom: 2px;
+			background-color: $orange;
+			transition: $dur $ease;
+		}
+
+		&:focus {
+			box-shadow: none;
+			color: $orange;
+		}
+
+		@include hover {
+			color: $orange !important;//sass-lint:disable-line no-important
+	
+			&::after {
+				width: 0;
+				transition: $dur $ease;
+				background-color: $white;
+			}
+		}
+	}
+
+	@include mq(400px) {
+		float: none;
+		text-align: center;
+		margin-bottom: 30px !important;
+
+	}
+}
+/* 
+.fws-login-footer {
+	display: none;
+} */
+
+.user-pass-wrap {
+	margin-bottom: 17px;
+
+    button {
+        right: 20px !important;//sass-lint:disable-line no-important
+        top: 8px !important;//sass-lint:disable-line no-important
+        outline: none !important;//sass-lint:disable-line no-important
+        color: $grey-mild !important;//sass-lint:disable-line no-important
+
+        &:focus {
+            outline: none !important;//sass-lint:disable-line no-important
+            border: none !important;//sass-lint:disable-line no-important
+            box-shadow: none !important;//sass-lint:disable-line no-important
+
+        }
+
+        @include hover {
+
+            span {
+                color: $orange;
+                transition: $dur $ease;
+            }
+        }
+    }
+
+    span {
+        font-size: 23px !important;//sass-lint:disable-line no-important
+        transition: $dur $ease;
+    }
+}
+
+#loginform,
+#lostpasswordform {
+	width: 30.6%;
+
+	input[type='text'] {
+		margin-bottom: 30px;
+
+		@include mq(400px) {
+			margin-bottom: 15px;
+		}
+	}
+
+	@include mq($xl) {
+		width: 100%;
+		max-width: 540px;
+		margin: 0 auto !important;//sass-lint:disable-line no-important
+	}
+}
+
+.wp-pwd {
+	max-height: 76px;
+}
+
+#lostpasswordform + #nav {
+	float: none !important;//sass-lint:disable-line no-important
+	margin-bottom: 30px !important;//sass-lint:disable-line no-important
+	margin-top: 25px !important;//sass-lint:disable-line no-important
+
+	a {
+		margin-left: 0 !important;//sass-lint:disable-line no-important
+	}
+
+	@include mq($xl) {
+		max-width: 540px !important;//sass-lint:disable-line no-important
+		width: 100% !important;//sass-lint:disable-line no-important
+		margin: 0 auto !important;//sass-lint:disable-line no-important
+		margin-top: 25px !important;//sass-lint:disable-line no-important
+	}
+
+	@include mq(400px) {
+		text-align: left !important;//sass-lint:disable-line no-important
+	}
+}
+//lostpassword
+#lostpasswordform {
+    border: none !important;//sass-lint:disable-line no-important
+    box-shadow: none !important;//sass-lint:disable-line no-important
+    padding: 0 !important;//sass-lint:disable-line no-important
+
+    input[type='submit'] {
+        width: 100%;
+        max-width: 434px;
+        border-radius: 6px;
+        background: $orange !important;//sass-lint:disable-line no-important
+        min-height: 80px !important;//sass-lint:disable-line no-important
+        text-align: left;
+        border: 2px solid $orange;
+        border-color: $orange !important;//sass-lint:disable-line no-important
+        color: $white;
+        font-size: 20px;
+        font-weight: 600;
+        font-family: $font-main-semibold;
+        line-height: 21.6px;
+        letter-spacing: 0.1px;
+        outline: none;
+        transition: $dur $ease;
+        padding: 17px 28px 13px 27px !important;//sass-lint:disable-line no-important
+
+        @include hover {
+            outline: none;
+            background-color: $white;
+            background: $white !important;//sass-lint:disable-line no-important
+            color: $orange;
+            border: 2px solid $orange;
+            transition: $dur $ease;
+            border-color: $orange !important;//sass-lint:disable-line no-important
+        }
+
+        &:focus {
+            box-shadow: none !important;//sass-lint:disable-line no-important
+        }
+
+		@include mq($xl) {
+			max-width: initial;
+		}
+
+        @include mq(782px) {
+            font-size: 20px !important;//sass-lint:disable-line no-important
+        }
+
+        @include mq($sm) {
+            padding: 7px 28px 7px 27px !important;//sass-lint:disable-line no-important
+            min-height: 70px !important;//sass-lint:disable-line no-important
+        }
+    }
+}
+
+.login-forgot-pass {
+    color: $orange !important;//sass-lint:disable-line no-important
+    font-size: 18px;
+    font-family: $font-main;
+    font-weight: 700;
+    letter-spacing: 0.09px;
+    line-height: 21.6px;
+    position: relative;
+
+    &::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 1px;
+        left: 0;
+        bottom: 2px;
+        background-color: $orange;
+        transition: $dur $ease;
+    }
+
+    @include hover {
+
+        &::after {
+            width: 0;
+            transition: $dur $ease;
+            background-color: $white;
+        }
+    }
+}
+
+.fws-footer-author {
+	text-align: right;
+    padding-right: 100px;
+	position: absolute;
+    right: 0;
+    bottom: 5.5%;
+
+	@include mq($xl) {
+		padding-bottom: 80px;
+		position: relative;
+		bottom: auto;
+	}
+
+	@include mq($md) {
+		padding-right: 0;
+		text-align: center;
+		padding-bottom: 50px;
+	}
+
+    span {
+        font-size: 18px;
+        font-family: $font-main;
+        letter-spacing: 0.6px;
+        line-height: 21.6px;
+        font-weight: 400;
+        color: $grey-thin;
+    }
+
+    a {
+        color: $orange;
+        position: relative;
+        font-weight: 700;
+        letter-spacing: 0.1px;
+        text-decoration: none;
+        margin-left: -1px;
+
+        &::after {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 1px;
+            left: 0;
+            bottom: 2px;
+            background-color: $orange;
+            transition: $dur $ease;
+        }
+
+		&:focus {
+			box-shadow: none;
+			color: $orange;
+		}
+
+        @include hover {
+    
+            &::after {
+                width: 0;
+                transition: $dur $ease;
+                background-color: $white;
+            }
+        }
+    }
+}
+
+.forgetmenot {
+    position: relative;
+    cursor: pointer;
+	padding-left: 47px;
+    user-select: none;
+	/* margin-bottom: 60px !important;//sass-lint:disable-line no-important
+	margin-right: 80px; */
+
+	@include mq(400px) {
+		margin-bottom: 10px !important;//sass-lint:disable-line no-important
+		float: none !important;//sass-lint:disable-line no-important
+		max-width: 180px;
+		margin: 0 auto;
+	}
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: none;
+    }
+
+    input {
+        display: none;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    .checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 27px;
+		width: 27px;
+		background-color: $white;
+		border: 2px solid $grey-soft;
+		pointer-events: none !important;//sass-lint:disable-line no-important
+		border-radius: 2px;
+
+		&::after {
+			content: '';
+			position: absolute;
+			opacity: 0;
+			background-color: $white;
+			transition: $dur $ease;
+		}
+    }
+
+    label {
+        font-family: $font-main;
+        color: $black-smooth;
+		font-size: 19px;
+        font-weight: 400;
+        letter-spacing: 0.09px;
+		margin-bottom: 0;
+		transform: translateY(1px);
+    }
+}
+
+.forgetmenot .checkmark::after {
+    left: 3px;
+    top: 3px;
+    width: 17px;
+    height: 17px;
+    background-color: $orange;
+    opacity: 0;
+    transition: $dur $ease;
+}
+
+.forgetmenot input:checked ~ .checkmark {
+    background-color: $white;
+}
+
+.forgetmenot input:checked ~ .checkmark::after {
+	opacity: 1;
+    transition: $dur $ease;
 }
