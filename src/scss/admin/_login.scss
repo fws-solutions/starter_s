@@ -6,7 +6,6 @@ body {
 	display: block;
 	max-width: 315px;
 	margin: 54px 0 76px 5.3%;
-	/* margin: 54px 0 166px 5.3%; */
 
 	&:focus {
 		box-shadow: none;
@@ -82,25 +81,6 @@ body {
 	@include mq($md) {
 		width: 100%;
 	}
-
-	/* img {
-		width: 100%;
-
-		@include mq($desk-small) {
-			width: 70%;
-			margin-left: auto;
-		}
-
-		@include mq($xl) {
-			width: 50%;
-			margin-left: auto;
-			margin: 0 auto;
-		}
-
-		@include mq($md) {
-			width: 80%;
-		}
-	} */
 }
 
 #backtoblog {
@@ -469,10 +449,6 @@ body {
 
 	}
 }
-/* 
-.fws-login-footer {
-	display: none;
-} */
 
 .user-pass-wrap {
 	margin-bottom: 17px;
@@ -700,8 +676,6 @@ body {
     cursor: pointer;
 	padding-left: 47px;
     user-select: none;
-	/* margin-bottom: 60px !important;//sass-lint:disable-line no-important
-	margin-right: 80px; */
 
 	@include mq(400px) {
 		margin-bottom: 10px !important;//sass-lint:disable-line no-important
@@ -772,4 +746,44 @@ body {
 .forgetmenot input:checked ~ .checkmark::after {
 	opacity: 1;
     transition: $dur $ease;
+}
+
+//Dashboard login
+.interim-login {
+
+	.fws-login-brand {
+		margin-top: 30px !important;//sass-lint:disable-line no-important
+	}
+
+	.fws-login-illustration {
+		display: none !important;//sass-lint:disable-line no-important
+	}
+
+	.submit {
+		justify-content: center;
+		max-width: 200px !important;//sass-lint:disable-line no-important
+	}
+
+	input[type='submit'] {
+		max-width: 200px !important;//sass-lint:disable-line no-important
+	}
+
+	#loginform {
+		display: flex !important;//sass-lint:disable-line no-important
+		flex-direction: column !important;//sass-lint:disable-line no-important
+		align-items: center !important;//sass-lint:disable-line no-important
+	}
+
+	.message {
+		max-width: 294px !important;//sass-lint:disable-line no-important
+	}
+
+	.forgetmenot {
+		margin-bottom: 30px !important;//sass-lint:disable-line no-important
+
+	}
+}
+
+#wp-auth-check-frame {
+	height: 630px !important;//sass-lint:disable-line no-important
 }
