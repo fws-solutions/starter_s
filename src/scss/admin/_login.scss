@@ -465,7 +465,7 @@ body {
 	@include mq(400px) {
 		float: none;
 		text-align: center;
-		margin-bottom: 30px !important;
+		margin-bottom: 30px !important;//sass-lint:disable-line no-important
 
 	}
 }
