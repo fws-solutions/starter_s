@@ -51,7 +51,7 @@ class WPLogin extends SingletonHook
 	 */
 	public function editLoginFooter(): void
 	{
-		$html = '<div class="fws-login-illustration"><h4>illustration goes here</h4></div>';
+		$html = '<div class="fws-login-illustration"><img src="wp-content/themes/starter_s/src/assets/images/login-illustration-fws.svg" alt=""></div>';
 
 		$html .= sprintf(
 			'<div class="fws-footer-author"><span>' . __( 'Powered by ', 'fws_starter_s' ) . '<a href="%s" target="_blank" rel="noopener">Forwardslash</a></span></div>',
@@ -89,7 +89,7 @@ class WPLogin extends SingletonHook
 
 		$htmlFooterText = sprintf(
 			'<span class="fws-login-footer__text">%s</span>',
-			__( 'Don\'t want to login?',  'fws_starter_s' )
+			__( 'Don\'t have an account?',  'fws_starter_s' )
 		);
 
 		$htmlFooterLink = sprintf(
@@ -97,7 +97,7 @@ class WPLogin extends SingletonHook
 			esc_url( home_url( '/' ) ),
 			/* translators: %s: Site title. */
 			sprintf(
-				_x( 'Go to %s', 'fws_starter_s' ),
+				_x( 'Sign Up', 'fws_starter_s' ),
 				get_bloginfo( 'title', 'display' )
 			)
 		);

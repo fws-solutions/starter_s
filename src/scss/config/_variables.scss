@@ -106,6 +106,7 @@ $lg: map-get($grid-breakpoints, lg) - 1;
 $xl: map-get($grid-breakpoints, xl) - 1;
 $lap-small: 1250px;
 $lap-large: 1400px;
+$desk-small: 1600px;
 
 // Grid columns
 $grid-columns: 12 !default;
