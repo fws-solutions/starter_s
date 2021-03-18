@@ -51,7 +51,12 @@ class WPLogin extends SingletonHook
 	 */
 	public function editLoginFooter(): void
 	{
-		$html = '<div class="fws-login-illustration"><img src="wp-content/themes/starter_s/src/assets/images/login-illustration-fws.svg" alt=""></div>';
+		$html = '<div class="fws-login-illustration">';
+
+		$html .= sprintf(
+			'<img src="%s" alt=""></div>',
+			fws()->images()->assetsSrc('login-illustration-fws.svg')
+		);
 
 		$html .= sprintf(
 			'<div class="fws-footer-author"><span>' . __( 'Powered by ', 'fws_starter_s' ) . '<a href="%s" target="_blank" rel="noopener">Forwardslash</a></span></div>',
