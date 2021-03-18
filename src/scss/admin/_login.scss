@@ -2,34 +2,6 @@ body {
 	background-color: $white;
 }
 
-.fws-login-brand {
-	display: block;
-	max-width: 315px;
-	margin: 54px 0 76px 5.3%;
-
-	&:focus {
-		box-shadow: none;
-	}
-
-	img {
-		display: block;
-		width: 100%;
-	}
-
-	@include mq($sm) {
-		margin: 34px auto;
-	}
-
-	@include mq(400px) {
-		max-width: 230px;
-		margin: 24px auto 14px;
-	}
-}
-
-.fws-login-wrapper {
-	overflow: hidden;
-}
-
 .fws-login-title {
     font-family: $font-main;
     color: $black-smooth;
@@ -45,7 +17,7 @@ body {
 	}
 
 	@include mq($sm) {
-		margin-bottom: 43px;
+		margin-bottom: 23px;
 		font-size: 28px;
 	}
 
@@ -63,9 +35,16 @@ body {
     max-width: 1172px;
 
 	@include mq($desk-small) {
-		right: 0;
-		display: flex;
-		width: 70%;
+		width: 65%;
+	}
+
+	@include mq(1500px) {
+		max-width: 812px;
+		top: 22.5%;
+	}
+
+	@include mq(1350px) {
+		max-width: 692px;
 	}
 
 	@include mq($xl) {
@@ -118,6 +97,10 @@ body {
 	width: 30.6%;
 	border-left: 4px solid $orange;
 
+	@include mq(1500px) {
+		width: 40%;
+	}
+
 	@include mq($xl) {
 		width: 100%;
 		max-width: 540px;
@@ -128,6 +111,16 @@ body {
 #login form p.submit {
 	padding: 0;
 	margin: 0;
+}
+
+#login form p {
+
+	&:first-child {
+
+		@include mq($xl) {
+			width: 100%;
+		}
+	}
 }
 
 p.submit {
@@ -203,7 +196,7 @@ p.submit {
 		box-shadow: none;
 	}
 
-	@include mq($xl) {
+	@include mq(1500px) {
 		max-width: initial;
 	}
 
@@ -236,17 +229,68 @@ p.submit {
 		box-shadow: none;
 	}
 
+	@include mq($sm) {
+		margin-bottom: 18px;
+	}
+
 	@include mq(400px) {
 		min-height: 45px;
 		padding: 15px 20px 15px 30px;
 	}
 }
 
+.login {
+	padding-top: 54px;
+
+	@include mq($sm) {
+		padding-top: 0;
+		overflow: hidden;
+	}
+}
+
+.fws-login-wrapper {
+	width: 100%;
+	max-width: 1750px;
+	padding: 0 15px;
+	margin: 0 auto;
+	position: relative;
+
+	@include mq($xl) {
+		max-width: 950px;
+	}
+}
+
+.fws-login-brand {
+	display: block;
+	max-width: 315px;
+    margin: 0 0 76px;
+
+	&:focus {
+		box-shadow: none;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+	}
+
+	@include mq($sm) {
+		margin: 20px auto;
+	}
+
+	@include mq(400px) {
+		max-width: 230px;
+		margin: 20px auto 14px;
+	}
+}
+
 #login {
 	width: 100%;
-	max-width: 1450px;
-	padding: 0 15px;
-	position: relative;
+	padding: 0 8.8%;
+
+	@include mq($sm) {
+		padding: 0;
+	}
 
     ::-webkit-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
     :-ms-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
@@ -394,7 +438,6 @@ p.submit {
 	}
 
 	@include mq(400px) {
-		float: none;
 		text-align: center;
 	}
 }
@@ -405,6 +448,14 @@ p.submit {
     span {
         transition: $dur $ease;
     }
+
+	@include mq($xl) {
+		width: 100%;
+	}
+
+	@include mq($sm) {
+		margin-bottom: 0;
+	}
 
 	@include mq(400px) {
 		margin-bottom: 5px;
@@ -443,7 +494,7 @@ p.submit {
 
 #loginform {
 	
-	@include mq(400px) {
+	@include mq($sm) {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -460,6 +511,10 @@ p.submit {
 		@include mq(400px) {
 			margin-bottom: 15px;
 		}
+	}
+
+	@include mq(1500px) {
+		width: 40%;
 	}
 
 	@include mq($xl) {
@@ -512,12 +567,23 @@ p.submit {
 	}
 }
 
+.login-action-lostpassword {
+
+	.fws-footer-author {
+		bottom: -52%;
+
+		@include mq(1500px) {
+			bottom: -34%;
+		}
+	}
+}
+
 .fws-footer-author {
 	text-align: right;
     padding-right: 100px;
 	position: absolute;
     right: 0;
-    bottom: 5.5%;
+    bottom: -12%;
 
 	@include mq($xl) {
 		padding-bottom: 80px;
@@ -579,8 +645,9 @@ p.submit {
     position: relative;
     cursor: pointer;
     user-select: none;
+	float: left;
 
-	@include mq(400px) {
+	@include mq($sm) {
 		float: none;
 		max-width: 180px;
 		margin: 0 auto;
