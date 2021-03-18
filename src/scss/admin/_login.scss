@@ -344,7 +344,7 @@ body {
 
 .fws-login-footer__text {
 	font-weight: 400;
-	font-family: $font-main-semibold;
+	font-family: $font-main;
 	letter-spacing: 0.4px;
 }
 
@@ -369,7 +369,7 @@ body {
 
     span,
     a {
-        font-family: $font-main-semibold;
+        font-family: $font-main;
         font-size: 18px;
         color: $black-smooth;
         font-weight: 400;
@@ -593,7 +593,7 @@ body {
         color: $white;
         font-size: 20px;
         font-weight: 600;
-        font-family: $font-main-semibold;
+        font-family: $font-main;
         line-height: 21.6px;
         letter-spacing: 0.1px;
         outline: none;
