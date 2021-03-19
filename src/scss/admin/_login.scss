@@ -770,3 +770,53 @@ p.submit {
 		margin: 0 auto 12px;
 	}
 }
+
+//login-action-checkemail
+.login-action-checkemail {
+
+	#login a {
+		margin-left: 3px;
+
+		&::after {
+			bottom: -1px;
+		}
+	}
+
+	.login #login_error {
+
+		a {
+			margin-left: 3px;
+		}
+	}
+
+	.fws-login-illustration {
+		
+		@include mq($sm) {
+			display: block;
+		}
+
+		@include mq(350px) {
+			display: none;
+		}
+	}
+
+	#login {
+		padding: 0 8.8% 310px;
+
+		@include mq($xl) {
+			padding: 0 8.8% 30px;
+		}
+
+		@include mq($sm) {
+			padding: 0 8.8%;
+		}
+	}
+
+	#backtoblog {
+
+		@include mq($md) {
+			width: 100%;
+    		max-width: 200px;
+		}
+	}
+}
