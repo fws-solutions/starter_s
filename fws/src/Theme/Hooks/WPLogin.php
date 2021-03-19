@@ -54,9 +54,11 @@ class WPLogin extends SingletonHook
 		$html = '<div class="fws-login-illustration">';
 
 		$html .= sprintf(
-			'<img src="%s" alt=""></div>',
+			'<img src="%s" alt="">',
 			fws()->images()->assetsSrc('login-illustration-fws.svg')
 		);
+
+		$html .= '</div>'; // close .fws-login-illustration
 
 		$html .= sprintf(
 			'<div class="fws-footer-author"><span>' . __( 'Powered by ', 'fws_starter_s' ) . '<a href="%s" target="_blank" rel="noopener">Forwardslash</a></span></div>',
@@ -102,7 +104,7 @@ class WPLogin extends SingletonHook
 			esc_url( home_url( '/' ) ),
 			/* translators: %s: Site title. */
 			sprintf(
-				_x( 'Sign Up', 'fws_starter_s' ),
+				_x( 'Go to %s', 'fws_starter_s' ),
 				get_bloginfo( 'title', 'display' )
 			)
 		);
