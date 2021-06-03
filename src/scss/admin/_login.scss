@@ -157,6 +157,41 @@ body {
 	}
 }
 
+#lostpasswordform {
+	#user_login,
+	#user_pass {
+		border: 2px solid $grey-soft;
+		border-radius: 6px;
+		min-height: 60px;
+		width: 100%;
+		background-color: $white;
+		font-family: $font-main;
+		color: $black-smooth;
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: 0.6px;
+		line-height: 21.6px;
+		transition: $dur $ease;
+		padding: 20px 20px 15px 30px;
+
+		&:focus {
+			border: 2px solid $orange;
+			outline: none;
+			box-shadow: none;
+		}
+
+		@include mq(640px) {
+			padding: 20px 20px 15px 30px;
+			min-height: 50px;
+		}
+
+		@include mq(400px) {
+			min-height: 45px;
+			padding: 15px 20px 15px 30px;
+		}
+	}
+}
+
 #loginform {
 	#user_login,
 	#user_pass {
@@ -613,7 +648,8 @@ body {
 	//padding-bottom: 35px;
 	position: absolute;
 	right: 0;
-	bottom: 0;
+	/* bottom: 0; */
+	bottom: -50px;
 	padding-bottom: 20px;
 
 	@include mq($xl) {
@@ -816,6 +852,14 @@ body {
 //login-action-checkemail
 .login-action-checkemail {
 
+	.fws-footer-author {
+		bottom: -25%;
+
+		@include mq(1350px) {
+			bottom: -15%;
+		}
+	}
+
 	#login a {
 		margin-left: 3px;
 
@@ -833,9 +877,9 @@ body {
 
 	.fws-login-illustration {
 
-		@include mq($sm) {
+		/* @include mq($sm) {
 			display: block;
-		}
+		} */
 
 		@include mq(350px) {
 			display: none;
@@ -856,10 +900,21 @@ body {
 
 	#backtoblog {
 
-		@include mq($md) {
+		/* @include mq($sm) {
 			width: 100%;
 			max-width: 200px;
-		}
+		} */
+	}
+}
+
+.login-action-rp {
+
+	.fws-footer-author {
+		bottom: -20%;
+	}
+
+	#login p.submit .btn-icon-login {
+		top: 25%;
 	}
 }
 
