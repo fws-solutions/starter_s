@@ -158,6 +158,16 @@ body {
 }
 
 #lostpasswordform {
+	border: none;
+	box-shadow: none;
+	padding: 0;
+
+	input[type='submit'] {
+		@include mq($xl) {
+			max-width: initial;
+		}
+	}
+
 	#user_login,
 	#user_pass {
 		border: 2px solid $grey-soft;
@@ -637,19 +647,6 @@ body {
 
 	@include mq(400px) {
 		text-align: left;
-	}
-}
-
-//lostpassword
-#lostpasswordform {
-	border: none;
-	box-shadow: none;
-	padding: 0;
-
-	input[type='submit'] {
-		@include mq($xl) {
-			max-width: initial;
-		}
 	}
 }
 
