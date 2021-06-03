@@ -1,38 +1,44 @@
 body {
-	background-color: $white;
+	&.login {
+		background-color: $white;
+	}
 }
 
 .fws-login-title {
-    font-family: $font-main;
-    color: $black-smooth;
-    font-size: 36px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    line-height: 38.4px;
+	font-family: $font-main;
+	color: $black-smooth;
+	font-size: 36px;
+	font-weight: 700;
+	letter-spacing: 0.5px;
+	line-height: 38.4px;
 	margin-bottom: 63px;
-    display: block;
+	display: block !important; // sass-lint:disable-line no-important
 
 	@include mq($xl) {
 		text-align: center;
 	}
 
-	@include mq($sm) {
-		margin-bottom: 23px;
-		font-size: 28px;
+	@include mq(768px) {
+		font-size: 30px;
+	}
+
+	@include mq(640px) {
+		margin-bottom: 20px;
+		font-size: 25px;
+		letter-spacing: 0;
 	}
 
 	@include mq(400px) {
 		font-size: 24px;
-		margin-bottom: 23px;
 	}
 }
 
 .fws-login-illustration {
 	position: absolute;
-    top: 14.5%;
-    right: 1.5%;
-    width: 61%;
-    max-width: 1172px;
+	top: 14.5%;
+	right: 1.5%;
+	width: 61%;
+	max-width: 1172px;
 
 	@include mq($desk-small) {
 		width: 65%;
@@ -48,22 +54,6 @@ body {
 	}
 
 	@include mq($xl) {
-		position: relative;
-		margin: 0 auto;
-		margin-top: 25px;
-		top: auto;
-    	right: auto;
-	}
-
-	@include mq($lg) {
-		width: 90%;
-	}
-
-	@include mq($md) {
-		width: 100%;
-	}
-
-	@include mq($sm) {
 		display: none;
 	}
 }
@@ -73,21 +63,17 @@ body {
 }
 
 #backtoblog {
-	margin-top: 60px;
+	margin-top: 30px;
 
 	@include mq($xl) {
 		max-width: 540px;
 		width: 100%;
-		margin: 20px auto 0;
+		margin: 15px auto 0;
 	}
 
-	@include mq($sm) {
-		margin: 20px auto 50px;
+	@include mq(640px) {
+		margin: 0 auto 5px;
 		text-align: center;
-	}
-
-	@include mq(400px) {
-		margin: 20px auto 30px;
 	}
 }
 
@@ -121,9 +107,17 @@ body {
 			width: 100%;
 		}
 	}
+
+	&.forgetmenot {
+		margin: 35px 0 20px;
+
+		@include mq(640px) {
+			margin: 15px 0 10px;
+		}
+	}
 }
 
-p.submit {
+#login p.submit {
 	min-height: 80px;
 	position: relative;
 	display: flex;
@@ -155,96 +149,59 @@ p.submit {
 		}
 	}
 
-	@include mq(400px) {
-		min-height: 45px;
+	@include mq(640px) {
+		min-height: 50px;
 		justify-content: center;
-		max-width: 200px;
+		max-width: 100%;
 	}
 }
 
-.wp-core-ui .button.button-large {
-	width: 100%;
-	max-width: 434px;
-	border-radius: 6px;
-	background: $orange;
-	min-height: 80px;
-	text-align: left;
-	border: 2px solid $orange;
-	border-color: $orange;
-	color: $white;
-	font-size: 20px;
-	font-weight: 600;
-	font-family: $font-main;
-	line-height: 21.6px;
-	letter-spacing: 0.1px;
-	outline: none;
-	transition: $dur $ease;
-	padding: 17px 28px 13px 27px;
-	float: none;
-
-	@include hover {
-		outline: none;
+#loginform {
+	#user_login,
+	#user_pass {
+		border: 2px solid $grey-soft;
+		border-radius: 6px;
+		min-height: 60px;
+		width: 100%;
 		background-color: $white;
-		background: $white;
-		color: $orange;
-		border: 2px solid $orange;
-		transition: $dur $ease;
-		border-color: $orange;
-	}
-
-	&:focus {
-		box-shadow: none;
-	}
-
-	@include mq(1500px) {
-		max-width: initial;
-	}
-
-	@include mq(400px) {
-		min-height: 45px;
-		padding: 7px 28px 7px 27px;
-		max-width: 200px;
+		font-family: $font-main;
+		color: $black-smooth;
 		font-size: 18px;
-	}
-}
+		font-weight: 600;
+		letter-spacing: 0.6px;
+		line-height: 21.6px;
+		transition: $dur $ease;
+		padding: 20px 20px 15px 30px;
 
-#user_login,
-#user_pass {
-	border: 1px solid $grey-soft;
-	border-radius: 6px;
-	min-height: 60px;
-	width: 100%;
-	background-color: $white;
-	font-family: $font-main;
-	color: $black-smooth;
-	font-size: 18px;
-	font-weight: 600;
-	letter-spacing: 0.6px;
-	line-height: 21.6px;
-	padding: 20px 20px 15px 30px;
+		&:focus {
+			border: 2px solid $orange;
+			outline: none;
+			box-shadow: none;
+		}
 
-	&:focus {
-		border: 2px solid $orange;
-		outline: none;
-		box-shadow: none;
-	}
+		@include mq(640px) {
+			padding: 20px 20px 15px 30px;
+			min-height: 50px;
+		}
 
-	@include mq($sm) {
-		margin-bottom: 18px;
+		@include mq(400px) {
+			min-height: 45px;
+			padding: 15px 20px 15px 30px;
+		}
 	}
 
-	@include mq(400px) {
-		min-height: 45px;
-		padding: 15px 20px 15px 30px;
+	@include mq(640px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 }
 
 .login {
 	padding-top: 54px;
 
-	@include mq($sm) {
-		padding-top: 0;
-		overflow: hidden;
+	@include mq(992px) {
+		padding-top: 15px;
 	}
 }
 
@@ -258,12 +215,70 @@ p.submit {
 	@include mq($xl) {
 		max-width: 950px;
 	}
+
+	.submit {
+		.button {
+			width: 100%;
+			max-width: 434px;
+			border-radius: 6px;
+			background: $orange;
+			min-height: 80px;
+			text-align: left;
+			border: 2px solid $orange;
+			border-color: $orange;
+			color: $white;
+			font-size: 20px;
+			font-weight: 600;
+			font-family: $font-main;
+			line-height: 21.6px;
+			letter-spacing: 0.1px;
+			outline: none;
+			transition: $dur $ease;
+			padding: 17px 28px 13px 27px;
+			float: none;
+
+			@include hover {
+				outline: none;
+				background-color: $white;
+				background: $white;
+				color: $orange;
+				border: 2px solid $orange;
+				transition: $dur $ease;
+				border-color: $orange;
+			}
+
+			&:focus {
+				box-shadow: none;
+			}
+
+			@include mq(1500px) {
+				max-width: initial;
+			}
+
+			@include mq(640px) {
+				min-height: 50px;
+				padding: 7px 15px;
+				//max-width: 200px;
+				font-size: 18px;
+			}
+		}
+	}
 }
 
 .fws-login-brand {
 	display: block;
-	max-width: 315px;
-    margin: 0 0 76px;
+	max-width: 140px;
+	margin: 0 0 50px;
+
+	@include mq(1199px) {
+		max-width: 140px;
+		margin: 20px auto;
+	}
+
+	@include mq(640px) {
+		max-width: 100px;
+		margin: 10px auto;
+	}
 
 	&:focus {
 		box-shadow: none;
@@ -273,35 +288,26 @@ p.submit {
 		display: block;
 		width: 100%;
 	}
-
-	@include mq($sm) {
-		margin: 20px auto;
-	}
-
-	@include mq(400px) {
-		max-width: 230px;
-		margin: 20px auto 14px;
-	}
 }
 
 #login {
 	width: 100%;
-	padding: 0 8.8%;
+	padding: 0 8.8% 30px;
 
 	@include mq($sm) {
 		padding: 0;
 	}
 
-    ::-webkit-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
-    :-ms-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
-    ::placeholder {
-        color: $grey-mild;
-        font-size: 18px;
-        font-weight: 400;
-        letter-spacing: 0.09px;
-        line-height: 21.6px;
-        opacity: 1;
-    }
+	::-webkit-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
+	:-ms-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
+	::placeholder {
+		color: $grey-mild;
+		font-size: 18px;
+		font-weight: 400;
+		letter-spacing: 0.09px;
+		line-height: 21.6px;
+		opacity: 1;
+	}
 
 	> h1,
 	label[for='user_login'],
@@ -313,7 +319,6 @@ p.submit {
 		color: $orange;
 		position: relative;
 		font-weight: 700;
-		margin-left: -4px;
 		letter-spacing: 0.1px;
 		text-decoration: none;
 
@@ -334,13 +339,21 @@ p.submit {
 		}
 
 		@include hover {
-	
+
 			&::after {
 				width: 0;
 				transition: $dur $ease;
 				background-color: $white;
 			}
 		}
+
+		&.login_error-lost-pass {
+			margin-left: 3px;
+		}
+	}
+
+	.login-title {
+		display: none;
 	}
 }
 
@@ -359,7 +372,6 @@ p.submit {
 .login #backtoblog a {
 	color: $orange;
 	position: relative;
-	margin-left: 3px;
 	font-weight: 700;
 
 	&::after {
@@ -407,8 +419,8 @@ p.submit {
 }
 
 .login #nav {
-	float: right;
-	margin: 0 0 60px;
+	//float: right;
+	margin: 5px 0 40px;
 	padding: 0;
 
 	a {
@@ -417,6 +429,10 @@ p.submit {
 		font-size: 19px;
 		outline: none;
 
+		@include mq(768px) {
+			font-size: 18px;
+		}
+
 		&:focus {
 			box-shadow: none;
 			color: $orange;
@@ -424,7 +440,7 @@ p.submit {
 
 		@include hover {
 			color: $orange;
-	
+
 			&::after {
 				width: 0;
 				transition: $dur $ease;
@@ -433,11 +449,12 @@ p.submit {
 		}
 	}
 
-	@include mq($sm) {
-		margin: 0 0 20px;
+	@include mq(1199px) {
+		max-width: 540px;
+		margin: 15px auto;
 	}
 
-	@include mq(400px) {
+	@include mq(640px) {
 		text-align: center;
 	}
 }
@@ -445,9 +462,9 @@ p.submit {
 .user-pass-wrap {
 	margin-bottom: 17px;
 
-    span {
-        transition: $dur $ease;
-    }
+	span {
+		transition: $dur $ease;
+	}
 
 	@include mq($xl) {
 		width: 100%;
@@ -492,24 +509,21 @@ p.submit {
 	}
 }
 
-#loginform {
-	
-	@include mq($sm) {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-	}
-}
-
 #loginform,
-#lostpasswordform {
+#lostpasswordform,
+#resetpassform {
 	width: 30.6%;
 
 	input[type='text'] {
 		margin-bottom: 30px;
 
-		@include mq(400px) {
+		@include mq(640px) {
 			margin-bottom: 15px;
+		}
+
+		&.hide-if-no-js {
+			margin-bottom: 0;
+			padding-right: 60px;
 		}
 	}
 
@@ -520,6 +534,16 @@ p.submit {
 	@include mq($xl) {
 		width: 100%;
 		max-width: 540px;
+	}
+}
+
+#resetpassform {
+	.button.wp-hide-pw {
+		top: 0 !important;//sass-lint:disable-line no-important
+	}
+
+	.wp-pwd {
+		max-height: initial !important;//sass-lint:disable-line no-important
 	}
 }
 
@@ -548,19 +572,19 @@ p.submit {
 
 //lostpassword
 #lostpasswordform {
-    border: none;
-    box-shadow: none;
+	border: none;
+	box-shadow: none;
 	padding: 0;
 
-    input[type='submit'] {
+	input[type='submit'] {
 		@include mq($xl) {
 			max-width: initial;
 		}
-    }
+	}
 }
 
 .login-action-lostpassword p.submit {
-	
+
 	@include mq(400px) {
 		max-width: initial;
 
@@ -580,105 +604,121 @@ p.submit {
 
 .fws-footer-author {
 	text-align: right;
-    padding-right: 100px;
+	padding-right: 100px;
+	//position: relative;
+	//margin: 50px 20px 30px;
+	//padding-bottom: 35px;
 	position: absolute;
-    right: 0;
-    bottom: -12%;
+	right: 0;
+	bottom: 0;
+	padding-bottom: 20px;
 
 	@include mq($xl) {
-		padding-bottom: 80px;
+		margin: 70px 40px 30px;
 		position: relative;
 		bottom: auto;
 	}
 
-	@include mq($md) {
-		padding-right: 0;
-		text-align: center;
-		padding-bottom: 50px;
+	@include mq(992px) {
+		margin: 50px 40px 30px;
 	}
 
-    span {
-        font-size: 18px;
-        font-family: $font-main;
-        letter-spacing: 0.6px;
-        line-height: 21.6px;
-        font-weight: 400;
-        color: $grey-thin;
-    }
+	@include mq(768px) {
+		padding: 0;
+		margin: 20px 40px 30px;
+		padding-bottom: 25px;
+	}
 
-    a {
-        color: $orange;
-        position: relative;
-        font-weight: 700;
-        letter-spacing: 0.1px;
-        text-decoration: none;
-        margin-left: -1px;
+	@include mq(640px) {
+		text-align: center;
+		margin: 40px 15px 15px;
+		padding-bottom: 15px;
+	}
 
-        &::after {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 1px;
-            left: 0;
-            bottom: 2px;
-            background-color: $orange;
-            transition: $dur $ease;
-        }
+	span {
+		font-size: 18px;
+		font-family: $font-main;
+		letter-spacing: 0.6px;
+		line-height: 21.6px;
+		font-weight: 400;
+		color: $grey-thin;
+	}
+
+	a {
+		color: $orange;
+		position: relative;
+		font-weight: 700;
+		letter-spacing: 0.1px;
+		text-decoration: none;
+		margin-left: -1px;
+
+		&::after {
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 1px;
+			left: 0;
+			bottom: 2px;
+			background-color: $orange;
+			transition: $dur $ease;
+		}
 
 		&:focus {
 			box-shadow: none;
 			color: $orange;
 		}
 
-        @include hover {
-    
-            &::after {
-                width: 0;
-                transition: $dur $ease;
-                background-color: $white;
-            }
-        }
-    }
+		@include hover {
+
+			&::after {
+				width: 0;
+				transition: $dur $ease;
+				background-color: $white;
+			}
+		}
+	}
 }
 
-.login form .forgetmenot {
-    position: relative;
-    cursor: pointer;
-    user-select: none;
-	float: left;
+#login form .forgetmenot {
+	position: relative;
+	//cursor: pointer;
+	user-select: none;
+	//float: left;
+	width: 100%;
 
-	@include mq($sm) {
+	@include mq(640px) {
 		float: none;
 		max-width: 180px;
 		margin: 0 auto;
 		padding-bottom: 10px;
 	}
 
-    &::after {
-        content: '';
-        position: absolute;
-        display: none;
-    }
+	&::after {
+		content: '';
+		position: absolute;
+		display: none;
+	}
 
-    input {
-        display: none;
-        opacity: 0;
-        cursor: pointer;
-        height: 0;
-        width: 0;
-    }
+	input {
+		display: none;
+		opacity: 0;
+		cursor: pointer;
+		height: 0;
+		width: 0;
+	}
 
-    label {
-        font-family: $font-main;
-        color: $black-smooth;
+	label {
+		font-family: $font-main;
+		color: $black-smooth;
 		font-size: 19px;
-        font-weight: 400;
-        letter-spacing: 0.09px;
+		font-weight: 400;
+		letter-spacing: 0.09px;
 		margin-bottom: 0;
 		transform: translateY(1px);
 		width: 174px;
-    	text-align: right;
-    }
+		text-align: right;
+		cursor: pointer;
+	}
 }
 
 .checkmark {
@@ -702,22 +742,22 @@ p.submit {
 }
 
 .login form .forgetmenot .checkmark::after {
-    left: 3px;
-    top: 3px;
-    width: 17px;
-    height: 17px;
-    background-color: $orange;
-    opacity: 0;
-    transition: $dur $ease;
+	left: 3px;
+	top: 3px;
+	width: 17px;
+	height: 17px;
+	background-color: $orange;
+	opacity: 0;
+	transition: $dur $ease;
 }
 
 .login form .forgetmenot input:checked ~ .checkmark {
-    background-color: $white;
+	background-color: $white;
 }
 
 .login form .forgetmenot input:checked ~ .checkmark::after {
 	opacity: 1;
-    transition: $dur $ease;
+	transition: $dur $ease;
 }
 
 //Dashboard login
@@ -728,7 +768,6 @@ p.submit {
 	}
 
 	.fws-login-title {
-
 		@include mq(400px) {
 			margin-bottom: 5px;
 		}
@@ -790,7 +829,7 @@ p.submit {
 	}
 
 	.fws-login-illustration {
-		
+
 		@include mq($sm) {
 			display: block;
 		}
@@ -816,7 +855,28 @@ p.submit {
 
 		@include mq($md) {
 			width: 100%;
-    		max-width: 200px;
+			max-width: 200px;
 		}
 	}
 }
+
+.login h1 {
+	text-align: left;
+
+	@include mq(1199px) {
+		text-align: center;
+		margin-bottom: 25px;
+		font-size: 30px;
+	}
+
+	@include mq(768px) {
+		font-size: 26px;
+	}
+
+	@include mq(640px) {
+		font-size: 24px;
+		margin-bottom: 15px;
+	}
+}
+
+

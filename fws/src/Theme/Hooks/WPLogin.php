@@ -78,7 +78,7 @@ class WPLogin extends SingletonHook
 		$newHtml = '';
 
 		if ( empty($message) ){
-			$newHtml .=  '<span class="fws-login-title">' . __('Login to your account', 'fws_starter_s') . '</span>';
+			$newHtml .=  '<span class="fws-login-title">' . __('Log in to your account', 'fws_starter_s') . '</span>';
 		} else {
 			$newHtml .= $message;
 		}
