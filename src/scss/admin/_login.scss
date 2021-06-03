@@ -582,6 +582,38 @@ body {
 
 	.wp-pwd {
 		max-height: initial !important;//sass-lint:disable-line no-important
+		
+		input {
+			border: 2px solid $grey-soft;
+			border-radius: 6px;
+			min-height: 60px;
+			width: 100%;
+			background-color: $white;
+			font-family: $font-main;
+			color: $black-smooth;
+			font-size: 18px;
+			font-weight: 600;
+			letter-spacing: 0.6px;
+			line-height: 21.6px;
+			transition: $dur $ease;
+			padding: 20px 20px 15px 30px;
+
+			&:focus {
+				border: 2px solid $orange;
+				outline: none;
+				box-shadow: none;
+			}
+
+			@include mq(640px) {
+				padding: 20px 20px 15px 30px;
+				min-height: 50px;
+			}
+
+			@include mq(400px) {
+				min-height: 45px;
+				padding: 15px 20px 15px 30px;
+			}
+		}
 	}
 }
 
