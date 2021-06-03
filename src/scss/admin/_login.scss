@@ -112,7 +112,8 @@ body {
 		margin: 35px 0 20px;
 
 		@include mq(640px) {
-			margin: 15px 0 10px;
+			/* margin: 15px 0 10px; */
+			margin: 0;
 		}
 	}
 }
@@ -405,6 +406,7 @@ body {
 	font-weight: 400;
 	font-family: $font-main;
 	letter-spacing: 0.4px;
+	margin-right: 5px;
 }
 
 .login #backtoblog a,
@@ -456,6 +458,7 @@ body {
 
 	@include mq(640px) {
 		text-align: center;
+		margin: 0 0  15px;
 	}
 }
 
