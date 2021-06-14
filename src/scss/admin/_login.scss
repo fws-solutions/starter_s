@@ -54,7 +54,21 @@ body {
 	}
 
 	@include mq($xl) {
-		display: none;
+		max-width: initial;
+		width: 100%;
+		top: 90%;
+
+		img {
+			display: none;
+		}
+	}
+
+	@include mq($lg) {
+		top: 100%;
+	}
+
+	@include mq($sm) {
+		top: 105%;
 	}
 }
 
@@ -112,7 +126,6 @@ body {
 		margin: 35px 0 20px;
 
 		@include mq(640px) {
-			/* margin: 15px 0 10px; */
 			margin: 0;
 		}
 	}
@@ -304,7 +317,6 @@ body {
 			@include mq(640px) {
 				min-height: 50px;
 				padding: 7px 15px;
-				//max-width: 200px;
 				font-size: 18px;
 			}
 		}
@@ -661,7 +673,6 @@ body {
 .login-action-lostpassword {
 
 	.fws-footer-author {
-		bottom: -52%;
 
 		@include mq(1500px) {
 			bottom: -34%;
@@ -672,35 +683,27 @@ body {
 .fws-footer-author {
 	text-align: right;
 	padding-right: 100px;
-	//position: relative;
-	//margin: 50px 20px 30px;
-	//padding-bottom: 35px;
 	position: absolute;
 	right: 0;
-	/* bottom: 0; */
-	bottom: -50px;
+	bottom: -30px;
 	padding-bottom: 20px;
 
 	@include mq($xl) {
 		margin: 70px 40px 30px;
+		padding-right: 150px;
 		position: relative;
 		bottom: auto;
 	}
 
 	@include mq(992px) {
-		margin: 50px 40px 30px;
+		/* margin: 50px 40px 30px; */
+		padding-right: 0;
+		max-width: 570px;
+		margin: 0 auto;
 	}
 
-	@include mq(768px) {
-		padding: 0;
-		margin: 20px 40px 30px;
-		padding-bottom: 25px;
-	}
-
-	@include mq(640px) {
+	@include mq($md) {
 		text-align: center;
-		margin: 40px 15px 15px;
-		padding-bottom: 15px;
 	}
 
 	span {
@@ -749,9 +752,7 @@ body {
 
 #login form .forgetmenot {
 	position: relative;
-	//cursor: pointer;
 	user-select: none;
-	//float: left;
 	width: 100%;
 
 	@include mq(640px) {
@@ -882,7 +883,6 @@ body {
 .login-action-checkemail {
 
 	.fws-footer-author {
-		bottom: -25%;
 
 		@include mq(1350px) {
 			bottom: -15%;
@@ -906,10 +906,6 @@ body {
 
 	.fws-login-illustration {
 
-		/* @include mq($sm) {
-			display: block;
-		} */
-
 		@include mq(350px) {
 			display: none;
 		}
@@ -926,21 +922,9 @@ body {
 			padding: 0 8.8%;
 		}
 	}
-
-	#backtoblog {
-
-		/* @include mq($sm) {
-			width: 100%;
-			max-width: 200px;
-		} */
-	}
 }
 
 .login-action-rp {
-
-	.fws-footer-author {
-		bottom: -20%;
-	}
 
 	#login p.submit .btn-icon-login {
 		top: 25%;
@@ -966,4 +950,122 @@ body {
 	}
 }
 
+.login-action-confirm_admin_email {
 
+	h1.admin-email__heading {
+
+		@include mq(640px) {
+			text-align: center;
+		}
+	}
+
+	#backtoblog {
+
+		@include mq(640px) {
+			margin-top: 15px;
+		}
+	}
+	
+	#login {
+		width: 100%;
+		padding: 0 8.8% 30px;
+		margin-top: 0;
+		max-width: initial;
+	}
+
+	.admin-email-confirm-form {
+		width: 30.6%;
+
+		@include mq(1500px) {
+			width: 40%;
+		}
+
+		@include mq($xl) {
+			width: 100%;
+			max-width: 540px;		
+		}
+
+		@include mq(640px) {
+			text-align: center;
+		}
+	}
+
+	.fws-login-illustration {
+
+		@include mq(640px) {
+			top: 97%;
+		}
+	}
+
+	input[type='submit'],
+	.button-large {
+		width: 100%;
+		max-width: 434px;
+		border-radius: 6px;
+		background: $orange;
+		min-height: 80px;
+		text-align: left;
+		border: 2px solid $orange;
+		border-color: $orange;
+		color: $white;
+		font-size: 20px;
+		font-weight: 600;
+		font-family: $font-main;
+		line-height: 21.6px;
+		letter-spacing: 0.1px;
+		outline: none;
+		transition: $dur $ease;
+		padding: 17px 28px 13px 27px !important;//sass-lint:disable-line no-important
+		float: none;
+		margin-left: 0 !important;//sass-lint:disable-line no-important
+		margin-right: 0 !important;//sass-lint:disable-line no-important
+
+		@include mq(640px) {
+			padding: 7px 28px 7px 27px !important;//sass-lint:disable-line no-important
+		}
+
+		&::after {
+			display: none;
+		}
+
+		@include hover {
+			outline: none;
+			background-color: $white;
+			background: $white;
+			color: $orange;
+			border: 2px solid $orange;
+			transition: $dur $ease;
+			border-color: $orange;
+		}
+
+		&:hover,
+		&:focus,
+		&:active {
+			outline: none;
+			background-color: $white !important;//sass-lint:disable-line no-important
+			background: $white !important;//sass-lint:disable-line no-important
+			border-color: $orange;
+			color: $orange !important;//sass-lint:disable-line no-important
+			box-shadow: none;
+		}
+	}
+
+	.button-large {
+		margin-bottom: 6px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.btn-icon-login {
+		font-size: 30px;
+	}
+
+	.button {
+		color: $white !important;//sass-lint:disable-line no-important
+		
+		@include hover {
+			color: $orange !important;//sass-lint:disable-line no-important
+		}
+	}
+}
