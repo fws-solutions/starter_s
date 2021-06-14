@@ -1069,3 +1069,58 @@ body {
 		}
 	}
 }
+
+.login-action-login {
+
+	#wfls-prompt-overlay {
+		padding: 0;
+	}
+
+	#wfls-prompt-wrapper {
+		position: relative;
+
+		&::after {
+			position: absolute;
+			content: '';
+			background-color: $white;
+			bottom: -110px;
+			left: -1px;
+			width: 101%;
+			height: 90px;
+			z-index: 99;
+			opacity: 1;
+			border: 10px solid $white;
+		}
+
+		label {
+			color: $grey-thin;
+			font-size: 20px;
+			font-weight: 700;
+			letter-spacing: 0.5px;
+			line-height: 38.4px;
+			margin-bottom: 3px;
+		}
+
+		#wfls-token {
+			border: 2px solid $grey-soft;
+			border-radius: 6px;
+			min-height: 60px;
+			width: 100%;
+			background-color: $white;
+			font-family: $font-main;
+			color: $black-smooth;
+			font-size: 18px;
+			font-weight: 600;
+			letter-spacing: 0.6px;
+			line-height: 21.6px;
+			transition: $dur $ease;
+			padding: 20px 20px 15px 30px;
+
+			&:focus {
+				border: 2px solid $orange;
+				outline: none;
+				box-shadow: none;
+			}
+		}
+	}
+}
