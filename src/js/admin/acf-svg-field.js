@@ -3,8 +3,8 @@ import Global from '../shared/global';
 
 'use strict';
 const AcfSvgField = {
-	$domWpFooter: $('#wpfooter'),
-	$domSvgField: $('.fws-svg-icon'),
+	slWpFooter: '#wpfooter',
+	slSvgField: '.fws-svg-icon',
 	slPrependButton: '.acf-input-prepend',
 	slIconsWrap: '.js-admin-icons-wrap',
 	slIconsInner: '.js-admin-icons-inner',
@@ -18,9 +18,12 @@ const AcfSvgField = {
 	prependButtonDefaultText: 'Click to choose an SVG icon',
 	localized: window.fwsLocalized,
 	activeField: null,
+	v: 7,
 
 	init: function() {
-		if (this.$domSvgField.length > 0) {
+		console.log('yes' + this.v);
+
+		if ($(this.slSvgField).length > 0) {
 			this.bindPopupEvent();
 			this.getIcons();
 		}
@@ -29,7 +32,7 @@ const AcfSvgField = {
 	checkActiveFieldValues: function() {
 		const _this = this;
 
-		this.$domSvgField.find(this.slPrependButton).each(function(i, el) {
+		$(this.slSvgField).find(this.slPrependButton).each(function(i, el) {
 			const svg = $('[data-icon="' + $(el).siblings(_this.slInputWrap).find('input').val() + '"]');
 
 			if (svg.length > 0) {
@@ -41,7 +44,9 @@ const AcfSvgField = {
 	bindPopupEvent: function() {
 		const _this = this;
 
-		this.$domSvgField.find(this.slPrependButton).on('click', function() {
+		$(this.slSvgField).find(this.slPrependButton).on('click', function() {
+			console.log($(_this.slSvgField).find(_this.slPrependButton));
+			console.log($(_this.slIconsWrap));
 			$(_this.slIconsWrap).addClass(_this.classActive);
 			_this.activeField = $(this);
 		});
@@ -88,6 +93,7 @@ const AcfSvgField = {
 
 	getIcons: function() {
 		const _this = this;
+		console.log($(this.slWpFooter));
 
 		$.ajax({
 			method: 'GET',
@@ -97,7 +103,7 @@ const AcfSvgField = {
 			},
 			success: function(data) {
 				// append svg icons to wp footer
-				_this.$domWpFooter.append(data);
+				$(_this.slWpFooter).append(data);
 
 				// handle close events
 				_this.bindCloseEvents();
@@ -109,8 +115,8 @@ const AcfSvgField = {
 				_this.checkActiveFieldValues();
 
 				// display svg field buttons
-				_this.$domSvgField.find(_this.slPrependButton).addClass(_this.classActive);
-				_this.$domSvgField.find(_this.slInputWrap).addClass(_this.classActive);
+				$(_this.slSvgField).find(_this.slPrependButton).addClass(_this.classActive);
+				$(_this.slSvgField).find(_this.slInputWrap).addClass(_this.classActive);
 			}
 		});
 	}

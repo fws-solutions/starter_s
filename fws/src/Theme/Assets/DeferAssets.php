@@ -68,7 +68,7 @@ class DeferAssets extends SingletonHook
 		$siteScripts = self::$instance->appendScriptNames(
 			$siteScripts,
 			[ 'contact-form-7' ],
-			'wpcf7_do_enqueue_scripts'
+			'wpcf7_init'
 		);
 
 		self::$instance->deferedScripts = $siteScripts;
