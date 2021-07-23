@@ -55,14 +55,6 @@ const AcfSvgField = {
 		});
 	},
 
-	// bindRepeaterEvent: function() {
-	// 	$(this.slRepeaterButton).on('click', () => {
-	// 		setTimeout(() => {
-	//
-	// 		}, 100); // workaround to wait for ACF repeater HTML to append to DOM
-	// 	});
-	// },
-
 	bindPopupEvent: function() {
 		const _this = this;
 		const button = $(this.slSvgField).find(this.slPrependButton);
