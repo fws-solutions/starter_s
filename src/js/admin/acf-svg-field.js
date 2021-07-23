@@ -5,6 +5,7 @@ import Global from '../shared/global';
 const AcfSvgField = {
 	slWpFooter: '#wpfooter',
 	slSvgField: '.fws-svg-icon',
+	slRepeaterButton: '.acf-repeater .acf-actions .acf-button',
 	slPrependButton: '.acf-input-prepend',
 	slIconsWrap: '.js-admin-icons-wrap',
 	slIconsInner: '.js-admin-icons-inner',
@@ -13,20 +14,33 @@ const AcfSvgField = {
 	slIconSvg: '.js-icon-svg',
 	slInputWrap: '.acf-input-wrap',
 	classActive: 'is-active',
+	classBinded: 'is-binded',
 	attrIcon: 'data-icon',
 	ajaxAction: 'fws_get_svg_icons',
 	prependButtonDefaultText: 'Click to choose an SVG icon',
 	localized: window.fwsLocalized,
 	activeField: null,
-	v: 7,
+	acfInstance: null,
 
 	init: function() {
-		console.log('yes' + this.v);
-
 		if ($(this.slSvgField).length > 0) {
 			this.bindPopupEvent();
 			this.getIcons();
+			this.handleOnAcfAppend();
 		}
+	},
+
+	handleOnAcfAppend: function() {
+		const _this = this;
+
+		this.acfInstance = new window.acf.Model({
+			actions: {
+				'append': 'onAppend'
+			},
+			onAppend: function() {
+				_this.bindPopupEvent();
+			}
+		});
 	},
 
 	checkActiveFieldValues: function() {
@@ -41,14 +55,30 @@ const AcfSvgField = {
 		});
 	},
 
+	// bindRepeaterEvent: function() {
+	// 	$(this.slRepeaterButton).on('click', () => {
+	// 		setTimeout(() => {
+	//
+	// 		}, 100); // workaround to wait for ACF repeater HTML to append to DOM
+	// 	});
+	// },
+
 	bindPopupEvent: function() {
 		const _this = this;
+		const button = $(this.slSvgField).find(this.slPrependButton);
 
-		$(this.slSvgField).find(this.slPrependButton).on('click', function() {
-			console.log($(_this.slSvgField).find(_this.slPrependButton));
-			console.log($(_this.slIconsWrap));
-			$(_this.slIconsWrap).addClass(_this.classActive);
-			_this.activeField = $(this);
+		button.each((i, el) => {
+			const $svgField = $(el).parents(_this.slSvgField);
+			const isClone = $svgField.parents('.acf-clone').length !== 0;
+
+			if (!isClone && !$svgField.hasClass(_this.classBinded)) {
+				$svgField.addClass(_this.classBinded);
+
+				$(el).on('click', function() {
+					$(_this.slIconsWrap).addClass(_this.classActive);
+					_this.activeField = $(el);
+				});
+			}
 		});
 	},
 
@@ -93,7 +123,6 @@ const AcfSvgField = {
 
 	getIcons: function() {
 		const _this = this;
-		console.log($(this.slWpFooter));
 
 		$.ajax({
 			method: 'GET',
