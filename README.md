@@ -1,21 +1,23 @@
 # FWS Starter _S
-*Version: 3.10.2*
+*Version: 3.10.3*
 
 > It Only Does Everything.
 
-Read full documentation in `@docs` directory.
+Read full documentation for **this version** in `@docs` directory.
+
+For **the most recent version**, see [FWS Starter _S Wiki](https://github.com/fws-solutions/starter_s/wiki).
 
 ## Table of Contents
 
-1. Installation and Configuration
-2. FWS CLI
-3. Working with Common Template Files
-4. SVG Icons
-5. Media
-6. SCSS and JS
-7. Using Components
-8. Using ACF with Starter Theme
-9. Performance Optimization
+01. Installation and Configuration
+02. FWS CLI
+03. Working with Common Template Files
+04. SVG Icons
+05. Media
+06. SCSS and JS
+07. Using Components
+08. Using ACF with Starter Theme
+09. Performance Optimization
 10. FWS Engine
 
 ## Quick Setup

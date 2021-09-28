@@ -13,39 +13,6 @@ const LoadMoreBlog = {
 
 		this.$domLoadBtn.on('click', function() {
 			_this.loadBlogPostsDummy();
-
-			// USING JAVASCRIPT OLD SCHOOL
-			// var request = new XMLHttpRequest();
-			// request.open('GET', 'https://jsonplaceholder.typicode.com/todos/1', true);
-			//
-			// request.onload = function() {
-			// 	if (this.status >= 200 && this.status < 400) {
-			// 		console.log(JSON.parse(this.response));
-			// 	}
-			// };
-			//
-			// request.send();
-
-			// USING JAVASCRIPT FETCH
-			// fetch('https://jsonplaceholder.typicode.com/todos/1')
-			// 	.then(function(response) {
-			// 		return response.json();
-			// 	})
-			// 	.then(function(json) {
-			// 		console.log(json);
-			// 	})
-
-			// USING JQUERY
-			// $.ajax({
-			// 	method: 'GET',
-			// 	url: 'https://jsonplaceholder.typicode.com/todos/1',
-			// 	success: function(response) {
-			// 		console.log(response);
-			// 	},
-			// 	error: function(error) {
-			//
-			// 	}
-			// });
 		});
 	},
 
