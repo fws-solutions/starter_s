@@ -1,38 +1,107 @@
 <mjml>
-	<mj-head>
-		<mj-font name="OpenSans" href="https://fonts.googleapis.com/css2?family=Open+Sans"/>
-		<mj-style>
-			.basic-text a { color: #f7ab42 !important; text-decoration: underline !important; }
-
-			.basic-text strong { color: #045d63 !important; }
-		</mj-style>
-	</mj-head>
-	<mj-body>
-		<mj-section background-color="#fff" padding="54px 4% 50px 4%">
-			<mj-column>
-				<mj-image width="100px" src="<%= themeRoot %>/src/assets/images/fws-logo-red.png"/>
-			</mj-column>
-		</mj-section>
-		<mj-section background-color="#fff" padding="0 40px 0 40px">
-			<mj-column>
-				<mj-text font-size="29px" color="#3e2636" font-weight="700" font-family="OpenSans, Arial" align="center" padding-bottom="25px">New message from your website!
-				</mj-text>
-				<mj-text font-size="16px" color="#3e2636" font-weight="400" font-family="OpenSans, Arial" align="center" line-height="28px" css-class="basic-text" padding-bottom="50px">
-					Name: [your-name] <br/>
-					Email: [your-email] <br/>
-					Message: [your-message]
-				</mj-text>
-			</mj-column>
-		</mj-section>
-
-		<mj-section background-color="#000" padding="10px">
-			<mj-column>
-				<!-- {{ asset('img/email/email_logo.png') }} -->
-				<mj-image width="45px" src="<%= themeRoot %>/src/assets/images/fws-logo-red.png"/>
-				<mj-text font-size="13px" color="#ececec" font-weight="300" font-family="OpenSans, Arial" align="center" line-height="15px">
-					&copy; starter_s
-				</mj-text>
-			</mj-column>
-		</mj-section>
-	</mj-body>
+  <mj-body background-color="#f1ece6">
+    <mj-section background-color="#ffffff" background-repeat="repeat" padding-bottom="0px" padding-top="30px" padding="20px 0" text-align="center">
+      <mj-column>
+        <mj-image align="center" padding="10px 25px" src="<%= themeRoot %>/src/assets/images/logo.png" target="_blank" width="250px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-repeat="repeat" padding-bottom="0px" padding-top="0px" padding="20px 0" text-align="center">
+      <mj-column>
+        <mj-image align="center" padding-bottom="0px" padding-left="0px" padding-right="0px" padding-top="0px" padding="10px 25px" src="<%= themeRoot %>/src/assets/images/admin-mail-img.jpg" target="_blank" width="600px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#ffffff" background-repeat="repeat" background-size="auto" padding-bottom="0px" padding-top="0px" padding="20px 0" text-align="center">
+      <mj-column>
+        <mj-text align="center" color="#19140e" font-size="25px" font-family="OpenSans, Arial, sans-serif" padding-left="0px" padding-right="0px" padding-bottom="0" padding-top="28px">
+          <span style="font-size:25px; font-weight:bold">Contact Form Information:</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-wrapper background-color="#ffffff" padding-left="30px" padding-right="30px" padding-top="60px">
+			<mj-section border="2px solid #c6b49c;" border-bottom="1px solid #fff" padding="10px">
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" padding="8px">First Name:</mj-text>
+				</mj-column>
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" font-weight="bold" padding="8px">[first-name]</mj-text>
+				</mj-column>
+			</mj-section>
+			<mj-section border="2px solid #c6b49c;" border-bottom="1px solid #fff" padding="10px">
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" padding="8px">Last Name:</mj-text>
+				</mj-column>
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" font-weight="bold" padding="8px">[last-name]</mj-text>
+				</mj-column>
+			</mj-section>
+      <mj-section border="2px solid #c6b49c;" border-bottom="1px solid #fff" padding="10px">
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" padding="8px">Phone:</mj-text>
+				</mj-column>
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" font-weight="bold" padding="8px">[phone]</mj-text>
+				</mj-column>
+			</mj-section>
+			<mj-section border="2px solid #c6b49c;" border-bottom="1px solid #fff" padding="10px">
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" padding="8px">Email:</mj-text>
+				</mj-column>
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" font-weight="bold" padding="8px">[email]</mj-text>
+				</mj-column>
+			</mj-section>
+      <mj-section border="2px solid #c6b49c;" padding="10px">
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" padding="8px">Message:</mj-text>
+				</mj-column>
+				<mj-column>
+					<mj-text font-size="15px" font-family="OpenSans, Arial, sans-serif" color="#19140e" font-weight="bold" padding="8px">[message]</mj-text>
+				</mj-column>
+			</mj-section>
+		</mj-wrapper>
+    <mj-section background-color="#ffffff">
+				<mj-column>
+					<mj-text align="center" font-size="18px" font-family="OpenSans, Arial, sans-serif" color="#19140e">This email was sent from a contact form on Company Name goes here (<a href="https://forwardslashny.com/" style="font-size:18px; font-family:OpenSans, Arial, sans-serif; font-weight:bold; color:#c6b49c;">http://info@info.com/</a>)</mj-text>
+				</mj-column>
+			</mj-section>
+    <mj-section background-color="#c6b49c" background-repeat="repeat" padding="20px 0 0" text-align="center">
+      <mj-column>
+        <mj-image width="180px" align="center" padding="10px 15px" src="<%= themeRoot %>/src/assets/images/logo-white.png" target="_blank"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#c6b49c">
+       <mj-group width="50%">
+        <mj-column>
+          <mj-image alt="Instagram" href="https://www.instagram.com/" width="22px" src="<%= themeRoot %>/src/assets/images/instagram-mjml.png"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-image alt="Facebook" href="https://www.facebook.com/" width="22px" src="<%= themeRoot %>/src/assets/images/facebook-mjml.png"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-image alt="Linkedin" href="https://www.linkedin.com/" width="22px" src="<%= themeRoot %>/src/assets/images/linkedin-mjml.png"></mj-image>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+    <mj-section background-color="#c6b49c" background-repeat="repeat" padding="0px" text-align="center">
+      <mj-column width="100%">
+        <mj-text align="center" color="#fff" font-size="16px" font-family="OpenSans, Arial, sans-serif" padding-left="0px" padding-right="0" padding-bottom="28px" padding-top="20px">
+          <a href="tel:1234567890" style="font-size:16px; display:block; color:#fff;">Phone: 1234567890</a>
+          <a href="tel:1234567890" style="font-size:16px; display:block; padding-top:10px; color:#fff;">Fax: 1234567890</a>
+          <a href="mailto:email@email.com" style="font-size:16px; display:block; padding-top:10px; color:#fff;">Email: email@email.com</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+     <mj-section background-color="#c6b49c" background-repeat="repeat" padding="0px" text-align="center">
+      <mj-column width="100%">
+        <mj-divider border-color="rgba(137, 204, 235, 0.2)" border-width="1px" border-style="solid" padding-left="0" padding-right="0" padding-bottom="0px" padding-top="0"></mj-divider>
+      </mj-column>
+    </mj-section>
+     <mj-section background-color="#c6b49c" background-repeat="repeat" padding="0px" text-align="center">
+      <mj-column width="100%">
+        <mj-text align="center" color="#fff" font-size="14px" font-family="OpenSans, Arial, sans-serif" padding-left="0px" padding-right="0" padding-bottom="28px" padding-top="20px">
+          <span style="font-size:14px; display:block; color:#fff;">© 2021 Company Name goes here. All Rights Reserved. </span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
 </mjml>
