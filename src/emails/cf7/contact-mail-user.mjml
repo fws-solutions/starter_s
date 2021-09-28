@@ -1,41 +1,72 @@
 <mjml>
-	<mj-head>
-		<mj-font name="OpenSans" href="https://fonts.googleapis.com/css2?family=Open+Sans"/>
-		<mj-style>
-			.basic-text a { color: #f7ab42 !important; text-decoration: underline !important; }
-
-			.basic-text strong { color: #045d63 !important; }
-		</mj-style>
-	</mj-head>
-	<mj-body>
-		<mj-section background-color="#fff" padding="54px 4% 50px 4%">
-			<mj-column>
-                <mj-image width="100px" src="https://www.forwardslashny.com/wp-content/uploads/2019/04/logo_mid.svg"/>
-			</mj-column>
-		</mj-section>
-		<mj-section background-color="#fff" padding="0 40px 0 40px">
-			<mj-column>
-				<mj-text font-size="30px" color="#3e2636" font-weight="700" font-family="OpenSans, Arial" align="center" padding-bottom="25px">
-					Thank You for reaching out.
-				</mj-text>
-				<mj-button background-color="#00" href="<%= siteUrl %>">Go To Website</mj-button>
-			</mj-column>
-		</mj-section>
-		<mj-section background-color="#fff" padding-left="5%" padding-right="5%" padding-bottom="70px">
-			<mj-column>
-				<mj-text font-size="16px" color="#3e2636" font-weight="400" font-family="OpenSans, Arial" align="center" line-height="28px" css-class="basic-text">
-					Your message has been recevied. <br/> Our team will get back to you ASAP!
-				</mj-text>
-			</mj-column>
-		</mj-section>
-		<mj-section background-color="#000" padding="10px">
-			<mj-column>
-				<!-- {{ asset('img/email/email_logo.png') }} -->
-                <mj-image width="45px" src="https://www.forwardslashny.com/wp-content/uploads/2019/04/logo_mid.svg"/>
-				<mj-text font-size="13px" color="#ececec" font-weight="300" font-family="OpenSans, Arial" align="center" line-height="15px">
-					&copy; starter_s
-				</mj-text>
-			</mj-column>
-		</mj-section>
-	</mj-body>
+  <mj-body background-color="#f1ece6">
+    <mj-section background-color="#ffffff" background-repeat="repeat" padding-bottom="0px" padding-top="30px" padding="20px 0" text-align="center">
+      <mj-column>
+        <mj-image align="center" padding="10px 25px" src="<%= themeRoot %>/src/assets/images/logo.png" target="_blank" width="250px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-repeat="repeat" padding-bottom="0px" padding-top="0px" padding="20px 0" text-align="center">
+      <mj-column>
+        <mj-image align="center" padding-bottom="0px" padding-left="0px" padding-right="0px" padding-top="0px" padding="10px 25px" src="<%= themeRoot %>/src/assets/images/thank-you-mail.jpg" target="_blank" width="600px"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#ffffff" background-repeat="repeat" background-size="auto" padding-bottom="0px" padding-top="50px" padding="20px 0" text-align="center">
+      <mj-column>
+        <mj-text align="center" color="#19140e" font-size="24px" font-family="OpenSans, Arial, sans-serif" padding-left="0px" padding-right="0px" padding-bottom="0" padding-top="28px">
+          <span style="font-size:24px;">Thank you for reaching out!</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#ffffff" background-repeat="repeat" background-size="auto" padding="20px 0" text-align="center">
+     <mj-column>
+        <mj-text align="center" color="#19140e" font-size="24px" font-family="OpenSans, Arial, sans-serif" padding-left="0px" padding-right="0px" padding-bottom="20px" padding-top="0px">
+          <span style="font-size:24px;">We will contact you soon.</span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#ffffff" background-repeat="repeat" background-size="auto" text-align="center">
+     <mj-column>
+        <mj-button font-size="16px" align="center" background-color="#c6b49c" color="#fff" height="60px" width="250px" border-radius="5px" href="https://forwardslashny.com/" font-family="OpenSans, Arial, sans-serif" padding-bottom="40px" padding-top="0px">VISIT OUR WEBSITE</mj-button>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#c6b49c" background-repeat="repeat" padding="20px 0 0" text-align="center">
+      <mj-column>
+        <mj-image width="180px" align="center" padding="10px 15px" src="<%= themeRoot %>/src/assets/images/logo.png" target="_blank"></mj-image>
+      </mj-column>
+    </mj-section>
+    <mj-section background-color="#c6b49c">
+      <mj-group width="50%">
+        <mj-column>
+          <mj-image alt="Instagram" href="https://www.instagram.com/" width="22px" src="<%= themeRoot %>/src/assets/images/instagram-mjml.png"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-image alt="Facebook" href="https://www.facebook.com/" width="22px" src="<%= themeRoot %>/src/assets/images/facebook-mjml.png"></mj-image>
+        </mj-column>
+        <mj-column>
+          <mj-image alt="Linkedin" href="https://www.linkedin.com/" width="22px" src="<%= themeRoot %>/src/assets/images/linkedin-mjml.png"></mj-image>
+        </mj-column>
+      </mj-group>
+    </mj-section>
+    <mj-section background-color="#c6b49c" background-repeat="repeat" padding="0px" text-align="center">
+      <mj-column width="100%">
+        <mj-text align="center" color="#fff" font-size="16px" font-family="OpenSans, Arial, sans-serif" padding-left="0px" padding-right="0" padding-bottom="28px" padding-top="20px">
+          <a href="tel:1234567890" style="font-size:16px; display:block; color:#fff;">Phone: 1234567890</a>
+          <a href="tel:1234567890" style="font-size:16px; display:block; padding-top:10px; color:#fff;">Fax: 1234567890</a>
+          <a href="mailto:email@email.com" style="font-size:16px; display:block; padding-top:10px; color:#fff;">Email: email@email.com</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+     <mj-section background-color="#c6b49c" background-repeat="repeat" padding="0px" text-align="center">
+      <mj-column width="100%">
+        <mj-divider border-color="rgba(137, 204, 235, 0.2)" border-width="1px" border-style="solid" padding-left="0" padding-right="0" padding-bottom="0px" padding-top="0"></mj-divider>
+      </mj-column>
+    </mj-section>
+     <mj-section background-color="#c6b49c" background-repeat="repeat" padding="0px" text-align="center">
+      <mj-column width="100%">
+        <mj-text align="center" color="#fff" font-size="14px" font-family="OpenSans, Arial, sans-serif" padding-left="0px" padding-right="0" padding-bottom="28px" padding-top="20px">
+          <span style="font-size:14px; display:block; color:#fff;">© 2021 Company Name goes here. All Rights Reserved. </span>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
 </mjml>
