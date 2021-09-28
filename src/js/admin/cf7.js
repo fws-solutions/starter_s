@@ -3,24 +3,26 @@ const _template = require('lodash.template');
 
 'use strict';
 const CF7 = {
-	$domBody: $('body'),
-	$domForm: $('#wpcf7-admin-form-element'),
-	$domTempTab: $('#html-template-tab > a'),
-	$domInputForm: $('#wpcf7-form'),
-	$domInputEmailAdmin: $('#wpcf7-mail-body'),
-	$domInputEmailUser: $('#wpcf7-mail-2-body'),
-	$domSelectForm: $('#cf7-form-temp'),
-	$domSelectEmailAdmin: $('#cf7-email-admin-temp'),
-	$domSelectEmailUser: $('#cf7-email-user-temp'),
-	$domPreviewForm: $('#cf7-form-temp-preview'),
-	$domPreviewEmailAdmin: $('#cf7-email-admin-temp-preview'),
-	$domPreviewEmailUser: $('#cf7-email-user-temp-preview'),
+	$domBody: null,
+	$domForm: null,
+	$domTempTab: null,
+	$domInputForm: null,
+	$domInputEmailAdmin: null,
+	$domInputEmailUser: null,
+	$domSelectForm: null,
+	$domSelectEmailAdmin: null,
+	$domSelectEmailUser: null,
+	$domPreviewForm: null,
+	$domPreviewEmailAdmin: null,
+	$domPreviewEmailUser: null,
 	classDisabled: 'is-disabled',
 	classInit: 'fws-cf7-init',
 	templateDirs: '/dist/cf7/',
 	localized: window.fwsLocalized,
 
 	init: function() {
+		this.cacheSelectors();
+
 		if (this.$domForm.length > 0 && this.$domBody.hasClass(this.classInit)) {
 			this.disableForms();
 			this.addMessage();
@@ -29,6 +31,21 @@ const CF7 = {
 			this.loadFormContent(this.$domSelectEmailUser, this.$domPreviewEmailUser, this.$domInputEmailUser);
 			this.bindEvents();
 		}
+	},
+
+	cacheSelectors: function() {
+		this.$domBody = $('body');
+		this.$domForm = $('#wpcf7-admin-form-element');
+		this.$domTempTab = $('#html-template-tab > a');
+		this.$domInputForm = $('#wpcf7-form');
+		this.$domInputEmailAdmin = $('#wpcf7-mail-body');
+		this.$domInputEmailUser = $('#wpcf7-mail-2-body');
+		this.$domSelectForm = $('#cf7-form-temp');
+		this.$domSelectEmailAdmin = $('#cf7-email-admin-temp');
+		this.$domSelectEmailUser = $('#cf7-email-user-temp');
+		this.$domPreviewForm = $('#cf7-form-temp-preview');
+		this.$domPreviewEmailAdmin = $('#cf7-email-admin-temp-preview');
+		this.$domPreviewEmailUser = $('#cf7-email-user-temp-preview');
 	},
 
 	disableForms: function() {
