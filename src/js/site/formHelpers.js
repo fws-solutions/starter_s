@@ -7,9 +7,15 @@ const FormHelpers = {
 	 * @type {object}
 	 */
 
+	strCF7Holder: '.js-cf7-holder',
+	strForm: '.wpcf7-form',
+	strTriggerURL: '#wpcf7-f17-o1',
+	classSent: 'form-is-sent',
+	classInvalid: 'invalid',
 
 	/** @description Initialize */
 	init: function() {
+		this.checkIfIE();
 		this.afterFormSubmit();
 	},
 
@@ -24,12 +30,23 @@ const FormHelpers = {
 		document.addEventListener('wpcf7mailsent', (e) => {
 			const formId = e.detail.id;
 
-			$(`#${formId}`).parents(formHolder).addClass(sentClass);
+			$(formId).parents(formHolder).addClass(sentClass);
 
 			setTimeout(() => {
 				$(formHolder).removeClass(sentClass);
 			}, delay);
 		}, false);
+	},
+	// If user use Internet Explorer this is custom trigger for Thank you msg for CF7
+	checkIfIE() {
+		const url = window.location.href;
+		if (url.indexOf(FormHelpers.strTriggerURL) > -1 && !$(FormHelpers.strForm).hasClass(FormHelpers.classInvalid)) {
+			$(FormHelpers.strForm).parents(FormHelpers.strCF7Holder).addClass(FormHelpers.classSent);
+
+			setTimeout(() => {
+				$(FormHelpers.strCF7Holder).removeClass(FormHelpers.classSent);
+			}, 5000);
+		}
 	}
 };
 
