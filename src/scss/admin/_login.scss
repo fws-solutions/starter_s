@@ -125,6 +125,15 @@ body {
 	&.forgetmenot {
 		margin: 35px 0 20px;
 
+		@include mq($xl) {
+			margin: 0 0 20px;
+			width: 65%;
+		}
+
+		@include mq($md) {
+			width: initial;
+		}
+
 		@include mq(640px) {
 			margin: 0;
 		}
@@ -286,7 +295,7 @@ body {
 			border-radius: 6px;
 			background: $orange;
 			min-height: 60px;
-			text-align: left;
+			text-align: center;
 			color: $white;
 			font-size: 17px;
 			font-weight: 600;
@@ -552,6 +561,12 @@ body {
 	@include mq(1199px) {
 		max-width: 540px;
 		margin: 15px auto;
+	}
+
+	@include mq($md) {
+		display: flex;
+		align-items: center;
+		justify-content: end;
 	}
 
 	@include mq(640px) {
