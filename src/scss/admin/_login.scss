@@ -312,18 +312,6 @@ body {
 		}
 	}
 
-	#jetpack-sso-wrap {
-		.jetpack-sso-toggle {
-			font-size: 18px;
-			letter-spacing: 0.1px;
-			text-decoration: none;
-			color: $orange;
-			position: relative;
-			font-weight: 700;
-			display: initial;
-		}
-	}
-
 	.submit {
 		.button {
 			width: 100%;
@@ -1176,18 +1164,17 @@ body {
 
 .jetpack-sso-form-display {
 	#loginform {
-		padding: 26px 0;
+		padding: 26px 0 !important;//sass-lint:disable-line no-important
 	}
 }
 
-#jetpack-sso-wrap {
-	background-color: $orange !important;//sass-lint:disable-line no-important
-}
 
-#jetpack-sso-wrap .button {
-	background-color: $orange !important;//sass-lint:disable-line no-important
-}
-
-.jetpack-sso-or {
-	background: $orange;
+.jetpack-sso-toggle {
+	font-size: 18px;
+	letter-spacing: 0.1px;
+	text-decoration: none;
+	color: $orange;
+	position: relative;
+	font-weight: 700;
+	display: initial;
 }
