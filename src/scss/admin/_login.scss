@@ -134,9 +134,9 @@ body {
 			width: initial;
 		}
 
-		@include mq(640px) {
+		/* @include mq(640px) {
 			margin: 0;
-		}
+		} */
 	}
 }
 
@@ -172,11 +172,11 @@ body {
 		}
 	}
 
-	@include mq(640px) {
+	/* @include mq(640px) {
 		min-height: 50px;
 		justify-content: center;
 		max-width: 100%;
-	}
+	} */
 }
 
 #lostpasswordform {
@@ -565,7 +565,7 @@ body {
 		float: right;
 	}
 
-	@include mq($md) {
+	/* @include mq($md) {
 		display: flex;
 		align-items: center;
 		justify-content: end;
@@ -573,8 +573,8 @@ body {
 
 	@include mq(640px) {
 		text-align: center;
-		margin: 0 0  15px;
-	}
+		margin: 0 0 15px;
+	} */
 }
 
 .user-pass-wrap {
@@ -813,12 +813,12 @@ body {
 	user-select: none;
 	width: 100%;
 
-	@include mq(640px) {
+	/* @include mq(640px) {
 		float: none;
 		max-width: 180px;
 		margin: 0 auto;
 		padding-bottom: 10px;
-	}
+	} */
 
 	&::after {
 		content: '';
@@ -1240,5 +1240,16 @@ body {
 			max-width: 350px;
 			margin: 0 auto;
 		}
+	}
+}
+
+.jetpack-sso-clear {
+
+	@include mq(640px) {
+		width: 100%;
+		max-width: 350px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 }
