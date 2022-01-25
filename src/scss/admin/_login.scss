@@ -368,6 +368,8 @@ body {
 				min-height: 50px;
 				padding: 7px 15px;
 				font-size: 18px;
+				max-width: 350px;
+				margin: 0 auto;
 			}
 		}
 	}
@@ -571,7 +573,15 @@ body {
 		justify-content: end; */
 		position: absolute;
 		right: 0;
-		top: 40%;
+		top: 41.5%;
+	}
+
+	@include mq($sm) {
+		top: 39%;
+	}
+
+	@include mq(420px) {
+		//add styles
 	}
 
 	/* @include mq(640px) {
