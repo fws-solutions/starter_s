@@ -560,7 +560,9 @@ body {
 
 	@include mq(1199px) {
 		max-width: 540px;
-		margin: 15px auto;
+		/* margin: 15px auto; */
+		margin: 0 auto;
+		float: right;
 	}
 
 	@include mq($md) {
