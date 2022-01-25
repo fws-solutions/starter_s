@@ -1165,6 +1165,7 @@ body {
 .jetpack-sso-form-display {
 	#loginform {
 		padding: 26px 0 !important;//sass-lint:disable-line no-important
+		max-width: 430px !important;//sass-lint:disable-line no-important
 	}
 }
 
@@ -1201,5 +1202,18 @@ body {
 
 	&::after {
 		display: none;
+	}
+}
+
+#jetpack-sso-wrap {
+	.jetpack-sso-toggle.default {
+		max-width: initial;
+
+		@include mq($md) {
+			min-height: 50px;
+			padding: 17px 28px 13px 27px;
+			max-width: 350px;
+			margin: 0 auto;
+		}
 	}
 }
