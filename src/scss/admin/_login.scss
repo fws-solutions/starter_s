@@ -1209,7 +1209,7 @@ body {
 	.jetpack-sso-toggle.default {
 		max-width: initial;
 
-		@include mq($md) {
+		@include mq(640px) {
 			min-height: 50px;
 			padding: 17px 28px 13px 27px;
 			max-width: 350px;
