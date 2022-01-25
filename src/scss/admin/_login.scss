@@ -275,6 +275,55 @@ body {
 		max-width: 950px;
 	}
 
+	#jetpack-sso-wrap__action {
+		a {
+			outline: none;
+			border: 2px solid $orange;
+			transition: 350ms ease;
+			border-color: $orange;
+			width: 100%;
+			max-width: 434px;
+			border-radius: 6px;
+			background: $orange;
+			min-height: 80px;
+			text-align: left;
+			color: $white;
+			font-size: 20px;
+			font-weight: 600;
+			font-family: $font-main;
+			line-height: 21.6px;
+			letter-spacing: 0.1px;
+			padding: 17px 28px 13px 27px;
+			float: none;
+
+			@include hover {
+				outline: none;
+				background-color: $white;
+				background: $white;
+				color: $orange;
+				border: 2px solid $orange;
+				transition: $dur $ease;
+				border-color: $orange;
+			}
+
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	#jetpack-sso-wrap {
+		.jetpack-sso-toggle {
+			font-size: 18px;
+			letter-spacing: 0.1px;
+			text-decoration: none;
+			color: $orange;
+			position: relative;
+			font-weight: 700;
+			display: initial;
+		}
+	}
+
 	.submit {
 		.button {
 			width: 100%;
@@ -1122,5 +1171,11 @@ body {
 				box-shadow: none;
 			}
 		}
+	}
+}
+
+.jetpack-sso-form-display {
+	#loginform {
+		padding: 26px 0;
 	}
 }
