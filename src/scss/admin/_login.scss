@@ -1180,7 +1180,7 @@ body {
 	background: $orange;
 	min-height: 80px;
 	text-align: left;
-	color: $white;
+	color: $white !important;//sass-lint:disable-line no-important
 	font-size: 20px;
 	font-weight: 600;
 	font-family: $font-main;
@@ -1188,12 +1188,15 @@ body {
 	letter-spacing: 0.1px;
 	padding: 17px 28px 13px 27px;
 	float: none;
+	align-items: center;
+    justify-content: center;
+    display: flex;
 
 	@include hover {
 		outline: none;
 		background-color: $white;
 		background: $white;
-		color: $orange;
+		color: $orange !important;//sass-lint:disable-line no-important
 		border: 2px solid $orange;
 		transition: $dur $ease;
 		border-color: $orange;
