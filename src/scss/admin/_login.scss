@@ -288,7 +288,7 @@ body {
 			min-height: 60px;
 			text-align: left;
 			color: $white;
-			font-size: 18px;
+			font-size: 17px;
 			font-weight: 600;
 			font-family: $font-main;
 			line-height: 21.6px;
@@ -309,6 +309,10 @@ body {
 			&::after {
 				display: none;
 			}
+
+			&:focus {
+				color: $white;
+			}
 		}
 	}
 
@@ -323,7 +327,7 @@ body {
 			border: 2px solid $orange;
 			border-color: $orange;
 			color: $white;
-			font-size: 18px;
+			font-size: 17px;
 			font-weight: 600;
 			font-family: $font-main;
 			line-height: 21.6px;
@@ -516,7 +520,7 @@ body {
 
 .login #nav {
 	//float: right;
-	margin: 5px 0 40px;
+	margin: 5px 0 20px;
 	padding: 0;
 
 	a {
@@ -1182,7 +1186,7 @@ body {
 	min-height: 60px;
 	text-align: left;
 	color: $white !important;//sass-lint:disable-line no-important
-	font-size: 18px;
+	font-size: 17px;
 	font-weight: 600;
 	font-family: $font-main;
 	line-height: 21.6px;
@@ -1202,6 +1206,10 @@ body {
 
 	&::after {
 		display: none;
+	}
+
+	&:focus {
+		color: $white;
 	}
 }
 
