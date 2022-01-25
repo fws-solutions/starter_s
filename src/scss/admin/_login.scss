@@ -1186,11 +1186,8 @@ body {
 	font-family: $font-main;
 	line-height: 21.6px;
 	letter-spacing: 0.1px;
-	padding: 17px 28px 13px 27px;
+	padding: 27px 28px 13px 27px;
 	float: none;
-	align-items: center;
-    justify-content: center;
-    display: flex;
 
 	@include hover {
 		outline: none;
