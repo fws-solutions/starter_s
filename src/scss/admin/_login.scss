@@ -132,7 +132,7 @@ body {
 }
 
 #login p.submit {
-	min-height: 80px;
+	min-height: 60px;
 	position: relative;
 	display: flex;
 	width: 100%;
@@ -318,12 +318,12 @@ body {
 			max-width: 434px;
 			border-radius: 6px;
 			background: $orange;
-			min-height: 80px;
+			min-height: 60px;
 			text-align: left;
 			border: 2px solid $orange;
 			border-color: $orange;
 			color: $white;
-			font-size: 20px;
+			font-size: 18px;
 			font-weight: 600;
 			font-family: $font-main;
 			line-height: 21.6px;
