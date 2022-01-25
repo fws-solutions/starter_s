@@ -565,13 +565,16 @@ body {
 		float: right;
 	}
 
-	/* @include mq($md) {
-		display: flex;
+	@include mq(640px) {
+		/* display: flex;
 		align-items: center;
-		justify-content: end;
+		justify-content: end; */
+		position: absolute;
+		right: 0;
+		top: 40%;
 	}
 
-	@include mq(640px) {
+	/* @include mq(640px) {
 		text-align: center;
 		margin: 0 0 15px;
 	} */
@@ -812,6 +815,10 @@ body {
 	position: relative;
 	user-select: none;
 	width: 100%;
+
+	@include mq(640px) {
+		align-self: baseline;
+	}
 
 	/* @include mq(640px) {
 		float: none;
@@ -1247,7 +1254,7 @@ body {
 
 	@include mq(640px) {
 		width: 100%;
-		max-width: 350px;
+		/* max-width: 350px; */
 		display: flex;
 		flex-direction: column;
 		align-items: center;
