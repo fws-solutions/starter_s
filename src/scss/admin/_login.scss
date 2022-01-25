@@ -285,10 +285,10 @@ body {
 			max-width: 434px;
 			border-radius: 6px;
 			background: $orange;
-			min-height: 80px;
+			min-height: 60px;
 			text-align: left;
 			color: $white;
-			font-size: 20px;
+			font-size: 18px;
 			font-weight: 600;
 			font-family: $font-main;
 			line-height: 21.6px;
@@ -1179,15 +1179,15 @@ body {
 	max-width: 434px;
 	border-radius: 6px;
 	background: $orange;
-	min-height: 80px;
+	min-height: 60px;
 	text-align: left;
 	color: $white !important;//sass-lint:disable-line no-important
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: 600;
 	font-family: $font-main;
 	line-height: 21.6px;
 	letter-spacing: 0.1px;
-	padding: 27px 28px 13px 27px;
+	padding: 18px 28px 13px 27px;
 	float: none;
 
 	@include hover {
