@@ -134,7 +134,7 @@ body {
 			width: initial;
 		}
 
-		@include mq(420px) {
+		@include mq(460px) {
 			margin: 0 auto;
 		}
 	}
@@ -325,6 +325,10 @@ body {
 				border: 2px solid $orange;
 				transition: $dur $ease;
 				border-color: $orange;
+			}
+
+			@include mq($sm) {
+				font-size: 14px;
 			}
 		}
 	}
@@ -584,7 +588,7 @@ body {
 		top: 39%;
 	}
 
-	@include mq(420px) {
+	@include mq(460px) {
 		text-align: center;
 		margin: 0 0 15px;
 		position: relative;
@@ -831,7 +835,7 @@ body {
 		align-self: baseline;
 	}
 
-	@include mq(420px) {
+	@include mq(460px) {
 		float: none;
 		max-width: 180px;
 		margin: 0 auto;
