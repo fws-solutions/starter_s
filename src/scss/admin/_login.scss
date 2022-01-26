@@ -401,9 +401,13 @@ body {
 #login {
 	width: 100%;
 	padding: 0 8.8% 30px;
+	min-height: 700px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-	@include mq($sm) {
-		padding: 0;
+	@include mq(640px) {
+		min-height: unset;
 	}
 
 	::-webkit-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
