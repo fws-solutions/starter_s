@@ -134,9 +134,9 @@ body {
 			width: initial;
 		}
 
-		/* @include mq(640px) {
-			margin: 0;
-		} */
+		@include mq(420px) {
+			margin: 0 auto;
+		}
 	}
 }
 
