@@ -172,11 +172,9 @@ body {
 		}
 	}
 
-	/* @include mq(640px) {
-		min-height: 50px;
-		justify-content: center;
-		max-width: 100%;
-	} */
+	@include mq(640px) {
+		max-width: 350px;
+	}
 }
 
 #lostpasswordform {
@@ -562,15 +560,11 @@ body {
 
 	@include mq(1199px) {
 		max-width: 540px;
-		/* margin: 15px auto; */
 		margin: 0 auto;
 		float: right;
 	}
 
 	@include mq(640px) {
-		/* display: flex;
-		align-items: center;
-		justify-content: end; */
 		position: absolute;
 		right: 0;
 		top: 41.5%;
@@ -581,13 +575,10 @@ body {
 	}
 
 	@include mq(420px) {
-		//add styles
-	}
-
-	/* @include mq(640px) {
 		text-align: center;
 		margin: 0 0 15px;
-	} */
+		position: relative;
+	}
 }
 
 .user-pass-wrap {
@@ -830,12 +821,12 @@ body {
 		align-self: baseline;
 	}
 
-	/* @include mq(640px) {
+	@include mq(420px) {
 		float: none;
 		max-width: 180px;
 		margin: 0 auto;
 		padding-bottom: 10px;
-	} */
+	}
 
 	&::after {
 		content: '';
