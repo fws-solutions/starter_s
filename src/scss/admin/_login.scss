@@ -318,7 +318,13 @@ body {
 			}
 
 			&:focus {
+				outline: none;
+				background-color: $white;
+				background: $white;
 				color: $orange;
+				border: 2px solid $orange;
+				transition: $dur $ease;
+				border-color: $orange;
 			}
 		}
 	}
@@ -1238,7 +1244,13 @@ body {
 	}
 
 	&:focus {
-		color: $white;
+		outline: none;
+		background-color: $white;
+		background: $white;
+		color: $orange !important;//sass-lint:disable-line no-important
+		border: 2px solid $orange;
+		transition: $dur $ease;
+		border-color: $orange;
 	}
 }
 
