@@ -123,16 +123,25 @@ body {
 	}
 
 	&.forgetmenot {
-		margin: 35px 0 20px;
+		margin: 15px 0 20px;
 
-		@include mq(640px) {
-			margin: 0;
+		@include mq($xl) {
+			margin: 0 0 20px;
+			width: 65%;
+		}
+
+		@include mq($md) {
+			width: initial;
+		}
+
+		@include mq(460px) {
+			margin: 0 auto;
 		}
 	}
 }
 
 #login p.submit {
-	min-height: 80px;
+	min-height: 60px;
 	position: relative;
 	display: flex;
 	width: 100%;
@@ -164,9 +173,7 @@ body {
 	}
 
 	@include mq(640px) {
-		min-height: 50px;
-		justify-content: center;
-		max-width: 100%;
+		max-width: 350px;
 	}
 }
 
@@ -275,18 +282,69 @@ body {
 		max-width: 950px;
 	}
 
+	#jetpack-sso-wrap__action {
+		a {
+			outline: none;
+			border: 2px solid $orange;
+			transition: 350ms ease;
+			border-color: $orange;
+			width: 100%;
+			max-width: 434px;
+			border-radius: 6px;
+			background: $orange;
+			min-height: 60px;
+			text-align: center;
+			color: $white;
+			font-size: 17px;
+			font-weight: 600;
+			font-family: $font-main;
+			line-height: 21.6px;
+			letter-spacing: 0.1px;
+			padding: 17px 28px 13px 27px;
+			float: none;
+
+			@include hover {
+				outline: none;
+				background-color: $white;
+				background: $white;
+				color: $orange;
+				border: 2px solid $orange;
+				transition: $dur $ease;
+				border-color: $orange;
+			}
+
+			&::after {
+				display: none;
+			}
+
+			&:focus {
+				outline: none;
+				background-color: $white;
+				background: $white;
+				color: $orange;
+				border: 2px solid $orange;
+				transition: $dur $ease;
+				border-color: $orange;
+			}
+
+			@include mq($sm) {
+				font-size: 14px;
+			}
+		}
+	}
+
 	.submit {
 		.button {
 			width: 100%;
 			max-width: 434px;
 			border-radius: 6px;
 			background: $orange;
-			min-height: 80px;
+			min-height: 60px;
 			text-align: left;
 			border: 2px solid $orange;
 			border-color: $orange;
 			color: $white;
-			font-size: 20px;
+			font-size: 17px;
 			font-weight: 600;
 			font-family: $font-main;
 			line-height: 21.6px;
@@ -318,6 +376,8 @@ body {
 				min-height: 50px;
 				padding: 7px 15px;
 				font-size: 18px;
+				max-width: 350px;
+				margin: 0 auto;
 			}
 		}
 	}
@@ -326,7 +386,7 @@ body {
 .fws-login-brand {
 	display: block;
 	max-width: 140px;
-	margin: 0 0 50px;
+	margin: 0 0 40px;
 
 	@include mq(1199px) {
 		max-width: 140px;
@@ -351,9 +411,13 @@ body {
 #login {
 	width: 100%;
 	padding: 0 8.8% 30px;
+	min-height: 700px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 
-	@include mq($sm) {
-		padding: 0;
+	@include mq(640px) {
+		min-height: unset;
 	}
 
 	::-webkit-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
@@ -479,7 +543,7 @@ body {
 
 .login #nav {
 	//float: right;
-	margin: 5px 0 40px;
+	margin: 5px 0 20px;
 	padding: 0;
 
 	a {
@@ -510,12 +574,24 @@ body {
 
 	@include mq(1199px) {
 		max-width: 540px;
-		margin: 15px auto;
+		margin: 0 auto;
+		float: right;
 	}
 
 	@include mq(640px) {
+		position: absolute;
+		right: 0;
+		top: 41.5%;
+	}
+
+	@include mq($sm) {
+		top: 39%;
+	}
+
+	@include mq(460px) {
 		text-align: center;
-		margin: 0 0  15px;
+		margin: 0 0 15px;
+		position: relative;
 	}
 }
 
@@ -756,6 +832,10 @@ body {
 	width: 100%;
 
 	@include mq(640px) {
+		align-self: baseline;
+	}
+
+	@include mq(460px) {
 		float: none;
 		max-width: 180px;
 		margin: 0 auto;
@@ -1122,5 +1202,82 @@ body {
 				box-shadow: none;
 			}
 		}
+	}
+}
+
+.jetpack-sso-form-display {
+	#loginform {
+		padding: 26px 0 !important;//sass-lint:disable-line no-important
+		max-width: 430px !important;//sass-lint:disable-line no-important
+	}
+}
+
+
+.jetpack-sso-toggle {
+	outline: none;
+	border: 2px solid $orange;
+	transition: 350ms ease;
+	border-color: $orange;
+	width: 100%;
+	max-width: 434px;
+	border-radius: 6px;
+	background: $orange;
+	min-height: 60px;
+	text-align: left;
+	color: $white !important;//sass-lint:disable-line no-important
+	font-size: 17px;
+	font-weight: 600;
+	font-family: $font-main;
+	line-height: 21.6px;
+	letter-spacing: 0.1px;
+	padding: 18px 28px 13px 27px;
+	float: none;
+
+	@include hover {
+		outline: none;
+		background-color: $white;
+		background: $white;
+		color: $orange !important;//sass-lint:disable-line no-important
+		border: 2px solid $orange;
+		transition: $dur $ease;
+		border-color: $orange;
+	}
+
+	&::after {
+		display: none;
+	}
+
+	&:focus {
+		outline: none;
+		background-color: $white;
+		background: $white;
+		color: $orange !important;//sass-lint:disable-line no-important
+		border: 2px solid $orange;
+		transition: $dur $ease;
+		border-color: $orange;
+	}
+}
+
+#jetpack-sso-wrap {
+	.jetpack-sso-toggle.default {
+		max-width: initial;
+
+		@include mq(640px) {
+			min-height: 50px;
+			padding: 17px 28px 13px 27px;
+			max-width: 350px;
+			margin: 0 auto;
+		}
+	}
+}
+
+.jetpack-sso-clear {
+
+	@include mq(640px) {
+		width: 100%;
+		/* max-width: 350px; */
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 }
