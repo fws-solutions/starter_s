@@ -5,7 +5,9 @@
 $font-default-serif: Georgia, serif;
 $font-default-sans-serif: Arial, Helvetica, sans-serif;
 
-$font-main: 'Open Sans', $font-default-sans-serif;
+$font-main: 'Proxima Nova', $font-default-sans-serif;
+$font-second: 'Open Sans', $font-default-sans-serif;
+$font-third: 'univia-pro', $font-default-serif;
 
 $site-fonts: (
 	'font-main': $font-main,
@@ -22,7 +24,7 @@ $red: #e2401c;
 $green: #4fc08d;
 $blue: #3d9cd2;
 
-$orange: #e64d25;
+$orange: #fe4b2e;
 $black-smooth: #2f3034;
 $grey-soft: #d5d5d5;
 $grey-mild: #b1b1b1;
@@ -86,7 +88,7 @@ $container-max-widths: (
 	sm: 540px,
 	md: 720px,
 	lg: 960px,
-	xl: 1140px
+	xl: 1640px
 ) !default;
 
 /*

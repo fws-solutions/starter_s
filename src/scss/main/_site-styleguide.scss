@@ -2,13 +2,14 @@
 ## Styleguide site
 --------------------------------------------------------------*/
 .styleguide {
-	padding: 50px 0 150px;
 	background:
 		linear-gradient(135deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px),
 		linear-gradient(225deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px)0 64px;
 	background-color: $sg-grey;
 	background-size: 64px 128px;
 	background-attachment: fixed;
+	min-height: 100vh;
+	font-family: $font-main;
 }
 
 .styleguide__scrollspy-nav {
@@ -328,4 +329,48 @@
 	align-items: center;
 	justify-content: center;
 	background: #f1f1f1;
+}
+
+// remove header and footer from styleguide page
+.page-template-styleguide {
+	padding-top: 0;
+	margin-top: 0;
+
+	.site-header,
+	.site-footer {
+		display: none;
+	}
+}
+
+.styleguide-basic {
+	background-color: $orange;
+	min-height: 100vh;
+	color: $white;
+}
+
+.styleguide-page-title {
+	font-family: $font-third;
+	text-align: center;
+	font-size: 60px;
+	font-style: italic;
+	margin-top: auto;
+}
+
+.styleguide-basic__holder {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 50px 0;
+}
+
+.styleguide-intro__image--img {
+	display: block;
+	width: 100%;
+	max-width: 150px;
+}
+
+.styleguide-basic__intro-image {
+	margin-top: auto;
 }

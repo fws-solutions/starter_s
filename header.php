@@ -22,6 +22,8 @@
 	<!-- TODO: Preload all fonts in this manner that are used in the project. Make sure only .woff2 versions are preloaded. -->
 	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Bold.woff2" as="font" crossorigin />
 	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Regular.woff2" as="font" crossorigin />
+	<link rel="stylesheet" href="https://use.typekit.net/tqv4xbb.css">
+
 
 	<?php wp_head(); ?>
 </head>
