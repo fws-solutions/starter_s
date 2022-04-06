@@ -2,25 +2,24 @@
 ## Styleguide site
 --------------------------------------------------------------*/
 .styleguide {
-	background:
-		linear-gradient(135deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px),
-		linear-gradient(225deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px)0 64px;
-	background-color: $sg-grey;
-	background-size: 64px 128px;
+	background-image: url('src/assets/images/background.jpg');
+	background-repeat: repeat;
+    background-size: auto;
 	background-attachment: fixed;
 	min-height: 100vh;
 	font-family: $font-main;
+	padding-top: 60px;
 }
 
 .styleguide__scrollspy-nav {
 	position: fixed;
 	left: 0;
-	top: 100px;
-	width: 160px;
-	height: calc(100vh - 100px);
+	top: 0;
+	width: 330px;
+	height: 100vh;
 	color: $white;
 	font-size: 14px;
-	background-color: $red;
+	background-color: $orange;
 	transition: $dur $ease;
 	z-index: 10;
 	will-change: scroll-position;
@@ -88,28 +87,28 @@
 }
 
 .styleguide__scrollspy-nav-list {
+	padding: 40px;
+
 	.list-group-item {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		padding: 3px 10px;
+		padding: 10px 20px;
 		color: $white;
-		border-bottom: 1px solid rgba($white, 0.1);
-		border-radius: 3px;
+		border-radius: 14px;
 		transition: $dur $ease;
 		position: relative;
 		@include text-overflow;
+		font-size: 18px;
+		text-transform: uppercase;
 
 		&.active {
-			color: $sg-orange;
-			background-color: $white;
-			border-bottom: 1px solid $red;
+			background-color: $pomegranate;
 		}
 
 		@include hover {
 			color: $sg-orange;
 			background-color: rgba($white, 0.9);
-			border-bottom: 1px solid $red;
 		}
 	}
 
@@ -204,7 +203,7 @@
 }
 
 .styleguide__section {
-	margin-bottom: 70px;
+	margin-bottom: 120px;
 }
 
 .styleguide__head {
@@ -224,24 +223,28 @@
     display: flex;
 	flex-wrap: wrap;
     margin: 0 -15px;
+	max-width: 800px;
 }
 
 .styleguide__colorpallet--mod {
-	padding: 15px;
+	padding: 0 15px 15px;
+	margin-bottom: 100px;
 }
 
 .styleguide__color {
     display: inline-block;
-    width: 120px;
-    height: 50px;
+	width: 123px;
+	height: 123px;
+	border-radius: 6px;
+
 }
 
 .styleguide__color-name {
     display: block;
     font-size: 16px;
-    color: #bebebe;
-    text-align: center;
-    margin: 20px 0 0;
+    color: $mine-shaft;
+    text-align: left;
+    margin: 10px 0 0;
 }
 
 .styleguide__typography-special-titles {
@@ -267,36 +270,34 @@
 }
 
 .styleguide__section-content {
-	border-style: dashed;
-	border-color: $sg-blue;
-	border-width: 1px 0;
 	position: relative;
+	border-bottom: 1px solid #e8edf6;
 
-	&::before,
-	&::after {
-		display: block;
-		background-color: $sg-blue;
-		padding: 1px;
-		color: $white;
-		text-align: center;
-		width: 120px;
-		font-size: 11px;
-		letter-spacing: 2px;
-		position: absolute;
-		left: 50%;
-	}
+	// &::before,
+	// &::after {
+	// 	display: block;
+	// 	background-color: $sg-blue;
+	// 	padding: 1px;
+	// 	color: $white;
+	// 	text-align: center;
+	// 	width: 120px;
+	// 	font-size: 11px;
+	// 	letter-spacing: 2px;
+	// 	position: absolute;
+	// 	left: 50%;
+	// }
 
-	&::before {
-		content: 'start section';
-		top: 0;
-		transform: translate(-50%, -100%);
-	}
+	// &::before {
+	// 	content: 'start section';
+	// 	top: 0;
+	// 	transform: translate(-50%, -100%);
+	// }
 
-	&::after {
-		content: 'end section';
-		bottom: 0;
-		transform: translate(-50%, 100%);
-	}
+	// &::after {
+	// 	content: 'end section';
+	// 	bottom: 0;
+	// 	transform: translate(-50%, 100%);
+	// }
 }
 
 .styleguide__fonts-items {
@@ -312,6 +313,12 @@
 
 .styleguide__icons-item {
 	padding: 0 10px;
+
+	.basic-icon {
+		svg {
+			max-height: 33px;
+		}
+	}
 }
 
 .styleguide__icons-name {
@@ -354,6 +361,7 @@
 	font-size: 60px;
 	font-style: italic;
 	margin-top: auto;
+	text-transform: uppercase;
 }
 
 .styleguide-basic__holder {
@@ -373,4 +381,141 @@
 
 .styleguide-basic__intro-image {
 	margin-top: auto;
+}
+
+.styleguide-section {
+	padding: 60px 0;
+}
+
+.styleguide-section__title {
+	color: $mine-shaft;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.styleguide-text {
+	color: $orange;
+	font-size: 18px;
+}
+
+.styleguide__font-block--example {
+	font-size: 90px;
+	line-height: 1;
+	margin-bottom: 10px;
+
+	&.font-main {
+		font-family: $font-main;
+	}
+}
+
+.styleguide__font-block--name {
+	text-transform: capitalize;
+}
+
+.styleguide__font-holder {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	margin-bottom: 90px;
+}
+
+.styleguide__font-block--item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding-right: 40px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: 20px;
+		top: 0;
+		width: 1px;
+		height: 100%;
+		background-color: #e8edf6;
+	}
+}
+
+.styleguide__font-block {
+	display: flex;
+    flex-direction: row;
+	margin: 0 55px 30px 0;
+	max-width: 215px;
+}
+
+.styleguide-holder {
+	position: relative;
+	padding-left: 345px;
+}
+
+.styleguide-sidebar {
+	background-color: $orange;
+	width: 220px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+	max-height: 100vh;
+	overflow-y: scroll;
+    overflow: auto;
+
+	// scroll
+	&::-webkit-scrollbar-track {
+		-webkit-box-shadow: none;
+		border-radius: 10px;
+		background-color: transparent;
+	}
+
+	&::-webkit-scrollbar {
+		width: 6px;
+		background-color: transparent;
+		height: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0 0 3px $watusi;
+		background-color: $watusi;
+	}
+}
+
+.styleguide__title-holder {
+	display: flex;
+
+}
+
+.styleguide__title {
+	position: relative;
+	padding-right: 40px;
+	width: 473px;
+	padding-bottom: 30px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: 20px;
+		top: 0;
+		height: 100%;
+		width: 1px;
+		background-color: #e8edf6;
+	}
+}
+
+.styleguide__form-elements--holder {
+	display: flex;
+}
+
+.styleguide__form-element {
+	margin: 0 25px 15px 0;
+}
+
+
+.styleguide-component__border {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	height: 30px;
+	transform: translate(-50%, 30px);
+	color: $tarawera;
+	font-size: 16px;
 }

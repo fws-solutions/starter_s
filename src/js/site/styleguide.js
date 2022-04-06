@@ -77,11 +77,11 @@ const Styleguide = {
 	},
 
 	getHtmlListItem: function(el, i) {
-		const svgIcon = this.getHtmlSvg();
+		// const svgIcon = this.getHtmlSvg();
 
 		return `
 			<li>
-				<a class="list-group-item" href="#section-${i}">${svgIcon}${$(el).attr(this.attrSectionTitle)}</a>
+				<a class="list-group-item" href="#section-${i}">${$(el).attr(this.attrSectionTitle)}</a>
 			</li>
 		`;
 	},

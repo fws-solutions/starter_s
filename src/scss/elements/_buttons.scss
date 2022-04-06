@@ -5,18 +5,39 @@ input[type='submit'],
 .btn {
 	display: inline-block;
 	text-align: center;
-	border: 1px solid $black;
-	border-radius: 30px;
-	background-color: $white;
-	color: $black;
-	padding: 5px 10px;
+	border-radius: 6px;
+	background-color: $dodger-blue;
+	color: $white;
+	padding: 19px 10px;
 	outline: none;
-	min-width: 200px;
+	min-width: 220px;
 	transition: $dur $ease;
+	border: none;
+	font-size: 17px;
 
 	@include hover {
-		background-color: $black;
-		color: $white;
+		background-color: $sapphire;
+	}
+
+	&.btn--sm {
+		min-width: 137px;
+	}
+
+	&.btn--icon {
+		min-width: 54px;
+		padding: 15px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: $watusi;
+
+		@include hover {
+			background-color: $orange;
+		}
+
+		.btn-icon {
+			height: 17px;
+		}
 	}
 }
 
@@ -25,13 +46,33 @@ input[type='submit'],
 	padding: 10px 20px;
 }
 
-.btn--green {
-	border: 1px solid $green;
-	background-color: $green;
+.btn--orange {
+	background-color: $orange;
 	color: $white;
 
 	@include hover {
+		background-color: $dodger-blue;
+	}
+}
+
+.btn--border {
+	background-color: $white;
+	color: $orange;
+	border: 2px solid $orange;
+
+	@include hover {
+		border-color: $dodger-blue;
+		color: $dodger-blue;
 		background-color: $white;
-		color: $green;
+	}
+}
+
+.btn--blue {
+	background-color: $pattens-blue;
+	color: $dodger-blue;
+
+	@include hover {
+		background-color: $dodger-blue;
+		color: $white;
 	}
 }

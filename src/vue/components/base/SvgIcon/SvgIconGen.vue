@@ -10,11 +10,24 @@
     import ArrowLeft from '../../../../assets/svg/ico-arrow-left.svg';
     import ArrowRight from '../../../../assets/svg/ico-arrow-right.svg';
     import ArrowUp from '../../../../assets/svg/ico-arrow-up.svg';
+    import Arrows from '../../../../assets/svg/ico-arrows.svg';
     import Bookmark from '../../../../assets/svg/ico-bookmark.svg';
+    import Cards from '../../../../assets/svg/ico-cards.svg';
+    import CaretDownSolid from '../../../../assets/svg/ico-caret-down-solid.svg';
+    import Document from '../../../../assets/svg/ico-document.svg';
     import Dog from '../../../../assets/svg/ico-dog.svg';
+    import EyeSlashRegular from '../../../../assets/svg/ico-eye-slash-regular.svg';
+    import Eye from '../../../../assets/svg/ico-eye.svg';
+    import Gps from '../../../../assets/svg/ico-gps.svg';
     import Happy from '../../../../assets/svg/ico-happy.svg';
+    import Info from '../../../../assets/svg/ico-info.svg';
     import Lock from '../../../../assets/svg/ico-lock.svg';
+    import Map from '../../../../assets/svg/ico-map.svg';
+    import Paper from '../../../../assets/svg/ico-paper.svg';
+    import Pen from '../../../../assets/svg/ico-pen.svg';
     import PlusCircle from '../../../../assets/svg/ico-plus-circle.svg';
+    import Tabs from '../../../../assets/svg/ico-tabs.svg';
+    import Trash from '../../../../assets/svg/ico-trash.svg';
     import User from '../../../../assets/svg/ico-user.svg';
 
     export default {
@@ -29,11 +42,24 @@
             ArrowLeft,
             ArrowRight,
             ArrowUp,
+            Arrows,
             Bookmark,
+            Cards,
+            CaretDownSolid,
+            Document,
             Dog,
+            EyeSlashRegular,
+            Eye,
+            Gps,
             Happy,
+            Info,
             Lock,
+            Map,
+            Paper,
+            Pen,
             PlusCircle,
+            Tabs,
+            Trash,
             User,
 
         },

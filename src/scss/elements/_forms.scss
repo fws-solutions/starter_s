@@ -17,17 +17,25 @@ input[type='datetime'],
 input[type='datetime-local'],
 input[type='color'],
 textarea {
-	color: $grey;
+	color: $martinique;
 	background-color: $white;
-	background-image: linear-gradient(rgba($white, 0), rgba($white, 0));
-	border: 1px solid $grey-mid;
-	border-radius: 3px;
+	border: 1px solid transparent;
+	border-radius: 6px;
 	display: block;
-	padding: 10px;
+	padding: 18px 30px;
 	width: 100%;
+	font-size: 17px;
 
 	&:invalid {
 		background-color: rgba($red, 0.025);
+	}
+
+	&::placeholder {
+		color: $gray-suit;
+	}
+
+	&:focus {
+		border: 1px solid $dodger-blue;
 	}
 }
 
@@ -103,3 +111,5 @@ input[type='submit'] {
 	max-width: 80px;
 	margin: 0 auto 15px;
 }
+
+

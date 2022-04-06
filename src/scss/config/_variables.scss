@@ -11,6 +11,8 @@ $font-third: 'univia-pro', $font-default-serif;
 
 $site-fonts: (
 	'font-main': $font-main,
+	'font-second': $font-second,
+	'font-third': $font-third,
 ) !default;
 
 // Colors
@@ -23,13 +25,24 @@ $black: #000;
 $red: #e2401c;
 $green: #4fc08d;
 $blue: #3d9cd2;
-
 $orange: #fe4b2e;
 $black-smooth: #2f3034;
 $grey-soft: #d5d5d5;
 $grey-mild: #b1b1b1;
 $grey-darker: #055d64;
 $grey-thin: #2e2e30;
+$mine-shaft: #282828;
+$sapphire: #335099;
+$dodger-blue: #5c92ff;
+$pattens-blue: #d4e5ff;
+$mystic: #e1e6ee;
+$watusi: #fed5ce;
+$pot-pourri: #efd8d4;
+$pearl-bush: #efe8e2;
+$pomegranate: #e83012;
+$martinique: #3f3356;
+$gray-suit: #d0c9d6;
+$tarawera: #0a3149;
 
 $site-colors: (
 	'grey-thin': $grey-thin,
@@ -47,6 +60,19 @@ $site-colors: (
 	'grey-soft': $grey-soft,
 	'grey-darker': $grey-darker,
 	'black-smooth': $black-smooth,
+	'mine-shaft': $mine-shaft,
+	'sapphire': $sapphire,
+	'dodger-blue': $dodger-blue,
+	'pattens-blue': $pattens-blue,
+	'mystic': $mystic,
+	'watusi': $watusi,
+	'pot-pourri': $pot-pourri,
+	'pearl-bush': $pearl-bush,
+	'pomegranate': $pomegranate,
+	'martinique': $martinique,
+	'gray-suit': $gray-suit,
+	'tarawera': $tarawera
+
 ) !default;
 
 // 404 - Set this color to follow site style
