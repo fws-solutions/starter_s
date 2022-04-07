@@ -22,6 +22,10 @@ get_header(); ?>
 						</ul>
 					</div>
 					<!-- <a href="javascript:;" class="styleguide__scrollspy-nav-open js-styleguide-open"><?php echo fws()->render()->inlineSVG('ico-arrow-right', 'styleguide-open-icon'); ?></a> -->
+
+					<div class="styleguide-basic__image styleguide-basic__intro-image">
+						<img class="styleguide-intro__image--img" src="<?php echo fws()->images()->assetsSrc('logo.svg'); ?>" alt="<?php bloginfo( 'name' ); ?> Logo" title="<?php bloginfo( 'name' ); ?>">
+					</div>
 				</div>
 
 				<?php
