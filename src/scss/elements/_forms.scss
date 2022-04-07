@@ -407,3 +407,63 @@ input::-moz-focus-outer { //sass-lint:disable-line no-vendor-prefixes
 	}
 }
 
+
+
+
+//IE fix
+@include browser-support(ie) {
+	.range-slider__range {
+		-webkit-appearance: none; //sass-lint:disable-line no-vendor-prefixes
+	}
+
+	.range-slider__range:focus {
+		outline: none;
+	}
+
+	.range-slider__range::-webkit-slider-runnable-track { //sass-lint:disable-line no-vendor-prefixes
+		background: rgb(239, 239, 239);
+		border: 1px solid rgb(178, 178, 178);
+		border-radius: 25px;
+		cursor: pointer;
+		height: 8px;
+	}
+
+	.range-slider__range::-webkit-slider-thumb { //sass-lint:disable-line no-vendor-prefixes
+		-webkit-appearance: none; //sass-lint:disable-line no-vendor-prefixes
+		background: rgb(7, 114, 251);
+		border: 0;
+		border-radius: 16px;
+		cursor: pointer;
+		height: 16px;
+		margin-top: -5px;
+		width: 16px;
+	}
+
+	.range-slider__range::-moz-range-track { //sass-lint:disable-line no-vendor-prefixes
+		/* FF Range track */
+		background: rgb(239, 239, 239);
+		border: 3px solid rgb(178, 178, 178);
+		border-radius: 25px;
+		cursor: pointer;
+		height: 8px;
+	}
+
+	.range-slider__range::-moz-range-thumb { //sass-lint:disable-line no-vendor-prefixes
+		/* FF Range thumb */
+		background: rgb(7, 114, 251);
+		border: 0;
+		border-radius: 16px;
+		cursor: pointer;
+		height: 16px;
+		width: 16px;
+	}
+
+	.range-slider__range::-ms-track { //sass-lint:disable-line no-vendor-prefixes
+		/* IE Range track */
+		background: transparent;
+		border-color: transparent;
+		border-width: 5px 0; /* allows taller thumb */
+		color: transparent;
+		height: 8px;
+	}
+}

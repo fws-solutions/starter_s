@@ -195,13 +195,13 @@
 
 .styleguide__section {
 	margin-bottom: 120px;
+	margin-left: 345px;
+	position: relative;
+	border-bottom: 1px solid #e8edf6;
 }
 
 .styleguide__head {
-    width: 100%;
-    padding: 0 0 20px;
-    border-bottom: 1px solid $sg-orange;
-    margin: 0 0 55px;
+	margin-bottom: 50px;
 }
 
 .styleguide__head--mod {
@@ -331,7 +331,8 @@
 }
 
 // remove header and footer from styleguide page
-.page-template-styleguide {
+.page-template-styleguide,
+.page-template-page-styleguide {
 	padding-top: 0;
 	margin-top: 0;
 
@@ -521,8 +522,8 @@
 }
 
 //IE fix
-	@include browser-support(ie) {
-	 .styleguide__title {
+@include browser-support(ie) {
+	.styleguide__title {
 		min-width: 473px;
 	}
 }

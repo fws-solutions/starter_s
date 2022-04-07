@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Styleguide Page Old
+ * Template Name: Styleguide Page
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
  *
@@ -22,10 +22,6 @@ get_header(); ?>
 						</ul>
 					</div>
 					<!-- <a href="javascript:;" class="styleguide__scrollspy-nav-open js-styleguide-open"><?php echo fws()->render()->inlineSVG('ico-arrow-right', 'styleguide-open-icon'); ?></a> -->
-				</div>
-
-				<div class="container">
-					<h1 class="styleguide__main-head">UI Style Guide</h1>
 				</div>
 
 				<?php
