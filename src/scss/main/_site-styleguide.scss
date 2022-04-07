@@ -521,6 +521,10 @@
 	padding-bottom: 100px;
 }
 
+.styleguide__body {
+	padding-bottom: 80px;
+}
+
 //IE fix
 @include browser-support(ie) {
 	.styleguide__title {
