@@ -30,6 +30,9 @@
 	@if $icon == ico-caret-down-solid {
 		$path: '../assets/svg/ico-caret-down-solid.svg'
 	}
+	@if $icon == ico-close {
+		$path: '../assets/svg/ico-close.svg'
+	}
 	@if $icon == ico-document {
 		$path: '../assets/svg/ico-document.svg'
 	}

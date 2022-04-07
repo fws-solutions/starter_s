@@ -33,6 +33,7 @@
 			min-width: 240px;
 			border-radius: 6px;
 			transition: 200ms $ease;
+			box-shadow: 0 7px 13px rgba(212, 229, 255, 0.24);
 
 			@include hover {
 				border-color: $dodger-blue;

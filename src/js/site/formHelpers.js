@@ -47,7 +47,7 @@ const FormHelpers = {
 				$(FormHelpers.strCF7Holder).removeClass(FormHelpers.classSent);
 			}, 5000);
 		}
-	}
+	},
 };
 
 export default FormHelpers;

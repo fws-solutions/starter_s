@@ -26,22 +26,12 @@
 	border-left: 2px solid $red;
 	border-right: 2px solid $red;
 	padding-bottom: 20px;
+	display: flex;
+    flex-direction: column;
+	justify-content: space-between;
 
 	&.is-hidden {
 		transform: translateX(-100%);
-	}
-
-	&::after {
-		content: '';
-		position: absolute;
-		bottom: 10px;
-		left: 0;
-		width: 100%;
-		height: 50px;
-		background: linear-gradient(to bottom, rgba(226, 64, 28, 0.1) 4%, rgba(226, 64, 28, 0.25) 27% , rgba(226, 64, 28, 0.32) 42%, rgba(226, 64, 28, 0.7) 70%, rgba(226, 64, 28, 95) 100%);
-		z-index: 1;
-		pointer-events: none;
-		transition: $dur $ease;
 	}
 
 	&.hideFade {
@@ -51,6 +41,7 @@
 	}
 }
 
+
 .styleguide-nav-list-holder {
 	position: relative;
 	height: calc(100vh - 195px);
@@ -59,7 +50,7 @@
 	.ps__rail-y {
 		width: 5px;
 		border-radius: 1px;
-		background-color: $white;
+		background-color: $red;
 		opacity: 0.2;
 	}
 
@@ -266,7 +257,7 @@
 }
 
 .styleguide__btn {
-	padding: 15px;
+	padding: 0 15px 15px;
 }
 
 .styleguide__section-content {
@@ -309,14 +300,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0 -10px;
+	max-width: 500px;
 }
 
 .styleguide__icons-item {
-	padding: 0 10px;
+	padding: 0 30px 45px 0;
 
 	.basic-icon {
 		svg {
-			max-height: 33px;
+			max-height: 30px;
 		}
 	}
 }
@@ -380,7 +372,10 @@
 }
 
 .styleguide-basic__intro-image {
-	margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 30px 70px;
 }
 
 .styleguide-section {
@@ -460,21 +455,21 @@
     overflow: auto;
 
 	// scroll
-	&::-webkit-scrollbar-track {
-		-webkit-box-shadow: none;
+	&::-webkit-scrollbar-track { //sass-lint:disable-line no-vendor-prefixes
+		-webkit-box-shadow: none; //sass-lint:disable-line no-vendor-prefixes
 		border-radius: 10px;
 		background-color: transparent;
 	}
 
-	&::-webkit-scrollbar {
+	&::-webkit-scrollbar { //sass-lint:disable-line no-vendor-prefixes
 		width: 6px;
 		background-color: transparent;
 		height: 6px;
 	}
 
-	&::-webkit-scrollbar-thumb {
+	&::-webkit-scrollbar-thumb { //sass-lint:disable-line no-vendor-prefixes
 		border-radius: 10px;
-		-webkit-box-shadow: inset 0 0 3px $watusi;
+		-webkit-box-shadow: inset 0 0 3px $watusi; //sass-lint:disable-line no-vendor-prefixes
 		background-color: $watusi;
 	}
 }
@@ -503,10 +498,11 @@
 
 .styleguide__form-elements--holder {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .styleguide__form-element {
-	margin: 0 25px 15px 0;
+	margin: 0 100px 70px 0;
 }
 
 
@@ -517,5 +513,9 @@
 	height: 30px;
 	transform: translate(-50%, 30px);
 	color: $tarawera;
-	font-size: 16px;
+	font-size: 17px;
+}
+
+.styleguide__section-inner {
+	padding-bottom: 100px;
 }

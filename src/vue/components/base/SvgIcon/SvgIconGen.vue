@@ -14,6 +14,7 @@
     import Bookmark from '../../../../assets/svg/ico-bookmark.svg';
     import Cards from '../../../../assets/svg/ico-cards.svg';
     import CaretDownSolid from '../../../../assets/svg/ico-caret-down-solid.svg';
+    import Close from '../../../../assets/svg/ico-close.svg';
     import Document from '../../../../assets/svg/ico-document.svg';
     import Dog from '../../../../assets/svg/ico-dog.svg';
     import EyeSlashRegular from '../../../../assets/svg/ico-eye-slash-regular.svg';
@@ -46,6 +47,7 @@
             Bookmark,
             Cards,
             CaretDownSolid,
+            Close,
             Document,
             Dog,
             EyeSlashRegular,
