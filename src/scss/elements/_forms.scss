@@ -347,16 +347,6 @@ input[type='submit'] {
 	}
 }
 
-// Firefox Overrides
-::-moz-range-track { //sass-lint:disable-line no-vendor-prefixes
-    background: $dodger-blue;
-    border: 0;
-}
-input::-moz-focus-inner, //sass-lint:disable-line no-vendor-prefixes
-input::-moz-focus-outer { //sass-lint:disable-line no-vendor-prefixes
-  	border: 0;
-}
-
 
 // Pills
 .pills {
