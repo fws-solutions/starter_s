@@ -35,6 +35,10 @@ textarea {
 		color: $gray-suit;
 	}
 
+	@include hover {
+		border: 1px solid $pattens-blue;
+	}
+
 	&:focus {
 		border: 1px solid $dodger-blue;
 	}
@@ -289,42 +293,15 @@ input[type='submit'] {
 }
 
 // Range Slider
-.range-slider {
-	width: 300px;
-}
+.range {
+	$track-height: 10px;
+	$track-color-fill: $dodger-blue;
+	$track-color-background: #e2e2ea;
+	$thumb-size: $track-height * 3;
 
-.range-slider__range {
-	-webkit-appearance: none; //sass-lint:disable-line no-vendor-prefixes
-	width: calc(100% - 60px);
-	height: 5px;
-	border-radius: 5px;
-	background: $dodger-blue;
-	outline: none;
-	padding: 0;
-	margin: 0;
-	cursor: pointer;
-
-	&::-webkit-slider-thumb { //sass-lint:disable-line no-vendor-prefixes
-		appearance: none;
-		width: 30px;
-		height: 30px;
-		border-radius: 50%;
-		background: $dodger-blue;
-		cursor: pointer;
-		transition: .15s ease-in-out;
-
-		&:hover {
-			background: $dodger-blue;
-		}
-  	}
-
-	&:active::-webkit-slider-thumb { //sass-lint:disable-line no-vendor-prefixes
-		background: $dodger-blue;
-	}
-
-	&::-moz-range-thumb { //sass-lint:disable-line no-vendor-prefixes
-		width: 30px;
-		height: 30px;
+	@mixin range-thumb {
+		width: 40px;
+		height: 40px;
 		border: 0;
 		border-radius: 50%;
 		background: $dodger-blue;
@@ -336,17 +313,103 @@ input[type='submit'] {
 		}
 	}
 
-	&:active::-moz-range-thumb { //sass-lint:disable-line no-vendor-prefixes
-		background: $dodger-blue;
+	@mixin range-track {
+	  background: linear-gradient(to left,
+	  $track-color-background 100%,
+	  $track-color-fill 0%);
+	  max-width: 100%;
+	  width: 300px;
+	  position: relative;
+	  border: none;
+	  border-radius: 20px;
+	  height: 5px;
+	  appearance: none;
 	}
 
-	&:hover {
+	@include range-track;
+
+	[type='range'] {
+		appearance: none;
+		background: transparent;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		height: $thumb-size;
+
+		&:focus {
+			outline: none;
+		}
+
+		&::-webkit-slider-runnable-track {//sass-lint:disable-line no-vendor-prefixes
+			background: transparent;
+		}
+
+		&::-moz-range-track {//sass-lint:disable-line no-vendor-prefixes
+			background: transparent;
+		}
+
 		&::-webkit-slider-thumb { //sass-lint:disable-line no-vendor-prefixes
-			box-shadow: 0 0 0 0 $white, 0 0 0 8px rgba(212, 229, 255, 0.5);
+			appearance: none;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background: $dodger-blue;
+			cursor: pointer;
+			transition: .15s ease-in-out;
+
+			&:hover {
+				background: $dodger-blue;
+			}
+		}
+
+		&:active::-webkit-slider-thumb { //sass-lint:disable-line no-vendor-prefixes
+			background: $dodger-blue;
+		}
+
+		&::-moz-range-thumb { //sass-lint:disable-line no-vendor-prefixes
+			width: 30px;
+			height: 30px;
+			border: 0;
+			border-radius: 50%;
+			background: $dodger-blue;
+			cursor: pointer;
+			transition: .15s ease-in-out;
+
+			&:hover {
+				background: $dodger-blue;
+			}
+		}
+
+		// IE Styles
+		&::-ms-fill-lower {//sass-lint:disable-line no-vendor-prefixes
+			background: $track-color-fill;
+		}
+
+		&::-ms-fill-upper {//sass-lint:disable-line no-vendor-prefixes
+			background: $track-color-background;
+		}
+
+		&::-ms-track {//sass-lint:disable-line no-vendor-prefixes
+			color: transparent;
+			border: 0 solid transparent;
+			background: transparent;
+		}
+
+		&::-ms-tooltip {//sass-lint:disable-line no-vendor-prefixes
+			display: none;
+		}
+
+		&:hover {
+			&::-webkit-slider-thumb { //sass-lint:disable-line no-vendor-prefixes
+				box-shadow: 0 0 0 0 $white, 0 0 0 8px rgba(212, 229, 255, 0.5);
+			}
 		}
 	}
 }
-
 
 // Pills
 .pills {

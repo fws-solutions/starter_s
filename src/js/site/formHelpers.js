@@ -17,6 +17,7 @@ const FormHelpers = {
 	init: function() {
 		this.checkIfIE();
 		this.afterFormSubmit();
+		this.rangeSlider();
 	},
 
 	/**
@@ -46,6 +47,30 @@ const FormHelpers = {
 			setTimeout(() => {
 				$(FormHelpers.strCF7Holder).removeClass(FormHelpers.classSent);
 			}, 5000);
+		}
+	},
+	rangeSlider() {
+		const elRangeInputs = document.querySelectorAll('.range');
+
+		function setProgress(elTarget) {
+			const elRangeBar = elTarget.parentElement;
+			const intThumbWidth = elRangeBar.clientHeight * 3;
+			const intRangeBarWidth = elRangeBar.clientWidth - intThumbWidth;
+			const intThumbWidthOffset = intThumbWidth / 2;
+			const intProgressPosition = (elTarget.value - elTarget.min) / (elTarget.max - elTarget.min);
+			const intRangePosition = (intRangeBarWidth * intProgressPosition) + intThumbWidthOffset;
+
+			elRangeBar.style.background =
+				'linear-gradient(to right, #5c92ff ' +
+				intRangePosition + 'px, #e2e2ea ' +
+				intRangePosition + 'px';
+		}
+
+		for (let i = 0; i < elRangeInputs.length; i++) {
+			elRangeInputs[i].firstElementChild.addEventListener('input', function() {
+				setProgress(this);
+			});
+			setProgress(elRangeInputs[i].firstElementChild);
 		}
 	},
 };

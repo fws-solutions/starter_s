@@ -497,8 +497,8 @@ $buttons_html = ob_get_contents();
 					</span>
 				</div>
 				<div class="styleguide__form-element">
-					<div class="range-slider">
-						<input class="range-slider__range" type="range" value="100" min="0" max="500">
+					<div class="range">
+						<input type="range" min="0" max="100" step="1">
 					</div>
 				</div>
 				<div class="styleguide__form-element">
