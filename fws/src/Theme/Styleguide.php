@@ -41,7 +41,7 @@ class Styleguide extends Singleton
      */
     private function styleguide_render_template_views(array $template_views): void
     {
-        $counter = 6;
+        $counter = 7;
         $temp_dir_root = 'template-views/blocks';
 
         foreach ($template_views as $t) {
