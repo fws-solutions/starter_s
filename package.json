@@ -18,7 +18,7 @@
 	},
 	"dependencies": {
 		"@fancyapps/fancybox": "^3.5.7",
-		"axios": "^0.21.1",
+		"axios": "^0.21.2",
 		"bootstrap": "^4.5.3",
 		"core-js": "^3.8.1",
 		"lodash.startcase": "^4.4.0",
