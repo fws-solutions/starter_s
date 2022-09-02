@@ -13,7 +13,7 @@
 	width: 100%;
 	height: 100px;
 	z-index: 1001;
-	transition: $dur / 2 $ease;
+	transition: calc($dur / 2) $ease;
 	will-change: transform;
 
 	&.is-sticky {

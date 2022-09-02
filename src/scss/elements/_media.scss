@@ -50,7 +50,7 @@
 		background: $grey-light;
 		margin-top: -20px;
 		animation: lazyPreloading 800ms ease infinite;
-		transition: $dur / 2 $ease;
+		transition: calc($dur / 2) $ease;
 		@include center;
 	}
 
@@ -153,7 +153,7 @@ object {
 	// Loops to enumerate the classes for gallery columns.
 	@for $i from 2 through 9 {
 		.gallery-columns-#{$i} & {
-			max-width: (100% / $i);
+			max-width: calc(100% / $i);
 		}
 	}
 }

@@ -49,19 +49,17 @@ export default {
 
 <style lang="scss" scoped>
 .gallery {
-	/deep/ {
-		.slick-slide > div {
-			outline: 0;
-		}
+	.slick-slide > div {
+		outline: 0;
+	}
 
-		.media-wrap {
-			outline: 0;
-			display: block !important;
-		}
+	.media-wrap {
+		outline: 0;
+		display: block !important;
+	}
 
-		.media-item {
-			pointer-events: none;
-		}
+	.media-item {
+		pointer-events: none;
 	}
 }
 </style>
