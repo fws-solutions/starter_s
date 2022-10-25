@@ -27,16 +27,18 @@ $google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' )
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<!-- TODO: Add Google Analytics Tag Code in the Theme Settings. -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_analytics_tag_code ?>"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
+	<?php if($google_analytics_tag_code): ?>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_analytics_tag_code ?>"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
 
-		gtag('config', '<?php echo $google_analytics_tag_code ?>');
-	</script>
+			gtag('config', '<?php echo $google_analytics_tag_code ?>');
+		</script>
+	<?php endif; ?>
 
 	<?php wp_head(); ?>
 </head>
