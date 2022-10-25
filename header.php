@@ -9,7 +9,7 @@
  * @package fws_starter_s
  */
 
-$google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' );
+$google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' ) ?? '';
 
 ?>
 <!doctype html>
