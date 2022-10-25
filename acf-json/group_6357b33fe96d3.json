@@ -1,0 +1,43 @@
+{
+    "key": "group_6357b33fe96d3",
+    "title": "Settings",
+    "fields": [
+        {
+            "key": "field_6357b3a3c99cb",
+            "label": "Google Analytics Tag Code",
+            "name": "google_analytics_tag_code",
+            "type": "text",
+            "instructions": "Field Description - Insert the Google Analytics ID Code. Example <script async src=\"https:\/\/www.googletagmanager.com\/gtag\/js?id=<b>G-SK4WZ6N51Z<\/b>><\/script>",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "fws-settings"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1666692238
+}
