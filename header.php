@@ -9,6 +9,8 @@
  * @package fws_starter_s
  */
 
+$google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' );
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -22,6 +24,19 @@
 	<!-- TODO: Preload all fonts in this manner that are used in the project. Make sure only .woff2 versions are preloaded. -->
 	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Bold.woff2" as="font" crossorigin />
 	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Regular.woff2" as="font" crossorigin />
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- TODO: Add Google Analytics Tag Code in the Theme Settings. -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_analytics_tag_code ?>"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+
+		gtag('config', '<?php echo $google_analytics_tag_code ?>');
+	</script>
 
 	<?php wp_head(); ?>
 </head>
