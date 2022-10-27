@@ -63,7 +63,7 @@
 		"gulp-sass-lint": "^1.4.0",
 		"gulp-sourcemaps": "^3.0.0",
 		"gulp-tap": "^2.0.0",
-		"node-sass": "^7.0.1",
+		"node-sass": "^7.0.3",
 		"postcss": "^8.4.16",
 		"postcss-flexbugs-fixes": "^5.0.2",
 		"postcss-inline-svg": "^5.0.0",
