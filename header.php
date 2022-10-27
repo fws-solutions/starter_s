@@ -9,7 +9,7 @@
  * @package fws_starter_s
  */
 
-$google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' ) ?? '';
+$google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' ) ?? false;
 
 ?>
 <!doctype html>
@@ -26,7 +26,7 @@ $google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' )
 	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Regular.woff2" as="font" crossorigin />
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<!-- TODO: Add Google Analytics Tag Code in the Theme Settings. -->
+	<!-- Add Google Analytics Tag Code in the Theme Settings. -->
 	<?php if($google_analytics_tag_code): ?>
 		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_analytics_tag_code ?>"></script>
 		<script>
