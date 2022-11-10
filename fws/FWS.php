@@ -19,6 +19,7 @@ use FWS\Theme\Media\Images as ThemeImages;
 use FWS\Theme\Media\Resizer as ThemeResizer;
 use FWS\Theme\Render as ThemeRender;
 use FWS\Theme\Styleguide as ThemeStyleguide;
+use FWS\Theme\Security as ThemeSecurity;
 use FWS\WC\Hooks as WCHooks;
 use FWS\WC\Render as WCRender;
 use FWS\CF7\Hooks as CF7Hooks;
@@ -73,6 +74,7 @@ class FWS extends Singleton
 		ThemeMenus::init();
 		ThemeSectionWrappers::init();
 		ThemeWPLogin::init();
+        ThemeSecurity::init();
 
 		// Theme Stuff
 		$this->render = ThemeRender::init();

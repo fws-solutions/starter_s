@@ -4,7 +4,7 @@ global:                                             # GLOBAL SETTINGS
     theme-name: 'FWS Starter _S'                    # set theme full name
     recovery-mode-emails:                           # change the fatal error handler email address from admin's to our internal
         - 'nick@forwardslashny.com'
-        - 'boris@forwardslashny.com'
+        - 'miroslav@forwardslashny.com'
         - 'petar@forwardslashny.com'
         - 'dusan@forwardslashny.com'
     prevent-plugin-update:                          # only users logged in with declared email domain are allowed to add/update/remove plugins
