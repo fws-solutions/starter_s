@@ -16,6 +16,7 @@ class CustomSetup extends SingletonHook
 	/** @var self */
 	protected static $instance;
 
+
 	/**
 	 * Only users logged in with declared email domain are allowed to add/update/remove plugins
 	 */
@@ -30,6 +31,7 @@ class CustomSetup extends SingletonHook
 		}
 	}
 
+
 	/**
 	 * Plugin dependencies
 	 */
@@ -39,6 +41,7 @@ class CustomSetup extends SingletonHook
 			echo '<div class="error"><p>' . __( 'Warning: The theme needs ACF Pro plugin to function', 'fws_starter_s' ) . '</p></div>';
 		}
 	}
+
 
 	/**
 	 * Change the fatal error handler email address from admin's to our internal
@@ -56,6 +59,32 @@ class CustomSetup extends SingletonHook
 		return $data;
 	}
 
+
+    /**
+     * Script for disabling "Customizer" functionality
+     */
+    protected function disableCustomizer()
+    {
+        add_filter('map_meta_cap', static function (array $caps = [], string $cap = ''): array {
+            return $cap === 'customize' ? ['nope'] : $caps;
+        }, 10, 4);
+        add_action('admin_init', [$this, 'disableCustomizerAdmin'], 10);
+    }
+
+
+    /**
+     * Hide "Customizer" links from admin dashboard.
+     */
+    public function disableCustomizerAdmin()
+    {
+        remove_action('plugins_loaded', '_wp_customize_include', 10);
+        remove_action('admin_enqueue_scripts','_wp_customize_loader_settings',11);
+        add_action('load-customize.php', static function () {
+            wp_die('Customizer feature is disabled.');
+        });
+    }
+
+
 	/**
 	 * Drop your hooks here.
 	 */
@@ -64,5 +93,7 @@ class CustomSetup extends SingletonHook
 		add_action( 'admin_init', [ $this, 'preventPluginUpdate' ] );
 		add_action( 'admin_notices', [ $this, 'dependenciesNotice' ] );
 		add_filter( 'recovery_mode_email', [ $this, 'recoveryModeEmail' ] );
+
+        $this->disableCustomizer();
 	}
 }
