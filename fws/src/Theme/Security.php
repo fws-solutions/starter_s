@@ -14,11 +14,57 @@ class Security
     /**
      * Initialization.
      */
-	public static function init(): void
+    public static function init(): void
     {
+        self::disableXmlRpc();
         self::disableRestUsersEnumeration();
         self::disableAuthorEnumeration();
         self::disableAuthorPage();
+        self::disableThemeSwitching();
+        self::disableUpdatingPlugins();
+    }
+
+
+    /**
+     * Check whether logged-in user is registered super-admin.
+     *
+     * @return bool
+     */
+    public static function isSuperAdmin(): bool
+    {
+        $user = wp_get_current_user();
+        return $user->user_email && in_array($user->user_email, fws()->config()->superadminEmails(), true);
+    }
+
+
+    /**
+     * Return true if current environment is registered as allowed-localhost in configuration.
+     *
+     * @return bool
+     */
+    public static function isLocalEnvironment(): bool
+    {
+        static $cached = null;
+        if ($cached === null) {
+            $cached = false;
+            $home = home_url();
+            foreach (fws()->config()->allowedLocalhosts() as $host) {
+                if (strpos($home, $host) !== false) {
+                    $cached = true;
+                }
+            }
+        }
+        return $cached;
+    }
+
+
+    /**
+     * Turn off access through xmlrpc.php file.
+     * It is recommended to block access via apache/nginx too, for better performances.
+     */
+    protected static function disableXmlRpc(): void
+    {
+        add_filter('xmlrpc_enabled', '__return_false');
     }
 
 
@@ -27,9 +73,9 @@ class Security
      */
     protected static function disableRestUsersEnumeration(): void
     {
-        // remove "/wp/v2/users*" routes
-        add_filter('rest_endpoints', static function ($endpoints): array {
+        add_filter('rest_endpoints', static function (array $endpoints): array {
             foreach (array_keys($endpoints) as $route) {
+                // remove "/wp/v2/users*" routes
                 if (substr($route, 0, 12) === '/wp/v2/users') {
                     unset($endpoints[$route]);
                 }
@@ -46,7 +92,7 @@ class Security
     {
         if (!is_admin()) {
             if (preg_match('/author=([0-9]*)/i', sanitize_text_field($_SERVER['QUERY_STRING'] ?? ''))) {
-                //die();
+                die();
             }
             add_filter('redirect_canonical', [__CLASS__, 'stopAuthorCanonicalLink'], 10, 2);
         }
@@ -93,6 +139,47 @@ class Security
         status_header(404);
         get_template_part('404');
         die();
+    }
+
+
+    /**
+     * Prevent switching active theme.
+     */
+    protected static function disableThemeSwitching(): void
+    {
+        // allow anyone in localhost and for superadmin anywhere
+        if (self::isLocalEnvironment() || self::isSuperAdmin()) {
+            return;
+        }
+
+        // deny
+        add_filter('map_meta_cap', static function (array $caps = [], string $cap = ''): array {
+            return $cap === 'switch_themes' ? ['nope'] : $caps;
+        }, 11, 2);
+    }
+
+
+    /**
+     * Prevent plugins/themes updating.
+     */
+    protected static function disableUpdatingPlugins(): void
+    {
+        add_action('admin_init', [__CLASS__, 'preventPluginsUpdateHook']);
+    }
+
+
+    /**
+     * Only superadmins are allowed to add/update/remove plugins/themes on external servers.
+     */
+    public function preventPluginsUpdateHook(): void
+    {
+        // allow updating if: rule switched-off or for super-admin or in localhost
+        if (!fws()->config()->pluginsOnlyLocalEditing() || self::isSuperAdmin() || self::isLocalEnvironment()) {
+            return;
+        }
+
+        // deny
+        add_filter('file_mod_allowed', '__return_false');
     }
 
 }

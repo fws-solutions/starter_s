@@ -67,35 +67,37 @@ class Config extends Singleton
 		return (string) $this->config['global']['theme-name'] ?? '';
 	}
 
-	/**
-	 * the fatal error handler email addresses
-	 *
-	 * @return array
-	 */
-	public function recoveryModeEmails(): array
-	{
-		return (array) $this->config['global']['recovery-mode-emails'] ?? [];
-	}
+    /**
+     * the fatal error handler email addresses
+     *
+     * @return array
+     */
+    public function superadminEmails(): array
+    {
+        return (array) ($this->config['global']['superadmin-emails'] ?? []);
+    }
 
-	/**
-	 * Is allowed to add/update/remove plugins
-	 *
-	 * @return bool
-	 */
-	public function preventPluginUpdate(): bool
-	{
-		return (bool) $this->config['global']['prevent-plugin-update']['enable'] ?? false;
-	}
 
-	/**
-	 * Only users with email address with this domain can add/update/remove plugins
-	 *
-	 * @return string
-	 */
-	public function pluginUpdatesAllowedDomain(): string
-	{
-		return (string) $this->config['global']['prevent-plugin-update']['domain'] ?? '';
-	}
+    /**
+     * Get list of domains that will be recognized as local environment.
+     *
+     * @return array
+     */
+    public function allowedLocalhosts(): array
+    {
+        return (array) ($this->config['global']['allowed-localhosts'] ?? []);
+    }
+
+
+    /**
+     * Plugins and themes can be added/updated/deleted on local environment, or by superadmins on any host.
+     *
+     * @return bool
+     */
+    public function pluginsOnlyLocalEditing(): bool
+    {
+        return boolval($this->config['global']['plugins-only-local-editing'] ?? true);
+    }
 
 	/**
 	 * ACF only possible to edit and manage on local environment
@@ -104,7 +106,7 @@ class Config extends Singleton
 	 */
 	public function acfOnlyLocalEditing(): bool
 	{
-		return (bool) $this->config['global']['acf-only-local-editing']['enable'] ?? false;
+        return boolval($this->config['global']['acf-only-local-editing'] ?? false);
 	}
 
 	/**

@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 namespace FWS\ACF;
 
 use FWS\SingletonHook;
+use FWS\Theme\Security;
 use WP_Term;
 
 /**
@@ -383,22 +384,21 @@ class Hooks extends SingletonHook
 	{
 		global $current_screen;
 
-		// Bail if disabled in .fwsconfig.yml
-		if ( ! fws()->config()->acfOnlyLocalEditing() ) {
-			return;
-		}
+        // Show only on ACF group edit page
+        if ($current_screen->post_type !== 'acf-field-group') {
+            return;
+        }
 
-		// Show only on ACF group edit page
-		if ( $current_screen->post_type !== 'acf-field-group' ) {
-			return;
-		}
+        // Bail if disabled in .fwsconfig.yml
+        if (!fws()->config()->acfOnlyLocalEditing()) {
+            return;
+        }
 
-		// Bail if current host is allowed
-		foreach ( fws()->config()->acfOnlyLocalEditingAllowedHosts() as $host ) {
-			if ( strpos( home_url(), $host ) !== false ) {
-				return;
-			}
-		} ?>
+        // Bail if current host is allowed
+        if (Security::isLocalEnvironment()) {
+            return;
+        }
+        ?>
 
 		<div class="notice notice-error">
 			<p><strong>You are not allowed to edit ACF fields on this server!</strong></p>
@@ -415,22 +415,20 @@ class Hooks extends SingletonHook
 	 */
 	public function preventEditingGroups( int $postID, array $data ): void
 	{
-		// Bail if disabled in .fwsconfig.yml
-		if ( ! fws()->config()->acfOnlyLocalEditing() ) {
-			return;
-		}
+        // Bail if on wrong post_type page
+        if ($data['post_type'] !== 'acf-field-group') {
+            return;
+        }
 
-		// Bail if current host is allowed
-		foreach ( fws()->config()->acfOnlyLocalEditingAllowedHosts() as $host ) {
-			if ( strpos( home_url(), $host ) !== false ) {
-				return;
-			}
-		}
+        // Bail if rule disabled in .fwsconfig.yml
+        if (!fws()->config()->acfOnlyLocalEditing()) {
+            return;
+        }
 
-		// Bail if on wrong post_type page
-		if ( $data['post_type'] !== 'acf-field-group' ) {
-			return;
-		}
+        // Bail if current host is allowed
+        if (Security::isLocalEnvironment()) {
+            return;
+        }
 
 		// Redirect to prevent saving post data
 		wp_redirect( admin_url( 'edit.php?post_type=acf-field-group' ) );

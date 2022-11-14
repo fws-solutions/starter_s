@@ -18,21 +18,6 @@ class CustomSetup extends SingletonHook
 
 
 	/**
-	 * Only users logged in with declared email domain are allowed to add/update/remove plugins
-	 */
-	public function preventPluginUpdate(): void
-	{
-		if ( fws()->config()->preventPluginUpdate() ) {
-			$user = wp_get_current_user();
-
-			if ( ! $user->user_email || strpos( $user->user_email, fws()->config()->pluginUpdatesAllowedDomain() ) === false ) {
-				add_filter( 'file_mod_allowed', '__return_false' );
-			}
-		}
-	}
-
-
-	/**
 	 * Plugin dependencies
 	 */
 	public function dependenciesNotice(): void
@@ -52,9 +37,10 @@ class CustomSetup extends SingletonHook
 	 */
 	public function recoveryModeEmail( array $data ): array
 	{
-		if ( ! empty( fws()->config()->recoveryModeEmails() ) ) {
-			$data['to'] = fws()->config()->recoveryModeEmails();
-		}
+        $emails = fws()->config()->superadminEmails();
+        if (!empty($emails)) {
+            $data['to'] = $emails;
+        }
 
 		return $data;
 	}
@@ -90,7 +76,6 @@ class CustomSetup extends SingletonHook
 	 */
 	protected function hooks()
 	{
-		add_action( 'admin_init', [ $this, 'preventPluginUpdate' ] );
 		add_action( 'admin_notices', [ $this, 'dependenciesNotice' ] );
 		add_filter( 'recovery_mode_email', [ $this, 'recoveryModeEmail' ] );
 
