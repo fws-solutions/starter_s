@@ -2,21 +2,18 @@
 
 global:                                             # GLOBAL SETTINGS
     theme-name: 'FWS Starter _S'                    # set theme full name
-    recovery-mode-emails:                           # change the fatal error handler email address from admin's to our internal
-        - 'nick@forwardslashny.com'
-        - 'miroslav@forwardslashny.com'
-        - 'petar@forwardslashny.com'
-        - 'dusan@forwardslashny.com'
-    prevent-plugin-update:                          # only users logged in with declared email domain are allowed to add/update/remove plugins
-        enable: true                                # enable/disable this rule
-        domain: forwardslashny.com                  # allowed email domain
-    cf7-custom-templates: true                      # enable/disable custom HTML and MJML templates for cf7 plugin
-    acf-only-local-editing:                         # acf only possible to edit and manage on local environment
-        enable: true                                # enable/disable this rule
-        allowed-hosts:                              # list of allowed hosts
-            - '.local'
-            - 'localhost/'
-            - '.lndo.site'
+    superadmin-emails:                              # superadmin can alter plugins/themes on server and receive fatal error emails
+      - 'nick@forwardslashny.com'
+      - 'miroslav@forwardslashny.com'
+      - 'nenad@forwardslashny.com'
+      - 'dusan@forwardslashny.com'
+    allowed-localhosts:                             # list of allowed localhosts
+      - '.local'
+      - 'localhost/'
+      - '.lndo.site'
+    plugins-only-local-editing: true                # prevent add/update/delete of plugins/themes on non-localhosts, except for superadmins
+    cf7-custom-templates: false                     # enable/disable custom HTML and MJML templates for cf7 plugin
+    acf-only-local-editing: true                    # acf only possible to edit and manage on local environment
 
 acf-options-page:                                   # DEFINE ACF OPTIONS PAGES
     enable: true                                    # enable/disable options top level page
