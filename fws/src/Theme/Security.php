@@ -20,8 +20,11 @@ class Security
         self::disableRestUsersEnumeration();
         self::disableAuthorEnumeration();
         self::disableAuthorPage();
-        self::disableThemeSwitching();
         self::disableUpdatingPlugins();
+
+        // temporary until we decouple fws class from bootstrap
+        //self::disableThemeSwitching();
+        add_action('init', [__CLASS__, 'disableThemeSwitching']);
     }
 
 
@@ -129,7 +132,7 @@ class Security
      * Redirect all "author" pages to "404" page.
      * This method is listener of "template_redirect" action hook.
      */
-    public static function redirectAuthorPageTo404()
+    public static function redirectAuthorPageTo404(): void
     {
         global $wp_query;
         if (!is_author()) {
@@ -145,7 +148,7 @@ class Security
     /**
      * Prevent switching active theme.
      */
-    protected static function disableThemeSwitching(): void
+    public static function disableThemeSwitching(): void
     {
         // allow anyone in localhost and for superadmin anywhere
         if (self::isLocalEnvironment() || self::isSuperAdmin()) {
