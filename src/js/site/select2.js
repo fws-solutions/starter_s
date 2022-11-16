@@ -8,6 +8,7 @@ const Select2 = {
 	 * @type {object}
 	 */
 	$select: $('.js-select'),
+	$multielect: $('.js-multi-select'),
 
 	/** @description Initialize */
 	init: function() {
@@ -23,7 +24,13 @@ const Select2 = {
 		Select2.$select.select2({
 			minimumResultsForSearch: -1,
 			width: 'style',
-			dropdownCssClass: 'custom-class'
+			dropdownCssClass: 'custom-class',
+		});
+		Select2.$multielect.select2({
+			minimumResultsForSearch: -1,
+			width: 'style',
+			dropdownCssClass: 'custom-class',
+			multiple: true
 		});
 	}
 };
