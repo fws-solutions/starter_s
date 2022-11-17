@@ -133,5 +133,5 @@ $columns-margin: 3.8%;
 
 // Column width with margin
 @mixin column-width($number-columns: 3) {
-	width: map-get($columns, $number-columns) - (($columns-margin * ($number-columns - 1)) / $number-columns);
+	width: calc(map-get($columns, $number-columns) - (($columns-margin * ($number-columns - 1)) / $number-columns));
 }
