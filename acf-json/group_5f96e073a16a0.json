@@ -6,6 +6,7 @@
             "key": "field_5f96e1f23b854",
             "label": "Icons",
             "name": "icons_theme",
+            "aria-label": "",
             "type": "checkbox",
             "instructions": "",
             "required": 0,
@@ -52,5 +53,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1609001811
+    "show_in_rest": 0,
+    "modified": 1670065149
 }

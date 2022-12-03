@@ -6,6 +6,7 @@
             "key": "field_5fe09354c5d4f",
             "label": "SVG Icons",
             "name": "fws_svg_icon",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -39,11 +40,6 @@
     "hide_on_screen": "",
     "active": false,
     "description": "",
-    "modified": 1608576549,
-    "acf-field-group-category": [
-        {
-            "slug": "reusable-elements",
-            "name": "Reusable Elements"
-        }
-    ]
+    "show_in_rest": 0,
+    "modified": 1670065155
 }

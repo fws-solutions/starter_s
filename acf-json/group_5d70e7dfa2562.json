@@ -6,6 +6,7 @@
             "key": "field_5fe07daa112f1",
             "label": "SVG Icon",
             "name": "svg_icon",
+            "aria-label": "",
             "type": "clone",
             "instructions": "",
             "required": 0,
@@ -27,6 +28,7 @@
             "key": "field_5d70eb5909ca5",
             "label": "Title",
             "name": "title",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -47,6 +49,7 @@
             "key": "field_5d70eb5e09ca6",
             "label": "Subtitle",
             "name": "subtitle",
+            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -67,6 +70,7 @@
             "key": "field_5d726b1802d42",
             "label": "Button",
             "name": "button",
+            "aria-label": "",
             "type": "link",
             "instructions": "",
             "required": 0,
@@ -83,6 +87,7 @@
             "key": "field_5f08827a2744f",
             "label": "Scroll To",
             "name": "scroll_to",
+            "aria-label": "",
             "type": "text",
             "instructions": "Add section ID. Example: #some-id-name",
             "required": 0,
@@ -103,6 +108,7 @@
             "key": "field_5f1012c9e9239",
             "label": "Background Image",
             "name": "background_image",
+            "aria-label": "",
             "type": "clone",
             "instructions": "",
             "required": 0,
@@ -124,9 +130,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "block",
                 "operator": "==",
-                "value": "post"
+                "value": ""
             }
         ]
     ],
@@ -138,11 +144,6 @@
     "hide_on_screen": "",
     "active": false,
     "description": "",
-    "modified": 1627053987,
-    "acf-field-group-category": [
-        {
-            "slug": "flexible-content",
-            "name": "Flexible Content"
-        }
-    ]
+    "show_in_rest": 0,
+    "modified": 1670065051
 }

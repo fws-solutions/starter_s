@@ -6,6 +6,7 @@
             "key": "field_5dcd6b3c7bdf1",
             "label": "",
             "name": "",
+            "aria-label": "",
             "type": "message",
             "instructions": "",
             "required": 0,
@@ -36,13 +37,8 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 0,
+    "active": false,
     "description": "",
-    "acf-field-group-category": [
-        {
-            "slug": "flexible-content",
-            "name": "Flexible Content"
-        }
-    ],
-    "modified": 1582897527
+    "show_in_rest": 0,
+    "modified": 1670065147
 }

@@ -6,6 +6,7 @@
             "key": "field_6357b3a3c99cb",
             "label": "Google Analytics Tag Code",
             "name": "google_analytics_tag_code",
+            "aria-label": "",
             "type": "text",
             "instructions": "Field Description - Insert the Google Analytics ID Code. Example <script async src=\"https:\/\/www.googletagmanager.com\/gtag\/js?id=<b>G-SK4WZ6N51Z<\/b>><\/script>",
             "required": 0,
@@ -39,5 +40,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1666692238
+    "show_in_rest": 0,
+    "modified": 1670065158
 }

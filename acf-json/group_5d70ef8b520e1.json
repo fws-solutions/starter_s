@@ -6,6 +6,7 @@
             "key": "field_5f1013f96335d",
             "label": "",
             "name": "",
+            "aria-label": "",
             "type": "message",
             "instructions": "",
             "required": 0,
@@ -23,6 +24,7 @@
             "key": "field_5d70efe5eb989",
             "label": "Text Color",
             "name": "text_color",
+            "aria-label": "",
             "type": "true_false",
             "instructions": "If you have a darker image, you can toggle this option to get a different text color.",
             "required": 0,
@@ -43,6 +45,7 @@
             "key": "field_5d70efe9eb98b",
             "label": "Desktop Image",
             "name": "desktop_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "Recommended image width should be no more then 2000px.",
             "required": 0,
@@ -68,6 +71,7 @@
             "key": "field_5d70efebeb98c",
             "label": "Tablet Image",
             "name": "tablet_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "Recommended image width should be no more then 1024px.",
             "required": 0,
@@ -93,6 +97,7 @@
             "key": "field_5d70efedeb98d",
             "label": "Mobile Image",
             "name": "mobile_image",
+            "aria-label": "",
             "type": "image",
             "instructions": "Recommended image width should be no more then 640px.",
             "required": 0,
@@ -130,15 +135,8 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 0,
+    "active": false,
     "description": "",
-    "show_in_graphql": 0,
-    "graphql_field_name": "reSectionBackground",
-    "acf-field-group-category": [
-        {
-            "slug": "reusable-elements",
-            "name": "Reusable Elements"
-        }
-    ],
-    "modified": 1594889333
+    "show_in_rest": 0,
+    "modified": 1670065151
 }

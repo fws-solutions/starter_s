@@ -3,7 +3,6 @@ declare( strict_types = 1 );
 
 namespace FWS\Config;
 
-use FWS\ACF\FlexContent;
 use FWS\Singleton;
 use Symfony\Component\Yaml\Parser;
 
@@ -35,9 +34,6 @@ class Config extends Singleton
 
 	/** @var string */
 	private $cf7CustomTemplates = [];
-
-	/** @var FlexContent[] */
-	private $flexContent = [];
 
 	/**
 	 * Config constructor.
@@ -167,28 +163,6 @@ class Config extends Singleton
 	public function cf7CustomTemplates(): string
 	{
 		return (string) $this->config['global']['cf7-custom-templates'] ?? '';
-	}
-
-	/**
-	 * @return FlexContent[]
-	 */
-	public function acfFlexibleContent(): array
-	{
-		if ( empty( $this->flexContent ) && ! empty( $this->config['acf-flexible-content'] ) ) {
-			$this->flexContent = array_map( [ $this, 'mapFlexContent' ], $this->config['acf-flexible-content'] );
-		}
-
-		return $this->flexContent;
-	}
-
-	/**
-	 * @param array $args
-	 *
-	 * @return FlexContent
-	 */
-	private function mapFlexContent( array $args )
-	{
-		return new FlexContent( $args );
 	}
 
 	/**

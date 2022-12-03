@@ -18,8 +18,11 @@ get_header();
 // open main content wrappers
 do_action( 'fws_starter_s_before_main_content' );
 
-// get content blocks
-get_template_part( 'template-views/shared/flex-content' );
+// get post content
+while ( have_posts() ) {
+	the_post();
+	the_content();
+}
 
 // close main content wrappers
 do_action( 'fws_starter_s_after_main_content' );
