@@ -22,6 +22,7 @@ const processors = [
 
 // compile scss files
 gulp.task('css', css.bind(null, gulpVars.scssSiteSRC, 'site'));
+gulp.task('css-blocks', css.bind(null, gulpVars.scssBlocksSRC, 'blocks'));
 gulp.task('css-admin', css.bind(null, gulpVars.scssAdminSRC, 'admin'));
 gulp.task('sass-lint', sasslint);
 
@@ -32,16 +33,44 @@ function css(src, type) {
 		.pipe(sass({outputStyle: gulpVars.productionBuild ? 'compressed' : 'expanded'}))
 		.pipe(postcss(processors))
 		.pipe(gulpif(
-			type === 'site',
-			rename('style.css'),
-			rename('admin.css')
+			type === !'blocks',
+			rename(cssFileName(type))
 		))
 		.pipe(sourcemaps.write('.'))
-		.pipe(gulpif(
-			type === 'site',
-			gulp.dest('./'),
-			gulp.dest('dist')
-		));
+		.pipe(gulp.dest(cssDestDir(type)));
+}
+
+function cssDestDir(type) {
+	let dest = '';
+
+	switch(type) {
+		case 'site':
+			dest = './';
+			break;
+		case 'blocks':
+			dest = './template-views/blocks';
+			break;
+		case 'admin':
+			dest = 'dist';
+			break;
+	}
+
+	return dest;
+}
+
+function cssFileName(type) {
+	let name = '';
+
+	switch(type) {
+		case 'site':
+			name = 'style.css';
+			break;
+		case 'admin':
+			name = 'admin.css';
+			break;
+	}
+
+	return name;
 }
 
 function sasslint() {

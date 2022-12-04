@@ -13,6 +13,9 @@ module.exports = {
 		'!src/scss/admin.scss',
 		'!src/scss/admin/*.scss'
 	],
+	scssBlocksSRC: [
+		'template-views/blocks/**/*.scss'
+	],
 	scssAdminSRC: ['src/scss/admin.scss', 'src/scss/admin/*.scss'],
 	scssAllSRC: ['src/scss/**/*.scss', 'template-views/**/**/*.scss'],
 	jsSiteSRC: 'src/js/site.js',

@@ -11,6 +11,8 @@ dashboard.css.map
 login.css
 login.css.map
 .fwsenqueue.yml
+template-views/blocks/**/*.css
+template-views/blocks/**/*.css.map
 
 # ignore Editor files
 .idea
