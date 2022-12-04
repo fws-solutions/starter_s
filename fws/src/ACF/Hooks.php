@@ -5,7 +5,6 @@ namespace FWS\ACF;
 
 use FWS\SingletonHook;
 use FWS\Theme\Security;
-use WP_Term;
 
 /**
  * Class Hooks

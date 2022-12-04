@@ -1,0 +1,13 @@
+{
+	"name": "acf/basic-block",
+	"title": "Basic Block",
+	"description": "A custom Basic Block block.",
+	"style": [ "file:./basic-block.css" ],
+	"category": "formatting",
+	"icon": "layout",
+	"acf": {
+		"mode": "preview",
+		"renderTemplate": "basic-block.php"
+	},
+	"align": "full"
+}

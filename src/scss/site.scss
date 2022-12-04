@@ -51,7 +51,6 @@ fws_starter_s is based on FWS Starter _S, (C) Forwardslash, which uses Underscor
 --------------------------------------------------------------*/
 @import 'helpers/mixins';
 @import 'helpers/helpers';
-@import 'helpers/print';
 
 /*--------------------------------------------------------------
 # Bootstrap
@@ -85,6 +84,7 @@ fws_starter_s is based on FWS Starter _S, (C) Forwardslash, which uses Underscor
 @import 'elements/hamburger';
 @import 'elements/posts';
 @import 'elements/perfect-scroll';
+@import 'elements/print';
 
 /*--------------------------------------------------------------
 # Main
@@ -99,6 +99,5 @@ fws_starter_s is based on FWS Starter _S, (C) Forwardslash, which uses Underscor
 # Components / Templates
 --------------------------------------------------------------*/
 @import 'layout/parts';
-@import 'layout/blocks';
 @import 'layout/listings';
 

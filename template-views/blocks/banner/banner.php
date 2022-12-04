@@ -7,21 +7,15 @@
  * @package fws_starter_s
  */
 
-// get template view values
-$query_var = get_query_var( 'content-blocks', [] );
-
 // set and escape template view values
-$icon = $query_var['fws_svg_icon'] ?? '';
-$title = esc_textarea( $query_var['title'] ) ?? '';
-$subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
-$button = $query_var['button'] ? $query_var['button'] : [];
-$desktop_image = $query_var['desktop_image'] ?? [];
-$tablet_image = $query_var['tablet_image'] ?? [];
-$mobile_image = $query_var['mobile_image'] ?? [];
+$icon = get_field('fws_svg_icon');
+$title = esc_textarea( get_field('title') ) ?? '';
+$subtitle = esc_textarea( get_field('subtitle') ) ?? '';
+$button = get_field('button') ? get_field('button') : [];
 ?>
 
 <div class="banner">
-	<?php fws()->render()->templateView($query_var, 'background-image', 'parts'); ?>
+	<?php get_template_part('template-views/parts/background-image/background-image'); ?>
 
 	<div class="banner__caption">
 		<?php echo fws()->render()->inlineSVG( $icon, 'banner__caption-icon', true ); ?>

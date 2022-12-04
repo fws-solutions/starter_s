@@ -1,6 +1,7 @@
 <?php
 declare( strict_types = 1 );
 
+use FWS\ACF\Blocks as ACFBlocks;
 use FWS\ACF\Hooks as ACFHooks;
 use FWS\ACF\Render as ACFRender;
 use FWS\ACF\Icons as ACFIcons;
@@ -91,6 +92,7 @@ class FWS extends Singleton
 		// ACF
 		if ( function_exists( 'acf_add_options_sub_page' ) ) {
 			$this->acf = ACFRender::init();
+			ACFBlocks::init();
 			ACFHooks::init();
 			ACFIcons::init();
 		}

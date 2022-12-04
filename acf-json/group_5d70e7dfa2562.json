@@ -132,7 +132,7 @@
             {
                 "param": "block",
                 "operator": "==",
-                "value": ""
+                "value": "acf\/banner"
             }
         ]
     ],
@@ -142,8 +142,8 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": false,
+    "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670065051
+    "modified": 1670151225
 }

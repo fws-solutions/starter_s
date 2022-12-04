@@ -7,24 +7,24 @@
  * @package fws_starter_s
  */
 
-// get template view values
-$query_var = get_query_var( 'content-blocks', [] );
-
 // set and escape template view values
-$section_id = esc_textarea( $query_var['section_id'] ) ?? '';
-$section_title = esc_textarea( $query_var['section_title'] ) ?? '';
-$content = $query_var['content'] ?? '';
-$check_list = $query_var['check_list'] ?? [];
+$section_id = esc_textarea( get_field('section_id') ) ?? '';
+$section_title = get_field('section_title');
+$content = get_field('content') ?? '';
 ?>
 
 <div class="basic-block"<?php echo $section_id ? ' id="' . $section_id . '"' : ''; ?>>
 	<div class="container">
-		<h2 class="section-title"><?php echo $section_title; ?></h2>
+		<?php if ( $section_title ) : ?>
+			<h2 class="section-title"><?php echo $section_title; ?></h2>
+		<?php endif; ?>
 
-		<div class="entry-content">
-			<?php echo $content; ?>
-		</div>
+		<?php if ( $content ) : ?>
+			<div class="entry-content">
+				<?php echo $content; ?>
+			</div>
+		<?php endif; ?>
 
-		<?php fws()->render()->templateView( $check_list, 'check-list', 'parts' ); ?>
+		<?php get_template_part( 'template-views/parts/check-list/check-list' ); ?>
 	</div>
 </div><!-- .basic-block -->

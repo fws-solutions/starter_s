@@ -7,13 +7,10 @@
  * @package fws_starter_s
  */
 
-// get template view values
-$query_var = get_query_var( 'content-parts', [] );
-
 // set and escape template view values
-$desktop_image = $query_var['desktop_image'] ?? [];
-$tablet_image = $query_var['tablet_image'] ?? [];
-$mobile_image = $query_var['mobile_image'] ?? [];
+$desktop_image = get_field('desktop_image') ?? [];
+$tablet_image = get_field('tablet_image') ?? [];
+$mobile_image = get_field('mobile_image') ?? [];
 $loader_image = fws()->resizer()->newImageSize($desktop_image['url'], 20, 7);
 ?>
 

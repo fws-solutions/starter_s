@@ -8,7 +8,7 @@
  */
 
 // get template view values
-$check_list = get_query_var( 'content-parts', [] );
+$check_list = get_field('check_list') ?? [];
 ?>
 
 <div class="check-list">
@@ -16,7 +16,7 @@ $check_list = get_query_var( 'content-parts', [] );
 		<ul class="check-list__items">
 			<?php foreach ( $check_list as $item ) : ?>
 				<li class="check-list__item">
-					<?php echo fws()->render()->inlineSVG('ico-dog', 'check-list__icon'); ?>
+					<?php //echo fws()->render()->inlineSVG('ico-dog', 'check-list__icon'); ?>
 					<span class="check-list__text"><?php echo $item['item']; ?></span>
 				</li>
 			<?php endforeach; ?>

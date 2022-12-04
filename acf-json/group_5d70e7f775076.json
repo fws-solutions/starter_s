@@ -37,9 +37,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "block",
                 "operator": "==",
-                "value": "post"
+                "value": "acf\/slider"
             }
         ]
     ],
@@ -49,8 +49,8 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": false,
+    "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670065145
+    "modified": 1670172099
 }

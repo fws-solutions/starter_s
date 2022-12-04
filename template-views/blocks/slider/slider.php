@@ -7,11 +7,8 @@
  * @package fws_starter_s
  */
 
-// get template view values
-$query_var = get_query_var( 'content-blocks', [] );
-
 // set and escape template view values
-$slides = $query_var['slides'] ?? [];
+$slides = get_field('slides') ?? [];
 ?>
 
 <?php if ( $slides ) : ?>

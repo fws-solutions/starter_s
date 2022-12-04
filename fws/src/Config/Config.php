@@ -120,6 +120,16 @@ class Config extends Singleton
 	 *
 	 * @return bool
 	 */
+	public function acfBlocks(): array
+	{
+		return (array) $this->config['acf-blocks'] ?? [];
+	}
+
+	/**
+	 * Is ACF Options Page enabled
+	 *
+	 * @return bool
+	 */
 	public function acfOptionsPage(): bool
 	{
 		return (bool) $this->config['acf-options-page']['enable'] ?? true;

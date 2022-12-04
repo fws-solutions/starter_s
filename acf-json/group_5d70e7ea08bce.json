@@ -3,34 +3,11 @@
     "title": "FC Basic Block",
     "fields": [
         {
-            "key": "field_5d726bd054024",
-            "label": "Section ID",
-            "name": "section_id",
-            "aria-label": "",
-            "type": "clone",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "acfe_permissions": "",
-            "clone": [
-                "group_5d70ef78eb8fb"
-            ],
-            "display": "seamless",
-            "layout": "block",
-            "prefix_label": 0,
-            "prefix_name": 0
-        },
-        {
-            "key": "field_5d70e8fa322cd",
+            "key": "field_638c7b1653ba4",
             "label": "Section Title",
             "name": "section_title",
             "aria-label": "",
-            "type": "clone",
+            "type": "text",
             "instructions": "",
             "required": 0,
             "conditional_logic": 0,
@@ -39,14 +16,11 @@
                 "class": "",
                 "id": ""
             },
-            "acfe_permissions": "",
-            "clone": [
-                "group_5d70ef37942f2"
-            ],
-            "display": "seamless",
-            "layout": "block",
-            "prefix_label": 0,
-            "prefix_name": 0
+            "default_value": "",
+            "maxlength": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": ""
         },
         {
             "key": "field_5d70e902322cf",
@@ -119,9 +93,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "block",
                 "operator": "==",
-                "value": "post"
+                "value": "acf\/basic-block"
             }
         ]
     ],
@@ -131,8 +105,8 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": false,
+    "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670065084
+    "modified": 1670151334
 }
