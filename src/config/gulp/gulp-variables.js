@@ -9,7 +9,8 @@ module.exports = {
 	distAssets: [],
 	scssSiteSRC: [
 		'src/scss/**/*.scss',
-		'template-views/**/**/*.scss',
+		'template-views/parts/**/*.scss',
+		'template-views/listings/**/*.scss',
 		'!src/scss/admin.scss',
 		'!src/scss/admin/*.scss'
 	],

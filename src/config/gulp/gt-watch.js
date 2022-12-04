@@ -9,6 +9,7 @@ gulp.task('watch-files', watchFiles);
 function watchFiles(done) {
 	// watch .scss files
 	gulp.watch(gulpVars.scssSiteSRC, gulp.parallel(['css', 'sass-lint']));
+	gulp.watch(gulpVars.scssBlocksSRC, gulp.parallel(['css-blocks', 'sass-lint']));
 	gulp.watch(gulpVars.scssAdminSRC, gulp.parallel(['css-admin', 'sass-lint']));
 
 	// watch .js files

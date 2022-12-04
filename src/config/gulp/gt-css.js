@@ -33,7 +33,7 @@ function css(src, type) {
 		.pipe(sass({outputStyle: gulpVars.productionBuild ? 'compressed' : 'expanded'}))
 		.pipe(postcss(processors))
 		.pipe(gulpif(
-			type === !'blocks',
+			type !== 'blocks',
 			rename(cssFileName(type))
 		))
 		.pipe(sourcemaps.write('.'))

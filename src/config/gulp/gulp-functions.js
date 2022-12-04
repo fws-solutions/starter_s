@@ -49,6 +49,7 @@ module.exports = {
 			buildType,
 			gulp.parallel(
 				gulpTasks.gtCss.css.bind(null, gulpVars.scssSiteSRC, 'site'),
+				gulpTasks.gtCss.css.bind(null, gulpVars.scssBlocksSRC, 'blocks'),
 				gulpTasks.gtCss.css.bind(null, gulpVars.scssAdminSRC, 'admin'),
 				gulp.series(
 					gulpTasks.gtJs.lintJS,
