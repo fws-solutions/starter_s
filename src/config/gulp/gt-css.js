@@ -24,6 +24,7 @@ const processors = [
 gulp.task('css', css.bind(null, gulpVars.scssSiteSRC, 'site'));
 gulp.task('css-blocks', css.bind(null, gulpVars.scssBlocksSRC, 'blocks'));
 gulp.task('css-admin', css.bind(null, gulpVars.scssAdminSRC, 'admin'));
+gulp.task('css-gutenberg', css.bind(null, gulpVars.scssGutenSRC, 'gutenberg'));
 gulp.task('sass-lint', sasslint);
 
 function css(src, type) {
@@ -53,6 +54,9 @@ function cssDestDir(type) {
 		case 'admin':
 			dest = 'dist';
 			break;
+		case 'gutenberg':
+			dest = 'dist';
+			break;
 	}
 
 	return dest;
@@ -67,6 +71,9 @@ function cssFileName(type) {
 			break;
 		case 'admin':
 			name = 'admin.css';
+			break;
+		case 'gutenberg':
+			name = 'gutenberg.css';
 			break;
 	}
 

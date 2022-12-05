@@ -53,6 +53,7 @@ class DeferAssets extends SingletonHook
 			[
 				'js-cookie',
 				'wc-cart-fragments',
+				'wc-single-product',
 				'woocommerce',
 				'wc-add-to-cart',
 				'jquery-blockui',
@@ -60,7 +61,10 @@ class DeferAssets extends SingletonHook
 				'wc-address-i18n',
 				'wc-cart',
 				'selectWoo',
-				'wc-checkout'
+				'wc-checkout',
+				'flexslider',
+				'photoswipe',
+				'photoswipe-ui-default'
 			],
 			'WC'
 		);

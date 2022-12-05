@@ -79,6 +79,16 @@ class SiteAssets extends SingletonHook
 	}
 
 	/**
+	 * Add custom Styles and Scripts to Gutenberg Editor.
+	 */
+	public function setupGutenbergStylesAndScripts(): void
+	{
+		$version = fws()->config()->enqueueVersion();
+
+		wp_enqueue_style( 'fws_starter_s-gutenberg-style', get_template_directory_uri() . '/dist/gutenberg.css', [], $version );
+	}
+
+	/**
 	 * Remove jQuery Migrate Script.
 	 */
 	public function removeJqueryMigrate($scripts): void
@@ -146,6 +156,7 @@ class SiteAssets extends SingletonHook
 		add_action( 'wp_default_scripts',  [ $this, 'removeJqueryMigrate'] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'setupAdminStylesAndScripts' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'setupAdminStylesAndScripts' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'setupGutenbergStylesAndScripts' ] );
 		add_action( 'after_setup_theme', [ $this, 'moveAllScriptsToHeader' ] );
 	}
 }

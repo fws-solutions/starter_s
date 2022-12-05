@@ -1,13 +1,4 @@
 /*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-# Variables, Helpers and Mixins
-# Bootstrap
-# Plugins
-# Login
---------------------------------------------------------------*/
-
-/*--------------------------------------------------------------
 # Variables, Helpers and Mixins
 --------------------------------------------------------------*/
 @import 'helpers/functions';
@@ -23,13 +14,25 @@
 @import '../../node_modules/bootstrap/scss/bootstrap-grid';
 
 /*--------------------------------------------------------------
-# Plugins
---------------------------------------------------------------*/
-@import 'admin/plugin-acf-flex-content';
-@import 'admin/plugin-acf-svg-field';
-@import 'admin/plugin-cf7';
-
-/*--------------------------------------------------------------
 # Admin
 --------------------------------------------------------------*/
-@import 'admin/login';
+@import 'admin/gutenberg-editor';
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+@import 'elements/buttons';
+@import 'elements/forms';
+@import 'elements/media';
+@import 'elements/popup';
+@import 'elements/select2';
+@import 'elements/hamburger';
+@import 'elements/posts';
+@import 'elements/perfect-scroll';
+@import 'elements/print';
+
+/*--------------------------------------------------------------
+# Components / Templates
+--------------------------------------------------------------*/
+@import 'layout/parts';
+@import 'layout/listings';
