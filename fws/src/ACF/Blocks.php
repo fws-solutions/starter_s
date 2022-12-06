@@ -24,7 +24,7 @@ class Blocks extends SingletonHook
 		$acfBlocks = fws()->config()->acfBlocks();
 
 		foreach ($acfBlocks as $block) {
-			register_block_type( $this->getThemeDir() . $block['path'] );
+			register_block_type( get_template_directory() . $block['path'] );
 		}
 	}
 
@@ -33,14 +33,6 @@ class Blocks extends SingletonHook
 	 */
 	public function allowedBlockTypes($allowed_blocks) {
 		return get_post_type() == 'page' ? $this->getBlockNames() : $allowed_blocks;
-	}
-
-	/**
-	 * Get theme directory path
-	 */
-	private function getThemeDir(): string
-	{
-		return str_replace('/fws/src/ACF','/',__DIR__);
 	}
 
 	/**
@@ -65,6 +57,5 @@ class Blocks extends SingletonHook
 	{
 		add_action( 'init', [ $this, 'registerAcfBlocks' ] );
 		add_filter( 'allowed_block_types_all', [ $this, 'allowedBlockTypes' ] );
-
 	}
 }

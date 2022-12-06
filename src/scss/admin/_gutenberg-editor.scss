@@ -2,6 +2,7 @@ body:not(.post-type-post) .wp-block-post-content .block-editor-block-list__block
 	border: 1px dashed #007cba;
 	position: relative;
 	margin-top: 100px;
+	max-width: 900px;
 
 	&::before {
 		position: absolute;

@@ -5,8 +5,6 @@
 --------------------------------------------------------------*/
 
 .slider {
-	display: flex;
-
 	.slick-slide {
 		outline: 0;
 	}
@@ -18,5 +16,15 @@
 			display: block;
 			width: 100%;
 		}
+	}
+}
+
+// guttenberg editor styles
+.block-editor-page .slider {
+	display: flex;
+	flex-wrap: wrap;
+
+	.slider__item {
+		width: 20%;
 	}
 }
