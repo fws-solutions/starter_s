@@ -97,12 +97,11 @@
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "default_value": "",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_5f1012c9e9239",
@@ -145,5 +144,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670341626
+    "modified": 1670512339
 }

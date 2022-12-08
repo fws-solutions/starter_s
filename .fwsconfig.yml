@@ -19,17 +19,6 @@ acf-options-page:                                   # DEFINE ACF OPTIONS PAGES
     enable: true                                    # enable/disable options top level page
     subpages: ['SVG Icons']                         # list of options sub pages
 
-acf-blocks:
-    -
-        name: 'acf/banner'
-        path: '/template-views/blocks/banner'
-    -
-        name: 'acf/basic-block'
-        path: '/template-views/blocks/basic-block'
-    -
-        name: 'acf/slider'
-        path: '/template-views/blocks/slider'
-
 styleguide:                                         # DEFINE STYLEGUIDE
     pages:                                          # set list of all pages defining their titles and urls
         -

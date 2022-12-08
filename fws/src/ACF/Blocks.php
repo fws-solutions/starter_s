@@ -17,14 +17,49 @@ class Blocks extends SingletonHook
 	protected static $instance;
 
 	/**
+	 * All ACF Block paths
+	 */
+	private $acfBlocks = [
+		'/template-views/blocks/banner',
+		'/template-views/blocks/basic-block',
+		'/template-views/blocks/slider',
+	];
+
+	/**
+	 * ACF Blocks for post type "post"
+	 */
+
+	private $postBlocks = [
+		'core/paragraph',
+		'core/heading',
+		'core/list',
+		'core/quote',
+		'core/table',
+		'core/shortcode',
+		'core/image',
+		'core/gallery',
+		'core/cover',
+		'core/file',
+		'core/video',
+		'core/embed'
+	];
+
+	/**
+	 * ACF Blocks for post type "page"
+	 */
+	private $pageBlocks = [
+		'acf/banner',
+		'acf/basic-block',
+		'acf/slider',
+	];
+
+	/**
 	 * Register ACF Blocks
 	 */
 	public function registerAcfBlocks(): void
 	{
-		$acfBlocks = fws()->config()->acfBlocks();
-
-		foreach ($acfBlocks as $block) {
-			register_block_type( get_template_directory() . $block['path'] );
+		foreach ($this->acfBlocks as $block) {
+			register_block_type( get_template_directory() . $block );
 		}
 	}
 
@@ -32,22 +67,14 @@ class Blocks extends SingletonHook
 	 * Allowed Block Types
 	 */
 	public function allowedBlockTypes($allowed_blocks) {
-		return get_post_type() == 'page' ? $this->getBlockNames() : $allowed_blocks;
-	}
-
-	/**
-	 * Get acf block names
-	 */
-	private function getBlockNames(): array
-	{
-		$acfBlocks = fws()->config()->acfBlocks();
-		$filteredNames = [];
-
-		foreach ($acfBlocks as $block) {
-			$filteredNames[] = $block['name'];
+		switch (get_post_type()) {
+			case 'page':
+				return $this->pageBlocks;
+			case 'post':
+				return $this->postBlocks;
+			default:
+				return $allowed_blocks;
 		}
-
-		return $filteredNames;
 	}
 
 	/**
