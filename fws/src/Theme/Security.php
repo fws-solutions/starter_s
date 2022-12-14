@@ -21,10 +21,12 @@ class Security
         self::disableAuthorEnumeration();
         self::disableAuthorPage();
         self::disableUpdatingPlugins();
+        //self::disableThemeSwitching();
+        //self::preventClickjacking();
 
         // temporary until we decouple fws class from bootstrap
-        //self::disableThemeSwitching();
         add_action('init', [__CLASS__, 'disableThemeSwitching']);
+        add_action('init', [__CLASS__, 'preventClickjacking']);
     }
 
 
@@ -175,7 +177,7 @@ class Security
     /**
      * Only superadmins are allowed to add/update/remove plugins/themes on external servers.
      */
-    public function preventPluginsUpdateHook(): void
+    public static function preventPluginsUpdateHook(): void
     {
         // allow updating if: rule switched-off or for super-admin or in localhost
         if (!fws()->config()->pluginsOnlyLocalEditing() || self::isSuperAdmin() || self::isLocalEnvironment()) {
@@ -184,6 +186,18 @@ class Security
 
         // deny
         add_filter('file_mod_allowed', '__return_false');
+    }
+
+
+    /**
+     * Send header instructions to prevent clickjacking.
+     * See: https://github.com/OWASP/CheatSheetSeries/blob/master/cheatsheets/Clickjacking_Defense_Cheat_Sheet.md
+     */
+    public static function preventClickjacking(): void
+    {
+        if (fws()->config()->clickjackingProtection()) {
+            header('X-Frame-Options: SAMEORIGIN');
+        }
     }
 
 }
