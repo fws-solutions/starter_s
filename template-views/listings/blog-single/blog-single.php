@@ -7,17 +7,14 @@
  * @package fws_starter_s
  */
 
-// get template view values
-$query_var = get_query_var( 'content-blocks', [] );
-
 // set and escape template view values
-$id = $query_var['id'] ?? 0;
-$post_class = esc_attr( implode( ' ', $query_var['post_class'] ?? [] ) );
-$permalink = esc_url( $query_var['permalink'] ) ?? '';
-$title = esc_textarea( $query_var['title'] ) ?? '';
-$has_post_thumb = $query_var['has_post_thumb'] ?? false;
-$post_thumb = $query_var['post_thumb'] ?? '';
-$content = $query_var['content'] ?? '';
+$id = get_the_ID();
+$post_class = esc_attr( implode( ' ', get_post_class() ?? [] ) );
+$permalink = esc_url( get_the_permalink() ) ?? '';
+$title = esc_textarea( get_the_title() ) ?? '';
+$has_post_thumb = has_post_thumbnail();
+$post_thumb = get_the_post_thumbnail( $id, 'post-thumb' ) ?? '';
+$content = get_the_content() ?? '';
 ?>
 
 <article id="post-<?php echo $id; ?>" class="blog-single <?php echo $post_class; ?>">

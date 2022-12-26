@@ -7,12 +7,9 @@
  * @package fws_starter_s
  */
 
-// get template view values
-$query_var = get_query_var( 'content-listings', [] );
-
 // set and escape template view values
-$title = esc_textarea( $query_var['title'] ) ?? '';
-$subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
+$title = esc_textarea( __( 'Blog', 'fws_starter_s' ) ) ?? '';
+$subtitle = '';
 ?>
 
 <div class="blog-listing">
@@ -31,16 +28,7 @@ $subtitle = esc_textarea( $query_var['subtitle'] ) ?? '';
 					the_post();
 					$post_id = get_the_ID();
 
-					$blog_article = [
-						'id' => $post_id,
-						'post_class' => get_post_class(),
-						'permalink' => get_the_permalink(),
-						'title' => get_the_title(),
-						'has_post_thumb' => has_post_thumbnail(),
-						'post_thumb' => get_the_post_thumbnail( $post_id, 'post-thumb', ['class' => 'media-item cover-img'] )
-
-					];
-					fws()->render()->templateView( $blog_article, 'blog-article', 'parts' );
+					get_template_part('template-views/listings/blog-article/blog-article');
 				}
 				?>
 				<div class="col-sm-12">

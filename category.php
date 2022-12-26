@@ -13,12 +13,7 @@ get_header();
 // open main content wrappers
 do_action( 'fws_starter_s_before_main_content' );
 
-// listing blog posts
-$blog = [
-	'title' => get_the_archive_title(),
-	'subtitle' => get_the_archive_description()
-];
-fws()->render()->templateView( $blog, 'blog-listing', 'listings' );
+get_template_part('template-views/listings/blog-listing/blog-listing');
 
 do_action( 'fws_starter_s_after_main_content' );
 

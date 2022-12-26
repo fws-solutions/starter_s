@@ -115,26 +115,9 @@ class Render extends Singleton
 		] );
 
 		if ( $links ) {
-			$this->templateView( $links, 'page-nav', 'parts' );
-		}
-	}
-
-	/**
-	 * Renders template component or part with configured *array* variable that maps out template view's variables.
-	 * The method expects configured array, file name and boolean to toggle directory from template-views/component to template-views/part.
-	 *
-	 * @param $args
-	 * @param string $name View name (file/dir name without extension)
-	 * @param string $type Type of the view (view parent directory): 'blocks' (default), 'parts'...
-	 */
-	public function templateView( $args, string $name, string $type = 'blocks' ): void
-	{
-		$viewVarName = 'content-' . $type;
-		$viewPath = 'template-views/' . $type . '/' . $name . '/' . $name;
-
-		if ( $args ) {
-			set_query_var( $viewVarName, $args );
-			get_template_part( $viewPath );
+			echo '<nav class="page-nav" role="navigation">';
+			echo $links;
+			echo '</nav>';
 		}
 	}
 
