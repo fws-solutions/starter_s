@@ -1,6 +1,9 @@
 body {
 	&.login {
 		background-color: $white;
+		height: 100vh;
+		max-height: 100vh;
+		overflow: hidden;
 	}
 }
 
@@ -35,8 +38,8 @@ body {
 
 .fws-login-illustration {
 	position: absolute;
-	top: 14.5%;
-	right: 1.5%;
+	top: 4.5%;
+	right: 0;
 	width: 61%;
 	max-width: 1172px;
 
@@ -45,7 +48,7 @@ body {
 	}
 
 	@include mq(1500px) {
-		max-width: 812px;
+		max-width: 730px;
 		top: 22.5%;
 	}
 
@@ -56,7 +59,7 @@ body {
 	@include mq($xl) {
 		max-width: initial;
 		width: 100%;
-		top: 90%;
+		top: 80%;
 
 		img {
 			display: none;
@@ -64,11 +67,11 @@ body {
 	}
 
 	@include mq($lg) {
-		top: 100%;
+		top: 90%;
 	}
 
-	@include mq($sm) {
-		top: 105%;
+	@include mq(640px) {
+		top: 93%;
 	}
 }
 
@@ -82,12 +85,8 @@ body {
 	@include mq($xl) {
 		max-width: 540px;
 		width: 100%;
-		margin: 15px auto 0;
-	}
-
-	@include mq(640px) {
-		margin: 0 auto 5px;
 		text-align: center;
+		margin: 15px auto 0;
 	}
 }
 
@@ -102,7 +101,7 @@ body {
 	}
 
 	@include mq($xl) {
-		width: 100%;
+		width: 90%;
 		max-width: 540px;
 		margin: 0 auto 20px;
 	}
@@ -115,28 +114,26 @@ body {
 
 #login form p {
 
-	&:first-child {
-
-		@include mq($xl) {
-			width: 100%;
-		}
-	}
-
 	&.forgetmenot {
 		margin: 15px 0 20px;
 
 		@include mq($xl) {
-			margin: 0 0 20px;
-			width: 65%;
-		}
-
-		@include mq($md) {
+			// margin: 0 0 20px;
+			margin: 0 auto;
 			width: initial;
 		}
 
-		@include mq(460px) {
-			margin: 0 auto;
-		}
+		// @include mq($md) {
+		// 	width: initial;
+		// }
+
+		// @include mq(640px) {
+		// 	margin: 0 auto;
+		// }
+	}
+
+	@include mq(640px) {
+		width: 100%;
 	}
 }
 
@@ -153,8 +150,8 @@ body {
 		right: 20px;
 		pointer-events: none;
 
-		@include mq(400px) {
-			top: 46%;
+		@include mq(640px) {
+			top: 44%;
 		}
 
 		svg {
@@ -173,7 +170,7 @@ body {
 	}
 
 	@include mq(640px) {
-		max-width: 350px;
+		max-width: 100%;
 	}
 }
 
@@ -274,9 +271,9 @@ body {
 .fws-login-wrapper {
 	width: 100%;
 	max-width: 1750px;
-	padding: 0 15px;
 	margin: 0 auto;
 	position: relative;
+	overflow: hidden;
 
 	@include mq($xl) {
 		max-width: 950px;
@@ -336,7 +333,7 @@ body {
 	.submit {
 		.button {
 			width: 100%;
-			max-width: 434px;
+			max-width: 100%;
 			border-radius: 6px;
 			background: $orange;
 			min-height: 60px;
@@ -376,10 +373,14 @@ body {
 				min-height: 50px;
 				padding: 7px 15px;
 				font-size: 18px;
-				max-width: 350px;
-				margin: 0 auto;
+				max-width: 100%;
+				margin: 0 auto 6px;
 			}
 		}
+	}
+
+	@include mq(640px) {
+		padding-bottom: 40px;
 	}
 }
 
@@ -415,9 +416,16 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+	overflow: hidden;
+
+	@include mq(1199px) {
+		padding: 0;
+	}
 
 	@include mq(640px) {
 		min-height: unset;
+		width: initial;
+		padding: 0 15px;
 	}
 
 	::-webkit-input-placeholder, //sass-lint:disable-line no-vendor-prefixes
@@ -489,6 +497,11 @@ body {
 	@include mq($xl) {
 		margin: 0 auto;
 	}
+
+	@include mq(640px) {
+		width: 100%;
+		max-width: 100%;
+	}
 }
 
 .login #backtoblog a {
@@ -541,6 +554,16 @@ body {
 	}
 }
 
+.fws-login-footer {
+
+	@include mq(460px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+}
+
 .login #nav {
 	//float: right;
 	margin: 5px 0 20px;
@@ -573,22 +596,27 @@ body {
 	}
 
 	@include mq(1199px) {
-		max-width: 540px;
-		margin: 0 auto;
-		float: right;
+		// max-width: 540px;
+		// margin: 0 auto;
+		// float: right;
+		right: 0;
+		text-align: center;
+		margin: 0 0 15px;
+		position: relative;
 	}
+
+	// @include mq(640px) {
+	// 	position: absolute;
+	// 	right: 3%;
+	// 	top: 58%;
+	// }
+
+	// @include mq($sm) {
+	// 	top: 57%;
+	// }
 
 	@include mq(640px) {
-		position: absolute;
 		right: 0;
-		top: 41.5%;
-	}
-
-	@include mq($sm) {
-		top: 39%;
-	}
-
-	@include mq(460px) {
 		text-align: center;
 		margin: 0 0 15px;
 		position: relative;
@@ -602,7 +630,7 @@ body {
 		transition: $dur $ease;
 	}
 
-	@include mq($xl) {
+	@include mq(640px) {
 		width: 100%;
 	}
 
@@ -675,11 +703,11 @@ body {
 
 #resetpassform {
 	.button.wp-hide-pw {
-		top: 0 !important;//sass-lint:disable-line no-important
+		top: 0 !important; //sass-lint:disable-line no-important
 	}
 
 	.wp-pwd {
-		max-height: initial !important;//sass-lint:disable-line no-important
+		max-height: initial !important; //sass-lint:disable-line no-important
 		
 		input {
 			border: 2px solid $grey-soft;
@@ -732,10 +760,6 @@ body {
 		width: 100%;
 		margin: 25px auto 0;
 	}
-
-	@include mq(400px) {
-		text-align: left;
-	}
 }
 
 .login-action-lostpassword p.submit {
@@ -761,14 +785,19 @@ body {
 	padding-right: 100px;
 	position: absolute;
 	right: 0;
-	bottom: -30px;
+	bottom: 30px;
 	padding-bottom: 20px;
+
+	@include mq(1500px) {
+		bottom: 0;
+	}
 
 	@include mq($xl) {
 		margin: 70px 40px 30px;
-		padding-right: 150px;
+		padding-right: 0;
 		position: relative;
 		bottom: auto;
+		text-align: center;
 	}
 
 	@include mq(992px) {
@@ -776,10 +805,6 @@ body {
 		padding-right: 0;
 		max-width: 570px;
 		margin: 0 auto;
-	}
-
-	@include mq($md) {
-		text-align: center;
 	}
 
 	span {
@@ -831,11 +856,11 @@ body {
 	user-select: none;
 	width: 100%;
 
-	@include mq(640px) {
-		align-self: baseline;
-	}
+	// @include mq(640px) {
+	// 	align-self: baseline;
+	// }
 
-	@include mq(460px) {
+	@include mq($xl) {
 		float: none;
 		max-width: 180px;
 		margin: 0 auto;
@@ -891,10 +916,10 @@ body {
 }
 
 .login form .forgetmenot .checkmark::after {
-	left: 3px;
-	top: 3px;
-	width: 17px;
-	height: 17px;
+	left: 5px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
 	background-color: $orange;
 	opacity: 0;
 	transition: $dur $ease;
@@ -1280,4 +1305,8 @@ body {
 		flex-direction: column;
 		align-items: center;
 	}
+}
+
+.privacy-policy-page-link {
+	display: none;
 }
