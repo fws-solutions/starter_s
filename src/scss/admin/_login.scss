@@ -40,11 +40,11 @@ body {
 	position: absolute;
 	top: 4.5%;
 	right: 0;
-	width: 61%;
-	max-width: 1172px;
+	width: 100%;
+	max-width: 1067px;
 
 	@include mq($desk-small) {
-		width: 65%;
+		max-width: 980px;
 	}
 
 	@include mq(1500px) {
@@ -53,7 +53,7 @@ body {
 	}
 
 	@include mq(1350px) {
-		max-width: 692px;
+		max-width: 670px;
 	}
 
 	@include mq($xl) {
@@ -102,8 +102,21 @@ body {
 
 	@include mq($xl) {
 		width: 90%;
-		max-width: 540px;
+		max-width: 510px;
 		margin: 0 auto 20px;
+	}
+}
+
+#login_error {
+
+	strong {
+		display: inline-block;
+		color: $orange;
+		margin-bottom: 10px;
+
+		&:last-of-type {
+			margin-bottom: 0;
+		}
 	}
 }
 
@@ -119,8 +132,9 @@ body {
 
 		@include mq($xl) {
 			// margin: 0 0 20px;
-			margin: 0 auto;
-			width: initial;
+			// margin: 0 auto;
+			// width: initial;
+			margin-right: auto;
 		}
 
 		// @include mq($md) {
@@ -130,6 +144,10 @@ body {
 		// @include mq(640px) {
 		// 	margin: 0 auto;
 		// }
+
+		@include mq(400px) {
+			margin: 0 auto 10px;
+		}
 	}
 
 	@include mq(640px) {
@@ -137,7 +155,7 @@ body {
 	}
 }
 
-#login p.submit {
+#login p.submit:not(.reset-pass-submit) {
 	min-height: 60px;
 	position: relative;
 	display: flex;
@@ -372,7 +390,7 @@ body {
 			@include mq(640px) {
 				min-height: 50px;
 				padding: 7px 15px;
-				font-size: 18px;
+				font-size: 16px;
 				max-width: 100%;
 				margin: 0 auto 6px;
 			}
@@ -387,7 +405,7 @@ body {
 .fws-login-brand {
 	display: block;
 	max-width: 140px;
-	margin: 0 0 40px;
+	margin: 0 0 40px 5px;
 
 	@include mq(1199px) {
 		max-width: 140px;
@@ -418,12 +436,74 @@ body {
     flex-direction: column;
 	overflow: hidden;
 
+	#resetpassform {
+
+		.dashicons {
+			top: 12px;
+
+			@include mq(400px) {
+				top: 9px;
+			}
+		}
+	}
+
+	.reset-pass-submit {
+		position: relative;
+
+		button {
+			position: relative;
+			background-color: $white;
+			color: $orange;
+			padding: 10px 28px;
+	
+			@include hover {
+				background-color: $orange;
+				color: $white;
+			}
+		}
+
+		.btn-icon-login {
+			position: absolute;
+			bottom: 21px;
+			right: 20px;
+			top: auto !important;
+			pointer-events: none;
+	
+			svg {
+				color: $white;
+				font-size: 30px;
+				transition: $dur $ease;
+			}
+
+			@include mq(640px) {
+				bottom: 16px;
+			}
+		}
+
+		.second-icon {
+			top: 15px !important;
+    		bottom: auto;
+
+			svg {
+				color: $orange;
+			}
+
+			@include mq(640px) {
+				top: 9px !important;
+			}
+		}
+	
+		input {
+			padding: 10px 28px;
+		}
+	}
+
 	@include mq(1199px) {
 		padding: 0;
 	}
 
 	@include mq(640px) {
-		min-height: unset;
+		min-height: 330px;
 		width: initial;
 		padding: 0 15px;
 	}
@@ -565,18 +645,32 @@ body {
 }
 
 .login #nav {
+	position: relative;
 	//float: right;
 	margin: 5px 0 20px;
 	padding: 0;
 
 	a {
+		position: absolute;
+		top: 13px;
+		right: 4px;
 		color: $orange;
 		margin-left: 0;
 		font-size: 19px;
 		outline: none;
 
+		@include mq($xl) {
+			top: -59px;
+		}
+
 		@include mq(768px) {
 			font-size: 18px;
+		}
+
+		@include mq(400px) {
+			position: relative;
+			top: auto;
+			right: auto;
 		}
 
 		&:focus {
@@ -782,14 +876,22 @@ body {
 
 .fws-footer-author {
 	text-align: right;
-	padding-right: 100px;
+	// padding-right: 100px;
 	position: absolute;
-	right: 0;
-	bottom: 30px;
-	padding-bottom: 20px;
+	right: 5px;
+	bottom: -30px;
+	// padding-bottom: 20px;
+
+	@include mq($desk-small) {
+		bottom: -90px;
+	}
 
 	@include mq(1500px) {
-		bottom: 0;
+		bottom: -120px;
+	}
+
+	@include mq(1350px) {
+		bottom: -160px;
 	}
 
 	@include mq($xl) {
@@ -804,7 +906,7 @@ body {
 		/* margin: 50px 40px 30px; */
 		padding-right: 0;
 		max-width: 570px;
-		margin: 0 auto;
+		margin: 10px auto 0;
 	}
 
 	span {
@@ -916,8 +1018,7 @@ body {
 }
 
 .login form .forgetmenot .checkmark::after {
-	left: 5px;
-    top: 5px;
+	@include center;
     width: 16px;
     height: 16px;
 	background-color: $orange;
@@ -1016,23 +1117,29 @@ body {
 		}
 	}
 
-	#login {
-		padding: 0 8.8% 310px;
+	// #login {
+	// 	padding: 0 8.8% 310px;
 
-		@include mq($xl) {
-			padding: 0 8.8% 30px;
-		}
+	// 	@include mq($xl) {
+	// 		padding: 0 8.8% 30px;
+	// 	}
 
-		@include mq($sm) {
-			padding: 0 8.8%;
-		}
-	}
+	// 	@include mq($sm) {
+	// 		padding: 0 8.8%;
+	// 	}
+	// }
 }
 
 .login-action-rp {
 
 	#login p.submit .btn-icon-login {
 		top: 25%;
+	}
+
+	#login #nav a {
+		position: relative;
+		top: auto;
+		right: auto;
 	}
 }
 
@@ -1309,4 +1416,40 @@ body {
 
 .privacy-policy-page-link {
 	display: none;
+}
+
+.message.reset-pass {
+	position: relative;
+
+	a {
+		position: absolute !important;
+		bottom: -42px;
+		left: -5px;
+		font-size: 20px;
+
+		@include mq($xl) {
+			left: 50%;
+			transform: translateX(-50%);
+		}
+	}
+
+	@include mq($xl) {
+		margin-bottom: 50px;
+	}
+}
+
+#wp-auth-check {
+	padding: 30px 15px 0 !important;
+	background-color: $white !important;
+
+	@include mq(640px) {
+		transform: translateX(10px);
+		max-width: 330px;
+	}
+
+	@include mq(380px) {
+		left: 50% !important;
+		width: 270px !important;
+		transform: translateX(-50%);
+	}
 }
