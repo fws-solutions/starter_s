@@ -466,7 +466,7 @@ body {
 			position: absolute;
 			bottom: 21px;
 			right: 20px;
-			top: auto !important;
+			top: auto !important; // sass-lint:disable-line no-important
 			pointer-events: none;
 	
 			svg {
@@ -481,7 +481,7 @@ body {
 		}
 
 		.second-icon {
-			top: 15px !important;
+			top: 15px !important; // sass-lint:disable-line no-important
     		bottom: auto;
 
 			svg {
@@ -489,7 +489,7 @@ body {
 			}
 
 			@include mq(640px) {
-				top: 9px !important;
+				top: 9px !important; // sass-lint:disable-line no-important
 			}
 		}
 	
@@ -1422,7 +1422,7 @@ body {
 	position: relative;
 
 	a {
-		position: absolute !important;
+		position: absolute !important; // sass-lint:disable-line no-important
 		bottom: -42px;
 		left: -5px;
 		font-size: 20px;
@@ -1439,8 +1439,8 @@ body {
 }
 
 #wp-auth-check {
-	padding: 30px 15px 0 !important;
-	background-color: $white !important;
+	padding: 30px 15px 0 !important; // sass-lint:disable-line no-important
+	background-color: $white !important; // sass-lint:disable-line no-important
 
 	@include mq(640px) {
 		transform: translateX(10px);
@@ -1448,8 +1448,8 @@ body {
 	}
 
 	@include mq(380px) {
-		left: 50% !important;
-		width: 270px !important;
+		left: 50% !important; // sass-lint:disable-line no-important
+		width: 270px !important; // sass-lint:disable-line no-important
 		transform: translateX(-50%);
 	}
 }
