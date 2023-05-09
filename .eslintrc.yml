@@ -42,14 +42,10 @@ rules:
     object-curly-spacing: ["error", "never"]
     array-bracket-spacing: ["error", "never"]
     space-in-parens: ["error", "never"]
-overrides:
-    -   files: "*.vue"
-        rules:
-            indent: 0
 env:
     es6: true
     browser: true
     node: true
-extends: ["eslint:recommended", "plugin:vue/essential"]
+extends: ["eslint:recommended"]
 parserOptions:
     sourceType: module
