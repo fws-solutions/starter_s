@@ -173,11 +173,11 @@ class Security
 
 
     /**
-     * Only superadmins are allowed to add/update/remove plugins/themes on external servers.
+     * Only super-admins are allowed to add/update/remove plugins/themes on external servers.
      */
-    public function preventPluginsUpdateHook(): void
+    public static function preventPluginsUpdateHook(): void
     {
-        // allow updating if: rule switched-off or for super-admin or in localhost
+        // allow updating if: rule is switched-off or for super-admin or in localhost
         if (!fws()->config()->pluginsOnlyLocalEditing() || self::isSuperAdmin() || self::isLocalEnvironment()) {
             return;
         }
