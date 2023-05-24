@@ -266,7 +266,7 @@ $colors_html = ob_get_contents();
 					<?php echo fws()->render()->inlineSVG( 'ico-user', 'basic-icon' ); ?>
 				</li>
 				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-map', 'basic-icon' ); ?>
+					<?php echo fws()->render()->inlineSVG( 'ico-maps', 'basic-icon' ); ?>
 				</li>
 				<li class="styleguide__icons-item">
 					<?php echo fws()->render()->inlineSVG( 'ico-cards', 'basic-icon' ); ?>
