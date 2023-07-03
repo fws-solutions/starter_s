@@ -16,159 +16,131 @@ class Styleguide extends Singleton
     /** @var self */
     protected static $instance;
 
+	// section counter
+	protected $counter = 0;
+
+
     /**
      * Styleguide Init
      */
     public function styleguide_init(): void
     {
+		// render sections from .fwsconfig.yml
         $styleguide = fws()->config()->styleguideConfig();
+        $this->styleguide_render_section_wrap('Colors', $this->styleguide_get_colors($styleguide['colors']));
+        $this->styleguide_render_section_wrap('Container', $this->styleguide_get_container($styleguide['container']));
+        $this->styleguide_render_section_wrap('Fonts', $this->styleguide_get_fonts($styleguide['fonts']));
+        $this->styleguide_render_section_wrap('Buttons',  $this->styleguide_get_buttons($styleguide['buttons']));
+        $this->styleguide_render_section_wrap('Form elements',  $this->styleguide_get_form($styleguide['form']));
+        $this->styleguide_render_section_wrap('Icons', $this->styleguide_get_icons($styleguide['icons']));
+		$this->styleguide_render_section_wrap('Popup',  $this->styleguide_get_popup($styleguide['popup']));
 
-        // $this->styleguide_render_section_wrap( 'Pages', 'section-0', $this->styleguide_get_pages( $styleguide['pages'] ) );
-        $this->styleguide_render_section_wrap('Colors', 'section-0', $this->styleguide_get_colors($styleguide['colors']));
-        $this->styleguide_render_section_wrap('Container', 'section-1', $this->styleguide_get_container($styleguide['container']));
-        $this->styleguide_render_section_wrap('Fonts', 'section-2', $this->styleguide_get_fonts($styleguide['fonts']));
-        $this->styleguide_render_section_wrap('Buttons', 'section-3', $this->styleguide_get_buttons($styleguide['buttons']));
-        $this->styleguide_render_section_wrap('Form elements', 'section-4', $this->styleguide_get_form($styleguide['form']));
-        $this->styleguide_render_section_wrap('Icons', 'section-5', $this->styleguide_get_icons($styleguide['icons']));
-		$this->styleguide_render_section_wrap('Popup', 'section-6', $this->styleguide_get_popup($styleguide['popup']));
-        $this->styleguide_render_template_views($this->styleguide_get_template_views());
+		// render sections from "template-views/blocks" directory
+		foreach ($this->styleguide_get_template_views() as $tpl) {
+			ob_start();
+			get_template_part("template-views/blocks/$tpl[view]/$tpl[file]");
+			$this->styleguide_render_section_wrap($tpl['title'], ob_get_clean());
+		}
     }
 
-    /**
-     * Render Styleguide Sections
-     *
-     * @param array $templates
-     */
-    private function styleguide_render_template_views(array $template_views): void
-    {
-        $counter = 7;
-        $temp_dir_root = 'template-views/blocks';
-
-        foreach ($template_views as $t) {
-            ?>
-			<div id="section-<?php echo $counter; ?>" data-section-title="<?php echo $t['title']; ?>" class="styleguide__section js-styleguide-section">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-2">
-							<div class="styleguide__head">
-								<h2 class="styleguide-section__title"><?php echo $t['title']; ?></h2>
-							</div>
-						</div>
-						<div class="col-md-10">
-							<div class="styleguide__section-content">
-								<?php
-$temp_dir = $temp_dir_root . '/' . $t['view'] . '/' . $t['file'];
-            get_template_part($temp_dir);
-            ?>
-							</div>
-						</div>
-					</div>
-					<span class="styleguide-component__border">Section title</span>
-				</div>
-			</div>
-			<?php
-$counter++;
-        }
-    }
-
-    /**
-     * Get Template Views
-     *
-     * @return array
-     */
-    private function styleguide_get_template_views()
-    {
-        $template_views = [];
-
-        $viewsDir = get_template_directory() . '/template-views/blocks/';
-        $views = scandir($viewsDir);
-
-        foreach ($views as $view) {
-            if (is_dir($viewsDir . $view) && $view !== '.' && $view !== '..') {
-                $filtered_view = $this->styleguide_filter_template_views('_fe', scandir($viewsDir . $view));
-                $template_views = array_merge($template_views, $filtered_view);
-            }
-        }
-
-        return $template_views;
-    }
-
-    /**
-     * Filter Template Views
-     *
-     * @param string $needle;
-     * @param string $haystack;
-     *
-     * @return array
-     */
-    private function styleguide_filter_template_views(string $needle, array $haystack)
-    {
-        $filtered = [];
-
-        foreach ($haystack as $item) {
-            if (false !== strpos($item, $needle)) {
-                $file = str_replace('.php', '', $item);
-                $view = str_replace('_fe-', '', $file);
-
-                // check if template view is a variation of existing template view
-                if (strpos($view, '--') !== false) {
-                    $view = substr($view, 0, strpos($view, '--'));
-                }
-
-                // format and push to filtered array
-                array_push($filtered, [
-                    'title' => ucwords(str_replace(array('.php', '_fe-', '--', '-'), array('', '', ': ', ' '), $item)),
-                    'view' => $view,
-                    'file' => $file,
-                ]);
-            }
-        }
-
-        return array_reverse($filtered);
-    }
 
     /**
      * Render Styleguide Wrappers
      *
      * @param string $title;
-     * @param string $section_id;
      * @param string $content
      * @param bool   $row
      */
-    private function styleguide_render_section_wrap(string $title, string $section_id, string $content, bool $row = false): void
+    private function styleguide_render_section_wrap(string $title, string $content, bool $row = false): void
     {
         ?>
-		<div id="<?php echo $section_id; ?>" data-section-title="<?php echo $title; ?>" class="styleguide__section js-styleguide-section">
+		<div id="section-<?=intval($this->counter)?>" data-section-title="<?=esc_attr($title)?>" class="styleguide__section js-styleguide-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-2">
 						<div class="styleguide__head">
-							<h2 class="styleguide-section__title"><?php echo $title; ?></h2>
+							<h2 class="styleguide-section__title"><?=esc_html($title)?></h2>
 						</div>
 					</div>
 					<div class="col-md-10">
 						<div class="styleguide__body">
 							<div class="container">
-								<?php
-echo $row ? '<div class="row">' : '';
-        echo $content;
-        echo $row ? '</div>' : '';
-        ?>
+								<?php echo $row ? '<div class="row">' : ''; ?>
+        						<?php echo $content; ?>
+        						<?php echo $row ? '</div>' : ''; ?>
 							</div>
 						</div>
 					</div>
 				</div>
-				<span class="styleguide-component__border">Section title</span>
+				<span class="styleguide-component__border">/ <?=esc_html($title)?></span>
 			</div>
 		</div> <!-- Styleguide section -->
 		<?php
-}
+		$this->counter++;
+	}
+
+
+	/**
+	 * Get Template Views
+	 *
+	 * @return array
+	 */
+	private function styleguide_get_template_views(): array
+	{
+		$template_views = [];
+
+		$viewsDir = get_template_directory() . '/template-views/blocks/';
+		$views = scandir($viewsDir);
+
+		foreach ($views as $view) {
+			if (is_dir($viewsDir . $view) && $view !== '.' && $view !== '..') {
+				$filtered_view = $this->styleguide_filter_template_views('_fe', scandir($viewsDir . $view));
+				$template_views = array_merge($template_views, $filtered_view);
+			}
+		}
+
+		return $template_views;
+	}
+
+
+	/**
+	 * Filter Template Views
+	 *
+	 * @param string $needle;
+	 * @param string $haystack;
+	 * @return array
+	 */
+	private function styleguide_filter_template_views(string $needle, array $haystack): array
+	{
+		$filtered = [];
+
+		foreach ($haystack as $item) {
+			if (false !== strpos($item, $needle)) {
+				$file = str_replace('.php', '', $item);
+				$view = str_replace('_fe-', '', $file);
+
+				// check if template view is a variation of existing template view
+				if (strpos($view, '--') !== false) {
+					$view = substr($view, 0, strpos($view, '--'));
+				}
+
+				// format and push to filtered array
+				array_push($filtered, [
+					'title' => ucwords(str_replace(['.php', '_fe-', '--', '-'], ['', '', ': ', ' '], $item)),
+					'view' => $view,
+					'file' => $file,
+				]);
+			}
+		}
+
+		return array_reverse($filtered);
+	}
+
 
     /**
      * Prep HTML Styleguide Colors
      *
      * @param array $colors
-     *
      * @return string
      */
     private function styleguide_get_colors(array $colors): string
@@ -177,56 +149,22 @@ echo $row ? '<div class="row">' : '';
         ?>
 
 		<ul class="styleguide__colorpallet">
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-mine-shaft"></span>
-				<span class="styleguide__color-name">#282828</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-sapphire"></span>
-				<span class="styleguide__color-name">#335099</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-dodger-blue"></span>
-				<span class="styleguide__color-name">#5C92FF</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-orange"></span>
-				<span class="styleguide__color-name">#F7931E</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-pattens-blue"></span>
-				<span class="styleguide__color-name">#D4E5FF</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-mystic"></span>
-				<span class="styleguide__color-name">#E1E6EE</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-watusi"></span>
-				<span class="styleguide__color-name">#FFE8D2</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-pot-pourri"></span>
-				<span class="styleguide__color-name">#FCF5EE</span>
-			</li>
-			<li class="styleguide__colorpallet--mod">
-				<span class="styleguide__color bg-pearl-bush"></span>
-				<span class="styleguide__color-name">#EFE8E2</span>
-			</li>
+			<?php foreach ( $colors as $name => $rgb ) { ?>
+				<li class="styleguide__colorpallet--mod">
+					<span class="styleguide__color bg-<?php echo esc_attr($name); ?>"></span>
+					<span class="styleguide__color-name"><?php echo esc_html($rgb); ?></span>
+				</li>
+			<?php } ?>
 		</ul>
 
 		<?php
-$colors_html = ob_get_contents();
-        ob_end_clean();
-
-        return $colors_html;
+        return ob_get_clean();
     }
 
     /**
      * Prep HTML Styleguide Icons
      *
      * @param array $icons
-     *
      * @return string
      */
     private function styleguide_get_icons(array $icons): string
@@ -234,59 +172,24 @@ $colors_html = ob_get_contents();
         ob_start();
         ?>
 
-			<ul class="styleguide__icons">
+		<ul class="styleguide__icons">
+			<?php foreach ($icons as $icon) { ?>
 				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-eye-slash-regular', 'basic-icon' ); ?>
+					<?php echo fws()->render()->inlineSVG($icon, 'basic-icon'); ?>
+					<!-- <span class="styleguide__icons-name"><?php echo esc_html($icon); ?></span> -->
 				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-eye', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-paper', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-arrows', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-trash', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-pen', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-info', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-tabs', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-document', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-user', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-map', 'basic-icon' ); ?>
-				</li>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG( 'ico-cards', 'basic-icon' ); ?>
-				</li>
-			</ul>
+			<?php } ?>
+		</ul>
 
 		<?php
-
-
-$colors_html = ob_get_contents();
-        ob_end_clean();
-
-        return $colors_html;
+        return ob_get_clean();
     }
 
-	    /**
+
+	/**
      * Prep HTML Styleguide Fonts
      *
      * @param array $popup
-     *
      * @return string
      */
     private function styleguide_get_popup(): string
@@ -302,17 +205,14 @@ $colors_html = ob_get_contents();
 			</div>
 
 		<?php
-$pages_html = ob_get_contents();
-        ob_end_clean();
-
-        return $pages_html;
+        return ob_get_clean();
     }
+
 
     /**
      * Prep HTML Styleguide Fonts
      *
      * @param array $container
-     *
      * @return string
      */
     private function styleguide_get_container(): string
@@ -322,53 +222,39 @@ $pages_html = ob_get_contents();
 			<span class="styleguide-text">1640px</span>
 
 		<?php
-$pages_html = ob_get_contents();
-        ob_end_clean();
-
-        return $pages_html;
+        return ob_get_clean();
     }
+
 
     /**
      * Prep HTML Styleguide Fonts
      *
      * @param array $fonts
-     *
      * @return string
      */
     private function styleguide_get_fonts(array $fonts): string
     {
         ob_start();
-        ?>
 
+		// render fonts
+		$countToText = ['main', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth'];
+        ?>
 		<div class="styleguide__font-holder">
-			<div class="styleguide__font-block">
-				<div class="styleguide__font-block--item">
-					<span class="styleguide__font-block--example font-font-main">Aa</span>
-					<span class="styleguide__font-block--name">Proxima Nova</span>
+			<?php foreach ($fonts as $count => $font) { ?>
+				<div class="styleguide__font-block">
+					<div class="styleguide__font-block--item">
+						<span class="styleguide__font-block--example font-font-<?=esc_attr($countToText[$count])?>">Aa</span>
+						<span class="styleguide__font-block--name"><?=esc_html($font['name'])?></span>
+					</div>
+					<div class="styleguide__font-block--description">
+						<span class="styleguide-text"><?=esc_html($font['styles'])?></span>
+					</div>
 				</div>
-				<div class="styleguide__font-block--description">
-					<span class="styleguide-text">Regular Bold</span>
-				</div>
-			</div>
-			<div class="styleguide__font-block">
-				<div class="styleguide__font-block--item">
-					<span class="styleguide__font-block--example font-font-second">Aa</span>
-					<span class="styleguide__font-block--name">Open Sans</span>
-				</div>
-				<div class="styleguide__font-block--description">
-					<span class="styleguide-text">Regular Medium Semibold Bold</span>
-				</div>
-			</div>
-			<div class="styleguide__font-block">
-				<div class="styleguide__font-block--item">
-					<span class="styleguide__font-block--example font-font-third">Aa</span>
-					<span class="styleguide__font-block--name">Univia pro</span>
-				</div>
-				<div class="styleguide__font-block--description">
-					<span class="styleguide-text">Vidaloka</span>
-				</div>
-			</div>
+			<?php } ?>
 		</div>
+		<?php
+		// render headings and paragraphs
+		?>
 		<div class="styleguide__title-holder">
 			<div class="row">
 				<div class="col-md-12">
@@ -379,65 +265,62 @@ $pages_html = ob_get_contents();
 							</div>
 						</div>
 					<div>
-					<span class="styleguide-text">90pt</span>
+						<span class="styleguide-text">90pt</span>
+					</div>
 				</div>
-			</div>
-		<div class="styleguide__title-holder">
-			<div class="styleguide__title">
-				<div class="entry-content">
-					<h2>Heading 2</h2>
+			<div class="styleguide__title-holder">
+				<div class="styleguide__title">
+					<div class="entry-content">
+						<h2>Heading 2</h2>
+					</div>
 				</div>
-			</div>
-			<div>
-				<span class="styleguide-text">60pt</span>
-			</div>
-		</div>
-		<div class="styleguide__title-holder">
-			<div class="styleguide__title">
-				<div class="entry-content">
-					<h3>Heading 3</h3>
-				</div>
-			</div>
-			<div>
-				<span class="styleguide-text">30pt</span>
-			</div>
-		</div>
-		<div class="styleguide__title-holder">
-			<div class="styleguide__title">
-				<div class="entry-content">
-					<p>Paragraph 1</p>
-				</div>
-			</div>
-			<div>
-				<span class="styleguide-text">20pt</span>
-			</div>
-		</div>
-		<div class="styleguide__title-holder">
-			<div class="styleguide__title">
 				<div>
-					<p>Paragraph 2</p>
+					<span class="styleguide-text">60pt</span>
 				</div>
 			</div>
-			<div>
-				<span class="styleguide-text">18pt</span>
+			<div class="styleguide__title-holder">
+				<div class="styleguide__title">
+					<div class="entry-content">
+						<h3>Heading 3</h3>
+					</div>
+				</div>
+				<div>
+					<span class="styleguide-text">30pt</span>
+				</div>
+			</div>
+			<div class="styleguide__title-holder">
+				<div class="styleguide__title">
+					<div class="entry-content">
+						<p>Paragraph 1</p>
+					</div>
+				</div>
+				<div>
+					<span class="styleguide-text">20pt</span>
+				</div>
+			</div>
+			<div class="styleguide__title-holder">
+				<div class="styleguide__title">
+					<div>
+						<p>Paragraph 2</p>
+					</div>
+				</div>
+				<div>
+					<span class="styleguide-text">18pt</span>
+				</div>
 			</div>
 		</div>
+		</div>
 	</div>
-	</div>
-</div>
 
 	<?php
-$pages_html = ob_get_contents();
-        ob_end_clean();
-
-        return $pages_html;
+		return ob_get_clean();
     }
+
 
     /**
      * Prep HTML Styleguide Buttons
      *
      * @param array $buttons
-     *
      * @return string
      */
     private function styleguide_get_buttons(): string
