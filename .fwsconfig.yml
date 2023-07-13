@@ -39,8 +39,8 @@ acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTEN
                 title: 'Slider'
                 group_id: 'group_5d70e7f775076'
             -
-                title: 'Vue Block'
-                group_id: 'group_5dcd6b37b67a4'
+                title: 'Image Text'
+                group_id: 'group_64afeb8a64ec1'
 
 styleguide:                                         # DEFINE STYLEGUIDE
     pages:                                          # set list of all pages defining their titles and urls
