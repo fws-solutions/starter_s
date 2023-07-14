@@ -82,24 +82,19 @@ styleguide:                                         # DEFINE STYLEGUIDE
         -
             name: 'Univia pro'
             styles: 'Vidaloka'
-
-    titles:                                         # set list of all special titles defining their classes and dummy text
-        -
-            text: 'This is Page Title'
-            class: 'page-title'
-        -
-            text: 'This is Section Title'
-            class: 'section-title'
     buttons:                                        # set list of all buttons defining their classes and dummy text
         -
-            text: 'Normal'
+            text: 'Default'
             class: 'btn'
         -
-            text: 'Green Button'
-            class: 'btn btn--green'
+            text: 'Default'
+            class: 'btn btn--orange'
         -
-            text: 'Big Button'
-            class: 'btn btn--big'
+            text: 'Default'
+            class: 'btn btn--border'
         -
-            text: 'Big Green Button'
-            class: 'btn btn--big btn--green'
+            text: 'Default'
+            class: 'btn btn--sm btn--blue'
+        -
+            icon: ['ico-gps', 'btn-icon']
+            class: 'btn btn--icon'

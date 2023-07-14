@@ -28,12 +28,12 @@ class Styleguide extends Singleton
 		// render sections from .fwsconfig.yml
         $styleguide = fws()->config()->styleguideConfig();
         $this->styleguide_render_section_wrap('Colors', $this->styleguide_get_colors($styleguide['colors']));
-        $this->styleguide_render_section_wrap('Container', $this->styleguide_get_container($styleguide['container']));
+        $this->styleguide_render_section_wrap('Container', $this->styleguide_get_container());
         $this->styleguide_render_section_wrap('Fonts', $this->styleguide_get_fonts($styleguide['fonts']));
         $this->styleguide_render_section_wrap('Buttons',  $this->styleguide_get_buttons($styleguide['buttons']));
-        $this->styleguide_render_section_wrap('Form elements',  $this->styleguide_get_form($styleguide['form']));
+        $this->styleguide_render_section_wrap('Form elements',  $this->styleguide_get_form());
         $this->styleguide_render_section_wrap('Icons', $this->styleguide_get_icons($styleguide['icons']));
-		$this->styleguide_render_section_wrap('Popup',  $this->styleguide_get_popup($styleguide['popup']));
+		$this->styleguide_render_section_wrap('Popup',  $this->styleguide_get_popup());
 
 		// render sections from "template-views/blocks" directory
 		foreach ($this->styleguide_get_template_views() as $tpl) {
@@ -107,7 +107,7 @@ class Styleguide extends Singleton
 	 * Filter Template Views
 	 *
 	 * @param string $needle;
-	 * @param string $haystack;
+	 * @param array $haystack;
 	 * @return array
 	 */
 	private function styleguide_filter_template_views(string $needle, array $haystack): array
@@ -125,11 +125,11 @@ class Styleguide extends Singleton
 				}
 
 				// format and push to filtered array
-				array_push($filtered, [
+				$filtered[] = [
 					'title' => ucwords(str_replace(['.php', '_fe-', '--', '-'], ['', '', ': ', ' '], $item)),
 					'view' => $view,
 					'file' => $file,
-				]);
+				];
 			}
 		}
 
@@ -149,7 +149,7 @@ class Styleguide extends Singleton
         ?>
 
 		<ul class="styleguide__colorpallet">
-			<?php foreach ( $colors as $name => $rgb ) { ?>
+			<?php foreach ($colors as $name => $rgb) { ?>
 				<li class="styleguide__colorpallet--mod">
 					<span class="styleguide__color bg-<?php echo esc_attr($name); ?>"></span>
 					<span class="styleguide__color-name"><?php echo esc_html($rgb); ?></span>
@@ -160,6 +160,7 @@ class Styleguide extends Singleton
 		<?php
         return ob_get_clean();
     }
+
 
     /**
      * Prep HTML Styleguide Icons
@@ -189,7 +190,6 @@ class Styleguide extends Singleton
 	/**
      * Prep HTML Styleguide Fonts
      *
-     * @param array $popup
      * @return string
      */
     private function styleguide_get_popup(): string
@@ -197,12 +197,12 @@ class Styleguide extends Singleton
         ob_start();
         ?>
 
-			<button class="btn js-popup-trigger popup-trigger">Popup</button>
+		<button class="btn js-popup-trigger popup-trigger">Popup</button>
 
-			<div class="popup js-popup">
-				<h2 class="popup-title">Lorem Ipsum Lipsum</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
+		<div class="popup js-popup">
+			<h2 class="popup-title">Lorem Ipsum Lipsum</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		</div>
 
 		<?php
         return ob_get_clean();
@@ -212,14 +212,14 @@ class Styleguide extends Singleton
     /**
      * Prep HTML Styleguide Fonts
      *
-     * @param array $container
      * @return string
      */
     private function styleguide_get_container(): string
     {
         ob_start();
         ?>
-			<span class="styleguide-text">1640px</span>
+
+		<span class="styleguide-text">1640px</span>
 
 		<?php
         return ob_get_clean();
@@ -253,66 +253,35 @@ class Styleguide extends Singleton
 			<?php } ?>
 		</div>
 		<?php
+
 		// render headings and paragraphs
+		$elements = [
+			['h1', 'Heading 1', '90pt'],
+			['h2', 'Heading 2', '60pt'],
+			['h3', 'Heading 3', '30pt'],
+			['p', 'Paragraph', '20pt'],
+		];
 		?>
 		<div class="styleguide__title-holder">
 			<div class="row">
 				<div class="col-md-12">
+				<?php foreach ($elements as $element) { ?>
 					<div class="styleguide__title-holder">
 						<div class="styleguide__title">
 							<div class="entry-content">
-								<h1>Heading 1</h1>
+								<<?=esc_html($element[0])?>><?=esc_html($element[1])?></<?=esc_html($element[0])?>>
 							</div>
 						</div>
-					<div>
-						<span class="styleguide-text">90pt</span>
+						<div>
+							<span class="styleguide-text"><?=esc_html($element[2])?></span>
+						</div>
 					</div>
-				</div>
-			<div class="styleguide__title-holder">
-				<div class="styleguide__title">
-					<div class="entry-content">
-						<h2>Heading 2</h2>
-					</div>
-				</div>
-				<div>
-					<span class="styleguide-text">60pt</span>
-				</div>
-			</div>
-			<div class="styleguide__title-holder">
-				<div class="styleguide__title">
-					<div class="entry-content">
-						<h3>Heading 3</h3>
-					</div>
-				</div>
-				<div>
-					<span class="styleguide-text">30pt</span>
-				</div>
-			</div>
-			<div class="styleguide__title-holder">
-				<div class="styleguide__title">
-					<div class="entry-content">
-						<p>Paragraph 1</p>
-					</div>
-				</div>
-				<div>
-					<span class="styleguide-text">20pt</span>
-				</div>
-			</div>
-			<div class="styleguide__title-holder">
-				<div class="styleguide__title">
-					<div>
-						<p>Paragraph 2</p>
-					</div>
-				</div>
-				<div>
-					<span class="styleguide-text">18pt</span>
+				<?php } ?>
 				</div>
 			</div>
 		</div>
-		</div>
-	</div>
 
-	<?php
+		<?php
 		return ob_get_clean();
     }
 
@@ -323,40 +292,29 @@ class Styleguide extends Singleton
      * @param array $buttons
      * @return string
      */
-    private function styleguide_get_buttons(): string
+    private function styleguide_get_buttons(array $buttons): string
     {
         ob_start();
         ?>
 
-			<div class="styleguide__buttons">
-				<div class="styleguide__btn">
-					<button class="btn">Default</button>
-				</div>
-				<div class="styleguide__btn">
-					<button class="btn btn--orange">Default</button>
-				</div>
-				<div class="styleguide__btn">
-					<button class="btn btn--border">Default</button>
-				</div>
-				<div class="styleguide__btn">
-					<button class="btn btn--sm btn--blue">Default</button>
-				</div>
-				<div class="styleguide__btn">
-					<button class="btn btn--icon"><?php echo fws()->render()->inlineSVG('ico-gps', 'btn-icon'); ?></button>
-				</div>
+		<div class="styleguide__buttons">
+		<?php foreach ($buttons as $button) { ?>
+			<div class="styleguide__btn">
+				<button class="<?=esc_attr($button['class'])?>"><?php echo isset($button['icon'])
+					? fws()->render()->inlineSVG($button['icon'][0], $button['icon'][1])
+					: esc_html($button['text'] ?? '');
+				?></button>
 			</div>
+		<?php } ?>
+		</div>
 
 		<?php
-$buttons_html = ob_get_contents();
-        ob_end_clean();
-
-        return $buttons_html;
+        return ob_get_clean();
     }
+
 
     /**
      * Prep HTML Styleguide Buttons
-     *
-     * @param array $form
      *
      * @return string
      */
@@ -364,217 +322,79 @@ $buttons_html = ob_get_contents();
     {
         ob_start();
         ?>
-			<div class="styleguide__form-elements--holder">
-				<div class="styleguide__form-element">
-					<input type="text" placeholder="Placeholder">
-				</div>
-				<div class="styleguide__form-element">
-					<?php get_template_part('template-views/parts/select-field/_fe-select-field');?>
-				</div>
-				<div class="styleguide__form-element">
-					<span class="tooltip-holder">
-						<?php echo fws()->render()->inlineSVG('ico-info', 'basic-icon'); ?>
-						<span class="tooltip">
-							What if a storm hits Hilton Head Island before you get ready to go on vacation?
-						</span>
+		<div class="styleguide__form-elements--holder">
+			<div class="styleguide__form-element">
+				<input type="text" placeholder="Placeholder">
+			</div>
+			<div class="styleguide__form-element">
+				<?php get_template_part('template-views/parts/select-field/_fe-select-field'); ?>
+			</div>
+			<div class="styleguide__form-element">
+				<span class="tooltip-holder">
+					<?php echo fws()->render()->inlineSVG('ico-info', 'basic-icon'); ?>
+					<span class="tooltip">
+						What if a storm hits Hilton Head Island before you get ready to go on vacation?
 					</span>
-				</div>
-				<div class="styleguide__form-element">
-					<div class="range">
-						<input type="range" min="0" max="100" step="1">
-					</div>
-				</div>
-				<div class="styleguide__form-element">
-					<label class="container-checkbox">
-						<input type="checkbox">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="styleguide__form-element">
-					<label class="container-radio">
-						<input type="radio" checked="checked" name="radio">
-						<span class="checkmark"></span>
-					</label>
-					<label class="container-radio">
-						<input type="radio" name="radio">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="styleguide__form-element">
-					<ul class="pills">
-						<li>
-							<span class="pill">
-								<span class="pill__text">text</span>
-								<span class="pill__remove"><?php echo fws()->render()->inlineSVG('ico-close', 'basic-icon'); ?></span>
-							</span>
-						</li>
-						<li>
-							<span class="pill active">
-								<span class="pill__text">text</span>
-								<span class="pill__remove"><?php echo fws()->render()->inlineSVG('ico-close', 'basic-icon'); ?></span>
-							</span>
-						</li>
-					</ul>
-				</div>
-				<div class="styleguide__form-element">
-					<div class="toggle-button__holder">
-						<div class="toggle-btn">
-							<input type="checkbox" class="toggle-input" />
-							<div class="toggle"></div>
-						</div>
-					</div>
-				</div>
-				<div class="styleguide__form-element">
-					<div class="loader">
-						<div class="dots">
-							<span></span>
-							<span></span>
-							<span></span>
-						</div>
-					</div>
+				</span>
+			</div>
+			<div class="styleguide__form-element">
+				<div class="range">
+					<input type="range" min="0" max="100" step="1">
 				</div>
 			</div>
-
-		<?php
-$buttons_html = ob_get_contents();
-        ob_end_clean();
-
-        return $buttons_html;
-    }
-
-    /**
-     * Prep HTML Styleguide Titles
-     *
-     * @param array $titles
-     *
-     * @return string
-     */
-    private function styleguide_get_titles(array $titles): string
-    {
-        ob_start();
-        ?>
-
-		<div class="col-md-6">
-			<div class="styleguide__typography-special-titles">
-				<h3 class="styleguide__subtitle">Special Titles</h3>
-
-				<?php foreach ($titles as $t) {?>
-					<span class="<?php echo $t['class']; ?>"><?php echo $t['text']; ?></span>
-				<?php }?>
+			<div class="styleguide__form-element">
+				<label class="container-checkbox">
+					<input type="checkbox">
+					<span class="checkmark"></span>
+				</label>
 			</div>
-
-			<div class="typography__headings">
-				<h3 class="styleguide__subtitle">Entry Content: Headings</h3>
-				<div class="entry-content">
-					<h1>H1 - Some Title</h1>
-					<h2>H2 - Some Title</h2>
-					<h3>H3 - Some Title</h3>
-					<h4>H4 - Some Title</h4>
-					<h5>H5 - Some Title</h5>
-					<h6>H6 - Some Title</h6>
-				</div>
+			<div class="styleguide__form-element">
+				<label class="container-radio">
+					<input type="radio" checked="checked" name="radio">
+					<span class="checkmark"></span>
+				</label>
+				<label class="container-radio">
+					<input type="radio" name="radio">
+					<span class="checkmark"></span>
+				</label>
 			</div>
-		</div>
-
-		<?php
-$titles_html = ob_get_contents();
-        ob_end_clean();
-
-        return $titles_html;
-    }
-
-    /**
-     * Prep HTML Styleguide Entry Content
-     *
-     * @return string
-     */
-    private function styleguide_get_entry_content(): string
-    {
-        ob_start();
-        ?>
-
-		<div class="col-md-6">
-			<h3 class="styleguide__subtitle">Entry Content: Elements</h3>
-
-			<div class="entry-content">
-				<h1>Heading 1</h1>
-
-				<h2>Paragraphs</h2>
-
-				<p><strong>Paragraph 1:</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit amet.</p>
-
-				<p><strong>Paragraph 2:</strong> Donec sed odio dui. Cras justo odio, dapibus ac facilisis in. Egestas eget quam. Maecenas faucibus mollis interdum maecenas faucibus. Cras mattis consectetur purus sit amet. <a href="#">Read more!</a></p>
-
-				<h3>Blockquote</h3>
-
-				<blockquote cite="#">
-					Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium accusamus unde, necessitatibus quod reprehenderit, soluta quaerat voluptates vel obcaecati aut molestiae in. Illo dolores ut dignissimos? Placeat, laboriosam voluptatum? Exercitationem.
-				</blockquote>
-
-				<h3>Table</h3>
-
-				<table>
-					<tbody>
-					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Savings</th>
-					</tr>
-					<tr>
-						<td>Peter</td>
-						<td>Griffin</td>
-						<td>$100</td>
-					</tr>
-					<tr>
-						<td>Lois</td>
-						<td>Griffin</td>
-						<td>$150</td>
-					</tr>
-					<tr>
-						<td>Joe</td>
-						<td>Swanson</td>
-						<td>$300</td>
-					</tr>
-					</tbody>
-				</table>
-
-				<h3>Image</h3>
-
-				<figure class="wp-caption alignnone">
-					<a href="<?php echo fws()->images()->assetsSrc('dog-office.jpg', true) ?>">
-						<img class="wp-image-1 size-full" src="<?php echo fws()->images()->assetsSrc('dog-office-md.jpg', true) ?>" alt="">
-					</a>
-
-					<figcaption class="wp-caption-text">Greatness Awaits!</figcaption>
-				</figure>
-
-				<h3>Lists</h3>
-
-				<h4>Unordered list</h4>
-
-				<ul>
-					<li>Bread</li>
-					<li>Coffee beans</li>
-					<li>Milk</li>
-					<li>Butter</li>
+			<div class="styleguide__form-element">
+				<ul class="pills">
+					<li>
+						<span class="pill">
+							<span class="pill__text">text</span>
+							<span class="pill__remove"><?php echo fws()->render()->inlineSVG('ico-close', 'basic-icon'); ?></span>
+						</span>
+					</li>
+					<li>
+						<span class="pill active">
+							<span class="pill__text">text</span>
+							<span class="pill__remove"><?php echo fws()->render()->inlineSVG('ico-close', 'basic-icon'); ?></span>
+						</span>
+					</li>
 				</ul>
-
-				<h4>Ordered list</h4>
-
-				<ol>
-					<li>Coffee</li>
-					<li>Tea</li>
-					<li>Milk</li>
-				</ol>
+			</div>
+			<div class="styleguide__form-element">
+				<div class="toggle-button__holder">
+					<div class="toggle-btn">
+						<input type="checkbox" class="toggle-input" />
+						<div class="toggle"></div>
+					</div>
+				</div>
+			</div>
+			<div class="styleguide__form-element">
+				<div class="loader">
+					<div class="dots">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div>
+				</div>
 			</div>
 		</div>
 
 		<?php
-
-        $entry_content_html = ob_get_contents();
-        ob_end_clean();
-
-        return $entry_content_html;
+        return ob_get_clean();
     }
 
 }
