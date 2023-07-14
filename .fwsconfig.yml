@@ -70,7 +70,7 @@ styleguide:                                         # DEFINE STYLEGUIDE
         - 'ico-tabs'
         - 'ico-document'
         - 'ico-user'
-        - 'ico-map'
+        - 'ico-maps'
         - 'ico-cards'
     fonts:                                          # set list of all fonts, matching variables in scss file
         -
