@@ -1,7 +1,5 @@
 <div class="basic-block" id="scroll-section-example">
 	<div class="container">
-		<h2 class="section-title">basic-block title</h2>
-
 		<div class="entry-content">
 			<h1>Title</h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
