@@ -72,7 +72,7 @@ class Styleguide extends Singleton
 						</div>
 					</div>
 				</div>
-				<span class="styleguide-component__border">/ <?=esc_html($title)?></span>
+				<span class="styleguide-component__border"><?=esc_html($title)?></span>
 			</div>
 		</div> <!-- Styleguide section -->
 		<?php
@@ -172,16 +172,16 @@ class Styleguide extends Singleton
     {
         ob_start();
         ?>
-
-		<ul class="styleguide__icons">
-			<?php foreach ($icons as $icon) { ?>
-				<li class="styleguide__icons-item">
-					<?php echo fws()->render()->inlineSVG($icon, 'basic-icon'); ?>
-					<!-- <span class="styleguide__icons-name"><?php echo esc_html($icon); ?></span> -->
-				</li>
-			<?php } ?>
-		</ul>
-
+		<div class="basic-block">
+			<ul class="styleguide__icons">
+				<?php foreach ($icons as $icon) { ?>
+					<li class="styleguide__icons-item">
+						<?php echo fws()->render()->inlineSVG($icon, 'basic-icon'); ?>
+						<!-- <span class="styleguide__icons-name"><?php echo esc_html($icon); ?></span> -->
+					</li>
+				<?php } ?>
+			</ul>
+		</div>
 		<?php
         return ob_get_clean();
     }
@@ -197,7 +197,9 @@ class Styleguide extends Singleton
         ob_start();
         ?>
 
+	<div class="basic-block">
 		<button class="btn js-popup-trigger popup-trigger">Popup</button>
+	</div>
 
 		<div class="popup js-popup">
 			<h2 class="popup-title">Lorem Ipsum Lipsum</h2>
@@ -218,8 +220,9 @@ class Styleguide extends Singleton
     {
         ob_start();
         ?>
-
-		<span class="styleguide-text">1640px</span>
+		<div class="basic-block">
+			<span class="styleguide-text">1640px</span>
+		</div>
 
 		<?php
         return ob_get_clean();
@@ -241,13 +244,15 @@ class Styleguide extends Singleton
         ?>
 		<div class="styleguide__font-holder">
 			<?php foreach ($fonts as $count => $font) { ?>
-				<div class="styleguide__font-block">
-					<div class="styleguide__font-block--item">
-						<span class="styleguide__font-block--example font-font-<?=esc_attr($countToText[$count])?>">Aa</span>
-						<span class="styleguide__font-block--name"><?=esc_html($font['name'])?></span>
-					</div>
-					<div class="styleguide__font-block--description">
-						<span class="styleguide-text"><?=esc_html($font['styles'])?></span>
+				<div class="basic-block">
+					<div class="styleguide__font-block">
+						<div class="styleguide__font-block--item">
+							<span class="styleguide__font-block--example font-font-<?=esc_attr($countToText[$count])?>">Aa</span>
+							<span class="styleguide__font-block--name"><?=esc_html($font['name'])?></span>
+						</div>
+						<div class="styleguide__font-block--description">
+							<span class="styleguide-text"><?=esc_html($font['styles'])?></span>
+						</div>
 					</div>
 				</div>
 			<?php } ?>
@@ -299,11 +304,13 @@ class Styleguide extends Singleton
 
 		<div class="styleguide__buttons">
 		<?php foreach ($buttons as $button) { ?>
-			<div class="styleguide__btn">
-				<button class="<?=esc_attr($button['class'])?>"><?php echo isset($button['icon'])
-					? fws()->render()->inlineSVG($button['icon'][0], $button['icon'][1])
-					: esc_html($button['text'] ?? '');
-				?></button>
+			<div class="basic-block">
+				<div class="styleguide__btn">
+					<button class="<?=esc_attr($button['class'])?>"><?php echo isset($button['icon'])
+						? fws()->render()->inlineSVG($button['icon'][0], $button['icon'][1])
+						: esc_html($button['text'] ?? '');
+					?></button>
+				</div>
 			</div>
 		<?php } ?>
 		</div>

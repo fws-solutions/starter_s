@@ -23,7 +23,7 @@
     import Happy from '../../../../assets/svg/ico-happy.svg';
     import Info from '../../../../assets/svg/ico-info.svg';
     import Lock from '../../../../assets/svg/ico-lock.svg';
-    import Map from '../../../../assets/svg/ico-map.svg';
+    import Maps from '../../../../assets/svg/ico-maps.svg';
     import Paper from '../../../../assets/svg/ico-paper.svg';
     import Pen from '../../../../assets/svg/ico-pen.svg';
     import PlusCircle from '../../../../assets/svg/ico-plus-circle.svg';
@@ -56,7 +56,7 @@
             Happy,
             Info,
             Lock,
-            Map,
+            Maps,
             Paper,
             Pen,
             PlusCircle,
