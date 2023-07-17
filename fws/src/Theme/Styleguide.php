@@ -244,15 +244,13 @@ class Styleguide extends Singleton
         ?>
 		<div class="styleguide__font-holder">
 			<?php foreach ($fonts as $count => $font) { ?>
-				<div class="basic-block">
-					<div class="styleguide__font-block">
-						<div class="styleguide__font-block--item">
-							<span class="styleguide__font-block--example font-font-<?=esc_attr($countToText[$count])?>">Aa</span>
-							<span class="styleguide__font-block--name"><?=esc_html($font['name'])?></span>
-						</div>
-						<div class="styleguide__font-block--description">
-							<span class="styleguide-text"><?=esc_html($font['styles'])?></span>
-						</div>
+				<div class="styleguide__font-block">
+					<div class="styleguide__font-block--item">
+						<span class="styleguide__font-block--example font-font-<?=esc_attr($countToText[$count])?>">Aa</span>
+						<span class="styleguide__font-block--name"><?=esc_html($font['name'])?></span>
+					</div>
+					<div class="styleguide__font-block--description">
+						<span class="styleguide-text"><?=esc_html($font['styles'])?></span>
 					</div>
 				</div>
 			<?php } ?>
@@ -268,20 +266,22 @@ class Styleguide extends Singleton
 		];
 		?>
 		<div class="styleguide__title-holder">
-			<div class="row">
-				<div class="col-md-12">
-				<?php foreach ($elements as $element) { ?>
-					<div class="styleguide__title-holder">
-						<div class="styleguide__title">
-							<div class="entry-content">
-								<<?=esc_html($element[0])?>><?=esc_html($element[1])?></<?=esc_html($element[0])?>>
+			<div class="basic-block">
+				<div class="row">
+					<div class="col-md-12">
+					<?php foreach ($elements as $element) { ?>
+						<div class="styleguide__title-holder">
+							<div class="styleguide__title">
+								<div class="entry-content">
+									<<?=esc_html($element[0])?>><?=esc_html($element[1])?></<?=esc_html($element[0])?>>
+								</div>
+							</div>
+							<div>
+								<span class="styleguide-text"><?=esc_html($element[2])?></span>
 							</div>
 						</div>
-						<div>
-							<span class="styleguide-text"><?=esc_html($element[2])?></span>
-						</div>
+					<?php } ?>
 					</div>
-				<?php } ?>
 				</div>
 			</div>
 		</div>
