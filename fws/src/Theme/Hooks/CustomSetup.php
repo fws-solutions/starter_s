@@ -72,12 +72,34 @@ class CustomSetup extends SingletonHook
 
 
 	/**
+	 * Limit width and height on 8000 pixels for uploaded images.
+	 *
+	 * @param array $file
+	 * @return array
+	 */
+	public function preventUploadHugeImages(array $file): array
+	{
+		$images = ['jpg', 'jpeg', 'jpe', 'png', 'gif', 'bmp'];
+		$name = pathinfo($file['name']);
+		$size = in_array($name['extension'], $images, true)
+			? getimagesize($file['tmp_name'])
+			: false;
+		if ($size && ($size[0] > 8000 || $size[1] > 8000)) {
+			$file['error'] = 'Too large image, width or height of image must not exceed 8000 pixels.';
+		}
+		return $file;
+	}
+
+
+	/**
 	 * Drop your hooks here.
 	 */
 	protected function hooks()
 	{
 		add_action( 'admin_notices', [ $this, 'dependenciesNotice' ] );
 		add_filter( 'recovery_mode_email', [ $this, 'recoveryModeEmail' ] );
+
+		add_filter('wp_handle_upload_prefilter', [$this, 'preventUploadHugeImages']);
 
         $this->disableCustomizer();
 	}
