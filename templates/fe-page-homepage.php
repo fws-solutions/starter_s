@@ -19,7 +19,6 @@ get_template_part( 'template-views/blocks/basic-block/_fe-basic-block' );
 get_template_part( 'template-views/blocks/image-text/_fe-image-text' );
 get_template_part( 'template-views/blocks/image-text/_fe-image-text--alt' );
 get_template_part( 'template-views/blocks/slider/_fe-slider' );
-get_template_part( 'template-views/blocks/vue-block/vue-block' );
 
 // close main content wrappers
 do_action( 'fws_starter_s_after_main_content' );
