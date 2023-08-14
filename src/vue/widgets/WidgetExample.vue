@@ -62,12 +62,4 @@
 	.vue-example {
 		padding: 50px 0;
 	}
-
-	.vue-example__container {
-		border-width: 1px 0 1px 0;
-		border-color: rgba($black, .3);
-		border-style: solid;
-		padding-top: 50px;
-		padding-bottom: 50px;
-	}
 </style>

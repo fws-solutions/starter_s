@@ -1,7 +1,5 @@
 <div class="basic-block" id="scroll-section-example">
 	<div class="container">
-		<h2 class="section-title">basic-block title</h2>
-
 		<div class="entry-content">
 			<h1>Title</h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
@@ -35,19 +33,6 @@
 			<blockquote>Excepteur sint occaecat cupidatat non proident</blockquote>
 		</div>
 
-		<div class="js-cf7-holder cf7-holder">
-			<div class="cf7-holder__inner">
-				<?php echo do_shortcode( '[contact-form-7 id="17" title="Contact form 1"]' ); ?>
-			</div>
-			<div class="cf7-holder__popup">
-				<div class="cf7-holder__popup-img">
-					<?php echo fws()->images()->assetsSrc('thank-you.png'); ?>
-				</div>
-				<span class="cf7-holder__popup-title">Message is sent!</span>
-			</div>
-		</div>
-
 		<?php get_template_part( 'template-views/parts/check-list/_fe-check-list' ); ?>
-		<?php get_template_part( 'template-views/parts/select-field/_fe-select-field' ); ?>
 	</div>
 </div><!-- .basic-block -->
