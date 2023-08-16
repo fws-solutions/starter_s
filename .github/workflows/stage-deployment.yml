@@ -10,7 +10,7 @@ env:
     themeDir: fws-theme
 
     # 2c. Node version. Use 10 or 12. If you are not sure, don't touch this.
-    nodeVersion: 12
+    nodeVersion: 18
 
 on:
     push:
@@ -79,7 +79,7 @@ jobs:
             - name: Build FE assets
               working-directory: ${{ env.fullThemeDir }}
               run: npm run build
-              
+
             - name: Git cleanup
               working-directory: ${{ env.fullThemeDir }}
               run: rm -rf .git
