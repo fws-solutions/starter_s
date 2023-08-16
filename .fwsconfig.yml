@@ -14,6 +14,7 @@ global:                                             # GLOBAL SETTINGS
     plugins-only-local-editing: true                # prevent add/update/delete of plugins/themes on non-localhosts, except for superadmins
     cf7-custom-templates: false                     # enable/disable custom HTML and MJML templates for cf7 plugin
     acf-only-local-editing: true                    # acf only possible to edit and manage on local environment
+    clickjacking-protection: true                   # prevent clickjacking by opening site through iframe
 
 acf-options-page:                                   # DEFINE ACF OPTIONS PAGES
     enable: true                                    # enable/disable options top level page
@@ -38,8 +39,8 @@ acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTEN
                 title: 'Slider'
                 group_id: 'group_5d70e7f775076'
             -
-                title: 'Vue Block'
-                group_id: 'group_5dcd6b37b67a4'
+                title: 'Image Text'
+                group_id: 'group_64afeb8a64ec1'
 
 styleguide:                                         # DEFINE STYLEGUIDE
     pages:                                          # set list of all pages defining their titles and urls
