@@ -13,13 +13,14 @@ $query_var = get_query_var( 'content-blocks', [] );
 // set and escape template view values
 $section_id = esc_textarea( $query_var['section_id'] ) ?? '';
 $section_title = esc_textarea( $query_var['section_title'] ) ?? '';
+$section_title_centered = $query_var['section_title_center'] ?? false;
 $content = $query_var['content'] ?? '';
 $check_list = $query_var['check_list'] ?? [];
 ?>
 
 <div class="basic-block"<?php echo $section_id ? ' id="' . $section_id . '"' : ''; ?>>
 	<div class="container">
-		<h2 class="section-title"><?php echo $section_title; ?></h2>
+		<h2 class="basic-block__title section-title<?php echo $section_title_centered ? ' centered' : ''; ?>"><?php echo $section_title; ?></h2>
 
 		<div class="entry-content">
 			<?php echo $content; ?>

@@ -6,6 +6,7 @@
             "key": "field_5d726bd054024",
             "label": "Section ID",
             "name": "section_id",
+            "aria-label": "",
             "type": "clone",
             "instructions": "",
             "required": 0,
@@ -25,9 +26,30 @@
             "prefix_name": 0
         },
         {
+            "key": "field_64afee30c8a1a",
+            "label": "Section Title Center",
+            "name": "section_title_center",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "",
+            "default_value": 0,
+            "ui_on_text": "",
+            "ui_off_text": "",
+            "ui": 1
+        },
+        {
             "key": "field_5d70e8fa322cd",
             "label": "Section Title",
             "name": "section_title",
+            "aria-label": "",
             "type": "clone",
             "instructions": "",
             "required": 0,
@@ -50,6 +72,7 @@
             "key": "field_5d70e902322cf",
             "label": "Content",
             "name": "content",
+            "aria-label": "",
             "type": "wysiwyg",
             "instructions": "",
             "required": 0,
@@ -72,6 +95,7 @@
             "key": "field_5d67b89e17a79",
             "label": "Check List",
             "name": "check_list",
+            "aria-label": "",
             "type": "repeater",
             "instructions": "",
             "required": 0,
@@ -86,11 +110,13 @@
             "max": 0,
             "layout": "table",
             "button_label": "Add Item",
+            "rows_per_page": 20,
             "sub_fields": [
                 {
                     "key": "field_5d67b8ab17a7a",
                     "label": "Item",
                     "name": "item",
+                    "aria-label": "",
                     "type": "text",
                     "instructions": "",
                     "required": 0,
@@ -104,7 +130,8 @@
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
-                    "maxlength": ""
+                    "maxlength": "",
+                    "parent_repeater": "field_5d67b89e17a79"
                 }
             ]
         }
@@ -124,15 +151,14 @@
     "label_placement": "left",
     "instruction_placement": "label",
     "hide_on_screen": "",
-    "active": 0,
+    "active": false,
     "description": "",
-    "show_in_graphql": 0,
-    "graphql_field_name": "fcBasicBlock",
+    "show_in_rest": 0,
+    "modified": 1689251419,
     "acf-field-group-category": [
         {
             "slug": "flexible-content",
             "name": "Flexible Content"
         }
-    ],
-    "modified": 1594393354
+    ]
 }

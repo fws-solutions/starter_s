@@ -9,6 +9,8 @@
  * @package fws_starter_s
  */
 
+$google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' ) ?? false;
+
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
@@ -24,6 +26,21 @@
 	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Regular.woff2" as="font" crossorigin />
 	<link rel="stylesheet" href="https://use.typekit.net/tqv4xbb.css">
 
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<!-- Add Google Analytics Tag Code in the Theme Settings. -->
+	<?php if($google_analytics_tag_code): ?>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_analytics_tag_code ?>"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag('js', new Date());
+
+			gtag('config', '<?php echo $google_analytics_tag_code ?>');
+		</script>
+	<?php endif; ?>
 
 	<?php wp_head(); ?>
 </head>

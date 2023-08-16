@@ -29,8 +29,7 @@ class DeferAssets extends SingletonHook
 		$siteScripts = [
 			'jquery-core',
 			'fws_starter_s-site-script',
-			'fws_starter_s-vuevendors-js',
-			'fws_starter_s-vueapp-js'
+			'current-template-js'
 		];
 
 		// defer admin scripts

@@ -1,9 +1,11 @@
 # FWS Starter _S
-*Version: 3.10.3*
+*Version: 3.12.0*
 
 > It Only Does Everything.
 
 Read full documentation for **this version** in `@docs` directory.
+
+**Requires NODE version v16.17.0**
 
 For **the most recent version**, see [FWS Starter _S Wiki](https://github.com/fws-solutions/starter_s/wiki).
 
