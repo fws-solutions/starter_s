@@ -35,7 +35,7 @@ class PluginAssets extends SingletonHook
 			// $this->pluginWooCommerceFonts();
 
 			// Remove WC scripts on all pages except the ones where it's needed.
-			if(! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+			if(!is_woocommerce() && !is_cart() && !is_checkout() && !is_account_page()) {
 				## Dequeue WooCommerce scripts
 				wp_dequeue_script('wc-cart-fragments');
 				wp_dequeue_script('woocommerce');
