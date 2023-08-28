@@ -9,7 +9,7 @@
  * @package fws_starter_s
  */
 
- $header_scripts = get_field('header_scripts', 'options') ?? false;
+ $header_scripts = function_exists('get_field') ? get_field('header_scripts', 'options') : '';
 
 ?>
 <!doctype html>

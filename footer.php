@@ -9,7 +9,7 @@
  * @package fws_starter_s
  */
 
- $footer_scripts = get_field('footer_scripts', 'options') ?? false;
+ $footer_scripts = function_exists('get_field') ? get_field('footer_scripts', 'options') : '';
 
 ?>
 
