@@ -9,7 +9,7 @@
  * @package fws_starter_s
  */
 
-$google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' ) ?? false;
+ $header_scripts = get_field('header_scripts', 'options') ?? false;
 
 ?>
 <!doctype html>
@@ -26,21 +26,17 @@ $google_analytics_tag_code = get_field( 'google_analytics_tag_code', 'options' )
 	<link rel="preload" href="<?php echo get_template_directory_uri(); ?>/src/assets/fonts/OpenSans-Regular.woff2" as="font" crossorigin />
 	<link rel="stylesheet" href="https://use.typekit.net/tqv4xbb.css">
 
+	<!-- HEADER SCRIPTS -->
+	<?php 
+		if ($header_scripts) {
+			/**
+		 	* There is no escaping because admin is going to enter the script tags in the whole format
+		 	* eg. <script src="test.js"></script>
+		 	*/
+			echo $header_scripts;
+		}
+	?>
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<!-- Add Google Analytics Tag Code in the Theme Settings. -->
-	<?php if($google_analytics_tag_code): ?>
-		<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $google_analytics_tag_code ?>"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag() {
-				dataLayer.push(arguments);
-			}
-			gtag('js', new Date());
-
-			gtag('config', '<?php echo $google_analytics_tag_code ?>');
-		</script>
-	<?php endif; ?>
 
 	<?php wp_head(); ?>
 </head>
