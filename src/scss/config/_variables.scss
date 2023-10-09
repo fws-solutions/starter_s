@@ -5,14 +5,10 @@
 $font-default-serif: Georgia, serif;
 $font-default-sans-serif: Arial, Helvetica, sans-serif;
 
-$font-main: 'Proxima Nova', $font-default-sans-serif;
-$font-second: 'Open Sans', $font-default-sans-serif;
-$font-third: 'univia-pro', $font-default-serif;
+$font-main: 'Open Sans', $font-default-sans-serif;
 
 $site-fonts: (
 	'font-main': $font-main,
-	'font-second': $font-second,
-	'font-third': $font-third,
 ) !default;
 
 // Colors
