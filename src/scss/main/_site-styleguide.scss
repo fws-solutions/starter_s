@@ -2,46 +2,36 @@
 ## Styleguide site
 --------------------------------------------------------------*/
 .styleguide {
-	padding: 50px 0 150px;
-	background:
-		linear-gradient(135deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px),
-		linear-gradient(225deg, $sg-grey 21px, $white 22px, $white 24px, transparent 24px, transparent 67px, $white 67px, $white 69px, transparent 69px)0 64px;
-	background-color: $sg-grey;
-	background-size: 64px 128px;
+	background-image: url('src/assets/images/background.jpg');
+	background-repeat: repeat;
+    background-size: auto;
 	background-attachment: fixed;
+	min-height: 100vh;
+	font-family: $font-main;
+	padding-top: 60px;
 }
 
 .styleguide__scrollspy-nav {
 	position: fixed;
 	left: 0;
-	top: 100px;
-	width: 160px;
-	height: calc(100vh - 100px);
+	top: 0;
+	width: 330px;
+	height: 100vh;
 	color: $white;
 	font-size: 14px;
-	background-color: $red;
+	background-color: $orange;
 	transition: $dur $ease;
 	z-index: 10;
 	will-change: scroll-position;
 	border-left: 2px solid $red;
 	border-right: 2px solid $red;
 	padding-bottom: 20px;
+	display: flex;
+    flex-direction: column;
+	justify-content: space-between;
 
 	&.is-hidden {
 		transform: translateX(-100%);
-	}
-
-	&::after {
-		content: '';
-		position: absolute;
-		bottom: 10px;
-		left: 0;
-		width: 100%;
-		height: 50px;
-		background: linear-gradient(to bottom, rgba(226, 64, 28, 0.1) 4%, rgba(226, 64, 28, 0.25) 27% , rgba(226, 64, 28, 0.32) 42%, rgba(226, 64, 28, 0.7) 70%, rgba(226, 64, 28, 95) 100%);
-		z-index: 1;
-		pointer-events: none;
-		transition: $dur $ease;
 	}
 
 	&.hideFade {
@@ -51,6 +41,7 @@
 	}
 }
 
+
 .styleguide-nav-list-holder {
 	position: relative;
 	height: calc(100vh - 195px);
@@ -59,7 +50,7 @@
 	.ps__rail-y {
 		width: 5px;
 		border-radius: 1px;
-		background-color: $white;
+		background-color: $red;
 		opacity: 0.2;
 	}
 
@@ -87,28 +78,28 @@
 }
 
 .styleguide__scrollspy-nav-list {
+	padding: 50px 40px;
+
 	.list-group-item {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		padding: 3px 10px;
+		padding: 10px 20px;
 		color: $white;
-		border-bottom: 1px solid rgba($white, 0.1);
-		border-radius: 3px;
+		border-radius: 14px;
 		transition: $dur $ease;
 		position: relative;
 		@include text-overflow;
+		font-size: 18px;
+		text-transform: uppercase;
 
 		&.active {
-			color: $sg-orange;
-			background-color: $white;
-			border-bottom: 1px solid $red;
+			background-color: $pomegranate;
 		}
 
 		@include hover {
 			color: $sg-orange;
 			background-color: rgba($white, 0.9);
-			border-bottom: 1px solid $red;
 		}
 	}
 
@@ -203,14 +194,15 @@
 }
 
 .styleguide__section {
-	margin-bottom: 70px;
+	margin-bottom: 105px;
+	margin-left: 345px;
+	padding-top: 15px;
+	position: relative;
+	border-bottom: 1px solid #e8edf6;
 }
 
 .styleguide__head {
-    width: 100%;
-    padding: 0 0 20px;
-    border-bottom: 1px solid $sg-orange;
-    margin: 0 0 55px;
+	margin-bottom: 50px;
 }
 
 .styleguide__head--mod {
@@ -223,24 +215,28 @@
     display: flex;
 	flex-wrap: wrap;
     margin: 0 -15px;
+	max-width: 800px;
 }
 
 .styleguide__colorpallet--mod {
-	padding: 15px;
+	padding: 0 15px 15px;
+	margin-bottom: 100px;
 }
 
 .styleguide__color {
     display: inline-block;
-    width: 120px;
-    height: 50px;
+	width: 123px;
+	height: 123px;
+	border-radius: 6px;
+
 }
 
 .styleguide__color-name {
     display: block;
     font-size: 16px;
-    color: #bebebe;
-    text-align: center;
-    margin: 20px 0 0;
+    color: $mine-shaft;
+    text-align: left;
+    margin: 10px 0 0;
 }
 
 .styleguide__typography-special-titles {
@@ -262,40 +258,38 @@
 }
 
 .styleguide__btn {
-	padding: 15px;
+	padding: 0 15px 15px;
 }
 
 .styleguide__section-content {
-	border-style: dashed;
-	border-color: $sg-blue;
-	border-width: 1px 0;
 	position: relative;
+	border-bottom: 1px solid #e8edf6;
 
-	&::before,
-	&::after {
-		display: block;
-		background-color: $sg-blue;
-		padding: 1px;
-		color: $white;
-		text-align: center;
-		width: 120px;
-		font-size: 11px;
-		letter-spacing: 2px;
-		position: absolute;
-		left: 50%;
-	}
+	// &::before,
+	// &::after {
+	// 	display: block;
+	// 	background-color: $sg-blue;
+	// 	padding: 1px;
+	// 	color: $white;
+	// 	text-align: center;
+	// 	width: 120px;
+	// 	font-size: 11px;
+	// 	letter-spacing: 2px;
+	// 	position: absolute;
+	// 	left: 50%;
+	// }
 
-	&::before {
-		content: 'start section';
-		top: 0;
-		transform: translate(-50%, -100%);
-	}
+	// &::before {
+	// 	content: 'start section';
+	// 	top: 0;
+	// 	transform: translate(-50%, -100%);
+	// }
 
-	&::after {
-		content: 'end section';
-		bottom: 0;
-		transform: translate(-50%, 100%);
-	}
+	// &::after {
+	// 	content: 'end section';
+	// 	bottom: 0;
+	// 	transform: translate(-50%, 100%);
+	// }
 }
 
 .styleguide__fonts-items {
@@ -307,17 +301,17 @@
 	display: flex;
 	flex-wrap: wrap;
 	margin: 0 -10px;
+	max-width: 500px;
 }
 
 .styleguide__icons-item {
-	padding: 0 10px;
-}
+	padding: 0 30px 45px 0;
 
-.styleguide__icons-name {
-	font-size: 12px;
-	display: block;
-	text-align: center;
-	padding: 5px 0;
+	.basic-icon {
+		svg {
+			max-height: 30px;
+		}
+	}
 }
 
 .styleguide__icons-icon {
@@ -328,4 +322,179 @@
 	align-items: center;
 	justify-content: center;
 	background: #f1f1f1;
+}
+
+// remove header and footer from styleguide page
+.page-template-styleguide,
+.page-template-page-styleguide {
+	padding-top: 0;
+	margin-top: 0;
+
+	.site-header,
+	.site-footer {
+		display: none;
+	}
+}
+
+.styleguide-basic {
+	background-color: $orange;
+	min-height: 100vh;
+	color: $white;
+}
+
+.styleguide-intro__image--img {
+	display: block;
+	width: 100%;
+	max-width: 150px;
+}
+
+.styleguide-basic__intro-image {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 62px;
+    align-items: flex-start;
+}
+
+.styleguide-section {
+	padding: 60px 0;
+}
+
+.styleguide-section__title {
+	color: $mine-shaft;
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+.styleguide-text {
+	color: $orange;
+	font-size: 18px;
+}
+
+.styleguide__font-block--example {
+	font-size: 90px;
+	line-height: 1;
+	margin-bottom: 10px;
+
+	&.font-main {
+		font-family: $font-main;
+	}
+}
+
+.styleguide__font-block--name {
+	text-transform: capitalize;
+}
+
+.styleguide__font-holder {
+	display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+	margin-bottom: 90px;
+}
+
+.styleguide__font-block--item {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	padding-right: 40px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: 20px;
+		top: 0;
+		width: 1px;
+		height: 100%;
+		background-color: #e8edf6;
+	}
+}
+
+.styleguide__font-block {
+	display: flex;
+    flex-direction: row;
+	margin: 0 55px 30px 0;
+	max-width: 215px;
+}
+
+.styleguide-sidebar {
+	background-color: $orange;
+	width: 220px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+	max-height: 100vh;
+	overflow-y: scroll;
+    overflow: auto;
+
+	// scroll
+	&::-webkit-scrollbar-track { //sass-lint:disable-line no-vendor-prefixes
+		-webkit-box-shadow: none; //sass-lint:disable-line no-vendor-prefixes
+		border-radius: 10px;
+		background-color: transparent;
+	}
+
+	&::-webkit-scrollbar { //sass-lint:disable-line no-vendor-prefixes
+		width: 6px;
+		background-color: transparent;
+		height: 6px;
+	}
+
+	&::-webkit-scrollbar-thumb { //sass-lint:disable-line no-vendor-prefixes
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0 0 3px $watusi; //sass-lint:disable-line no-vendor-prefixes
+		background-color: $watusi;
+	}
+}
+
+.styleguide__title-holder {
+	display: flex;
+
+}
+
+.styleguide__title {
+	position: relative;
+	padding-right: 40px;
+	width: 500px;
+	padding-bottom: 30px;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: 20px;
+		top: 0;
+		height: 100%;
+		width: 1px;
+		background-color: #e8edf6;
+	}
+}
+
+.styleguide__form-elements--holder {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.styleguide__form-element {
+	margin: 0 88px 70px 0;
+}
+
+
+.styleguide-component__border {
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	height: 30px;
+	transform: translate(-50%, 30px);
+	color: $tarawera;
+	font-size: 17px;
+}
+
+.styleguide__body {
+	// padding-bottom: 80px;
+}
+
+//IE fix
+@include browser-support(ie) {
+	.styleguide__title {
+		min-width: 473px;
+	}
 }

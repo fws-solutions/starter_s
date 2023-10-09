@@ -47,47 +47,46 @@ styleguide:                                         # DEFINE STYLEGUIDE
         -
             title: 'FE Homepage'
             url: '/fe-homepage/'
-    colors:                                         # set list of all colors, matching variables in scss file
-        - 'black'
-        - 'grey-light'
-        - 'grey-mid'
-        - 'grey'
-        - 'grey-dark'
-        - 'white'
-        - 'red'
-        - 'green'
-        - 'blue'
+    colors:
+        mine-shaft: '#282828'
+        sapphire: '#335099'
+        dodger-blue: '#5C92FF'
+        orange: '#F7931E'
+        pattens-blue: '#D4E5FF'
+        mystic: '#E1E6EE'
+        watusi: '#FFE8D2'
+        pot-pourri: '#FCF5EE'
+        pearl-bush: '#EFE8E2'
     icons:                                          # set list of all svg icons
-        - 'ico-arrow-up'
-        - 'ico-arrow-down'
-        - 'ico-arrow-left'
-        - 'ico-arrow-right'
-        - 'ico-happy'
-        - 'ico-lock'
-        - 'ico-plus-circle'
+        - 'ico-eye-slash-regular'
+        - 'ico-eye'
+        - 'ico-paper'
+        - 'ico-arrows'
+        - 'ico-trash'
+        - 'ico-pen'
+        - 'ico-info'
+        - 'ico-tabs'
+        - 'ico-document'
         - 'ico-user'
-        - 'ico-dog'
+        - 'ico-maps'
+        - 'ico-cards'
     fonts:                                          # set list of all fonts, matching variables in scss file
         -
             name: 'Open Sans'
-            class: 'font-main'
-    titles:                                         # set list of all special titles defining their classes and dummy text
-        -
-            text: 'This is Page Title'
-            class: 'page-title'
-        -
-            text: 'This is Section Title'
-            class: 'section-title'
+            styles: 'Regular Bold'
     buttons:                                        # set list of all buttons defining their classes and dummy text
         -
-            text: 'Normal'
+            text: 'Default'
             class: 'btn'
         -
-            text: 'Green Button'
-            class: 'btn btn--green'
+            text: 'Default'
+            class: 'btn btn--orange'
         -
-            text: 'Big Button'
-            class: 'btn btn--big'
+            text: 'Default'
+            class: 'btn btn--border'
         -
-            text: 'Big Green Button'
-            class: 'btn btn--big btn--green'
+            text: 'Default'
+            class: 'btn btn--sm btn--blue'
+        -
+            icon: ['ico-gps', 'btn-icon']
+            class: 'btn btn--icon'

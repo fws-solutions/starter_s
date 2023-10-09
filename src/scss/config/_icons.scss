@@ -18,20 +18,62 @@
 	@if $icon == ico-arrow-up {
 		$path: '../assets/svg/ico-arrow-up.svg'
 	}
+	@if $icon == ico-arrows {
+		$path: '../assets/svg/ico-arrows.svg'
+	}
 	@if $icon == ico-bookmark {
 		$path: '../assets/svg/ico-bookmark.svg'
+	}
+	@if $icon == ico-cards {
+		$path: '../assets/svg/ico-cards.svg'
+	}
+	@if $icon == ico-caret-down-solid {
+		$path: '../assets/svg/ico-caret-down-solid.svg'
+	}
+	@if $icon == ico-close {
+		$path: '../assets/svg/ico-close.svg'
+	}
+	@if $icon == ico-document {
+		$path: '../assets/svg/ico-document.svg'
 	}
 	@if $icon == ico-dog {
 		$path: '../assets/svg/ico-dog.svg'
 	}
+	@if $icon == ico-eye-slash-regular {
+		$path: '../assets/svg/ico-eye-slash-regular.svg'
+	}
+	@if $icon == ico-eye {
+		$path: '../assets/svg/ico-eye.svg'
+	}
+	@if $icon == ico-gps {
+		$path: '../assets/svg/ico-gps.svg'
+	}
 	@if $icon == ico-happy {
 		$path: '../assets/svg/ico-happy.svg'
+	}
+	@if $icon == ico-info {
+		$path: '../assets/svg/ico-info.svg'
 	}
 	@if $icon == ico-lock {
 		$path: '../assets/svg/ico-lock.svg'
 	}
+	@if $icon == ico-maps {
+		$path: '../assets/svg/ico-maps.svg'
+	}
+	@if $icon == ico-paper {
+		$path: '../assets/svg/ico-paper.svg'
+	}
+	@if $icon == ico-pen {
+		$path: '../assets/svg/ico-pen.svg'
+	}
 	@if $icon == ico-plus-circle {
 		$path: '../assets/svg/ico-plus-circle.svg'
+	}
+	@if $icon == ico-tabs {
+		$path: '../assets/svg/ico-tabs.svg'
+	}
+	@if $icon == ico-trash {
+		$path: '../assets/svg/ico-trash.svg'
 	}
 	@if $icon == ico-user {
 		$path: '../assets/svg/ico-user.svg'

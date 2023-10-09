@@ -1,0 +1,30 @@
+/*--------------------------------------------------------------
+## Animations
+--------------------------------------------------------------*/
+@keyframes pulse-animation {
+	0% {
+		box-shadow: 0 0 0 0 rgba($dodger-blue, 0.5);
+	}
+	100% {
+		box-shadow: 0 0 0 18px rgba($dodger-blue, 0);
+	}
+}
+
+// Button loader
+@-webkit-keyframes wave { //sass-lint:disable-line no-vendor-prefixes
+	0%, 40%, 100% {
+	  transform: translate(0, 0);
+	}
+	10% {
+	  transform: translate(0, -15px);
+	}
+  }
+
+  @keyframes wave {
+	0%, 40%, 100% {
+	  transform: translate(0, 0);
+	}
+	10% {
+	  transform: translate(0, -15px);
+	}
+}

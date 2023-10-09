@@ -2,17 +2,17 @@
 ## Fonts
 --------------------------------------------------------------*/
 @font-face {
-	font-family: 'Open Sans Regular';
+	font-family: 'Open Sans';
 	src: url('src/assets/fonts/OpenSans-Regular.woff2') format('woff2'),
 	url('src/assets/fonts/OpenSans-Regular.woff') format('woff'),
 	url('src/assets/fonts/OpenSans-Regular.ttf') format('truetype');
-	font-weight: 600;
+	font-weight: normal;
 	font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-	font-family: 'Open Sans Bold';
+	font-family: 'Open Sans';
 	src: url('src/assets/fonts/OpenSans-Bold.woff2') format('woff2'),
 	url('src/assets/fonts/OpenSans-Bold.woff') format('woff'),
 	url('src/assets/fonts/OpenSans-Bold.ttf') format('truetype');
