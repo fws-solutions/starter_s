@@ -1,7 +1,7 @@
 # FWS Starter _S
 *Version: 4.0.0*
 
-> It Only Does Everything.
+> Live in Your World, Play in Ours.
 
 Read full documentation for **this version** in `@docs` directory.
 
