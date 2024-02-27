@@ -2,8 +2,6 @@
 /**
  * Template View for displaying Parts
  *
- * @link https://internal.forwardslashny.com/starter-theme/#blocks-and-parts
- *
  * @package fws_starter_s
  */
 
@@ -16,16 +14,16 @@ $loader_image = fws()->resizer()->newImageSize($desktop_image['url'], 20, 7);
 
 <?php if ( $desktop_image ) : ?>
 <picture class="background-image">
-	<source media="(min-width: 1200px)" srcset="<?php echo $loader_image ?>" data-srcset="<?php echo $desktop_image['url']; ?>">
+	<source media="(min-width: 1200px)" srcset="<?php echo $desktop_image['url']; ?>">
 
 	<?php if ( $tablet_image ) : ?>
-		<source media="(min-width: 640px)" srcset="<?php echo $loader_image ?>" data-srcset="<?php echo $tablet_image['sizes']['large']; ?>">
+		<source media="(min-width: 640px)" srcset="<?php echo $tablet_image['sizes']['large']; ?>">
 	<?php endif; ?>
 
 	<?php if ( $mobile_image ) : ?>
-		<source media="(min-width: 320px)" srcset="<?php echo $loader_image ?>" data-srcset="<?php echo $mobile_image['sizes']['medium']; ?>">
+		<source media="(min-width: 320px)" srcset="<?php echo $mobile_image['sizes']['medium']; ?>">
 	<?php endif; ?>
 
-	<img class="cover-img lazy" src="<?php echo $loader_image ?>" data-src="<?php echo $desktop_image['url']; ?>" alt="">
+	<img class="cover-img" src="<?php echo $mobile_image['sizes']['medium']; ?>" data-src="<?php echo $desktop_image['url']; ?>" alt="">
 </picture><!-- .background-image -->
 <?php endif; ?>

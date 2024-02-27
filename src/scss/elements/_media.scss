@@ -38,28 +38,6 @@
 	padding-top: 70%;
 }
 
-// modifier for lazy loading
-.media-wrap--lazy-loader {
-	background: $grey-light;
-
-	&::after {
-		content: '';
-		display: block;
-		width: 20px;
-		height: 20px;
-		background: $grey-light;
-		margin-top: -20px;
-		animation: lazyPreloading 800ms ease infinite;
-		transition: calc($dur / 2) $ease;
-		@include center;
-	}
-
-	&.is-hidden::after {
-		visibility: hidden;
-		opacity: 0;
-	}
-}
-
 // item
 .media-item {
 	display: block;

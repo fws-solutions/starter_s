@@ -1,9 +1,17 @@
 <div class="slider js-slider">
-	<?php
-	echo fws()->images()->mediaItemStatic( 'slide-1.jpg', 'square', 'slider__item', true );
-	echo fws()->images()->mediaItemStatic( 'slide-2.jpg', 'square', 'slider__item', true );
-	echo fws()->images()->mediaItemStatic( 'slide-3.jpg', 'square', 'slider__item', true );
-	echo fws()->images()->mediaItemStatic( 'slide-4.jpg', 'square', 'slider__item', true );
-	echo fws()->images()->mediaItemStatic( 'slide-5.jpg', 'square', 'slider__item', true );
-	?>
+	<div class="slider__item media-wrap media-wrap--square">
+		<img class="media-item cover-img" src="<?php echo fws()->images()->assetsSrc( 'slide-1.jpg', true ); ?>" alt="">
+	</div>
+	<div class="slider__item media-wrap media-wrap--square">
+		<img class="media-item cover-img" src="<?php echo fws()->images()->assetsSrc( 'slide-2.jpg', true ); ?>" alt="">
+	</div>
+	<div class="slider__item media-wrap media-wrap--square">
+		<img class="media-item cover-img" src="<?php echo fws()->images()->assetsSrc( 'slide-3.jpg', true ); ?>" alt="">
+	</div>
+	<div class="slider__item media-wrap media-wrap--square">
+		<img class="media-item cover-img" src="<?php echo fws()->images()->assetsSrc( 'slide-4.jpg', true ); ?>" alt="">
+	</div>
+	<div class="slider__item media-wrap media-wrap--square">
+		<img class="media-item cover-img" src="<?php echo fws()->images()->assetsSrc( 'slide-5.jpg', true ); ?>" alt="">
+	</div>
 </div><!-- .slider -->

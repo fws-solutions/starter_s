@@ -2,8 +2,6 @@
 /**
  * Template View for displaying Listings
  *
- * @link https://internal.forwardslashny.com/starter-theme/#listings
- *
  * @package fws_starter_s
  */
 

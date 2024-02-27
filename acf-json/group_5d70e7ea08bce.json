@@ -44,50 +44,6 @@
             "delay": 0,
             "acfe_validate": "",
             "acfe_update": ""
-        },
-        {
-            "key": "field_5d67b89e17a79",
-            "label": "Check List",
-            "name": "check_list",
-            "aria-label": "",
-            "type": "repeater",
-            "instructions": "",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "",
-                "class": "",
-                "id": ""
-            },
-            "collapsed": "",
-            "min": 0,
-            "max": 0,
-            "layout": "table",
-            "button_label": "Add Item",
-            "sub_fields": [
-                {
-                    "key": "field_5d67b8ab17a7a",
-                    "label": "Item",
-                    "name": "item",
-                    "aria-label": "",
-                    "type": "text",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "placeholder": "",
-                    "prepend": "",
-                    "append": "",
-                    "maxlength": "",
-                    "parent_repeater": "field_5d67b89e17a79"
-                }
-            ],
-            "rows_per_page": 20
         }
     ],
     "location": [
@@ -108,5 +64,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670151334
+    "modified": 1709051025
 }
