@@ -3,6 +3,7 @@
 	"title": "Slider",
 	"description": "A custom Basic Block block.",
 	"style": [ "file:./slider.css" ],
+	"script": [ "file:./slider.js" ],
 	"category": "formatting",
 	"icon": "layout",
 	"acf": {

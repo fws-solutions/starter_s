@@ -36,3 +36,10 @@ body {
 *::after {
 	box-sizing: inherit;
 }
+
+/*--------------------------------------------------------------
+## WP Admin Bar Layout
+--------------------------------------------------------------*/
+html {
+	margin-top: 0 !important; //sass-lint:disable-line no-important
+}
