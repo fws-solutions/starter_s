@@ -14,7 +14,6 @@ use FWS\Theme\Hooks\Menus as ThemeMenus;
 use FWS\Theme\Hooks\SectionWrappers as ThemeSectionWrappers;
 use FWS\Theme\Hooks\WPLogin as ThemeWPLogin;
 use FWS\Theme\Assets\SiteAssets as ThemeSiteAssets;
-use FWS\Theme\Assets\DeferAssets as ThemeDeferAssets;
 use FWS\Theme\Assets\PluginAssets as ThemePluginAssets;
 use FWS\Theme\Media\Images as ThemeImages;
 use FWS\Theme\Media\Resizer as ThemeResizer;
@@ -68,7 +67,6 @@ class FWS extends Singleton
 		// Theme Hooks
 		ThemeBasicSetup::init();
 		ThemeSiteAssets::init();
-		ThemeDeferAssets::init();
 		ThemePluginAssets::init();
 		ThemeCustomSetup::init();
 		ThemeHeadRemovals::init();
