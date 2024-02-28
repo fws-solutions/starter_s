@@ -10,15 +10,25 @@ const gulpVars = require('./gulp-variables');
  ----------------------------------------------------------------------------------------------*/
 // task: build javascript files
 gulp.task('js', js);
+//gulp.task('jsblock', jsBlock);
 
 function js() {
-	webpackConfig.mode = gulpVars.productionBuild ? 'production' : 'development';
+	webpackConfig.mainConfig.mode = gulpVars.productionBuild ? 'production' : 'development';
 
 	return gulp.src([gulpVars.jsSiteSRC, gulpVars.jsAdminSRC])
 		.pipe(plumber())
-		.pipe(webpack(webpackConfig))
+		.pipe(webpack(webpackConfig.mainConfig))
 		.pipe(gulp.dest(gulpVars.distSRC));
 }
+
+// function jsBlock() {
+// 	webpackConfig.mainConfig.mode = gulpVars.productionBuild ? 'production' : 'development';
+//
+// 	return gulp.src('template-views/blocks/slider/slider.js')
+// 		.pipe(plumber())
+// 		.pipe(webpack(webpackConfig.blocksConfig))
+// 		.pipe(gulp.dest('.'));
+// }
 
 // task: validate javascript source files
 gulp.task('js-lint', lintJS);

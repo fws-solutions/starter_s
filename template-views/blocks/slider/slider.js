@@ -1,1 +1,1 @@
-console.log('This is dogs slider...2');
+console.log('pas');
