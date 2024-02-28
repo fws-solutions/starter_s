@@ -30,16 +30,15 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "16",
+                "width": "100",
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "message": "",
             "default_value": 0,
-            "ui": 1,
             "ui_on_text": "White Text",
-            "ui_off_text": "Black Text"
+            "ui_off_text": "Black Text",
+            "ui": 1
         },
         {
             "key": "field_5d70efe9eb98b",
@@ -51,13 +50,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "28",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "return_format": "array",
-            "preview_size": "thumbnail",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -65,7 +62,8 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "preview_size": "thumbnail"
         },
         {
             "key": "field_5d70efebeb98c",
@@ -77,13 +75,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "28",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "return_format": "array",
-            "preview_size": "thumbnail",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -91,7 +87,8 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "preview_size": "thumbnail"
         },
         {
             "key": "field_5d70efedeb98d",
@@ -103,13 +100,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "28",
+                "width": "33",
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "return_format": "array",
-            "preview_size": "thumbnail",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -117,7 +112,8 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": ""
+            "mime_types": "",
+            "preview_size": "thumbnail"
         }
     ],
     "location": [
@@ -138,5 +134,5 @@
     "active": false,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670150725
+    "modified": 1709133141
 }

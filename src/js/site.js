@@ -7,7 +7,6 @@ import 'bootstrap/js/src/scrollspy';
  * Import site scripts
  */
 import Menu from './site/menu';
-import Sliders from './site/sliders';
 import ScrollTo from './site/scrollTo';
 import Styleguide from './site/styleguide';
 import Fancybox from './site/fancybox';
@@ -21,7 +20,6 @@ import LoadMoreBlog from './site/loadMoreBlog';
 jQuery(function() {
 	Styleguide.init();
 	Menu.init();
-	Sliders.init();
 	ScrollTo.init();
 	Fancybox.init();
 	FormHelpers.init();

@@ -38,12 +38,11 @@
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "default_value": "",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_5d70eb5e09ca6",
@@ -59,12 +58,11 @@
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "default_value": "",
+            "maxlength": "",
             "placeholder": "",
             "prepend": "",
-            "append": "",
-            "maxlength": ""
+            "append": ""
         },
         {
             "key": "field_5d726b1802d42",
@@ -76,32 +74,11 @@
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
-                "width": "50",
+                "width": "",
                 "class": "",
                 "id": ""
             },
-            "show_in_graphql": 1,
             "return_format": "array"
-        },
-        {
-            "key": "field_5f08827a2744f",
-            "label": "Scroll To",
-            "name": "scroll_to",
-            "aria-label": "",
-            "type": "text",
-            "instructions": "Add section ID. Example: #some-id-name",
-            "required": 0,
-            "conditional_logic": 0,
-            "wrapper": {
-                "width": "50",
-                "class": "",
-                "id": ""
-            },
-            "default_value": "",
-            "maxlength": "",
-            "placeholder": "",
-            "prepend": "",
-            "append": ""
         },
         {
             "key": "field_5f1012c9e9239",
@@ -144,5 +121,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1670512339
+    "modified": 1709133392
 }

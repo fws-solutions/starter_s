@@ -37,9 +37,14 @@ const mainConfig = {
 };
 
 // Dynamically generate entry for each .js file in template-views/blocks
-const templateBlocksEntries = glob.sync('./template-views/blocks/**/*.js').reduce((acc, filePath) => {
+const allEntries = glob.sync('./template-views/blocks/**/*.js', { ignore: '**/*.min.js' });
+const templateBlocksEntries = allEntries.reduce((acc, filePath) => {
 	const entryKey = filePath.replace('./', '').replace('.js', '');
-	acc[entryKey] = filePath;
+
+	if (filePath.search('.min.js') < 0) {
+		acc[entryKey] = filePath;
+	}
+
 	return acc;
 }, {});
 
