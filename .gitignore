@@ -13,6 +13,8 @@ login.css.map
 .fwsenqueue.yml
 template-views/blocks/**/*.css
 template-views/blocks/**/*.css.map
+template-views/blocks/**/*.js
+template-views/blocks/**/*.js.map
 
 # ignore Editor files
 .idea
