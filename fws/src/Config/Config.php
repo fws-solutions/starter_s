@@ -106,13 +106,13 @@ class Config extends Singleton
 	}
 
 	/**
-	 * ACF editing allowed for these hosts only
+	 * Prevent clickjacking security issue.
 	 *
-	 * @return array
+	 * @return bool
 	 */
-	public function acfOnlyLocalEditingAllowedHosts(): array
+	public function clickjackingProtection(): bool
 	{
-		return (array) $this->config['global']['acf-only-local-editing']['allowed-hosts'] ?? [];
+		return boolval($this->config['global']['clickjacking-protection'] ?? true);
 	}
 
 	/**

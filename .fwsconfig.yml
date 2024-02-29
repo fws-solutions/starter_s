@@ -12,59 +12,87 @@ global:                                             # GLOBAL SETTINGS
       - 'localhost/'
       - '.lndo.site'
     plugins-only-local-editing: true                # prevent add/update/delete of plugins/themes on non-localhosts, except for superadmins
-    cf7-custom-templates: true                     # enable/disable custom HTML and MJML templates for cf7 plugin
+    cf7-custom-templates: false                     # enable/disable custom HTML and MJML templates for cf7 plugin
     acf-only-local-editing: true                    # acf only possible to edit and manage on local environment
+    clickjacking-protection: true                   # prevent clickjacking by opening site through iframe
 
 acf-options-page:                                   # DEFINE ACF OPTIONS PAGES
     enable: true                                    # enable/disable options top level page
     subpages: ['SVG Icons']                         # list of options sub pages
+
+acf-flexible-content:                               # DEFINE ACF FLEXIBLE CONTENT GROUPS AND FIELDS
+    default-page-template:                          # define flexible content for default page template
+        autoload: true                              # set whether or not to autoload this flexible content group
+        field-name: 'Content'                       # filed name that will show on page
+        location:                                   # set location where this field group will load
+            param: 'page_template'
+            value: 'default'
+        hide-on-screen: [ 'the_content' ]           # set rules for default meta fields that should be hidden on a page
+        layouts:                                    # set flex content layouts/blocks that will show for this group
+            -
+                title: 'Banner'
+                group_id: 'group_5d70e7dfa2562'
+            -
+                title: 'Basic Block'
+                group_id: 'group_5d70e7ea08bce'
+            -
+                title: 'Slider'
+                group_id: 'group_5d70e7f775076'
+            -
+                title: 'Image Text'
+                group_id: 'group_64afeb8a64ec1'
 
 styleguide:                                         # DEFINE STYLEGUIDE
     pages:                                          # set list of all pages defining their titles and urls
         -
             title: 'FE Homepage'
             url: '/fe-homepage/'
-    colors:                                         # set list of all colors, matching variables in scss file
-        - 'black'
-        - 'grey-light'
-        - 'grey-mid'
-        - 'grey'
-        - 'grey-dark'
-        - 'white'
-        - 'red'
-        - 'green'
-        - 'blue'
+    colors:
+        mine-shaft: '#282828'
+        sapphire: '#335099'
+        dodger-blue: '#5C92FF'
+        orange: '#F7931E'
+        pattens-blue: '#D4E5FF'
+        mystic: '#E1E6EE'
+        watusi: '#FFE8D2'
+        pot-pourri: '#FCF5EE'
+        pearl-bush: '#EFE8E2'
     icons:                                          # set list of all svg icons
-        - 'ico-arrow-up'
-        - 'ico-arrow-down'
-        - 'ico-arrow-left'
-        - 'ico-arrow-right'
-        - 'ico-happy'
-        - 'ico-lock'
-        - 'ico-plus-circle'
+        - 'ico-eye-slash-regular'
+        - 'ico-eye'
+        - 'ico-paper'
+        - 'ico-arrows'
+        - 'ico-trash'
+        - 'ico-pen'
+        - 'ico-info'
+        - 'ico-tabs'
+        - 'ico-document'
         - 'ico-user'
-        - 'ico-dog'
+        - 'ico-maps'
+        - 'ico-cards'
     fonts:                                          # set list of all fonts, matching variables in scss file
         -
+            name: 'Proxima Nova'
+            styles: 'Regular Bold'
+        -
             name: 'Open Sans'
-            class: 'font-main'
-    titles:                                         # set list of all special titles defining their classes and dummy text
+            styles: 'Regular Medium Semibold Bold'
         -
-            text: 'This is Page Title'
-            class: 'page-title'
-        -
-            text: 'This is Section Title'
-            class: 'section-title'
+            name: 'Univia pro'
+            styles: 'Vidaloka'
     buttons:                                        # set list of all buttons defining their classes and dummy text
         -
-            text: 'Normal'
+            text: 'Default'
             class: 'btn'
         -
-            text: 'Green Button'
-            class: 'btn btn--green'
+            text: 'Default'
+            class: 'btn btn--orange'
         -
-            text: 'Big Button'
-            class: 'btn btn--big'
+            text: 'Default'
+            class: 'btn btn--border'
         -
-            text: 'Big Green Button'
-            class: 'btn btn--big btn--green'
+            text: 'Default'
+            class: 'btn btn--sm btn--blue'
+        -
+            icon: ['ico-gps', 'btn-icon']
+            class: 'btn btn--icon'

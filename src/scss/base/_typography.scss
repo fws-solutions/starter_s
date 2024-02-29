@@ -22,6 +22,10 @@ pre {
 	margin-bottom: 30px;
 }
 
+p {
+	font-size: 18px;
+}
+
 .page-title {
 	font-size: 45px;
 	font-weight: bold;
@@ -44,28 +48,29 @@ pre {
 	h4,
 	h5,
 	h6 {
-		margin-bottom: 15px;
 		font-weight: bold;
+		font-family: $font-third;
+		line-height: 1.2;
 	}
 
 	h1 {
-		font-size: 30px;
+		font-size: 90px;
 	}
 
 	h2 {
-		font-size: 24px;
+		font-size: 60px;
 	}
 
 	h3 {
-		font-size: 18px;
+		font-size: 30px;
 	}
 
 	h4 {
-		font-size: 14px;
+		font-size: 20px;
 	}
 
 	h5 {
-		font-size: 12px;
+		font-size: 18px;
 	}
 
 	h6 {
@@ -74,6 +79,7 @@ pre {
 
 	p {
 		margin-bottom: 25px;
+		font-size: 18px;
 	}
 
 	li {
@@ -224,5 +230,18 @@ pre {
 			margin-right: 0.25em;
 			vertical-align: -0.4em;
 		}
+	}
+}
+
+.basic-icon {
+	font-size: 40px;
+	transition: $dur $ease;
+
+	svg {
+		max-height: 25px;
+	}
+
+	@include hover {
+		color: $orange;
 	}
 }

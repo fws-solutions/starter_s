@@ -1,0 +1,97 @@
+# 1. Change name to 'dev-deployment', 'stage-deployment' or 'prod-deployment'
+name: prod-deployment
+
+# 2. Adjust these variables if needed
+env:
+    # 2a. WP Engine environment slug: https://i.imgur.com/jVccu8Z.png
+    wpengineEnvironment: fwsstarterprod
+
+    # 2b. Theme directory name
+    themeDir: fws-theme
+
+    # 2c. Node version. Use 10 or 12. If you are not sure, don't touch this.
+    nodeVersion: 18
+
+on:
+    push:
+        # 3. Set the git branch for which to trigger this workflow
+        branches: [ master ]
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Set additional env variables
+              run: |
+                  echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_ENV
+                  echo "workspace=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+                  echo "fullThemeDir=$GITHUB_WORKSPACE/wp-content/themes/${{ env.themeDir }}" >> $GITHUB_ENV
+                  echo "nodeModulesDir=$GITHUB_WORKSPACE/wp-content/themes/${{ env.themeDir }}/node_modules" >> $GITHUB_ENV
+                  echo "packageLockJson=$GITHUB_WORKSPACE/wp-content/themes/${{ env.themeDir }}/package-lock.json" >> $GITHUB_ENV
+                  echo "vendorDir=$GITHUB_WORKSPACE/wp-content/themes/${{ env.themeDir }}/vendor" >> $GITHUB_ENV
+                  echo "composerLockJson=$GITHUB_WORKSPACE/wp-content/themes/${{ env.themeDir }}/composer.lock" >> $GITHUB_ENV
+            - name: Git checkout
+              uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
+                  path: wp-content/themes/${{ env.themeDir }}
+
+            - name: Switch .gitignore
+              working-directory: ${{ env.fullThemeDir }}
+              run: rm .gitignore && mv deploy.gitignore .gitignore
+
+            - name: Cache Composer packages
+              id: cache-composer-packages
+              uses: actions/cache@v2
+              with:
+                  path: |
+                      ${{ env.vendorDir }}
+                      /tmp/composer-cache
+                  key: composer-${{ runner.os }}-${{ hashFiles( env.packageLockJson) }}
+
+            - name: Install Composer Dependencies
+              uses: php-actions/composer@v3
+              if: steps.cache-composer-packages.outputs.cache-hit != 'true'
+              env:
+                  FULL_THEME_DIR: ${{ env.fullThemeDir }}
+              with:
+                  args: --working-dir $FULL_THEME_DIR --ignore-platform-reqs
+                  dev: no
+
+            - name: Setup Node.js environment
+              uses: actions/setup-node@v2.1.2
+              with:
+                  node-version: ${{ env.nodeVersion }}
+
+            - name: Cache node_modules
+              id: cache-node-modules
+              uses: actions/cache@v2
+              with:
+                  path: ${{ env.nodeModulesDir }}
+                  key: node-modules-${{ hashFiles( env.packageLockJson) }}
+
+            - name: Install NPM
+              working-directory: ${{ env.fullThemeDir }}
+              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              run: npm install
+
+            - name: Build FE assets
+              working-directory: ${{ env.fullThemeDir }}
+              run: npm run build
+
+            - name: Git cleanup
+              working-directory: ${{ env.fullThemeDir }}
+              run: rm -rf .git
+
+            - name: Git init
+              working-directory: ${{ env.workspace }}
+              run: git config --global init.defaultBranch ${{ env.branch }} && git init
+
+            - name: WP Engine deployment
+              uses: fws-solutions/wpengine-deploy-action@1.3.0
+              env:
+                  WPENGINE_ENVIRONMENT_NAME: ${{ env.wpengineEnvironment }}
+                  LOCAL_BRANCH: ${{ env.branch }}
+                  WPENGINE_SSH_KEY_PRIVATE: ${{ secrets.WPENGINE_SSH_KEY_PRIVATE }}
+                  WPENGINE_SSH_KEY_PUBLIC: ${{ secrets.WPENGINE_SSH_KEY_PUBLIC }}

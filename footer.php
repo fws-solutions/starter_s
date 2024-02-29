@@ -9,6 +9,8 @@
  * @package fws_starter_s
  */
 
+ $footer_scripts = function_exists('get_field') ? get_field('footer_scripts', 'options') : '';
+
 ?>
 
 	</div><!-- #content -->
@@ -19,6 +21,17 @@
 		</div><!-- .copyright -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
+
+<!-- FOOTER SCRIPTS -->
+<?php 
+	if ($footer_scripts) {
+		/**
+		 * There is no escaping because admin is going to enter the script tags in the whole format
+		 * eg. <script src="test.js"></script>
+		 */
+		echo $footer_scripts;
+	}
+?>
 
 <?php wp_footer(); ?>
 
