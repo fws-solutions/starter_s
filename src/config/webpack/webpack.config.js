@@ -2,7 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const regEx = new RegExp('node_modules\\' + path.sep + '(?!bootstrap).*');
 
-// Shared rules
+/** @description Shared rules and vars. */
 const sharedRules = [
 	{
 		test: /\.m?js$/,
@@ -16,7 +16,11 @@ const sharedRules = [
 	}
 ]
 
-// Entry configuration for site.js and admin.js
+const externals = {
+	'jquery': 'jQuery'
+}
+
+/** @description Configuration for site.js and admin.js */
 const mainConfig = {
 	mode: 'none',
 	devtool: 'source-map',
@@ -31,12 +35,10 @@ const mainConfig = {
 	module: {
 		rules: sharedRules
 	},
-	externals: {
-		'jquery': 'jQuery'
-	}
+	externals: externals
 };
 
-// Dynamically generate entry for each .js file in template-views/blocks
+/** @description Dynamically generate entry for each .js file in template-views/blocks */
 const allEntries = glob.sync('./template-views/blocks/**/*.js', { ignore: '**/*.min.js' });
 const templateBlocksEntries = allEntries.reduce((acc, filePath) => {
 	const entryKey = filePath.replace('./', '').replace('.js', '');
@@ -48,6 +50,7 @@ const templateBlocksEntries = allEntries.reduce((acc, filePath) => {
 	return acc;
 }, {});
 
+/** @description Configuration for template-views/blocks .js files */
 const blocksConfig = {
 	mode: 'none',
 	devtool: 'source-map',
@@ -58,10 +61,11 @@ const blocksConfig = {
 	},
 	module: {
 		rules: sharedRules
-	}
+	},
+	externals: externals
 };
 
-// Export an array of configurations
+/** @description Export an array of configurations */
 module.exports = {
 	mainConfig: mainConfig,
 	blocksConfig: blocksConfig,
