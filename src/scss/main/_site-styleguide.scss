@@ -9,6 +9,12 @@
 	min-height: 100vh;
 	font-family: $font-main;
 	padding-top: 60px;
+
+	@media (min-width: map-get($grid-breakpoints, xl)) {
+		.container-xl, .container-lg, .container-md, .container-sm, .container {
+			max-width: 1640px;
+		}
+	}
 }
 
 .styleguide__scrollspy-nav {

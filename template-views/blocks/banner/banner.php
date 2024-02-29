@@ -19,6 +19,6 @@ $button = get_field('button') ? get_field('button') : [];
 		<?php echo fws()->render()->inlineSVG( $icon, 'banner__caption-icon', true ); ?>
 		<h1 class="banner__caption-title js-scroll-link" data-scroll-to="slider"><?php echo $title; ?></h1>
 		<p class="banner__caption-text"><?php echo $subtitle; ?></p>
-		<?php echo fws()->acf()->linkField( $button, 'banner__btn btn' ); ?>
+		<?php echo fws()->acf()->linkField( $button, 'banner__btn btn btn--orange' ); ?>
 	</div>
 </div><!-- .banner -->
