@@ -54,7 +54,8 @@ module.exports = {
 				gulpTasks.gtCss.css.bind(null, gulpVars.scssGutenSRC, 'gutenberg'),
 				gulp.series(
 					gulpTasks.gtJs.lintJS,
-					gulpTasks.gtJs.js.bind(null, [gulpVars.jsSiteSRC, gulpVars.jsAdminSRC])
+					gulpTasks.gtJs.js.bind(null, gulpVars.jsBlocksSCR, '.', 'blocksConfig'),
+					gulpTasks.gtJs.js.bind(null, [gulpVars.jsSiteSRC, gulpVars.jsAdminSRC], gulpVars.distSRC, 'mainConfig')
 				),
 				gulpTasks.gtCss.sasslint,
 				gulpTasks.gtMjml.copyHtmlFiles,

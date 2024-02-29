@@ -2,7 +2,7 @@
 $version = fws()->config()->enqueueVersion();
 
 return array(
-	'handle'       => 'slider.min-script',
+	'handle'       => 'basic-block.min-script',
 	'version'      => $version,
 	'dependencies' => ['jquery']
 );

@@ -22,6 +22,7 @@ module.exports = {
 	scssAllSRC: ['src/scss/**/*.scss', 'template-views/**/**/*.scss'],
 	jsSiteSRC: 'src/js/site.js',
 	jsAdminSRC: 'src/js/admin.js',
+	jsBlocksSCR: 'template-views/blocks/**/*.js',
 	distSRC: 'dist',
 	msgERROR: {
 		errorHandler: notify.onError({

@@ -3,6 +3,7 @@
 	"title": "Basic Block",
 	"description": "A custom Basic Block block.",
 	"style": [ "file:./basic-block.css" ],
+	"script": [ "file:./basic-block.min.js" ],
 	"category": "formatting",
 	"icon": "layout",
 	"acf": {

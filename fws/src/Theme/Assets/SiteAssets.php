@@ -38,19 +38,6 @@ class SiteAssets extends SingletonHook
 	}
 
 	/**
-	 * Move all external scripts (plugins and such) from footer to header.
-	 */
-	public function moveAllScriptsToHeader(): void
-	{
-		remove_action('wp_footer', 'wp_print_scripts');
-		remove_action('wp_footer', 'wp_print_head_scripts', 9);
-		remove_action('wp_footer', 'wp_enqueue_scripts', 1);
-		add_action( 'wp_head', 'wp_print_scripts', 5 );
-		add_action( 'wp_head', 'wp_print_head_scripts', 5 );
-		add_action( 'wp_head', 'wp_enqueue_scripts', 5 );
-	}
-
-	/**
 	 * Setup all Styles and Scripts.
 	 */
 	public function setupThemeStylesAndScripts(): void
@@ -153,6 +140,5 @@ class SiteAssets extends SingletonHook
 		add_action( 'admin_enqueue_scripts', [ $this, 'setupAdminStylesAndScripts' ] );
 		add_action( 'login_enqueue_scripts', [ $this, 'setupAdminStylesAndScripts' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, 'setupGutenbergStylesAndScripts' ] );
-		add_action( 'after_setup_theme', [ $this, 'moveAllScriptsToHeader' ] );
 	}
 }

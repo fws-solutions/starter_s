@@ -10,23 +10,22 @@ const gulpVars = require('./gulp-variables');
  ----------------------------------------------------------------------------------------------*/
 // task: build javascript files
 gulp.task('js', js);
-gulp.task('jsblock', jsBlock);
 
-function js() {
+function js(src, dist, config) {
 	webpackConfig.mainConfig.mode = gulpVars.productionBuild ? 'production' : 'development';
 
-	return gulp.src([gulpVars.jsSiteSRC, gulpVars.jsAdminSRC])
+	return gulp.src(src)
 		.pipe(plumber())
-		.pipe(webpack(webpackConfig.mainConfig))
-		.pipe(gulp.dest(gulpVars.distSRC));
+		.pipe(webpack(webpackConfig[config]))
+		.pipe(gulp.dest(dist));
 }
 
 function jsBlock() {
 	webpackConfig.mainConfig.mode = gulpVars.productionBuild ? 'production' : 'development';
 
-	return gulp.src('template-views/blocks/slider/slider.js')
+	return gulp.src('template-views/blocks/**/*.js')
 		.pipe(plumber())
-		.pipe(webpack(webpackConfig.blocksConfig))
+		.pipe(webpack(webpackConfig['blocksConfig']))
 		.pipe(gulp.dest('.'));
 }
 
@@ -34,7 +33,13 @@ function jsBlock() {
 gulp.task('js-lint', lintJS);
 
 function lintJS() {
-	return gulp.src('src/js/**/*.js')
+	return gulp.src(
+		[
+			gulpVars.jsSiteSRC,
+			gulpVars.jsAdminSRC,
+			gulpVars.jsBlocksSCR,
+			'!template-views/blocks/**/*.min.js'
+		])
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());

@@ -3,6 +3,7 @@
 	"title": "Banner",
 	"description": "A custom Banner block.",
 	"style": [ "file:./banner.css" ],
+	"script": [ "file:./banner.min.js" ],
 	"category": "formatting",
 	"icon": "layout",
 	"acf": {
