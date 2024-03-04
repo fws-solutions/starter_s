@@ -27,7 +27,7 @@
 	<link rel="stylesheet" href="https://use.typekit.net/tqv4xbb.css">
 
 	<!-- HEADER SCRIPTS -->
-	<?php 
+	<?php
 		if ($header_scripts) {
 			/**
 		 	* There is no escaping because admin is going to enter the script tags in the whole format

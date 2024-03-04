@@ -72,14 +72,8 @@ styleguide:                                         # DEFINE STYLEGUIDE
         - 'ico-cards'
     fonts:                                          # set list of all fonts, matching variables in scss file
         -
-            name: 'Proxima Nova'
-            styles: 'Regular Bold'
-        -
             name: 'Open Sans'
-            styles: 'Regular Medium Semibold Bold'
-        -
-            name: 'Univia pro'
-            styles: 'Vidaloka'
+            styles: 'Regular Bold'
     buttons:                                        # set list of all buttons defining their classes and dummy text
         -
             text: 'Default'
