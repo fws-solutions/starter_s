@@ -138,3 +138,65 @@ Will render:
 		}
 	}
 }
+
+// Style scrollbar with this mixin.
+// Make sure to give width of a bar in vw, not px.
+
+@mixin scroll-style($thumb-color: #777, $track-color: #faf9f7, $radius: 0, $width: 0.6vw) {
+    /* stylelint-disable */
+	scrollbar-width: thin;
+	scrollbar-color: $thumb-color $track-color;
+
+	&::-webkit-scrollbar {
+		width: $width;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: $thumb-color;
+		border-radius: $radius;
+		border: 1px solid $track-color;
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: $track-color;
+	}
+    /* stylelint-enable */
+	@content;
+}
+
+// Browser support mixin.
+// Just pass the name of browser as parameter. Naming can be seen bellow.
+@mixin browser-support($name) {
+
+	//Internet explorer specific css
+	@if($name == 'ie') {
+		@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+			@content;
+		}
+	}
+	//Firefox specific css
+	@else if($name == 'firefox') {
+		@-moz-document url-prefix() {
+			@content;
+		  }
+	}
+    //Safari specific css
+	@else if($name == 'safari') {
+		@media not all and (min-resolution:.001dpcm)
+		{ @supports (-webkit-appearance:none) {
+			@content;
+		}}
+	}
+	//iOS specific css
+	@else if($name == 'ios') {
+		@supports (-webkit-touch-callout: none) {
+			@content;
+		  }
+	}
+	//Edge specific css
+	@else if($name == 'edge') {
+		@supports (-ms-ime-align: auto) {
+			@content;
+		  }
+	}
+}

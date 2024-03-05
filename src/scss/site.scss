@@ -4,7 +4,7 @@ Theme URI: https://fws.us/
 Author: Forwardslash
 Author URI: https://fws.us/
 Description: FWS Starter _S Custom WordPress Theme.
-Version: 3.10.3
+Version: 3.12.0
 License: GNU General Public License v2 or later
 License URI: LICENSE
 Text Domain: fws_starter_s
@@ -85,6 +85,7 @@ fws_starter_s is based on FWS Starter _S, (C) Forwardslash, which uses Underscor
 @import 'elements/hamburger';
 @import 'elements/posts';
 @import 'elements/perfect-scroll';
+@import 'elements/animations';
 
 /*--------------------------------------------------------------
 # Main

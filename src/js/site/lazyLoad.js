@@ -21,11 +21,30 @@ const LazyLoading = {
 				callback_loaded: LazyLoading.mediaLoaded // eslint-disable-line camelcase
 			});
 		}
+
+		this.iOSver('.media-wrap--lazy-loader');
 	},
 
 	mediaLoaded: (el) => {
 		// hide preloader
 		$(el).parent().addClass(LazyLoading.classHidden);
+	},
+
+	iOSver: ($target) => {
+		function iOSversion() {
+			if (/iP(hone|od|ad)/.test(navigator.platform)) {
+				const v = (navigator.appVersion).match(/OS (\d+)_(\d+)_?(\d+)?/);
+				return [parseInt(v[1], 10), parseInt(v[2], 10), parseInt(v[3] || 0, 10)];
+			}
+		}
+
+		const ver = iOSversion();
+
+		if (ver && ver[0] < 14) {
+			$($target).each(function(e, el) {
+				$(el).removeClass('media-wrap--lazy-loader');
+			});
+		}
 	}
 };
 
