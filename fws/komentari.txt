@@ -1,0 +1,130 @@
+
+
+
+----------------------------------------------------------------------------------
+
+čemu "src" u "fws/src"?
+obično se koristi kad ima i sporednih fajlova (dokumentacija, testovi,..) koji nisu deo koda
+ali ovde je sam i mislim nepotrebno upasan u podfolder
+
+rename-ovao sam "/fws/src" u "/fws/app"
+
+move-ovao "/fws/app/Config" u "/fws/config"
+
+------------------------------------------------------------------
+
+pomerio sam FWS klasu unutar "app" foldera, ona je deo koda i proširuje se u svakom projektu
+
+-------------------------------------------------------------------
+
+singleton
+prepakovao sam ga da može da radi i u pod-pad-klasama
+metod init() je sada samo alias of getInstance() koji bi trebalo da radi pravi singletonski posao
+a init može da se izmeni u podklasi da prima i parametre
+
+sklonio sam: "protected static $instance;" iz podklasa
+
+------------------------------------------------------------------
+
+singleton-hook
+ovo mi i dalje izgleda malo trapavo, još uvek ne kontam zašto je to posebna klasa,
+zašto nije moglo da se koristi obična singleton klasa pa da se setuju hook-i u konstruktoru.
+mogao bih u kasnijoj iteraciji sve te klase prepraviti na običan singleton.
+
+na kraju sam potpuno izbacio singletonhook.
+
+------------------------------------------------------------------
+
+razdvojio sam FWS klasu na dva dela,
+FWS ostaje servis kontejner a Bootstrap je klasa u kojoj se inicira tema
+
+-----------------------------------------------------------------
+
+".fwsconfig.yml" bi mogli da pomerimo u "fws/config" direktorium ?
+
+------------------------------------------------------------------
+
+u "Theme/Resizer" bih promenio ime prvog paramtera sa "url" na "path"
+i kasnije uradio proveru da ako počinje sa "http(s)://" da pukne grešku,
+već smo se opekli kad su dev-ovi stavljali url pa napravili loop kad dobiju 404 stranicu
+
+---------------------------------------------------------------------
+
+klasu "Config" sam preimenovao u "FwsConfig" i smestio u "/fws/app/Services".
+mislim da je bolje da se razlikuje od "config" direktorijuma a i ime mu je bilo previše uopšteno
+
+---------------------------------------------------------------------
+
+"Theme/Hooks/DeferAssets" i "Theme/Hooks/SiteAssets" sam morao refaktorisati da umesto što gazi "init()" da gazi konstuktor,
+da bi u njemu mogao da piše u private variajble.
+
+------------------------------------------------------------------------------------
+
+AJAX i REST rute sam iscepkao na pojedinačne klase - svaki endpoint u zasebnu klasu,
+i sve moraju biti registrovane u config fajlu.
+tako sam dobio mogućnost da učitam i instanciram samo klasu koja je zatražena,
+nepotrebno je da na svaki load uvozimo 30-ak fajlova i instanciramo 30-ak klasa.
+registruju se u /config/ajax.routes.php.
+
+Nonce u REST handlerima zavisi od prepoznatog usera, zato ako želite imati nonce morate uključiti neku vrstu autentifikacije.
+
+------------------------------------------------------------------------------------
+
+CPT sam podelio na dve posebne,
+baznu klasu za CPT i baznu za taksonomiju,
+do sada se pokazalo da je izuzetno retko trebalo napraviti za jednu stvar praviti oba.
+Dodatno sam ih razradio i sada klase koje ih naseđuju najčešće treba samo da deklarišu nazive u property i to je sve.
+Na PrimePackaging projektu se može videti lep primer kako je 9 klasa nasledilo ove bazne i sve imaju svega par redova.
+
+------------------------------------------------------------------------------------
+
+napravio sam Cron abstraktnu klasu koja će odvaditi dosta posla kad se bude pravilo nešto što treba preko crona raditi.
+samo se nasledi klasa i definiše interval u novoj klasi i to je sve.
+
+------------------------------------------------------------------------------------
+
+nešto o helperima i servisima,
+u starteru imamo nekoliko klasa koje sadrže helpere (/Theme/Render, /Theme/WC/Render, /Theme/Media/Images,...)
+ali su spakovane kao da su servisi i u uputstvu se prikazuje da se pozivaju kao servisi
+(pogledaj example u headeru od "FWS\WC\Render\headerCart"),
+nije big-deal ni tako ali čistije bi bilo da ih prepakujemo u helpere jer su zaista sve state-less,
+dakle umesto da nasleđuju Singleton da budu obične klase i da se ne instanciraju,
+da su sve metode statičke pa da se pozivaju sa "\FWS\WC\Render::headerCart()" umesto "fws()->wc()->headerCart();"
+opet - nije velika stvar - možemo sve to proglasiti servisima
+
+-------------------------------------------------------------------------------------
+
+u direktorijum "Services" ubacio:
+EnvironmentMarker
+Validator
+
+---------------------------------------------------------------------------------------
+
+Mrzelo me da prevodim:
+
+Declare or execute.
+PHP files SHOULD declare new entities (classes,functions,traits) OR execute code but SHOULD NOT do both.
+Loading class into scope need to be safe operation without any side effects because there is
+always a chance in future that same class will need to be loaded from different environment or context.
+
+Usage of flat PHP files SHOULD be reduced as much as possible.
+Entire PHP code SHOULD be packed within classes (except root index.php, of course) and remaining
+flat PHP files SHOULD simply return (array of) primitive values, without using any logic/functions
+(typically usage for config values).
+Such construction has several benefits: it improves readability because of separation of logic and data,
+it makes versioning and deploying code to userland much easier and makes application safer because
+only index.php has side-effects.
+
+Ovo je takođe ogromno security poboljašnje jer uklanja potebu za onim "defined( 'ABSPATH' ) || exit;" na početku.
+
+
+=================================================
+šta dalje ?
+================================================
+
+izbaciti SingletonHook
+
+? razdvojiti servise i helpere
+
+mejl templejtovi - čini mi se da idemo u smeru da ne koristimo WC mejl templejtove već ih sami pravimo,
+  onda bi mogli ubaciti Mailer u starter

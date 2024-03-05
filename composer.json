@@ -2,13 +2,30 @@
 	"autoload": {
 		"psr-4": {
 			"": "fws/",
-			"FWS\\": "fws/src/"
+			"FWS\\": "fws/app/"
 		}
 	},
     "require": {
-        "symfony/yaml": "^5.0"
+        "symfony/yaml": "^5.0",
     },
 	"require-dev": {
-		"symfony/var-dumper": "^5.0"
+		"symfony/var-dumper": "^5.0",
+		"inpsyde/php-coding-standards": "^1@dev",
+		"phpcsstandards/phpcsutils": "dev-develop",
+		"phpcsstandards/phpcsextra": "dev-develop",
+		"slevomat/coding-standard": "6.4.1",
+		"phpstan/phpstan": "^1.10",
+		"szepeviktor/phpstan-wordpress": "^1.3",
+		"phpstan/extension-installer": "^1.3"
+	},
+	"scripts": {
+		"codesniffer": "phpcs --standard=phpcs.xml -s .",
+		"phpstan": "phpstan analyse --memory-limit=2048M"
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true,
+			"phpstan/extension-installer": true
+		}
 	}
 }

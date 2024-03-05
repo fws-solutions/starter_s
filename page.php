@@ -8,21 +8,22 @@
  * different template.
  *
  * @link https://codex.wordpress.org/Template_Hierarchy
- *
  * @package fws_starter_s
  */
+
+declare(strict_types=1);
 
 // get header
 get_header();
 
 // open main content wrappers
-do_action( 'fws_starter_s_before_main_content' );
+do_action('fws_starter_s_before_main_content');
 
 // get content blocks
-get_template_part( 'template-views/shared/flex-content' );
+get_template_part('template-views/shared/flex-content');
 
 // close main content wrappers
-do_action( 'fws_starter_s_after_main_content' );
+do_action('fws_starter_s_after_main_content');
 
 // get footer
 get_footer();

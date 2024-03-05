@@ -1,0 +1,20 @@
+
+
+WpDebug paket treba da napravi novu admin stranicu "Debug settings" unutar "Fws Settings",
+na nju će plugini i paketi dodavati svoje tabove
+
+
+MailBlocker (sa Kadre)
+
+
+FE-ovi često koriste: fws()->render()->inlineSVG(...
+i to pravi problem sa phpcs: not escaped echo,
+rename-ovati na: fws()->render()->echoInlineSVG(...  i interno pozivati echo
+
+
+podsetnik: git pre-commit hook se postavlja automatski na "npm install"
+
+
+umesto $_SESSION u UserAbstractRole nađi drugi storage mehanizam, možda sa \WP_Session_Tokens
+
+

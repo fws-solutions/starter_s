@@ -1,0 +1,22 @@
+
+How to setup php-code-sniffer in PhpStorm
+------------------------------------------
+
+
+"composer install" should be executed before this steps.
+
+
+Open "Settings" and find PHP_CodeSniffer settings
+(in PhpStorm 2021 it is at "Settings" / "PHP" / "Quality Tools" / "PHP_CodeSniffer")
+
+
+Click on [...] button to open new window.
+Specify location of "phpcs" executable file (it should be in /wp-content/themes/fws-admin/vendor/bin/phpcs)
+Press button "Validate" to confirm it is found (it should display version of CodeSniffer).
+
+After that you must setup "inspection":
+there is link in window from previous step "PHP_CodeSniffer inspection" click it to open "insopections" window
+or open it from "Settings" / "Editor" / "Inspections".
+In new window
+at left side check using "PHP_CodeSniffer validation",
+at right side click on "Reset" link and set "Coding standard" to "Custom" and click to [...] button to our "phpcs.xml" in theme root.

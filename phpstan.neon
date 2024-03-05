@@ -1,0 +1,32 @@
+# config: https://phpstan.org/config-reference
+# levels: https://phpstan.org/user-guide/rule-levels
+
+parameters:
+	level: 6
+	phpVersion: 80000
+	inferPrivatePropertyTypeFromConstructor: true
+	checkMissingIterableValueType: false
+	rememberPossiblyImpureFunctionValues: false
+	checkUninitializedProperties: true
+	paths:
+		- %currentWorkingDirectory%
+	scanFiles:
+		#- %currentWorkingDirectory%/../../../wp-config.php
+		#- %currentWorkingDirectory%/../../../wp-includes/default-constants.php
+		#- %currentWorkingDirectory%/functions.php
+	scanDirectories:
+		- %currentWorkingDirectory%/../../../wp-includes
+		- %currentWorkingDirectory%/../../../wp-admin
+		- %currentWorkingDirectory%/../../../wp-content/plugins
+	excludePaths:
+		analyseAndScan:
+			- vendor/*
+			- __examples-and-snippets/*
+		analyse:
+			- */node_modules/*
+	ignoreErrors:
+		- '#^Property [a-zA-Z0-9\\_]+::\$[a-zA-Z0-9_]+ has no type specified\.$#'
+		#- '#^Method [a-zA-Z0-9\\_]+::[a-zA-Z0-9_]+\(\) has no return type specified\.$#'
+		#- '#^Function apply_filters(_ref_array)? invoked with [34567] parameters, 2 required\.$#'
+includes:
+	#- vendor/szepeviktor/phpstan-wordpress/extension.neon
