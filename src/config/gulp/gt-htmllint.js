@@ -22,7 +22,7 @@ function LintConfig(isFe = true) {
 		this['class-no-dup'] = false;
 	} else {
 		this['class-style'] = 'bem';
-		this['attr-order'] = ['class', 'id', 'href', 'src', 'target', 'title', 'name', 'value', 'alt', 'selected', 'checked', 'required', 'disabled'];
+		this['attr-order'] = ['class', 'id', 'href', 'src', 'target', 'alt', 'title', 'name', 'value', 'selected', 'checked', 'required', 'disabled'];
 	}
 
 	this['line-end-style'] = false;
